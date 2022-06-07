@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_GroomerReview
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Zigly::next_level" title="Manage Review" module="Zigly_GroomerReview" sortOrder="22" parent="Zigly::top_level" resource="Zigly_GroomerReview::GroomerReview"/>
+		<add id="Zigly_GroomerReview::zigly_groomerreview_groomerreview" title="Professionals Review" module="Zigly_GroomerReview" sortOrder="10" resource="Zigly_GroomerReview::GroomerReview" parent="Zigly::next_level" action="zigly_groomerreview/groomerreview/index"/>
+	</menu>
+</config>

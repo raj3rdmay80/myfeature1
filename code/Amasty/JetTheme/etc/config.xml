@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_JetTheme
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_jettheme>
+            <general>
+                <style_guide_access>1</style_guide_access>
+            </general>
+            <additional_elements>
+                <sticky_add_to_cart>1</sticky_add_to_cart>
+                <always_display_sticky_header>1</always_display_sticky_header>
+            </additional_elements>
+            <newsletter>
+                <show_newsletter_form>1</show_newsletter_form>
+                <form_position>right</form_position>
+                <text_position>inline</text_position>
+                <image_position>left</image_position>
+                <headline_text>Join the WiseMeal club</headline_text>
+                <additional_text>Be first to know about new delicious things!</additional_text>
+                <placeholder_email>hungry@email.com</placeholder_email>
+                <background_image>default/newsletter-image.png</background_image>
+            </newsletter>
+            <color_scheme>
+                <primary_color>#ff9a02</primary_color>
+                <secondary_color>#86af28</secondary_color>
+                <outline_color>#536131</outline_color>
+                <primary_font_color>#070605</primary_font_color>
+                <secondary_text_color>#4a4948</secondary_text_color>
+                <default_background_color>#ffffff</default_background_color>
+                <alternative_background_color>#fafce2</alternative_background_color>
+                <url_color>#6b26fd</url_color>
+                <placeholder_text_color>#a8a69f</placeholder_text_color>
+                <special_price_color>#f23b3b</special_price_color>
+                <small_buttons_color>#3d3731</small_buttons_color>
+                <small_buttons_highlight_color>#a8a69f</small_buttons_highlight_color>
+                <border_color>#dfdedd</border_color>
+                <border_hover_color>#4a4948</border_hover_color>
+                <border_active_color>#070605</border_active_color>
+                <error_notification_color>#fce0e0</error_notification_color>
+                <error_notification_text_color>#fce0e0</error_notification_text_color>
+                <generic_notification_color>#ffd43e</generic_notification_color>
+                <generic_notification_text_color>#ffd43e</generic_notification_text_color>
+                <success_notification_color>#e8fad5</success_notification_color>
+                <success_notification_text_color>#e8fad5</success_notification_text_color>
+                <newsletter_background_color>#070605</newsletter_background_color>
+                <newsletter_text_color>#ffffff</newsletter_text_color>
+                <social_background_color>#3d3731</social_background_color>
+                <icons_color>dark</icons_color>
+                <icons_background_plp_color>#f7f7f7</icons_background_plp_color>
+                <product_items_background_plp_color>#ffffff</product_items_background_plp_color>
+                <text_color_product_items_plp>#070605</text_color_product_items_plp>
+            </color_scheme>
+            <fonts>
+                <google_font>Roboto</google_font>
+            </fonts>
+            <category_page>
+                <product_diplay_name>default</product_diplay_name>
+                <swatch_display_type>hover</swatch_display_type>
+                <add_to_compare_position>top-left-hover</add_to_compare_position>
+                <add_to_wishlist_position>bottom-right</add_to_wishlist_position>
+                <show_short_description>0</show_short_description>
+                <show_product_reviews>1</show_product_reviews>
+                <align_add_to_cart>left</align_add_to_cart>
+                <display_add_to_cart_button>hover</display_add_to_cart_button>
+                <products_per_line_desktop>3</products_per_line_desktop>
+                <products_per_line_mobile>1</products_per_line_mobile>
+            </category_page>
+            <product_page>
+                <swatches_type>round</swatches_type>
+                <show_product_sku>1</show_product_sku>
+                <show_stock_info>1</show_stock_info>
+                <add_to_cart_position>under</add_to_cart_position>
+                <image_gallery_thumbnails_position>left</image_gallery_thumbnails_position>
+                <show_add_to_wishlist>1</show_add_to_wishlist>
+                <show_add_to_compare>1</show_add_to_compare>
+            </product_page>
+            <custom_footer>
+                <show_logo_block>1</show_logo_block>
+                <show_footer_links>1</show_footer_links>
+                <show_links_block>1</show_links_block>
+                <align_footer_payment_links>left</align_footer_payment_links>
+                <custom_layout_value>{"active-layout":"two-columns","two-columns":{"0":["logo_block_name","social_block_name", "payment_links"],"1":["footer_links","subscription_block","custom_footer_cms_block"]},"three-columns":{"0":["logo_block_name","custom_footer_cms_block"],"1":["footer_links"],"2":["subscription_block","social_block_name", "payment_links"]}}</custom_layout_value>
+            </custom_footer>
+        </amasty_jettheme>
+        <amoptimizer>
+            <lazy_load_general>
+                <lazy_load>0</lazy_load>
+            </lazy_load_general>
+            <images>
+                <image_optimization_type>0</image_optimization_type>
+            </images>
+            <style_switcher>
+                <style>food</style>
+            </style_switcher>
+        </amoptimizer>
+    </default>
+</config>

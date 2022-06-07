@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+        <tab id="zigly" translate="label" sortOrder="10">
+            <label>Zigly</label>
+        </tab>
+        <section id="referral_program" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Referral Program</label>
+            <tab>zigly</tab>
+            <resource>Zigly_Referral::referral</resource>
+            <group id="options" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Referral Options</label>
+                <!-- <field id="action" type="select" translate="label,comment,tooltip" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Referral Action</label>
+                    <source_model>Zigly\Referral\Model\Source\ReferralOptions</source_model>
+                    <config_path>referral_program/options/action</config_path>
+					<validate>required-entry</validate>
+                    <tooltip>If customer doesn't have the referral action, this global optoin value will be used.</tooltip>
+                </field> -->
+                <field id="enable_referral" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Referral</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="value" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Referee Value</label>
+                    <validate>required-entry validate-number validate-greater-than-zero validate-not-negative-number</validate>
+                    <config_path>referral_program/options/value</config_path>
+                </field>
+                <field id="customer_value" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Referrer Value</label>
+                    <validate>required-entry validate-number validate-greater-than-zero validate-not-negative-number</validate>
+                    <config_path>referral_program/options/customer_value</config_path>
+                </field>
+                <field id="description" type="textarea" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description</label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[{{referee}} and {{referrer}} are system variables and dont modify it.]]></comment>
+                </field>
+                <field id="whatsapp_description" type="textarea" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Whatsapp Description</label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[{{referralcode}} , {{referee}} and {{signup}} are system variables and dont modify it.]]></comment>
+                </field>
+			</group>
+            <group id="referral_sms" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Referral Sms Configuration</label>
+                <field id="referral_sms_sender_name" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Referral Sender Name</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="send_referral_sms_template" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Referral Sms Template Id</label>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

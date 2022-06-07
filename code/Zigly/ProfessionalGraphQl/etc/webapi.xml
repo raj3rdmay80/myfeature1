@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_ProfessionalGraphQl
+ */ -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/professional/sendotp" method="POST">
+        <service class="Zigly\ProfessionalGraphQl\Api\ProfessionalLoginRepositoryInterface" method="sendOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/professional/resendotp" method="POST">
+        <service class="Zigly\ProfessionalGraphQl\Api\ProfessionalLoginRepositoryInterface" method="resendOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/professional/login/token" method="POST">
+        <service class="Zigly\ProfessionalGraphQl\Api\ProfessionalLoginRepositoryInterface" method="generateToken"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/professional/logout" method="POST">
+        <service class="Zigly\ProfessionalGraphQl\Api\ProfessionalLoginRepositoryInterface" method="logout"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/professional/list" method="POST">
+        <service class="Zigly\ProfessionalGraphQl\Api\ProfessionalLoginRepositoryInterface" method="list"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/professional/update" method="POST">
+        <service class="Zigly\ProfessionalGraphQl\Api\ProfessionalRepositoryInterface" method="update"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/hub/list" method="POST">
+        <service class="Zigly\ProfessionalGraphQl\Api\HubRepositoryInterface" method="getHubList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

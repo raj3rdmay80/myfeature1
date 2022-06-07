@@ -1,0 +1,223 @@
+//
+//  Variables
+//  ____________________________________________
+
+@indent__sm: @indent__base * .75; // 15px
+
+@am-tabs-widget__buttons-active-background: @button__background;
+@am-tabs-widget__buttons-hover-background: fade(lighten(@am-tabs-widget__buttons-active-background, 13%), 20%);
+@am-tabs-widget__border: 2px solid @am-tabs-widget__buttons-active-background;
+@am-tabs-widget__border-radius: 80px;
+
+//
+//  Default Widgets styles
+//  ____________________________________________
+
+//
+//  Common
+//  ---------------------------------------------
+
+& when (@media-common = true) {
+    .products-grid.products.-display-block {
+        display: block;
+        margin: 0;
+    }
+
+    .amtheme-tabs-buttons {
+        & {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: @indent__l 0 @indent__xs 0;
+        }
+
+        .amtheme-title {
+            margin-bottom: @indent__sm;
+            padding: @indent__s @indent__sm;
+            border: @am-tabs-widget__border;
+            border-radius: @am-tabs-widget__border-radius;
+            background: transparent;
+            cursor: pointer;
+            transition: .4s ease-in-out;
+        }
+
+        .amtheme-title:hover {
+            background: @am-tabs-widget__buttons-hover-background;
+        }
+
+        .amtheme-title:nth-child(n+1) {
+            margin-right: @indent__s;
+        }
+
+        .amtheme-title .title {
+            color: @text__color;
+            font-weight: @font-weight__regular;
+            font-size: 1.6rem;
+        }
+
+        .amtheme-title .title:hover {
+            text-decoration: none;
+        }
+
+        .amtheme-title.-am-active {
+            background: @am-tabs-widget__buttons-active-background;
+        }
+
+        .amtheme-title.-am-active .title {
+            color: contrast(@am-tabs-widget__buttons-active-background);
+        }
+    }
+
+    .amtheme-tabs-widget {
+        & {
+            margin: @indent__base auto;
+            max-width: 100%;
+        }
+
+        .amtheme-heading {
+            &:extend(h1 all);
+        }
+
+        .products.product-items {
+            list-style-type: none;
+        }
+
+        .product-image-container,
+        .product-image-photo {
+            min-width: 100%;
+        }
+
+        .product-item > .product-item-info {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: stretch;
+            width: 100%;
+        }
+
+        .product-item .action.tocart {
+            font-size: 1.6rem;
+            width: 100%;
+        }
+
+        .products > .amtheme-products-secondary .product-item.item {
+            max-width: calc(~'100% - @{indent__m}');
+        }
+
+        .slick-track {
+            display: flex;
+            justify-content: stretch;
+        }
+
+        .slick-slide > div,
+        .slick-slide .product-item {
+            height: 100%;
+        }
+
+        .slick-slide .product-item {
+            display: block !important; // override inline slick-slider style
+            margin: auto !important; // override magento style
+        }
+
+        .products.slick-slider > .slick-list {
+            padding-top: @indent__sm;
+            padding-bottom: @indent__m;
+        }
+
+        .slick-slider.-slick-arrows-always .slick-arrow {
+            visibility: visible;
+        }
+
+        .slick-slider.-slick-arrows-always .slick-arrow:not(.slick-disabled) {
+            opacity: .9;
+        }
+
+        .amtheme-slick-slider:not(.slick-initialized) {
+            position: relative;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+    }
+}
+
+//
+//  Mobile
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .amtheme-tabs-widget .products.product-items {
+        margin: 0;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .amtheme-tabs-buttons {
+        justify-content: flex-start;
+    }
+
+    .amtheme-tabs-widget {
+        &.-mobile-hidden {
+            display: none;
+        }
+
+        .amtheme-heading {
+            margin-bottom: @indent__s;
+        }
+
+        .slick-slider .slick-dots,
+        .products.slick-slider .item.product > .product-item-info {
+            margin: 0;
+        }
+
+        .products > .amtheme-products-secondary > .slick-list {
+            margin: 0 -@indent__s;
+        }
+
+        .products.slick-slider.slick-dotted {
+            margin-bottom: @indent__xl;
+        }
+
+        .amtheme-products-secondary:not(.slick-initialized) .tocart {
+            font-size: 1.6rem;
+        }
+    }
+}
+
+//
+//  Desktop
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amtheme-tabs-buttons {
+        justify-content: center;
+    }
+
+    .amtheme-tabs-widget {
+        .amtheme-heading {
+            &:extend(h1 all);
+
+            margin-bottom: @indent__xs;
+            text-align: center;
+        }
+
+        .slick-dots {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .products.slick-slider.slick-dotted {
+            margin-bottom: calc(~'@{indent__xl} * 2');
+        }
+
+        .products > .amtheme-products-secondary > .slick-list {
+            margin: 0 auto;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .-slick-arrows-hover .slick-list,
+    .-slick-arrows-always .slick-list {
+        max-width: calc(~'100% - 60px * 2');
+    }
+}

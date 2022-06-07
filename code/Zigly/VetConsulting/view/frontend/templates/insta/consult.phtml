@@ -1,0 +1,107 @@
+<?php
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_VetConsulting
+ */
+$genders = $this->getGenders();
+$vetBlock = $block->getLayout()->createBlock('Zigly\VetConsulting\Block\Vet\PainPoints');
+$painPoints = $vetBlock->getPainPoints(); 
+$placeholderimage = $this->getplaceholderimage();
+?>
+<div id="vet-consulting">
+    <ul id="progressbar" class="grooming-container-width">
+        <li class="active"><span>Select Pain Points</span><span class="mobile-status">1</span></li>
+        <li><span>Select Vet</span><span class="mobile-status">2</span></li>
+        <li><span>Review Booking</span><span class="mobile-status">3</span></li>
+         <label for="back" class="back-nav" style="display: none;">
+            <input type="button" name="back" class="back action-button" value="Back"/>
+        </label>
+        <label for="Next" class="next-nav">
+            <input type="button" name="next" class="next action-button" value="Next" />
+        </label>
+    </ul>
+    <fieldset class="field2 current grooming-container-width">
+        <div class="select-pain-points">
+            <div class="choose-pain-points">
+                <label><?= $block->escapeHtml(__('Select Painpoint(s)')) ?></label>
+                <div class="pain-points-control type">
+                    <?php if (!empty($painPoints)): ?>
+                        <?php foreach($painPoints as $painPoint){ ?>
+                            <div class="points">
+                                <input type="checkbox" name="pain_points[]" class="primary check-painpoints" id="<?php /* @noEscape */ echo $painPoint ?>" value="<?php /* @noEscape */ echo $painPoint ?>" title="<?php /* @noEscape */ echo $painPoint ?>" >
+                                <label class="pain_points-label" for="<?php /* @noEscape */ echo $painPoint ?>">
+                                    <?php echo $painPoint; ?>
+                                </label>
+                            </div>
+                        <?php }?>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="describe-problem">
+                <div class="describe_problem-control type">
+                    <textarea name="describe_problem" id="describe_problem" title="<?php echo __('Describe your problem') ?>" class="input-text" placeholder="<?php echo __('Describe your problem') ?>" rows="4" cols="15"></textarea>
+                </div>
+                <form enctype="multipart/form-data">
+                    <div class="add-image-doc">
+                        <input type="file" multiple name="image_document[]" id="imageDocUpload" style="display: none;" />
+                        <a class="action" title="<?= $block->escapeHtml(__('Add Image(s) / Documents')) ?>" id="image-doc" href="javascript:;">
+                            <?= $block->escapeHtml(__('Add Image(s) / Documents')) ?>
+                        </a>
+                    </div>
+                </form>
+            </div>
+            <div class="uploaded-image-doc">
+                <span id="empty-painpoints"></span>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="field3 grooming-container-width">
+    </fieldset>
+    <fieldset class="field4 grooming-full-width">
+    </fieldset>
+</div>
+<script type="text/javascript">
+    require([
+    'jquery',
+    'domReady!'
+    ], function($){
+
+        $(document).on('click', '.view-plan-details',function(){
+            $(this).siblings('.detail-options').toggle();
+        });
+
+         $(document).on('click','.list-open',function(){
+            $('.list-open').find('i.fa-angle-down').css({'transform': ''});
+            $(this).find('i.fa-angle-down').css({'transform': 'rotate(-180deg)'});
+            if($(this).next().hasClass('show')){
+                $(this).next().removeClass('show');
+                $(this).next().slideUp();
+                $(this).find('i.fa-angle-down').css({'transform': ''});
+            }else{
+                $(this).parent().parent().find('li .list-details').removeClass('show');
+                $(this).parent().parent().find('li .list-details').slideUp();
+                $(this).next().toggleClass('show');
+                $(this).next().slideToggle();
+            }
+        });
+    });
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_VetConsulting/js/instaconsulting": {
+                "settimeslot" : "<?php echo $this->getUrl().'services/vet/settimeslot'?>",
+                "getvet" : "<?php echo $this->getUrl().'services/vet/getvet'?>",
+                "getvetbyfilter" : "<?php echo $this->getUrl().'services/vet/getvetbyfilter'?>",
+                "profileUrl" : "<?php echo $this->getUrl().'services/vet/getvetdetail'?>",
+                "reviewVet" : "<?php echo $this->getUrl().'services/vet/reviewvet'?>",
+                "applyWallet" : "<?php echo $this->getUrl().'services/vet/applywallet'?>",
+                "removeWallet" : "<?php echo $this->getUrl().'services/vet/removewallet'?>",
+                "loadreview" : "<?php echo $this->getUrl().'services/vet/loadreview'?>",
+                "applyCoupon" : "<?php echo $this->getUrl().'services/vet/applycoupon'?>",
+                "removeCoupon" : "<?php echo $this->getUrl().'services/vet/removecoupon'?>",
+                "uploadImageUrl" : "<?php echo $this->getUrl().'services/vet/fileupload'?>"
+            }
+        }
+    }
+</script>

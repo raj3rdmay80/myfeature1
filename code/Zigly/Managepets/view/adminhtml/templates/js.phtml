@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Managepets
+ */
+?>
+<?php if($block->getCustomerId()) {?>
+<div id="modal-overlay" class="event_popup" style="display:none;">
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_Managepets/js/managepets": {
+                "customerid" : <?php echo $block->getCustomerId();?>,
+                "loadformurl" : "<?php echo $this->getUrl('managepets/index/loadform')?>",
+                "AjaxUrl" : "<?php echo $this->getUrl('managepets/index/fileupload')?>",
+                "saveajaxUrl":"<?php echo $this->getUrl('managepets/index/save')?>",
+                "deleteajaxUrl":"<?php echo $this->getUrl('managepets/index/delete')?>",
+                 "calenderimage" : "<?php echo $this->getViewFileUrl('Magento_Theme::calendar.png');?>"
+            }
+        }
+    }
+</script>
+<?php } ?>
+

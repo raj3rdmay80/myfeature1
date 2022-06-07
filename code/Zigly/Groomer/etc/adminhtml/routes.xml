@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Groomer
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+	<router id="admin">
+		<route id="groomer" frontName="groomer">
+			<module name="Zigly_Groomer" before="Magento_Backend"/>
+		</route>
+		<route frontName="zigly_groomer" id="zigly_groomer">
+			<module before="Magento_Backend" name="Zigly_Groomer"/>
+		</route>
+	</router>
+</config>

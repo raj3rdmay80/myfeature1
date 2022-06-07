@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_GroomingService
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Zigly_Catalog::css/owl.carousel.min.css"/>
+        <css src="Zigly_Catalog::css/owl.theme.default.min.css"/>
+        <css src="Zigly_GroomingService::css/center.css"/>
+   </head>
+    <body>
+        <referenceBlock name="page.main.title" display="false"/>
+        <referenceContainer name="content">
+            <block name="grooming.home" class="Zigly\GroomingService\Block\Center\Home" template="Zigly_GroomingService::center/home.phtml" />
+        </referenceContainer>
+    </body>
+</page>

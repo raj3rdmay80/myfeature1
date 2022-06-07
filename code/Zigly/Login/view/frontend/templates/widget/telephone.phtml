@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Widget\Telephone $block */
+
+?>
+
+<div class="field telephone <?= $block->isRequired() ? 'required' : '' ?>">
+    <label for="telephone" class="label">
+        <span>
+            <?= $block->escapeHtml(__('Phone Number')) ?>
+        </span>
+    </label>
+    <div class="control">
+        <input type="tel"
+               name="telephone"
+               id="telephone"
+               value="<?= $block->escapeHtmlAttr(is_null($block->getTelephone()) ? $block->getcustomerphonenumber() : $block->getTelephone()) ?>"
+               title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+               placeholder="<?= $block->escapeHtmlAttr(__('Enter your 10 digit Mobile Number')) ?> *"
+               class="input-text <?= $block->escapeHtmlAttr($block->getAttributeValidationClass('telephone')) ?> minimum-length-10 maximum-length-10 "
+               data-validate="{'validate-number':true, 'validate-length':true}"
+               data-msg-validate-length="Please enter a 10 digit mobile number."
+               oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+               maxlength="10">
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<!--@subject {{trans "Booking Status Update"}} @-->
+{{template config_path="design/email/header_template"}}
+<table style="float:left; margin-right: 10px" class="groomer-mail">
+     <tr>
+         <td>
+         	<div>Boop! The status of your {{var cancelDetails.pet_name}} (order ID {{var cancelDetails.booking_id}}) has been updated to "{{var cancelDetails.status}}". Click here to  <a href={{var cancelDetails.url}}> view </a>. Cheers Zigly for Happy Pets.</div>
+         </td>
+     </tr>
+ </table>
+
+{{template config_path="design/email/footer_template"}}

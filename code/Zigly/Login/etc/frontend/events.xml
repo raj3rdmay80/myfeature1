@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Login
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch">
+        <observer name="zigly_login_observer_frontend_controller_actionpredispatch_controller_action_predispatch" instance="Zigly\Login\Observer\Frontend\Controller\ActionPredispatch"/>
+    </event>
+</config>

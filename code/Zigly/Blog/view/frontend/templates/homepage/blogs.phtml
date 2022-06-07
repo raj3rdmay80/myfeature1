@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Catalog
+ */
+
+?>
+<?php $blogs = $block->getBlog(); ?>
+<?php $mageplazaBlogBlock = $block->getLayout()->createBlock('Mageplaza\Blog\Block\Frontend'); ?>
+<?php if(!empty($blogs) && count($blogs)) :?>
+    <div class="tips-for-pets">
+        <div class="pets-health">
+            <div class="tips-text">
+                <h1>Health Tips from Experts</h1>
+            </div>
+            <div class="health-images">
+                <?php foreach($blogs as $blog) : ?>
+                    <div class="health-image">
+                    <?php if ($blog->getImage()): ?>
+                        <div class="post-image">
+                            <a href="<?= $blog->getUrl() ?>">
+                                <img class="img-responsive"
+                                     src="<?= $mageplazaBlogBlock->resizeImage($blog->getImage(), '400x'); ?>"
+                                     alt="<?= $block->escapeHtml($blog->getName()); ?>"/>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                    <div class="health-text">
+                        <h3 class="mp-post-title">
+                            <a href="<?= $blog->getUrl() ?>" style="text-decoration: none"><?= $blog->getName(); ?></a>
+                        </h3>
+                        <a class="post-link-title" title="<?= $block->escapeHtml($blog->getName()); ?>"
+                               href="<?= $blog->getUrl() ?>">
+                           <?= __('READ NOW') ?>
+                       </a>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="viewmore">
+            <a href="<?= $block->getBaseUrl().'blog.html'?>">View more</a>
+        </div>
+    </div>
+<?php endif;?>

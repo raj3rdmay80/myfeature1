@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Login
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="zigly" translate="label" sortOrder="10">
+            <label>Zigly</label>
+        </tab>
+        <section id="msggateway" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>MSG91 Gateway</label>
+            <tab>zigly</tab>
+            <resource>Zigly_Login::msggateway_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="authkey" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>MSG91 Auth Key</label>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+            <group id="otpemail" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Login OTP Configuration</label>
+                <field id="login_email_otp" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Email OTP Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <!-- This model return all transactional email template list of magento -->
+                </field>
+                <field id="login_mobile_otp" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Login Mobile OTP Templateid</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="login_professional_otp" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Professional Login Mobile OTP Templateid</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="static_otp_email" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Static OTP Email Id</label>
+                    <comment>For multiple email id please use comma-separator</comment>
+                </field>
+                <field id="static_otp_phone" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Static OTP Phone Number</label>
+                    <comment>For multiple phone number please use comma-separator</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

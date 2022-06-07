@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="customer">
+        <field name="referralcode" formElement="input">
+            <settings>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="refercode" formElement="input">
+            <settings>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="referral_type" formElement="input">
+            <settings>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="referral_value" formElement="input">
+            <settings>
+                <visible>false</visible>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="zigly_referral_tab">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Referral Program</item>
+                <item name="sort_order" xsi:type="number" >100</item>
+            </item>
+        </argument>
+        <htmlContent name="group_title">
+		  <argument name="block" xsi:type="object">Zigly\Referral\Block\Adminhtml\CustomerEdit\Tab\ReferralData</argument>
+		</htmlContent>
+        <insertListing name="zigly_referral_listing">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="autoRender" xsi:type="boolean">true</item>
+                    <item name="ns" xsi:type="string">zigly_referral_listing</item>
+                    <item name="externalProvider" xsi:type="string">${ $.ns }.zigly_referral_grid_data_source</item>
+                    <item name="externalFilterMode" xsi:type="boolean">true</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="id" xsi:type="string">${ $.provider }:data.customer.entity_id</item>
+                    </item>
+                    <item name="exports" xsi:type="array">
+                        <item name="id" xsi:type="string">${ $.externalProvider }:params.customer_id</item>
+                    </item>
+                </item>
+            </argument>
+        </insertListing>
+    </fieldset>
+</form>

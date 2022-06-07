@@ -1,0 +1,1222 @@
+<?php
+/**
+ * Copyright © 2019 CommerceExtensions. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$fileuploadedindir = $block->getUploadedFiles();
+$importProfile = $block->getImportProfileData();
+$exportProfile = $block->getExportProfileData();
+?>
+<script type="text/javascript">
+ require(['jquery','progressbar'],function($){
+			
+		$('#import-form').submit(function(event) { 
+
+			if($('#detailed-log-table').text() !== ""){ $("#detailed-log-table").empty(); }
+			$('#detailed-log-table').append('<tr><th class="cls-th">Type</th><th class="cls-th">Line</th><th class="cls-th">Column</th><th class="cls-th">Message</th></tr>');
+			if($(".left-rows-box .cls-l").text() !== ""){ $(".cls-l").empty(); }
+			if($(".left-rows-box .cls-err").text() !== ""){ $(".cls-err").empty(); }
+			if($("#td_MESSAGE").text() !== ""){ $("#td_MESSAGE").empty().removeClass(); }
+			if($("#logdetail-table").text() !== ""){ $("#logdetail-table").empty(); }
+			if($("#display_response").text() !== ""){ $("#display_response").empty(); }
+
+			$dropdownvalue=$("#selectfileforuploading option:selected").text();
+			if($dropdownvalue!=='No Files Uploaded'){
+				
+				if($('#ProgressDryRun').length == 0 && $('.progress-label').length == 0){ 
+					$("#parent").append("<div id='ProgressDryRun'>Progress:</div>");
+					$("#child").append("<div id='progressbar'><div class='progress-label'>Loading...</div></div>");
+					$("#sub_btn").prop("disabled", true);
+				}
+				var progressbar = $("#progressbar"),
+				progressLabel = $(".progress-label");
+				
+				progressbar.progressbar({
+					  value: false,
+					  change: function() {
+						progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+					  },
+					  complete: function() {
+						progressLabel.text( "Complete!" );
+					  }
+				});
+
+				function getProgress() {
+					$.ajax({ 
+						type:"GET",
+            			async: true,
+						url:"<?php echo $block->getUrl('product/data/Progress'); ?>",
+							success: function(response){
+								var current_row = response.current_row || 0;
+								current_row = parseInt(current_row);
+								$('#currentrow').html(current_row);
+								$('#rowsprocessed').html(response.total_row);
+								$('#rowsfoundincsv').html(response.total_row);
+								$('#rowssuccessfull').html(current_row);
+								//console.log("CURRENT VALUE"+ current_row);
+								//console.log("ROW TOTAL: " + response.total_row);
+								var percentage = ( current_row / response.total_row ) * 100;
+								if(percentage > 0) {
+									var progressbar = $("#progressbar");
+									progressbar.progressbar( "value", Math.round(percentage));
+								}
+								if(response.import_status == "canceled") {
+									$('#detailed-log-table').append('<tbody><tr><td id="MSG_last" class="succ err">SUCCESS</td><td id="LineNum_last">'+current_row+'</td><td id="Columnno_last">--</td><td id="logdetail-table">The Import Was Canceled</td></tr></tbody>');
+								}
+								//console.log(response.import_status);
+								if(response.import_status == "started" && percentage < 101)	{			
+									getProgress();
+								}
+							}
+					});
+				}
+				
+				//calling this function to get progress every 6 micro seconds .
+				//getProgress();
+				setTimeout( getProgress, 6000 );
+				// display  table heading  here .
+				if($('#table-heading').length == 0 && $('#Log-heading').length == 0){
+					$('#table-status').append('<div id="table-heading">Status:</div>');
+					$('#Log-status').append('<div id="Log-heading">Log Tail:</div>');
+				}
+				$('#status-table-to-display').css('display','block');
+				$('#log-table-to-display').css('display','block');
+						
+				event.preventDefault();
+			}	  
+			 
+			
+			$.ajax({ 
+				type:"POST",
+            	async: true,
+				url:"<?php echo $block->getUrl('product/data/ImportPost'); ?>",
+				data: $(this).serialize(),
+					success: function(response){
+					
+						setTimeout(loadXML, 500);
+						$("#sub_btn").prop("disabled", false);
+						
+						function loadXML() {
+							var htmlStr = '';
+							$('#rowsprocessed').html(response.total_rows);
+							$("#rowssuccessfull").html(response.total_success_rows);
+							$("#memoryused").html(response.memory_used); 
+							if(response.totalwarnings !== undefined && response.totalwarnings !== null){
+								$.each(response.totalwarnings, function(k){
+									//console.log("CURRENT VALUE: "+ k);
+									//console.log("COUNT: "+ k.length);
+									$.each(this, function(key, value) {
+											//console.log(value.line);
+											//console.log(value.error);
+											//console.log(key);
+											$("#totalwarnings").html(key+1);
+											htmlStr += '<tr><td id="td_MESSAGE" class="warn">WARNING</td><td id="td-lineno">'+value.line+'</td><td id="td-Columnno">'+value.column+'</td><td id="logdetail-table">' + value.error + '</td></tr>';
+									});
+								});
+							}
+
+							if(response.success_message !== undefined && response.success_message !== null){
+								$("#display_response").html(response.success_message);
+								$('#logdetail-table').html('--');
+							}
+							if(response.success !== undefined && response.success !== null){
+								htmlStr += '<tr><td id="MSG_last"></td><td id="LineNum_last"></td><td id="Columnno_last">--</td><td id="logdetail-table">' + response.success + '</td></tr>';
+								$('#detailed-log-table').append(htmlStr);
+								$('#MSG_last').toggleClass('succ err');
+								$('#MSG_last').addClass('succ');
+								$('#MSG_last').html('SUCCESS');
+								$('#LineNum_last').html('--');
+								$('#Columnno_last').html('--');
+							}
+							if(response.error !== undefined && response.error !== null){
+								htmlStr += '<tr><td id="MSG_last"></td><td id="LineNum_last"></td><td id="Columnno_last">--</td><td id="logdetail-table">' + response.error + '</td></tr>';
+								$('#detailed-log-table').append(htmlStr);
+								$('#MSG_last').addClass('err');
+								$('#MSG_last').html('ERROR');
+								$('#totalerrors').html(1);
+								$('#LineNum_last').html('--');
+								$('#Columnno_last').html('--');
+								
+							} else if((response + '').length >= 50){ 
+								$("#display_response").html(response);
+							}	 
+
+							var Estimatefinish=('<?php date_default_timezone_set('America/Chicago'); echo $estimatefinishtime = date('d/m/Y == H:i:s', time() + 20); ?>');
+							$("#estimatefinish").html(Estimatefinish + '  (server time)');
+						}
+					}	
+			});
+			
+		 event.preventDefault();
+			 	  
+		});
+ });
+</script>
+<script type="text/javascript">
+    require(['jquery','bannerslider'],function($){
+				var bar = $('#bar')
+				var percent = $('#percent');
+				var status = $('#status');
+				
+				$('#progress-bar-form').ajaxForm({
+					beforeSend: function() {
+							status.empty();
+							var percentVal = '0%';
+							bar.width(percentVal);
+							percent.html(percentVal);
+					},
+					uploadProgress: function(event, position, total, percentComplete) {
+						var uplaodingsizeInMB = (position / (1024*1024)).toFixed(2);
+						var totalsizeInMB = (total / (1024*1024)).toFixed(2);
+						
+						var size_uploading = uplaodingsizeInMB + "mb    " + "       " + 'of';
+						var totalsize = totalsizeInMB + 'mb';
+						
+						document.getElementById("uploaded_part").innerHTML = size_uploading;
+						document.getElementById("total_size").innerHTML = totalsize;
+						var percentVal = percentComplete + '%';
+						percent.html(percentVal);
+						bar.width(percentVal);
+							
+					},
+					complete: function(xhr){
+							
+     						var fileName = JSON.parse(xhr.responseText);
+							var j = jQuery.noConflict()
+							if (!j("#selectfileforuploading option[value=' + fileName + ']").length) {
+								j('<option>').val(fileName).text(fileName).appendTo($('#selectfileforuploading'));
+								j("#selectfileforuploading option[value='No_file_selected']").remove();
+							}
+								
+							j("#upload-anchor-tag").hide();
+							j("#import-settings").show();
+								
+							j('.tabs-menu li').siblings().removeClass("current");
+							j('.tabs-menu li.import-settings').addClass("current");
+					}
+			    });  
+
+    });
+</script> 
+<script type="text/javascript">
+
+require(['jquery'],function($){
+	var j = jQuery.noConflict()
+	j(document).ready(function() {
+			j('.commerce-div-box-export').hide();
+			j("#id_import_export").change(function(){ 
+					if(j("#id_import_export").val() == "choosed_import_products"){
+						j('.commerce-div-box-export').hide();
+						j('.commerce-div-box').show();
+					}
+					else{
+						j('.commerce-div-box').hide();
+						j('.commerce-div-box-export').show();
+						j('#export-settings').fadeIn();
+					}
+			});  
+		});	 
+	j(document).ready(function() {
+			j('.cron_export_settings').hide();
+			j("#Profile_type").change(function(){ 
+					if(j("#Profile_type").val() == "Import_Products"){
+						j('.cron_export_settings').hide();
+						j('.cron_import_settings').show();
+					} else {
+						j('.cron_import_settings').hide();
+						j('.cron_export_settings').show();
+					}
+			});  
+		});	
+	j(document).ready(function() {
+			j('.cron_remote_import_settings').hide();
+			j("#data_transfer").change(function(){ 
+					if(j("#data_transfer").val() == "local"){
+						j('.cron_remote_import_settings').hide();
+					} else {
+						j('.cron_remote_import_settings').show();
+					}
+			});  
+		});	
+	j(document).ready(function() {
+			j('.show_additional_filters').hide();
+			j("#apply_additional_filters").change(function(){ 
+					if(j("#apply_additional_filters").val() == "yes_additional_filters"){
+						j('.show_additional_filters').show();
+					}
+					else{
+						j('.show_additional_filters').hide();
+					}
+			});  
+		});	 
+	j(document).ready(function() {
+			j('.show_attribute_values').hide();
+			j("#import_attribute_value").change(function(){ 
+					if(j("#import_attribute_value").val() == "true"){
+						j('.show_attribute_values').show();
+					}
+					else{
+						j('.show_attribute_values').hide();
+					}
+			});  
+		});	 
+	j(document).ready(function() {
+			j('#row_catalog_fields_import_mapped_fields_only').hide();
+			j('#row_catalog_fields_export_mapped_fields_only').hide();
+			j("#export_fields").change(function(){ 
+					if(j("#export_fields").val() == "false"){
+						j('#row_catalog_fields_export_mapped_fields_only').show();
+					}
+					else{
+						j('#row_catalog_fields_export_mapped_fields_only').hide();
+					}
+			});  
+			if(j('#export_fields').val() === "false") { j('#row_catalog_fields_export_mapped_fields_only').show(); }
+			j("#import_fields").change(function(){ 
+					if(j("#import_fields").val() == "false"){
+						j('#row_catalog_fields_import_mapped_fields_only').show();
+					}
+					else{
+						j('#row_catalog_fields_import_mapped_fields_only').hide();
+					}
+			});  
+			if(j('#import_fields').val() === "false") { j('#row_catalog_fields_import_mapped_fields_only').show(); }
+		});	
+	j(document).ready(function() {
+		j(".tabs-menu li").click(function(event) {
+			event.preventDefault();
+			j(this).addClass("current");
+			j(this).siblings().removeClass("current");
+			var tab = j(this).attr("id");
+			j(".tab-content").not(tab).hide();
+			j(tab).fadeIn();
+		});
+	});
+	j(document).ready(function() {
+		j(".action-delete").click(function(event) {
+			event.preventDefault();
+			var profileid = j(this).attr("id");
+			//alert("ID: " + profileid);
+
+    		if(confirm("Are you sure you want to delete profile id ["+ profileid+"] ?")){	
+				$.ajax({ 
+					type:"GET",
+	    			async: true,
+					data: { 
+					    	profileid: j(this).attr("id"),
+					    	deletereq: true
+					    },
+					url:"<?php echo $block->getUrl('product/data/CronJob'); ?>",
+						success: function(response){
+							//console.log("DELETE SUCCESS:" + profileid);
+							$('#row-id-'+profileid).remove();
+						}
+				});
+		    } else {
+		        return false;
+		    }
+		});
+	});
+	j(document).ready(function() {
+		j("#upload").click(function(event) {
+				var filetoupload = j('.custom-file-input').val();
+				if(filetoupload == ""){
+					alert('Please select file to upload');
+					event.preventDefault();
+				}
+				
+		});
+		j("#sub_btn").click(function(event) {
+		   if(j("#sub_btn").val()=="Cancel") {
+				$("#import_progress_label").empty();
+		   }
+		   var dropdownvalue=j("#selectfileforuploading option:selected").text();
+		   if(dropdownvalue=='Select a File '){
+				alert('Please select a file to import');
+				event.preventDefault();
+		   }
+		   if(dropdownvalue=='No File Uplaoded yet'){
+				alert('Please Upload a file first and then  import');
+				event.preventDefault();
+		   }
+				
+		});
+		j("#refresh_btn").click(function(event) {
+			function getRefreshProgress() {
+				$.ajax({ 
+					type:"GET",
+        			async: true,
+					url:"<?php echo $block->getUrl('product/data/Progress'); ?>",
+						success: function(response){
+							var current_row = response.current_row || 0;
+							current_row = parseInt(current_row);
+							$('#currentrow').html(current_row);
+							$('#rowsprocessed').html(response.total_row);
+							$('#rowsfoundincsv').html(response.total_row);
+							$('#rowssuccessfull').html(current_row);
+							var percentage = ( current_row / response.total_row ) * 100;
+							if(percentage > 0) {
+								var progressbar = $("#progressbar");
+								progressbar.progressbar( "value", Math.round(percentage));
+							}
+						}
+				});
+			}
+			$('#status-table-to-display').css('display','block');
+			$('#log-table-to-display').css('display','block');
+			getRefreshProgress();
+		});
+	});
+});
+</script>
+<section class="header-select-box">
+	<div class="select-action">
+		<span class="header-action">
+		<label class="label header" for="label_header_only"><span><?php echo __("Select Action:"); ?></span></label>
+		</span>
+		<select id="id_import_export" name="select_import_export" title="select_import_export" class="import_and_export">
+			<option value="choosed_import_products"><?php echo __("Import Products"); ?></option>
+			<option value="choosed_export_products"><?php echo __("Export Products"); ?></option>
+		</select>					
+	</div>
+	<!-- Div to display the import response-->
+	<div id="display_response"></div>
+</section>
+<section class="commerce-div-box">
+<div id="tabs-container">
+	<div class="left-side-panel">
+		<ul class="tabs-menu">
+			<li class="current" id="#upload-anchor-tag"><a href="#">UPLOAD FILE</a></li>
+			<li id="#import-settings" class="import-settings"><a href="#">IMPORT SETTINGS</a></li>
+			<li id="#Run-import-button-section"><a href="#">RUN IMPORT</a></li>
+			<li id="#cronjob"><a href="#">CRON JOB SETUP</a></li>
+			<li id="#cronjobprofiles"><a href="#">CRON JOB PROFILES</a></li>
+			<li id="#cronjobhistory"><a href="#">CRON JOB HISTORY</a></li>
+		</ul>
+	</div>
+	<div class="tab">
+		<!-- Upload File section  -->
+			<div class="right-side-box">
+			
+				<div id="upload-anchor-tag" class="tab-content">
+				
+					<div class='formarea'>
+					
+						<div class="top-box">
+							<div class="mb-cls-box">
+								<div id="uploaded_part" class="cls-b"></div>
+								<div id="total_size" class="cls-b"></div>	
+							</div>
+							<div class="upload-box"><p>Upload Progress</p></div>
+						</div>
+						<div id="bararea">
+							<div id="bar"></div>
+						</div>
+						<div id='percent'>0%</div>
+			
+						<div id='status'></div>
+										
+						<form id="progress-bar-form" method="post" action="<?php echo $block->getUrl('product/data/Uploadfile'); ?>">
+						
+							<div class="main-form-div">
+								<input type="file" id="file" name="file" class="custom-file-input"/>
+								<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+								<button type="submit" id="upload" name="Upload File"> Upload File</button>
+								<div class="clear"></div>
+							</div>
+						</form>						
+					</div>
+				</div>
+			</div>
+		<!--Import settings section-->	
+			<div class="right-side-box">
+				<div id="import-settings" class="tab-content" style="display: none">
+					<form id="import-form" name="importform" method="post" enctype="multipart/form-data">
+							<label class="label admin__field-label" for="import_delimiter"><span>Import CSV Delimiter Value</span></label>
+							<div class="control">
+								<input id="basic_behavior_import_delimiter" name="import_delimiter" value="<?= $block->renderValue($importProfile['import_delimiter']) ?>" title="Import Delimiter" class="basic_behavior input-text admin__control-text" type="text" size="1">
+							</div>
+							<label class="label admin__field-label" for="import_enclose"><span>Import CSV Enclose Value</span></label>
+							<div class="control">
+								<input id="basic_behavior_import_enclose" name="import_enclose" value='<?= $block->renderValue($importProfile['import_enclose']) ?>' title="Import Enclose" class="basic_behavior input-text admin__control-text" type="text" size="1">
+							</div>
+							<label class="label admin__field-label" for="root_catalog_id"><span>Root Catalog ID</span></label>
+							<div class="control">
+								<input id="basic_behavior_import_field_separator" name="root_catalog_id" value="<?= $block->renderValue($importProfile['root_catalog_id']) ?>" title="Root Catalog ID" class="basic_behavior input-text admin__control-text" type="text" size="20">
+							</div>
+							<br/>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="enable_default_magento_format"><span>Enabled Default Magento Format</span></label></span>
+								<select id="enable_default_magento_format" name="enable_default_magento_format" title="Enabled Default Magento Format" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['enable_default_magento_format']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['enable_default_magento_format']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="import_attribute_value"><span>Import Attribute Values</span></label></span>
+								<select id="import_attribute_value" name="import_attribute_value" title="import_attribute_value" class="select admin__control-select apply_additional_filters">
+									<option <?= $block->checkFieldValue($importProfile['import_attribute_value']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['import_attribute_value']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="show_attribute_values">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="product_id_from"><span>Generate Values for Attribute(s)</span></label></span>
+								<div class="control">
+									<input id="basic_behavior_import_field_separator" name="attribute_for_import_value" value="<?= $block->renderValue($importProfile['attribute_for_import_value']) ?>" title="attribute for import value" class="basic_behavior input-text admin__control-text" type="text" size="30"><br/><small>(Put the name of the attribute_code here e.g "color,size")</small>
+								</div>
+								<br/>
+							</div>	
+							<br/>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="ref_by_product_id"><span>Lookup Products by Product ID</span></label></span>
+								<select id="file_dropdown" name="ref_by_product_id" title="Lookup Products by Product ID" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['ref_by_product_id']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['ref_by_product_id']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="create_products_only"><span>Create Products Only</span></label></span>
+								<select id="file_dropdown" name="create_products_only" title="Create Products Only" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['create_products_only']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['create_products_only']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="update_products_only"><span>Update Products Only</span></label></span>
+								<select id="file_dropdown" name="update_products_only" title="Update Products Only" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['update_products_only']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['update_products_only']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="import_images_by_url"><span>Import Images By URL</span></label></span>
+								<select id="import_images_by_url" name="import_images_by_url" title="Import Images By URL" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['import_images_by_url']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['import_images_by_url']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="reimport_images"><span>Reimport Images</span></label></span>
+								<select id="reimport_images" name="reimport_images" title="Reimport Images" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['reimport_images']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['reimport_images']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="deleteall_andreimport_images"><span>Delete All And Reimport Images</span></label></span>
+								<select id="deleteall_andreimport_images" name="deleteall_andreimport_images" title="Delete All And Reimport Images" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['deleteall_andreimport_images']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['deleteall_andreimport_images']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="append_websites"><span>Append Websites</span></label></span>
+								<select id="append_websites" name="append_websites" title="Append Websites" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['append_websites']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['append_websites']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="append_tier_prices"><span>Append Tier Prices</span></label></span>
+								<select id="append_tier_prices" name="append_tier_prices" title="Append Tier Prices" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['append_tier_prices']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['append_tier_prices']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="append_categories"><span>Append Categories</span></label></span>
+								<select id="append_categories" name="append_categories" title="Append Categories" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['append_categories']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['append_categories']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="append_grouped_products"><span>Append Group Products</span></label></span>
+								<select id="append_grouped_products" name="append_grouped_products" title="Append Grouped Products" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['append_grouped_products']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['append_grouped_products']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="auto_create_categories"><span>Auto Create Categories</span></label></span>
+								<select id="auto_create_categories" name="auto_create_categories" title="Auto Create Categories" class="select admin__control-select">
+									<option <?= $block->checkFieldValue($importProfile['auto_create_categories']); ?> value="false">No</option>
+									<option <?= $block->checkFieldValue($importProfile['auto_create_categories']); ?> value="true">Yes</option>
+								</select>
+							</div>
+							<div class="admin__field-control control">
+								<span style="float: left; width: 220px"><label class="label admin__field-label" for="import_fields"><span>Import Fields</span></label></span>
+								<select id="import_fields" name="import_fields" title="Import Fields" class="select admin__control-select">
+										<option <?= $block->checkFieldValue($importProfile['import_fields']); ?> value="false">Only Mapped Fields</option>
+										<option <?= $block->checkFieldValue($importProfile['import_fields']); ?> value="true">All Fields</option>
+								</select>
+							</div>
+							<div class="admin__field-control control" id="row_catalog_fields_import_mapped_fields_only">
+								<button id="" title="Add Field Mapping" type="button" class="scalable add" onclick="addFieldMapping()">
+										<span><span><span>Add Field Mapping</span></span></span>
+								</button>
+								<br/>
+							<div id="map_template_product" style="display:none">
+	 						<span class="field-row" style="display: block; margin: 5px">In Database: <select id="gui_data[map][product][db][]" name="gui_data[map][product][db][]" onchange="setMapFileField(this)" style="width: 225px">
+							<?php echo $block->getProductAttributes(); ?>
+							</select>
+   &lt;--&gt; In File: <input class="input-text" id="gui_data[map][product][file][]" name="gui_data[map][product][file][]" style="width: 225px"/>
+  		 <button id="" title="Remove" type="button" class="scalable delete" onclick="removeFieldMapping(this)"><span><span><span>Remove</span></span></span></button>									
+   					</span>
+  </div>
+									<div id="map_container_product">
+										<?php if(!empty($block->getMappedFields($importProfile['import_fields_mapped']))): ?>
+											<?php foreach($block->getMappedFields($importProfile['import_fields_mapped']) as $magentoField => $csvField): ?>
+												<div id="map_template_product">
+							 						<span class="field-row" style="display: block; margin: 5px">In Database: <select id="gui_data[map][product][db][]" name="gui_data[map][product][db][]" onchange="setMapFileField(this)" style="width: 225px">
+													<?php echo $block->getProductAttributes($magentoField); ?>
+													</select>
+				   									&lt;--&gt; In File: <input class="input-text" id="gui_data[map][product][file][]" name="gui_data[map][product][file][]" style="width: 225px" value="<?= $csvField;?>"/>
+				  		 							<button id="" title="Remove" type="button" class="scalable delete" onclick="removeFieldMapping(this)"><span><span><span>Remove</span></span></span></button>
+								   					</span>
+												</div>
+											<?php endforeach; ?>
+										<?php endif; ?>
+									</div>
+							</div>	
+							
+				</div>	
+			</div>
+		<!--Run import button section-->
+			<div class="right-side-box" >
+				<?php if($block->getImportIsRunning()): ?>
+				<div id="Run-import-button-section" class="tab-content" style="display: none">	
+					<label id="import_progress_label" class="label admin__field-label" for="import_delimiter"><span>Product Import is currently In Progress</span></label>
+					<div class="control">
+						<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+						<input type="button" id="refresh_btn" name="Refresh Import" value="Refresh" />
+						<input type="submit" id="sub_btn" name="Cancel Import" value="Cancel" />
+					</div>
+					</form>
+
+					<!-- div to display the progress bar while import-->
+					<div id="parent"></div>
+					<div id="child"></div>
+					<!-- div to display heading of table-->
+					<div id="table-status"></div>
+					<div id="Log-status"></div>
+					<!-- div to display status table-->
+					<div id="status-table-to-display">
+						<table style="width:30%" class="left-rows-box" cellpadding="10">
+							 <tr>
+								<td class="cls-r">Current Row</td>
+								<td class="cls-l" id="currentrow"></td>
+							 </tr>
+							 <tr>
+								<td class="cls-r">Rows Found</td>
+								<td class="cls-l" id="rowsfoundincsv"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r">Rows Processed</td>
+							 	<td class="cls-l" id="rowsprocessed"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r succ">Rows successful</td>
+							 	<td class="cls-l succ" id="rowssuccessfull"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r err">Total errors</td>
+							 	<td class="cls-l err" id="totalerrors"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r">Total Warnings</td>
+							 	<td class="cls-l" id="totalwarnings"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r">Estimate Run time</td>
+							 	<td class="cls-l" id="estimateruntime"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r">Estimate Finish</td>
+							 	<td class="cls-l" id="estimatefinish"></td>
+							 </tr>
+							 <tr>
+								 <td class="cls-r">Memory Used</td>
+								 <td class="cls-l" id="memoryused"></td>
+							 </tr>
+						</table>
+					</div>
+					<!-- div to display Log table-->
+					<div id="log-table-to-display">
+						<table width="100%" id="detailed-log-table" class="left-rows-box" cellpadding="10"></table>
+					</div>
+				</div>	
+				<?php else: ?>	
+				<div id="Run-import-button-section" class="tab-content" style="display: none">
+						<div class="select-uploaded-file">
+							<span style="float: left; width: 200px"><label class="label admin__field-label" for="update_products_only"></label></span>
+							<select id="selectfileforuploading" name="selectfilename" title="uploadedfiles" class="select">
+							<?php if(!empty($fileuploadedindir)): ?>
+								<!-- <option value="file selected">Select a File </option> -->
+								<?php foreach($fileuploadedindir as $key => $value): ?>
+									<option value="<?php echo $value ; ?>"><?php echo $value ; ?></option>
+								<?php endforeach; ?>
+							<?php else: ?>
+								<option id="Nofileuploadedyet" value="No_file_selected">No Files Uploaded</option>
+							<?php endif; ?>
+							</select>
+						</div>
+						<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+						<input type="submit" id="sub_btn" name="Run Import" value="Run" />
+					</form>	
+					
+					<!-- div to display the progress bar while import-->
+					<div id="parent"></div>
+					<div id="child"></div>
+					<!-- div to display heading of table-->
+					<div id="table-status"></div>
+					<div id="Log-status"></div>
+					<!-- div to display status table-->
+					<div id="status-table-to-display">
+						<table style="width:30%" class="left-rows-box" cellpadding="10">
+							 <tr>
+								<td class="cls-r">Current Row</td>
+								<td class="cls-l" id="currentrow"></td>
+							 </tr>
+							 <tr>
+								<td class="cls-r">Rows Found</td>
+								<td class="cls-l" id="rowsfoundincsv"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r">Rows Processed</td>
+							 	<td class="cls-l" id="rowsprocessed"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r succ">Rows successful</td>
+							 	<td class="cls-l succ" id="rowssuccessfull"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r err">Total errors</td>
+							 	<td class="cls-l err" id="totalerrors"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r">Total Warnings</td>
+							 	<td class="cls-l" id="totalwarnings"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r">Estimate Run time</td>
+							 	<td class="cls-l" id="estimateruntime"></td>
+							 </tr>
+							 <tr>
+							 	<td class="cls-r">Estimate Finish</td>
+							 	<td class="cls-l" id="estimatefinish"></td>
+							 </tr>
+							 <tr>
+								 <td class="cls-r">Memory Used</td>
+								 <td class="cls-l" id="memoryused"></td>
+							 </tr>
+						</table>
+					</div>
+					<!-- div to display Log table-->
+					<div id="log-table-to-display">
+						<table width="100%" id="detailed-log-table" class="left-rows-box" cellpadding="10"></table>
+					</div>
+				</div>
+			<?php endif ?>
+			</div>
+		<!--Cron Job section-->
+			<div class="right-side-box">
+				<div id="cronjob" class="tab-content" style="display: none">	
+						<form id="cron_form" action="<?php echo $block->getUrl('product/data/CronJob'); ?>" method="POST" enctype="multipart/form-data">
+						<div class="control">
+								<span style="float: left; width: 100px"><label class="Profile_type" for="Profile_type"><span>Profile Type</span></label></span>
+								<select id="Profile_type" name="Profile_type" title="Profile Type" class="select admin__control-select">
+									<option value="Import_Products">Import Products</option>
+									<option value="Export_Products">Export Products</option>
+								</select>
+							</div>
+						<br/>
+						<br/>
+						<div class="control">
+							<span style="float: left; width: 100px"><label class="Schedule_id" for="Schedule_id"><span>Schedule</span></label></span>
+							<select id="Schedule_id" name="Schedule" title="Schedule" class="select admin__control-select">
+								<option value="5minutes">Every 5 minutes</option>
+								<option value="Hourly">Hourly</option>
+								<option value="Every_2hrs">Every 2hrs</option>
+								<option value="Every_24hrs">Every 24hrs</option>
+								<option value="Every_24hrs_at_3am">Every 24hrs at 3am</option>
+								<option value="Weekly">Weekly</option>
+							</select>
+						</div> 
+						<br/>
+						<br/>
+						<div class="control">
+							<span style="float: left; width: 100px"><label class="data_transfer" for="data_transfer"><span>Data Transfer</span></label></span>
+							<select id="data_transfer" name="data_transfer" title="Data Transfer" class="select admin__control-select">
+								<option value="local">Local File System</option>
+								<option value="remote">Remote File System</option>
+							</select>
+						</div> 
+						<br/>
+						<br/>
+						<div class="cron_remote_import_settings">
+							<label for="remote_file_name"><span>Import Remote File Location</span></label><br/><br/>
+							<span style="float: left; width: 100px"><label class="label admin__field-label" for="remote_file_name"><span>Remote File Name</span></label></span>
+							<div class="control">
+								<input id="remote_file_name" name="remote_file_name" value="remote_file.csv" title="remote_file_name" class="basic_behavior input-text admin__control-text" type="text" size="50"> 
+							</div>
+							<br/>
+							<span style="float: left; width: 100px"><label class="label admin__field-label" for="remote_file_path"><span>Remote File Path</span></label></span>
+							<div class="control">
+								<input id="remote_file_path" name="remote_file_path" value="remote/filepath" title="remote_file_path" class="basic_behavior input-text admin__control-text" type="text" size="50"> 
+							</div>
+							<br/>
+							<span style="float: left; width: 100px"><label class="label admin__field-label" for="remote_host"><span>Remote Host[:port]</span></label></span>
+							<div class="control">
+								<input id="remote_host" name="remote_host" value="" title="remote_host" class="basic_behavior input-text admin__control-text" type="text" size="50"> 
+							</div>
+							<br/>
+							<span style="float: left; width: 100px"><label class="label admin__field-label" for="remote_user_name"><span>User name</span></label></span>
+							<div class="control">
+								<input id="remote_user_name" name="remote_user_name" value="" title="remote_user_name" class="basic_behavior input-text admin__control-text" type="text" size="50"> 
+							</div>
+							<br/>
+							<span style="float: left; width: 100px"><label class="label admin__field-label" for="remote_password"><span>Password</span></label></span>
+							<div class="control">
+								<input id="remote_password" name="remote_password" value="" title="remote_password" class="basic_behavior input-text admin__control-text" type="text" size="50"> 
+							</div>
+							<br/>
+							<br/>
+						</div>
+						<div class="cron_import_settings">
+							<label for="import_file_location"><span>Import Local File Location</span></label><br/><br/>
+							<span style="float: left; width: 100px"><label class="label admin__field-label" for="import_file_name"><span>File name</span></label></span>
+							<div class="control">
+								<input id="File_name" name="import_file_name" value="cron_import_products.csv" title="import_file_name" class="basic_behavior input-text admin__control-text" type="text" size="50"> 
+							</div>
+							<br/>
+							<span style="float: left; width: 100px"><label class="label admin__field-label" for="import_file_path"><span>File path</span></label></span>
+							<div class="control">
+								<input id="File_path" name="import_file_path" value="var/ProductImportExport" title="import_file_path" class="basic_behavior input-text admin__control-text" type="text" size="50"> 
+							</div>
+						</div>
+						<div class="cron_export_settings">
+							<label class="label admin__field-label"><span>Export File Name</span></label>
+							<div class="control">
+								<input id="export_file_name" name="export_file_name" value="cron_export_products.csv" class="basic_behavior input-text admin__control-text" type="text" size="50">
+							</div>
+							<br/>
+							<label class="label admin__field-label"><span>Export File Location</span></label>
+							<div class="control">
+								<input id="export_file_path" name="export_file_path" value="var/ProductImportExport" class="basic_behavior input-text admin__control-text" type="text" size="50">
+							</div>
+						</div>
+						<br/>
+						<br/>
+						<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+						<div class="admin__field-control control">
+								<input type="button" value="Save" onClick="submitAllDocumentForms()" />
+					
+						</div>
+						</form>
+				</div>
+			</div>
+			<!--Cron Job History section-->
+			<div class="right-side-box">
+				<div id="cronjobprofiles" class="tab-content" style="display: none">	
+					<table class="data-grid table table-order-items history admin__control-table" id="my-orders-table">
+					<thead>
+						<tr>
+							<th scope="col" class="col data-grid-th"><?php echo __('Profile ID') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('File Name') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('File Path') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('Status') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('Profile Type') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('Scheduled At') ?></th>
+							<th scope="col" class="col data-grid-th" colspan="2"><?php echo __('Created At') ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($block->getCronJobDetails()->fetchAll() as $cron_job_profile): ?>
+							<tr id="row-id-<?php echo $cron_job_profile['post_id'] ?>">
+								<td class="col profileid"><?php echo $cron_job_profile['post_id'] ?></td>
+								<td class="col filename"><?php 
+									if($cron_job_profile['Profile_type']=="Import_Products"):
+										echo $cron_job_profile['import_file_name'];
+									else:
+										echo $cron_job_profile['export_file_name'];
+									endif;
+								?></td>
+								<td class="col filepath"><?php 
+									if($cron_job_profile['Profile_type']=="Import_Products"):
+										echo $cron_job_profile['import_file_path'];
+									else:
+										echo $cron_job_profile['export_file_path'];
+									endif;
+								?></td>
+								<td class="col active">
+								<?php 
+									if($cron_job_profile['is_active']=="1"):
+										echo "<span style=\"color: green\"><strong>Active</strong></span>";
+									else:
+										echo "<span style=\"color: red\"><strong>Disabled</strong></span>";
+									endif;
+								?></td>
+								<td class="col profiletype"><?php echo $cron_job_profile['Profile_type'] ?></td>
+								<td class="col scheduled"><?php echo $cron_job_profile['Schedule'] ?></td>
+								<td class="col createdat"><?php echo $cron_job_profile['creation_time'] ?></td>
+								<td class="col removeprofile"><span id="<?php echo $cron_job_profile['post_id'] ?>" class="action-delete"></span></td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+					</table>
+				</div>
+			</div>		
+			<!--Cron Job History section-->
+			<div class="right-side-box">
+				<div id="cronjobhistory" class="tab-content" style="display: none">	
+					<table class="data-grid table table-order-items history" id="my-orders-table">
+					<thead>
+						<tr>
+							<th scope="col" class="col data-grid-th"><?php echo __('Job Code') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('Status') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('Message') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('Created At') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('Scheduled At') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('Executed At') ?></th>
+							<th scope="col" class="col data-grid-th"><?php echo __('Finished At') ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($block->getCronSchedule()->fetchAll() as $scheduled_job): ?>
+							<tr>
+								<td class="col jobcode"><?php echo $scheduled_job['job_code'] ?></td>
+								<td class="col status"><?php echo $scheduled_job['status'] ?></td>
+								<td class="col message1" style="display: block; width:370px !important">
+								<?php 
+									if($scheduled_job['messages']!=""):
+										echo "<pre style=\"white-space:pre-wrap;\">".$scheduled_job['messages']."</pre>";
+									else:
+										echo "<pre style=\"white-space:pre-wrap;\">&nbsp;&nbsp;&nbsp;&nbsp;</pre>";
+									endif;
+								?></td>
+								<td class="col created"><?php echo $scheduled_job['created_at'] ?></td>
+								<td class="col scheduled"><?php echo $scheduled_job['scheduled_at'] ?></td>
+								<td class="col executed"><?php echo $scheduled_job['executed_at'] ?></td>
+								<td class="col finished"><?php echo $scheduled_job['finished_at'] ?></td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+					</table>
+				</div>
+			</div>	
+	</div>
+	</div>
+	<div class="clear"></div>	
+</div>	
+</section>
+
+<section class="commerce-div-box-export">
+<div id="tabs-container">
+
+	<div class="left-side-panel">
+		<ul class="tabs-menu">
+			<li class="current" id="#export-settings"><a href="3">EXPORT SETTINGS</a></li>
+		</ul>
+	</div>	
+		
+	<div class="tab">	
+		<!-- For the Export section -->
+		<div class="right-side-box">
+			<div id="export-settings" class="tab-content">
+				<form id="export_form" action="<?php echo $block->getUrl('product/data/ExportPost') ?>" method="post" enctype="multipart/form-data">
+				<div class="fieldset">
+					<div class="admin__field field field-products">
+						<div class="admin__field-control control">
+							<div class="section-config accordion">
+								<div class="entry-edit-head admin__collapsible-block">
+								<a id="catalog_fields_masks-head" href="#catalog_fields_masks-link" onclick="Fieldset.toggleCollapse('catalog_fields_masks', ''); return false;" class="">Data Format</a>
+								</div>
+								<input id="catalog_fields_masks-state" name="config_state[catalog_fields_masks]" type="hidden" value="1">
+								<fieldset class="config admin__collapsible-block" id="catalog_fields_masks" style="display: none;">
+									<table cellspacing="0" class="form-list">
+										<tbody>
+											<tr id="row_catalog_fields_export_delimiter">
+												<td class="label"><label class="label admin__field-label"><span>Export CSV Delimiter Value</span></label></td>
+												<td><input id="basic_behavior_export_delimiter" name="export_delimiter" value="<?= $block->renderValue($exportProfile['export_delimiter']) ?>" title="Export Delimiter" class="basic_behavior input-text admin__control-text" type="text" size="1" style="width: 10px"></td>
+											</tr>
+											<tr id="row_catalog_fields_export_enclose">
+												<td class="label"><label class="label admin__field-label"><span>Export CSV Enclose Value</span></label></td>
+												<td><input id="basic_behavior_export_enclose" name="export_enclose" value='<?= $block->renderValue($exportProfile['export_enclose']) ?>' title="Export Enclose" class="basic_behavior input-text admin__control-text" type="text" size="1" style="width: 10px"></td>
+											</tr>
+											<tr id="row_catalog_fields_export_manual_file_name">
+												<td class="label"><label class="label admin__field-label"><span>File Name</span></label></td>
+												<td><input id="basic_behavior_export_manual_file_name" name="export_manual_file_name" value='<?= $block->renderValue($exportProfile['export_manual_file_name']) ?>' title="Export File Name" class="basic_behavior input-text admin__control-text" type="text"></td>
+											</tr>
+											<tr id="row_catalog_fields_export_fields">
+												<td class="label"><label class="label admin__field-label"><span>Export</span></label></td>
+												<td><select id="export_fields" name="export_fields" title="Export Fields" class="select admin__control-select">
+														<option <?= $block->checkFieldValue($exportProfile['export_fields']); ?> value="false">Only Mapped Fields</option>
+														<option <?= $block->checkFieldValue($exportProfile['export_fields']); ?> value="true">All Fields</option>
+													</select>
+												</td>
+											</tr>
+											<tr id="row_catalog_fields_export_mapped_fields_only">
+												<td colspan="2">
+												<button id="" title="Add Field Mapping" type="button" class="scalable add" onclick="addFieldMappingExport()">
+														<span><span><span>Add Field Mapping</span></span></span>
+												</button>
+												<br/>
+						<div id="map_template_product_export" style="display:none">
+                     		<span class="field-row" style="display: block; margin: 5px">
+                        	In Database: <select name="gui_data[map][product][db][]" onchange="setMapFileField(this)" style="width: 225px">
+											<?php echo $block->getProductAttributes(); ?>
+										</select>
+                   					&lt;--&gt; In File: <input class="input-text" name="gui_data[map][product][file][]" style="width: 225px"/>
+					                <button id="" title="Remove" type="button" class="scalable delete" onclick="removeFieldMapping(this)">
+					                	<span><span><span>Remove</span></span></span>
+					                </button>									
+				  			 </span>
+                  		</div>
+													<div id="map_container_product_export">
+														<?php if(!empty($block->getMappedFields($exportProfile['export_fields_mapped']))): ?>
+															<?php foreach($block->getMappedFields($exportProfile['export_fields_mapped']) as $magentoField => $csvField): ?>
+																<div id="map_template_product">
+											 						<span class="field-row" style="display: block; margin: 5px">In Database: <select id="gui_data[map][product][db][]" name="gui_data[map][product][db][]" onchange="setMapFileField(this)" style="width: 225px">
+																	<?php echo $block->getProductAttributes($magentoField); ?>
+																	</select>
+								   									&lt;--&gt; In File: <input class="input-text" id="gui_data[map][product][file][]" name="gui_data[map][product][file][]" style="width: 225px" value="<?= $csvField;?>"/>
+								  		 							<button id="" title="Remove" type="button" class="scalable delete" onclick="removeFieldMapping(this)"><span><span><span>Remove</span></span></span></button>
+												   					</span>
+																</div>
+															<?php endforeach; ?>
+														<?php endif; ?>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</fieldset>
+								<script type="text/javascript">
+								//<![CDATA[
+									require(['prototype'], function(){Fieldset.applyCollapse('catalog_fields_masks');});
+								//]]>
+								</script>
+							</div>
+							<div class="section-config accordion">
+								<div class="entry-edit-head admin__collapsible-block">
+								<a id="export_settings-head" href="#export_settings-link" onclick="Fieldset.toggleCollapse('export_settings', ''); return false;" class="">Export Settings</a>
+								</div>
+								<input id="export_settings-state" name="config_state[export_settings]" type="hidden" value="0">
+								<fieldset class="config admin__collapsible-block" id="export_settings" style="display: none;">
+									<table cellspacing="0" class="form-list">
+										<tbody>
+											<tr id="row_export_settings_export_product_id_from">
+												<td class="label"><label class="label admin__field-label"><span>Export From Product ID</span></label></td>
+												<td><input id="basic_behavior_import_field_separator" name="product_id_from" value="<?= $block->renderValue($exportProfile['product_id_from']) ?>" title="Product ID From" class="basic_behavior input-text admin__control-text" type="text" size="20"> <small>(leave blank for all products)</small></td>
+											</tr>
+											<tr id="row_export_settings_export_product_id_to">
+												<td class="label"><label class="label admin__field-label"><span>Export To Product ID</span></label></td>
+												<td><input id="basic_behavior_import_field_separator" name="product_id_to" value="<?= $block->renderValue($exportProfile['product_id_to']) ?>" title="Product ID To" class="basic_behavior input-text admin__control-text" type="text" size="20"> <small>(leave blank for all products)</small></td>
+											</tr>
+											<tr id="row_export_settings_export_additional_filters">
+												<td class="label"><label class="label admin__field-label"><span>Show Additional Filters</span></label></td>
+												<td>
+												<select id="apply_additional_filters" name="apply_additional_filters" title="apply_additional_filters" class="select admin__control-select apply_additional_filters">
+													<option value="no_additional_filters">No</option>
+													<option value="yes_additional_filters">Yes</option>
+												</select>
+												<br/><br/>
+												<div class="show_additional_filters">
+													<span><label class="label admin__field-label" for="product_id_from"><span>Export By Attribute</span></label></span>
+													<div class="control">
+														<input id="basic_behavior_import_field_separator" name="export_filter_by_attribute_code" value="" title="export filter by attribute code" class="basic_behavior input-text admin__control-text" type="text" size="20"><br/><small>(Put the name of the attribute_code here e.g "manufacturer")</small>
+													</div>
+													<br/>
+													<span><label class="label admin__field-label" for="product_id_from"><span>Attribute Value</span></label></span>
+													<div class="control">
+														<input id="basic_behavior_import_field_separator" name="export_filter_by_attribute_value" value="" title="export filter by attribute value" class="basic_behavior input-text admin__control-text" type="text" size="20"><br/><small>(Put the name of the attribute value you want to match on here e.g "Nike")</small>
+													</div>
+													<br/>
+													<span><label class="label admin__field-label" for="filter_qty_from"><span>Qty From</span></label></span>
+													<div class="control">
+														<input id="basic_behavior_import_field_separator" name="filter_qty_from" value="" title="filter qty from" class="basic_behavior input-text admin__control-text" type="text" size="4"><br/>
+													</div>
+													<br/>
+													<span><label class="label admin__field-label" for="filter_qty_to"><span>Qty To</span></label></span>
+													<div class="control">
+														<input id="basic_behavior_import_field_separator" name="filter_qty_to" value="" title="filter qty to" class="basic_behavior input-text admin__control-text" type="text" size="4"><br/>
+													</div>
+													<br/>
+													<span><label class="label admin__field-label" for="export_filter_by_categoryids"><span>Export By Category IDs</span></label></span>
+													<div class="control">
+														<input id="basic_behavior_import_field_separator" name="export_filter_by_categoryids" value="" title="export filter by category ids" class="basic_behavior input-text admin__control-text" type="text" size="4"><br/><small>(Category IDs are comma delimited "23,3421,18" etc.)</small>
+													</div>
+													<br/>
+													<span><label class="label admin__field-label" for="export_filter_by_skus"><span>Export By Sku List</span></label></span>
+													<div class="control">
+														<input id="basic_behavior_import_field_separator" name="export_filter_by_skus" value="" title="export filter by skus" class="basic_behavior input-text admin__control-text" type="text" size="4"><br/><small>(SKUs are comma delimited "MR198s,MS594,MF448" etc.)</small>
+													</div>
+													<br/>
+													<span><label class="label admin__field-label" for="filter_status"><span>Product Type</span></label></span>
+													<div class="control">
+													<select class="select admin__control-select" name="export_filter_by_product_type" id="export_filter_by_product_type">
+														<option value="0" selected="selected">Any Product Type</option>
+														<option value="simple">Simple Product</option>
+														<option value="virtual">Virtual Product</option>
+														<option value="downloadable">Downloadable Product</option>
+														<option value="bundle">Bundle Product</option>
+														<option value="grouped">Grouped Product</option>
+														<option value="configurable">Configurable Product</option>
+													</select><br/>
+													</div>
+													<br/>
+													<span><label class="label admin__field-label" for="filter_status"><span>Status</span></label></span>
+													<div class="control">
+                                                    <select id="filter_status" name="filter_status" class="select admin__control-select">
+															<option value="0" selected="selected">Any Status</option>
+															<option value="1">Enabled</option>
+															<option value="2">Disabled</option>
+													</select><br/>
+													</div>
+													<br/>
+													<span><label class="label admin__field-label" for="export_filter_by_attribute_set"><span>Attribute Set</span></label></span>
+													<div class="control">
+                                                    <select id="export_filter_by_attribute_set" name="export_filter_by_attribute_set" class="select admin__control-select">
+															<option value="0" selected="selected">Any Attribute Set</option>
+															<?php echo $block->getProductAttributeSets(); ?>
+													</select><br/>
+													</div>
+													<br/>
+												</div>	
+												</td>
+											</tr>
+											<tr id="row_export_settings_export_multi_store">
+												<td class="label"><label class="label admin__field-label"><span>Export Multi Store</span></label></td>
+												<td><select id="export_multi_store" name="export_multi_store" title="Export Multi Store" class="select admin__control-select">
+														<option value="false">No</option>
+														<option value="true">Yes</option>
+													</select>
+												</td>
+											</tr>
+											<tr id="row_export_settings_export_grouped_position">
+												<td class="label"><label class="label admin__field-label"><span>Export Grouped Position</span></label></td>
+												<td><select id="export_grouped_position" name="export_grouped_position" title="Export Grouped Position" class="select admin__control-select">
+														<option value="false">No</option>
+														<option value="true">Yes</option>
+													</select>
+												</td>
+											</tr>
+											<tr id="row_export_settings_export_related_position">
+												<td class="label"><label class="label admin__field-label"><span>Export Related Position</span></label></td>
+												<td><select id="export_related_position" name="export_related_position" title="Export Related Position" class="select admin__control-select">
+														<option value="false">No</option>
+														<option value="true">Yes</option>
+													</select>
+												</td>
+											</tr>
+											<tr id="row_export_settings_export_crossell_position">
+												<td class="label"><label class="label admin__field-label"><span>Export Cross-sell Position</span></label></td>
+												<td><select id="export_crossell_position" name="export_crossell_position" title="Export Cross-sell Position" class="select admin__control-select">
+														<option value="false">No</option>
+														<option value="true">Yes</option>
+													</select>
+												</td>
+											</tr>
+											<tr id="row_export_settings_export_upsell_position">
+												<td class="label"><label class="label admin__field-label"><span>Export Up-sell Position</span></label></td>
+												<td><select id="export_upsell_position" name="export_upsell_position" title="Export Up-sell Position" class="select admin__control-select">
+														<option value="false">No</option>
+														<option value="true">Yes</option>
+													</select>
+												</td>
+											</tr>
+											<tr id="row_export_settings_export_category_paths">
+												<td class="label"><label class="label admin__field-label"><span>Export Category Paths</span></label></td>
+												<td><select id="export_category_paths" name="export_category_paths" title="Export Category Paths" class="select admin__control-select">
+														<option value="false">No</option>
+														<option value="true">Yes</option>
+													</select>
+												</td>
+											</tr>
+											<tr id="row_export_settings_export_category_paths">
+												<td class="label"><label class="label admin__field-label"><span>Export Full Image URL Paths</span></label></td>
+												<td><select id="export_full_image_paths" name="export_full_image_paths" title="Export Full Image URL Paths" class="select admin__control-select">
+														<option value="false">No</option>
+														<option value="true">Yes</option>
+													</select>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</fieldset>
+								<script type="text/javascript">
+								//<![CDATA[
+									require(['prototype'], function(){Fieldset.applyCollapse('catalog_fields_masks');});
+								//]]>
+								</script>
+							</div>
+						</div>
+						<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+						<br>
+						<br>
+						<div class="admin__field-control control">
+							<?php #echo $block->getButtonHtml('Export Products', '$("#export_form").submit()') ?>
+							<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+							<button type="submit" id="export" name="Export File">Export Products</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			</div>	
+		</div>  
+       <!-- For the Cron job-->
+	</div>	
+</div>		
+	<div class="clear-one"></div>
+</section>
+
+<!-- script for submitting all the forms -->
+<script LANGUAGE="JavaScript" type="text/javascript">
+
+function addFieldMapping()
+{
+	Element.insert($('map_container_product'), {bottom: $('map_template_product').innerHTML});
+}
+
+function addFieldMappingExport()
+{
+	Element.insert($('map_container_product_export'), {bottom: $('map_template_product_export').innerHTML});
+}
+
+function removeFieldMapping(button)
+{
+	Element.remove(button.parentNode);
+}
+function setMapFileField(select)
+{
+    select.parentNode.getElementsByTagName('input')[0].value = select.value;
+}
+/* Collect all forms in document to one and post it */
+function submitAllDocumentForms() {
+    var arrDocForms = document.getElementsByTagName('form');
+    var formCollector = document.createElement("form");
+    with(formCollector)
+    {
+        method = "post";
+        action = "<?php echo $block->getUrl('product/data/CronJob') ?>";
+        name = "formCollector";
+        id = "formCollector";
+    }
+    for(var ix = 0 ; ix < arrDocForms.length ; ix++) {
+        appendFormVals2Form(arrDocForms[ix], formCollector);
+    }
+    document.body.appendChild(formCollector);
+    formCollector.submit();
+}
+
+/* Function: add all elements from frmCollectFrom and append them to
+             frmCollector before returning frmCollector*/
+function appendFormVals2Form(frmCollectFrom, frmCollector) {
+    var frm = frmCollectFrom.elements;
+	var nElems = frm.length;
+    for(var ix = nElems - 1; ix >= 0 ; ix--)
+         frmCollector.appendChild(frm[ix]);
+    return frmCollector;
+}
+</script>

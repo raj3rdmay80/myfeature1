@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Catalog
+ */ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Zigly_Catalog::css/owl.carousel.min.css"/>
+        <css src="Zigly_Catalog::css/owl.theme.default.min.css"/>
+        <css src="Zigly_Catalog::css/cataloglist.css"/>
+    </head>
+    <body>
+        <referenceBlock name="category.products.list" template="Zigly_Catalog::product/list.phtml">
+            <arguments>
+                <argument name="zigly_view_model" xsi:type="object">Zigly\Catalog\ViewModel\Catalog</argument>
+            </arguments>
+        </referenceBlock>
+         <referenceBlock name="category.product.addto.wishlist">
+             <arguments>
+                <argument name="zigly_view_model" xsi:type="object">Zigly\Catalog\ViewModel\Catalog</argument>
+            </arguments>
+         </referenceBlock>
+    </body>
+</page>

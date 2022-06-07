@@ -1,0 +1,22 @@
+<?= $block->escapeHtml(__()) ?>
+<?php
+$groomingSession = $block->getGroomingSession();
+?>
+<div class="full-width-container booking-success-grooming">
+    <div class="booking-success">
+        <div class="pet-image">
+            <img src='<?php echo $this->getViewFileUrl('Zigly_GroomingService::images/success_booking.png'); ?>' alt="Dog and Cat" />
+        </div>
+        <div class="booking-success-messages">
+            <p class="title">Booking done for <span class="pet-name"><?= $groomingSession['pet_name'] ?>!</span></p>
+            <div class="content">
+                <p>Your booking request has been received.</p>
+                <p>We will share the professional's details with you shortly!</p>
+            </div>
+            <a href="<?php echo $this->getUrl('sales/orders/booking');?>" class="my-booking">My Bookings</a>
+        </div>
+    </div>
+</div>
+<?php
+$block->updateGroomingSession([]);
+?>

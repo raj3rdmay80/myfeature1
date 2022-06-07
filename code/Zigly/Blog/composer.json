@@ -1,0 +1,22 @@
+{
+    "name": "zigly/module-blog",
+    "description": "Zigly",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "zigly",
+            "email": "info@zigly.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Zigly\\Blog\\": ""
+        }
+    }
+}

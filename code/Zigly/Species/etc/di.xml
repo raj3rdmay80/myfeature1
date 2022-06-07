@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Zigly\Species\Api\SpeciesRepositoryInterface" type="Zigly\Species\Model\SpeciesRepository"/>
+	<preference for="Zigly\Species\Api\Data\SpeciesInterface" type="Zigly\Species\Model\Data\Species"/>
+	<preference for="Zigly\Species\Api\Data\SpeciesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Zigly\Species\Model\ResourceModel\Species\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">zigly_species_species</argument>
+			<argument name="resourceModel" xsi:type="string">Zigly\Species\Model\ResourceModel\Species\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="zigly_species_species_listing_data_source" xsi:type="string">Zigly\Species\Model\ResourceModel\Species\Grid\Collection</item>
+				<item name="zigly_species_breed_listing_data_source" xsi:type="string">Zigly\Species\Model\ResourceModel\Breed\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<preference for="Zigly\Species\Api\BreedRepositoryInterface" type="Zigly\Species\Model\BreedRepository"/>
+	<preference for="Zigly\Species\Api\Data\BreedInterface" type="Zigly\Species\Model\Data\Breed"/>
+	<preference for="Zigly\Species\Api\Data\BreedSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Zigly\Species\Model\ResourceModel\Breed\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">zigly_species_breed</argument>
+			<argument name="resourceModel" xsi:type="string">Zigly\Species\Model\ResourceModel\Breed\Collection</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Zigly\Species\ReferenceImageUpload" type="Zigly\Species\Model\ImageUploader">
+	    <arguments>
+	        <argument name="baseTmpPath" xsi:type="string">breed/tmp/feature</argument>
+	        <argument name="basePath" xsi:type="string">breed/feature</argument>
+	        <argument name="allowedExtensions" xsi:type="array">
+	            <item name="jpg" xsi:type="string">jpg</item>
+	            <item name="jpeg" xsi:type="string">jpeg</item>
+	            <item name="gif" xsi:type="string">gif</item>
+	            <item name="png" xsi:type="string">png</item>
+	        </argument>
+	        <argument name="allowedMimeTypes" xsi:type="array">
+	            <item name="jpg" xsi:type="string">image/jpg</item>
+	            <item name="jpeg" xsi:type="string">image/jpeg</item>
+	            <item name="gif" xsi:type="string">image/gif</item>
+	            <item name="png" xsi:type="string">image/png</item>
+	        </argument> 
+	    </arguments>
+	</virtualType>
+	 
+	<type name="Zigly\Species\Controller\Adminhtml\Breed\Image\Upload">
+	    <arguments>
+	        <argument name="imageUploader" xsi:type="object">Zigly\Species\ReferenceImageUpload</argument>
+	    </arguments>
+	</type>
+</config>

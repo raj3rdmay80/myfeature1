@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Sales
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Backend\Block\Widget\Button\Toolbar">
+		<plugin name="Zigly_Sales_Plugin_Magento_Backend_Block_Widget_Button_Toolbar" type="Zigly\Sales\Plugin\Magento\Backend\Block\Widget\Button\Toolbar" sortOrder="10" disabled="false"/>
+	</type>
+	<type name="Magento\Sales\Block\Adminhtml\Order\View">
+		<plugin name="Zigly_Sales_Plugin_Magento_Sales_Block_Adminhtml_Order_View" type="Zigly\Sales\Plugin\Magento\Sales\Block\Adminhtml\Order\View" sortOrder="10" disabled="false"/>
+	</type>
+</config>

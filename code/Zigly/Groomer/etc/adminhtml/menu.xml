@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Groomer
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Groomer::first_level" title="Professionals Management" module="Zigly_Groomer" sortOrder="50" parent="Zigly::top_level" resource="Zigly_Groomer::Groomer"/>
+        <add id="Zigly_Groomer::zigly_groomer_groomer" title="Manage Professionals" module="Zigly_Groomer" sortOrder="9999" resource="Zigly_Groomer::Groomer" parent="Groomer::first_level" action="zigly_groomer/groomer/index"/>
+    </menu>
+</config>

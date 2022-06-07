@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Hub
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Zigly_Main::Menu" title="Zigly" sortOrder="10">
+                    <resource id="Zigly_Hub::Hub" title="Hub" sortOrder="10">
+                        <resource id="Zigly_Hub::Hub_save" title="Save Hub" sortOrder="10"/>
+                        <resource id="Zigly_Hub::Hub_delete" title="Delete Hub" sortOrder="20"/>
+                        <resource id="Zigly_Hub::Hub_update" title="Update Hub" sortOrder="30"/>
+                        <resource id="Zigly_Hub::Hub_view" title="View Hub" sortOrder="40"/>
+                        <resource id="Zigly_Hub::Hub_status" title="Status Hub" sortOrder="50"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

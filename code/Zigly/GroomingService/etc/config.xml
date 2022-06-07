@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+ <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <groomingservice>
+            <emailtemplate>
+                <addgroomer_notify_groomer>groomingservice_emailtemplate_addgroomer_notify_groomer</addgroomer_notify_groomer>
+                <addgroomer_notify_customer>groomingservice_emailtemplate_addgroomer_notify_customer    </addgroomer_notify_customer>
+                <cancel_notify_groomer>groomingservice_emailtemplate_cancel_notify_groomer</cancel_notify_groomer>
+                <cancel_notify_customer>groomingservice_emailtemplate_cancel_notify_customer</cancel_notify_customer>
+                <rescheduled_notify_groomer>groomingservice_emailtemplate_rescheduled_notify_groomer</rescheduled_notify_groomer>
+                <rescheduled_notify_customer>groomingservice_emailtemplate_rescheduled_notify_customer</rescheduled_notify_customer>
+            </emailtemplate>
+        </groomingservice>
+        <msggateway>
+            <servicesbookingemail>
+                <success_booking_sms_sender_name>ZIGLYy</success_booking_sms_sender_name>
+                <service_home_mobile>611211f2d1c9594b0175ab24</service_home_mobile>
+                <service_center_mobile>6112125556fa7221d41f4b67</service_center_mobile>
+                <service_home_email>msggateway_servicesbookingemail_service_home_email</service_home_email>
+                <service_center_email>msggateway_servicesbookingemail_service_center_email</service_center_email>
+                <reschedule_send_email>msggateway_servicesbookingemail_reschedule_send_email</reschedule_send_email>
+                <reschedule_send_center_email>msggateway_servicesbookingemail_reschedule_send_center_email</reschedule_send_center_email>
+                <reschedule_sms_sender_name>ZIGLYy</reschedule_sms_sender_name>
+                <reschedule_send_sms>611211f2d1c9594b0175ab24</reschedule_send_sms>
+                <reschedule_send_center_sms>611211f2d1c9594b0175ab24</reschedule_send_center_sms>
+                <assign_groomer_sms_sender_name>ZIGLYy</assign_groomer_sms_sender_name>
+                <assign_groomer_send_home_sms>6114ee97adfc613e5b742f64</assign_groomer_send_home_sms>
+                <assign_reassign_groomer_send_sms>6141b96c86080654252d41e5</assign_reassign_groomer_send_sms>
+                <assign_groomer_send_center_sms>6114ee97adfc613e5b742f64</assign_groomer_send_center_sms>
+                <update_booking_status_sender_name>ZIGLYy</update_booking_status_sender_name>
+                <update_booking_status__sms>61150785a4cf7d5cd45c5744</update_booking_status__sms>
+                <update_booking_status_email>msggateway_servicesbookingemail_update_booking_status_email</update_booking_status_email>
+                <service_team_sender_name>ZIGLYy</service_team_sender_name>
+                <service_team_receiver_email>astha.rajput@cosmofilms.com,siddharth.rai@cosmofilms.com</service_team_receiver_email>
+                <service_team_receiver_phone_number>8826944600,9999113243</service_team_receiver_phone_number>
+                <service_team_sms_template>613f13f1bb71df56250c4b13</service_team_sms_template>
+                <service_team_email_template>msggateway_servicesbookingemail_service_team_email_template</service_team_email_template>
+            </servicesbookingemail>
+        </msggateway>
+    </default>
+</config>

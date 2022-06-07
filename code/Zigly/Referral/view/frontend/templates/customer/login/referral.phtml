@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var $block \Zigly\Referral\Block\Referral
+ */
+$referralCode = $block->getReferral();
+?>
+<?php if ($referralCode): ?>
+<div class="referral-code">
+	<input type="hidden" name="referralcode" id="referralcode" value="<?php echo $referralCode; ?>">
+</div>
+<?php endif; ?>

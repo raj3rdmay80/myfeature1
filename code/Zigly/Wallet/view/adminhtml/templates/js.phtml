@@ -1,0 +1,17 @@
+<?php $min = $this->currency(floor($this->getMinRecharge()), true, false);?>
+<?php $max = $this->currency(floor($this->getMaxRecharge()), true, false);?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_Wallet/js/wallet": {
+                "customerId" : "<?php echo $this->getCustomerId()?>",
+                "AjaxUrl" : "<?php echo $this->getAddWalletUrl()?>",
+                "maxTotal" : <?php echo $this->getMaxRecharge();?>,
+                "minTotal" : <?php echo $this->getMinRecharge();?>,
+                "max" : "<?php echo $max;?>",
+                "min" : "<?php echo $min;?>",
+                "balance" : "<?php echo (float)$this->getTotalBalance();?>"
+            }
+        }
+    }
+</script>

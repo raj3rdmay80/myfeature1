@@ -1,0 +1,16 @@
+<?php
+$brandCollection = $block->getBrand();
+?>
+<div class="shop-brand">
+    <h5 class="title">Shop by Brand</h5>
+        <ul class="brands">
+            <?php foreach ($brandCollection as $brand) {
+                $image = $brand->getImage();
+                $imageUrl = $block->getBrandImage($image); ?>
+              <li><a href="<?php echo $block->getBaseUrl(). 'brand/' . str_replace(" ","-",$brand->getTitle())?>"><img src="<?php echo $imageUrl; ?>" alt=""></a></li>
+            <?php } ?>
+        </ul>
+    <?php if($block->getEnableViewMore() == 1) { ?>
+        <div class="view-all"><a href="<?php echo $block->getViewUrl(); ?>">View more</a></div>
+   <?php } ?>
+</div>

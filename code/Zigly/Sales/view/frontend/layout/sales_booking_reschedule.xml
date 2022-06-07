@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright (C) 2020  Zigly
+* @package   Zigly_Sales
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Zigly_Sales::css/order.css"/>
+        <css src="Zigly_GroomingService::css/fullcalendar.min.css"/>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title" display="false"/>
+        <referenceContainer name="content">
+            <block class="Zigly\Sales\Block\Booking\Reschedule" cacheable="false" name="sales_booking_reschedule" template="Zigly_Sales::booking/reschedule.phtml" />
+        </referenceContainer>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true" />
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+    </body>
+</page>

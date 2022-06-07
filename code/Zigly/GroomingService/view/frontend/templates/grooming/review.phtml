@@ -1,0 +1,300 @@
+<?php
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_GroomingService
+ */
+
+$groomingSession = $block->getGroomingSession();
+$plan = $block->getPlans();
+$plansku = $plan->getProductSku();
+$gstPercent = $block->getProductGst($plansku);
+$breedTypeName = $block->getBreed();
+$isCustom = false;
+$activityHtml = "";
+$totalDuration = 0;
+$totalPrice = 0;
+$groomingSession['is_custom'] = 1;
+$groomingSession['activities'] = [];
+if ($plan->getPlanCategory() == '2') {
+    $isCustom = true;
+    $groomingSession['is_custom'] = 2;
+    foreach($groomingSession['activity'] as $activityId) {
+        $activity = $block->getActivity($activityId);
+        if (!empty($activity)){
+            $totalPrice += (float)$activity->getData($breedTypeName.'_price');
+            $totalDuration += (float)$activity->getData($breedTypeName.'_time');
+            $groomingSession['activities'][] = $activity->getActivityName();
+            $activityHtml .=  '<li class="list-option">
+                <a href="javascript:;" class="list-open">'.$escaper->escapeHtml($activity->getActivityName()).'<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <div class="list-details">'.$activity->getDescription().'</div>
+                </li>';
+        }
+    }
+}
+$groomingSession['pet_category'] = $breedTypeName;
+$petdetails = $block->getPet();
+if ($petdetails) {
+$groomingSession['pet_name'] = $petdetails['name'];
+$groomingSession['pet_breed'] = $petdetails['breed'];
+$groomingSession['pet_dob'] = $petdetails['pet_dob'];
+$groomingSession['pet_gender'] = $petdetails['gender'];
+$groomingSession['pet_age'] = $petdetails['age_year'].' years '.$petdetails['age_month'].' months';
+$groomingSession['pet_species'] = $petdetails['type'];
+$groomingSession['pet_category'] = $breedTypeName;
+
+}
+?>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<div class="pets-grooming wrapper progress-sections">
+    <div class="pets-grooming-booking-review review-booking">
+        <div class="review-booking-wrapper booking">
+            <div class="review-booking-left-right selected-plan">
+                <div class="plan review-booking-plan-left">
+                    <div class="plan-content">
+                        <div class="plan-icon">
+                            <?php $image = $block->getPlanImage($plan->getPlanImage());?>
+                            <img src='<?php echo $image?>' alt="Plan Essential" />
+                        </div>
+                        <div class="plan-title">
+                            <?php $groomingSession['plan_name'] = $plan->getPlanName(); ?>
+                            <?php $groomingSession['plan_sku'] = $plan->getProductSku(); ?>
+                            <h3 class="title"><?= $escaper->escapeHtml($plan->getPlanName()) ?></h3>
+                        </div>
+                        <div class="plan-details">
+                            <p class="details"><?= /* @noEscape */ $plan->getDescription(); ?></p>
+                        </div>
+                        <div class="plan-price">
+                            <?php if ($isCustom) : ?>
+                                <div class="price">
+                                    <?php
+                                    $groomingSession['subtotal'] = (float)$totalPrice;
+                                    // $groomingSession['grand_total'] = (float)$totalPrice;
+                                    ?>
+                                    <?= /* @noEscape */ $block->currency(number_format((float)$totalPrice, 2, '.', '')) ?>
+                                </div>
+                            <?php else :?>
+                                <div class="price">
+                                    <?php
+                                    $groomingSession['subtotal'] = (float)$plan->getData($breedTypeName.'_price');
+                                    // $groomingSession['grand_total'] = (float)$plan->getData($breedTypeName.'_price');
+                                    ?>
+                                    <?= /* @noEscape */ $block->currency(number_format((float)$plan->getData($breedTypeName.'_price'), 2, '.', '')) ?>
+                                </div>
+                            <?php endif;?>
+                            <div class="duration">
+                                    <?php if ($isCustom) : ?>
+                                        <?php
+                                            $groomingSession['duration'] = $totalDuration;
+                                        ?>
+                                        <span class="plan-duration"><?= $escaper->escapeHtml($totalDuration) ?><span class="time-formate"><?= __('Mins') ?></span></span>
+                                    <?php else :?>
+                                        <?php
+                                            $groomingSession['duration'] = $plan->getData($breedTypeName.'_time');
+                                        ?>
+                                        <span class="plan-duration"><?= $escaper->escapeHtml($plan->getData($breedTypeName.'_time')) ?><span class="time-formate"><?= __('Mins') ?></span></span>
+                                    <?php endif;?>
+                                </div>
+                            <div class="info-icon">
+                                <img src="<?php echo $this->getViewFileUrl('Zigly_GroomingService::images/info_icon.png'); ?>" alt="" />
+                                <div class="arrow-box-text">
+                                    <div class="arrow_box">
+                                        <?php $activities = explode(",", $plan->getActivity());
+                                        if (!empty($activities)) :
+                                            foreach($activities as $activityId) :
+                                                $activity = $block->getActivity($activityId);
+                                                if (!empty($activity)) : ?>
+                                                    <?php if ($isCustom && in_array($activityId, $groomingSession['activity'])) : ?>
+                                                        <div class="list">
+                                                            <img src="<?php echo $this->getViewFileUrl('Zigly_GroomingService::images/tick_mark.png'); ?>" alt="" />
+                                                            <div class="text"><?= $escaper->escapeHtml($activity->getActivityName()) ?></div>
+                                                        </div>
+                                                    <?php elseif ($groomingSession['is_custom'] == 1) : ?>
+                                                        <div class="list">
+                                                            <img src="<?php echo $this->getViewFileUrl('Zigly_GroomingService::images/tick_mark.png'); ?>" alt="" />
+                                                            <div class="text"><?= $escaper->escapeHtml($activity->getActivityName()) ?></div>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                <?php endif;
+                                            endforeach;
+                                        endif;?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan-view">
+                            <div class="views-details">
+                                <a href="javascript:;" class="view-plan-details"><?= __('View Details') ?></a>
+                                
+                                <?php
+                                    $activities = explode(",", $plan->getActivity());
+                                ?>
+                                <?php if (!empty($activities)) : ?>
+                                    <div class="detail-options">
+                                        <ul class="lists">
+                                        <?php if ($isCustom) : ?>
+                                            <?= $activityHtml ?>
+                                        <?php else :?>
+                                            <?php foreach($activities as $activityId) : ?>
+                                                <?php $activity = $block->getActivity($activityId); ?>
+                                                <?php if (!empty($activity)) : ?>
+                                                    <li class="list-option">
+                                                        <?php
+                                                            $groomingSession['activities'][] = $activity->getActivityName();
+                                                        ?>
+                                                        <a href="javascript:;" class="list-open"><?= $escaper->escapeHtml($activity->getActivityName()) ?><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                                        <div class="list-details"><?= /* @noEscape */ $activity->getDescription() ?></div>
+                                                    </li>
+                                                <?php endif;?>
+                                            <?php endforeach; ?>
+                                        <?php endif;?>
+
+                                        </ul>
+                                    </div>
+                                <?php endif;?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-booking-right payment-booking">
+                    <div class="booking-address">
+                        <div class="booking-pet-name">
+                            <h4 class="booked-pet"><?= __('FOR ') ?><span class="booked-pet-name"><?= $groomingSession['pet_name'] ?></span></h4>
+                        </div>
+                        <a href="javascript:;" class="edit-booking-address">edit</a>
+                        <div class="booking-details">
+                            <h4 class="date"><?= __('Date: ') ?><span class="date"><?= $block->getDate() ?></span></h4>
+                        </div>
+                        <div class="booking-details">
+                            <h4 class="time"><?= __('Time: ') ?><span class="time"><?= $groomingSession['selected_time'] ?></span></h4>
+                        </div>
+                        <div class="booking-details">
+                            <h4 class="address"><?= __('Address:') ?></h4>
+                            <span class="address"><?= $block->getAddressDetails() ?></span>
+                        </div>
+                    </div>
+                    <div class="booking-payment">
+                        <div class="booking-amount">
+                            <h4 class="amount-text"><?= __('Amount') ?></h4>
+                            <?php
+                                if (empty($groomingSession['wallet_discount_amount']) && empty($groomingSession['coupon_discount_amount'])) {
+                                    $groomingSession['grand_total'] = $groomingSession['subtotal'];
+                                }
+                            ?>
+                            <p class="amount">
+                                <?= /* @noEscape */ $block->getCurrentCurrencySymbol().''.floor($groomingSession['subtotal']) ?>
+                            </p>
+                        </div>
+                        <?php if (!empty($groomingSession['wallet_discount_amount']) && empty($groomingSession['coupon_discount_amount'])) : ?>
+                            <div class="coupon-saved">
+                                <p class="saved-text"><?= __('You saved') ?></p>
+                                <p class="coupon-applied"><?= /* @noEscape */ $block->currency(floor($groomingSession['wallet_discount_amount'])) ?></p>
+                            </div>
+                            <div class="coupon-saved">
+                                <p class="saved-text"><?= __('Wallet used') ?></p>
+                                <p class="coupon-applied"><?= /* @noEscape */ $block->currency(floor($groomingSession['wallet_discount_amount'])) ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!empty($groomingSession['coupon_discount_amount']) && empty($groomingSession['wallet_discount_amount'])) : ?>
+                            <div class="coupon-saved">
+                                <p class="saved-text"><?= __('You saved') ?></p>
+                                <p class="coupon-applied"><?= /* @noEscape */ $block->currency(floor($groomingSession['coupon_discount_amount'])) ?></p>
+                            </div>
+                            <div class="coupon-saved">
+                                <p class="saved-text"><?= __('Coupon used') ?></p>
+                                <p class="saved-text"><?= /* @noEscape */ $block->currency(floor($groomingSession['coupon_discount_amount'])) ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!empty($groomingSession['wallet_discount_amount']) && !empty($groomingSession['coupon_discount_amount'])) :
+                            $wallet = $groomingSession['coupon_discount_amount'] + $groomingSession['wallet_discount_amount']; ?>
+                            <div class="coupon-saved">
+                                <p class="saved-text"><?= __('You saved') ?></p>
+                                <p class="coupon-applied"><?= /* @noEscape */ $block->currency(floor($wallet)) ?></p>
+                            </div>
+                            <div class="coupon-saved">
+                                <p class="saved-text"><?= __('Wallet used') ?></p>
+                                <p class="coupon-applied"><?= /* @noEscape */ $block->currency(floor($groomingSession['wallet_discount_amount'])) ?></p>
+                            </div>
+                            <div class="coupon-saved">
+                                <p class="saved-text"><?= __('Coupon used') ?></p>
+                                <p class="saved-text"><?= /* @noEscape */ $block->currency(floor($groomingSession['coupon_discount_amount'])) ?></p>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="booking-amount tax-amount"> 
+                            <h4 class="amount-text"><?= __('Total') ?></h4>
+                            <?php
+                                if (empty($groomingSession['wallet_discount_amount']) && empty($groomingSession['coupon_discount_amount'])) {
+                                    $groomingSession['grand_total'] = $groomingSession['subtotal'];
+                                }
+                            ?>
+                            <p class="amount">
+                                <?= /* @noEscape */ $block->getCurrentCurrencySymbol().''.floor($groomingSession['grand_total']) ?>
+                            </p>
+                        </div>
+                        <div class="wallet selection">
+                            <?php if ($block->getWalletBalance() > 0) : ?>
+                                <?php if ($groomingSession['coupon'] > 0) : ?>
+                                    <?php if (empty($groomingSession['wallet_amount'])) : ?>
+                                        <fieldset class="select">
+                                            <input type="checkbox" class="input" id="wallet-select" name="wallet" value="<?= $groomingSession['grand_total'] ?>" />
+                                            <label for="wallet-select"><?= __('Wallet Balance ('. /* @noEscape */ $block->getCurrentCurrencySymbol().''.floor($block->getWalletBalance()).')') ?></label>
+                                        </fieldset>
+                                    <?php else : ?>
+                                        <fieldset class="select">
+                                            <input type="checkbox" checked class="input" id="wallet-select" name="wallet" value="<?= $groomingSession['grand_total'] ?>" />
+                                            <label for="wallet-select"><?= __('Wallet Balance ('. /* @noEscape */ $block->getCurrentCurrencySymbol().''.floor($block->getWalletBalance()).')') ?></label>
+                                        </fieldset>
+                                    <?php endif;?>
+                                <?php endif;?>
+                            <?php endif;?>
+                        </div>
+                        <?php if ($groomingSession['wallet'] > 0) : ?>
+                            <div class="coupon-box">
+                                <?php if (empty($groomingSession['coupon_code'])) : ?>
+                                    <input type="text" class="coupon-input" name="service-coupon" placeholder="Enter Coupon Code" />
+                                    <button type="button" class="btn-coupon" id="apply-coupon"><?= __('Apply') ?></button>
+                                <?php else : ?>
+                                    <input type="text" class="coupon-input" name="service-coupon" placeholder="Enter Coupon Code" value="<?= $groomingSession['coupon_code'] ?>" />
+                                    <button type="button" class="btn-coupon-close" id="remove-coupon">X</button>
+                                <?php endif;?>
+                            </div>
+                        <?php endif;?>
+                        <?php $showOfferHtml = $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('15')->toHtml(); ?>
+                            <div class="coupon-offers">
+                                <div class="gift-coupon">
+                                    <a href="javascript:;" class="gift-card"><?= __('Have a Gift Card?') ?></a>
+                                </div>
+                            <?php if ($showOfferHtml != '') : ?>
+                                <div class="gift-coupon">
+                                    <a href="javascript:;" class="show-offers"><?= __('Show offers') ?></a>
+                                </div>
+                                <div class="show-offer-list content" id="offers-modal" style="display:none;">
+                                    <?= $showOfferHtml ?>
+                                </div>
+                            <?php endif; ?>
+                            </div>
+                        <?php if ($groomingSession['grand_total'] > 0 ) :?>
+                            <div class="offer selection">
+                                <fieldset class="select">
+                                    <input type="radio" checked class="input" id="offer-select" name="paymode" value="pay-now" />
+                                    <label for="offer-select"><?= __('Pay Now') ?></label>
+                                </fieldset>
+                                <?php if (empty($groomingSession['wallet_discount_amount'])){ ?>
+                                    <fieldset class="select">
+                                        <input type="radio" class="input" id="pay-later" name="paymode" value="pay-later"/>
+                                        <label for="pay-later"><?= __('Pay Later') ?></label>
+                                    </fieldset>
+                                <?php } ?>
+                            </div>
+                        <?php endif;?>
+                        <button type="button" class="btn-payment-make"><?= __('Make payment') ?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+$block->updateGroomingSession($groomingSession);
+?>

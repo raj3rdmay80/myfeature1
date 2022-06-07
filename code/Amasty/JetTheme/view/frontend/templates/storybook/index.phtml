@@ -1,0 +1,29 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_JetTheme
+ */
+?>
+<?php
+/**
+ * phpcs:ignoreFile
+ */
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="title" content="Styleguide">
+        <meta name="robots" content="NOINDEX,NOFOLLOW">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="<?= $this->getViewFileUrl('Magento_Theme::favicon.ico');?>">
+        <title>Styleguide</title>
+    </head>
+    <body>
+        <iframe src="<?= $this->getViewFileUrl('Amasty_JetTheme::storybook-build/index.html');?>"
+                frameborder="0"
+                width="100%"
+                style="height: 100vh;"></iframe>
+    </body>
+</html>

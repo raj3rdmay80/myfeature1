@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="2columns-left">
+    <update handle="sales_order_item_renderers"/>
+    <update handle="sales_order_item_price"/>
+    <update handle="sales_order_info_links"/>
+    <update handle="styles"/>
+    <head>
+        <css src="Zigly_Sales::css/order.css"/>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">My Orders</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="sales.order.info.buttons">
+            <block class="Magento\Sales\Block\Order\Info\Buttons\Rss" as="buttons.rss" name="sales.order.info.buttons.rss" cacheable="false"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <!-- <block class="Magento\Sales\Block\Order\View" name="order.comments" template="Magento_Sales::order/order_comments.phtml" before="sales.order.info.links"/> -->
+            <block class="Zigly\Sales\Block\View" name="sales.orders.view" cacheable="false" after="sales.order.info.links" template="Zigly_Sales::order/view.phtml">
+                <block class="Magento\Sales\Block\Order\Items" name="orders_items" template="Zigly_Sales::order/items.phtml">
+                    <block class="Magento\Framework\View\Element\RendererList" name="sales.order.items.renderers" as="renderer.list"/>
+                    <block class="Magento\Theme\Block\Html\Pager" name="sales_order_item_pager"/>
+                    <block class="Magento\Sales\Block\Order\Totals" name="order_totals" template="Magento_Sales::order/totals.phtml">
+                        <arguments>
+                            <argument name="label_properties" xsi:type="string">colspan="4" class="mark"</argument>
+                            <argument name="value_properties" xsi:type="string">class="amount"</argument>
+                        </arguments>
+                        <block class="Magento\Tax\Block\Sales\Order\Tax" name="tax" template="Magento_Tax::order/tax.phtml"/>
+                    </block>
+                </block>
+            </block>
+            <!-- <block class="Magento\Sales\Block\Order\Info" as="info" name="sales.orders.info" after="sales.orders.view" template="Zigly_Sales::order/info.phtml"/> -->
+        </referenceContainer>
+        <block class="Magento\Framework\View\Element\Template" name="additional.product.info" template="Magento_Theme::template.phtml"/>
+        <referenceContainer name="sidebar.additional">
+            <block class="Zigly\Sales\Block\Order\Menu" name="sales.orders.menu" template="Zigly_Sales::order/menu.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="sales.order.info.links" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true" />
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+    </body>
+</page>

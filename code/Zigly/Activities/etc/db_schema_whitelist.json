@@ -1,0 +1,30 @@
+{
+    "zigly_activities_activities": {
+        "column": {
+            "activities_id": true,
+            "activity_name": true,
+            "description": true,
+            "species_activity": true,
+            "is_active": true,
+            "created_at": true,
+            "updated_at": true,
+            "updated_by": true,
+            "species": true,
+            "small_price": true,
+            "small_time": true,
+            "medium_price": true,
+            "medium_time": true,
+            "large_price": true,
+            "large_time": true,
+            "certification": true,
+            "extra_large_price": true,
+            "extra_large_time": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "ZIGLY_ACTIVITIES_ACTIVITIES_ACTIVITY_NAME_UPDATED_BY": true
+        }
+    }
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Zigly::mobilehome" title="Mobile Home" module="Zigly_Mobilehome" sortOrder="10" resource="Zigly_Mobilehome::mobilehome"/>
+
+		<add id="Zigly_Mobilehome::zigly_mobilehome_mobilehome" title="mobilehome" module="Zigly_Mobilehome" sortOrder="10" resource="Zigly_Mobilehome::mobilehome" parent="Zigly::mobilehome" action="zigly_mobilehome/mobilehome" />
+	</menu>
+</config>

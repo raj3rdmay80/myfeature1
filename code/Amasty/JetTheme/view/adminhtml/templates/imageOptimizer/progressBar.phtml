@@ -1,0 +1,67 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_JetTheme
+ */
+?>
+<?php
+/**
+ * @var $block Amasty\JetTheme\Block\Adminhtml\System\Config\ImageOptimizer\RunOptimizationButton
+ * @var $escaper Magento\Framework\Escaper
+ */
+?>
+<div id="image-optimization-button" data-bind="scope:'image_optimizer'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "image_optimizer": {
+                        "component": "uiCollection",
+                        "children": {
+                            "optimizer_button": {
+                                "component": "Magento_Ui/js/form/components/button",
+                                "displayArea": "optimizationButtonArea",
+                                 "config": {
+                                    "title": "Run Optimization",
+                                    "buttonClasses": "open-insert-form-example-modal-button",
+                                    "actions": [
+                                          {
+                                            "targetName": "${ $.parentName}.optimizer_modal",
+                                            "actionName": "openModal"
+                                        },
+                                        {
+                                            "targetName": "${ $.parentName}.optimizer_modal.optimizer_form",
+                                            "actionName": "start"
+                                        }
+                                    ]
+                                 }
+                            },
+                            "optimizer_modal": {
+                                "component": "Magento_Ui/js/modal/modal-component",
+                                "options": {
+                                    "type": "popup",
+                                    "title": "Images Optimization",
+                                    "buttons": {}
+                                },
+                                "children": {
+                                    "optimizer_form": {
+                                        "component": "Amasty_JetTheme/js/image-optimization",
+                                        "config": {
+                                            "startUrl": "<?= $escaper->escapeUrl($block->getStartUrl()); ?>",
+                                            "processUrl": "<?= $escaper->escapeUrl($block->getProcessUrl()); ?>"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>

@@ -1,0 +1,204 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+?>
+<?php /** @var  $block \Magento\Sales\Block\Order\View*/?>
+<?php $blockObj = $block->getLayout()->createBlock('Zigly\Sales\Block\Order\History');?>
+<?php $orderCancelReason = $blockObj->getOrderCancelReason(); ?>
+<?php $orderReturnReason = $blockObj->getOrderReturnReason(); ?>
+<div class="order-back">
+    <a href="<?php echo $this->getUrl('sales/orders/history');?>" class="action sales-order-back">
+        <span><?= $block->escapeHtml(__('Back')) ?></span>
+    </a>
+</div>
+<div class="order-details-items ordered">
+    <?php $order = $block->getOrder() ?>
+    <div class="orders-detail">
+        <div class="order-id orders">
+            <label><?= $block->escapeHtml(__('Order Id: ')) ?></label>
+            <label><?= $block->escapeHtml($order->getRealOrderId()) ?></label>
+        </div>
+        <div class="order-item-count orders">
+            <label><?= $block->escapeHtml(__('Order Items: ')) ?></label>
+            <label><?= $block->escapeHtml($order->getTotalItemCount()) ?></label>
+        </div>
+        <div class="order-status orders">
+            <label><?= $block->escapeHtml(__('Status: ')) ?></label>
+            <label><?= $block->escapeHtml($order->getStatusLabel()) ?></label>
+        </div>
+        <?php $statusAwd = ['processing', 'shipping']; ?>
+        <?php if (in_array($order->getStatus(), $statusAwd)) { ?>
+            <!-- <div class="AWD">
+                <div class="order-awd orders">
+                    <label><?php // $block->escapeHtml(__('AWD No: ')) ?></label>
+                    <label><?php // $block->escapeHtml(__('123456789')) ?></label>
+                </div>
+                <div class="order-deliver-status orders">
+                    <label><?php // $block->escapeHtml(__('Status: ')) ?></label>
+                    <label><?php // $block->escapeHtml(__('Delivered')) ?></label>
+                </div>
+            </div>
+            <div class="order-track-ship">
+                <button class="action track-ship">
+                    <a href="#">
+                        <span><?php // $block->escapeHtml(__('Track Shipment')) ?></span>
+                    </a>
+                </button>
+            </div> -->
+        <?php } ?>
+        <?php $status = ['processing', 'pending']; ?>
+        <?php if (in_array($order->getStatus(), $status)) { ?>
+            <div class="orders-cancel">
+                <button class="action cancel">
+                    <a href="#" class="order-cancel">
+                        <span><?= $block->escapeHtml(__('Cancel')) ?></span>
+                    </a>
+                </button>
+            </div>
+        <?php } ?>
+        <?php $returnStatus = ['complete']; ?>
+        <?php if (in_array($order->getStatus(), $returnStatus)) { ?>
+            <div class="return-product">
+                <a href="#" class="return-order">
+                    <span><?= $block->escapeHtml(__('Return')) ?></span>
+                </a>
+            </div>
+        <?php } ?>
+    </div>
+    <div class="order-items">
+        <?= $block->getChildHtml('orders_items') ?>
+        <div class="order-details">
+            <?= $block->getLayout()->createBlock("Magento\Sales\Block\Order\Info")->setTemplate("Zigly_Sales::order/info.phtml")->toHtml(); ?>
+        </div>
+    </div>
+
+    <?php if ($this->helper(\Magento\GiftMessage\Helper\Message::class)->isMessagesAllowed('order', $order)
+        && $order->getGiftMessageId()
+    ) : ?>
+    <div class="block block-order-details-gift-message">
+        <div class="block-title"><strong><?= $block->escapeHtml(__('Gift Message for This Order')) ?></strong></div>
+        <?php
+        $_giftMessage = $this->helper(\Magento\GiftMessage\Helper\Message::class)->getGiftMessageForEntity($order);
+        ?>
+        <div class="block-content">
+            <dl class="item-options">
+                <dt class="item-sender"><strong class="label"><?= $block->escapeHtml(__('From')) ?></strong><?= $block->escapeHtml($_giftMessage->getSender()) ?></dt>
+                <dt class="item-recipient"><strong class="label"><?= $block->escapeHtml(__('To')) ?></strong><?= $block->escapeHtml($_giftMessage->getRecipient()) ?></dt>
+                <dd class="item-message">
+                    <?= /* @noEscape */
+                    $this->helper(\Magento\GiftMessage\Helper\Message::class)->getEscapedGiftMessage($order) ?>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <?php endif; ?>
+
+    <div class="actions-toolbar">
+        <div class="secondary">
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>">
+                <span><?= $block->escapeHtml($block->getBackTitle()) ?></span>
+            </a>
+        </div>
+    </div>
+</div>
+<div id="popup-mpdal-cancel" style="display: none;">
+    <form class="commentform" method="post" action=""
+        id="form-validate" enctype="multipart/form-data"
+        data-hasrequired="<?php /* @noEscape */ echo __('*') ?>"
+        data-mage-init='{"validation":{}}'>
+        <div id="result"></div>
+        <fieldset class="fieldset">
+            <?php if ($orderCancelReason) { ?>
+                <div class="field name required">
+                    <label class="label" for="name"><span><?php /* @noEscape */ echo __('Reason to Cancel') ?></span></label>
+                    <div class="control">
+                        <select name="comment" id="reason"
+                            class="select"
+                            data-validate="{required:true}" required aria-required="true"
+                             >
+                            <option value=""><?php /* @noEscape */ echo __('Please Select') ?></option>
+                            <?php
+                            foreach ($orderCancelReason as $option) : ?>
+                                <option value="<?php /* @noEscape */ echo $option ?>" id="reason">
+                                    <?php /* @noEscape */ echo $option ?>
+                                </option>
+                            <?php endforeach; ?>
+                            <option value="nothing"><?php /* @noEscape */ echo __('Others')?></option>
+                        </select>
+                    </div>
+                </div>
+            <?php } ?>
+                <div class="field name">
+                        <label class="label" for="name"><span><?php /* @noEscape */ echo __('Additional Details')?></span></label>
+                        <div class="control">
+                            <textarea cols="50" rows="5" name="comment" id="reasons" title="Comment"
+                                class="input-text comment"></textarea>
+                                <span class = "error">
+                        </div>
+                </div>
+           <?php $policy = $this->getUrl().'cancellation-return-exchange-and-refund-policy'; ?>
+            <p><?php /* @noEscape */ echo __("By submitting the request, you agree the <a href='".$policy."' target='_blank'>cancellation policies</a>") ?></p>
+        </fieldset>
+        <button class="action primary order-cancel-reason" id="cancel" title="Submit" type="submit">
+            <span><?php /* @noEscape */ echo __('Submit')?></span>
+        </button>
+    </form>
+</div>
+<div id="popup-mpdal-return" style="display: none;">
+    <form class="commentform" method="post" action=""
+        id="form-validate" enctype="multipart/form-data"
+        data-hasrequired="<?php /* @noEscape */ echo __('*') ?>"
+        data-mage-init='{"validation":{}}'>
+        <div id="result"></div>
+        <fieldset class="fieldset">
+            <?php if ($orderReturnReason) { ?>
+                <div class="field name required">
+                    <label class="label" for="name"><span><?php /* @noEscape */ echo __('Reason To Return') ?></span></label>
+                    <div class="control">
+                        <select name="comment" id="return"
+                            class="select"
+                            data-validate="{required:true}" required aria-required="true"
+                             >
+                            <option value=""><?php /* @noEscape */ echo __('Please Select') ?></option>
+                            <?php
+                            foreach ($orderReturnReason as $option) : ?>
+                                <option value="<?php /* @noEscape */ echo $option ?>" id="return">
+                                    <?php /* @noEscape */ echo $option ?>
+                                </option>
+                            <?php endforeach; ?>
+                            <option value="nothing"><?php /* @noEscape */ echo __('Others')?></option>
+                        </select>
+                    </div>
+                </div>
+            <?php } ?>
+                <div class="field name">
+                        <label class="label" for="name"><span><?php /* @noEscape */ echo __('Additional Details')?></span></label>
+                        <div class="control">
+                            <textarea cols="50" rows="5" name="comment" id="returns" title="Comment"
+                                class="input-text comment"></textarea>
+                                <span class = "error">
+                        </div>
+                </div>
+           <?php $policy = $this->getUrl().'cancellation-return-exchange-and-refund-policy'; ?>
+            <p><?php /* @noEscape */ echo __("By submitting the request, you agree the <a href='".$policy."' target='_blank'>return policies</a>") ?></p>
+        </fieldset>
+        <button class="action primary order-return-reason" id="return" title="Submit" type="submit">
+            <span><?php /* @noEscape */ echo __('Submit')?></span>
+        </button>
+    </form>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_Sales/js/cancel": {
+                "orderId": "<?php echo $order->getId();?>",
+                "AjaxUrl" : "<?php echo $this->getUrl().'sales/orders/cancel'?>",
+                "returnUrl" : "<?php echo $this->getUrl().'sales/orders/returnorder'?>"
+            }
+        }
+    }
+</script>

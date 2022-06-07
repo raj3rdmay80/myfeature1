@@ -1,0 +1,6 @@
+<?php $url = $block->getFileUrl() ? $block->getFileUrl() : $block->getplaceholderimageurl(); ?>
+<?php if ($block->getFileUrl()) : ?>
+<div class="profileimage">
+    <img src="<?php echo $url ?>" alt="image" width="300" height="300"/>
+</div>
+<?php endif; ?>

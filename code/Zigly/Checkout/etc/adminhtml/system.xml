@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Catalog
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="zigly" translate="label" sortOrder="10">
+            <label>Zigly</label>
+        </tab>
+        <section id="zigly_general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>General</label>
+            <tab>zigly</tab>
+            <resource>Zigly_Checkout::General</resource>
+            <group id="checkout" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Customer Favorite</label>
+                <field id="free_shipping" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Free shipping above</label>
+                    <validate>validate-number</validate>
+                    <comment>Amount needed to same as in Cart price rule.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

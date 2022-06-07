@@ -1,0 +1,7 @@
+//
+//  Font theme
+//  ____________________________________________
+
+@font-family-name__base: '{{font (google_font)}}';
+@font-style__base: {{font (google_font_style)}};
+@font-family__base: @font-family-name__base, @font-family__sans-serif;

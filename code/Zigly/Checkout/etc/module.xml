@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<!-- 
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Checkout
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Zigly_Checkout">
+        <sequence>
+            <module name="Magento_Checkout"/>
+        </sequence>
+    </module>
+</config>

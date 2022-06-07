@@ -1,0 +1,33 @@
+{
+    "name": "amasty/jet-theme",
+    "description": "Jet Theme module by Amasty",
+    "require": {
+        "php": "^7.1.0",
+        "amasty/base": "*",
+        "amasty/module-image-optimizer": ">=1.0.0",
+        "amasty/module-lazy-load": ">=1.0.0"
+    },
+    "suggest": {
+        "amasty/module-ajax-filters-navigation": "Please install the Lite Layered Navigation module by Amasty for free if you want to use it.",
+        "amasty/aminvisiblecaptcha": "Please install the Google Invisible Recaptcha module by Amasty for free if you want to use it.",
+        "amasty/module-thank-you-page": "Please install the Thank You Page module by Amasty for free if you want to use it.",
+        "amasty/product-tabs": "Please install the Product Tabs module by Amasty for free if you want to use it.",
+        "amasty/jet-theme-sample-data": "Install Jet Theme Sample Data to See All Features of Our Theme. After Install Just Run jettheme:sampledata:deploy --clean command (Be careful, this command will remove all your previous data from site).",
+        "amasty/module-mixin-rewrite-patch": "Install mixin rewrite patch if you have a problem with extension on Magento 2.4.2+ version",
+        "amasty/module-jet-theme-mftf-2": "Install module-jet-theme-mftf-2 module to be able to run Jet Theme MFTF tests for Magento 2.3.6 and higher.",
+        "amasty/module-jet-theme-mftf-3": "Install module-jet-theme-mftf-3 module to be able to run Jet Theme MFTF tests for Magento 2.4.1 and higher."
+    },
+    "type": "magento2-module",
+    "version": "1.11.0",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\JetTheme\\": ""
+        }
+    }
+}

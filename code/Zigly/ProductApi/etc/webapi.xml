@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_ProductApi
+ */ -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/pincode">
+        <service class="Zigly\ProductApi\Api\PincodeRepositoryInterface" method="pincodeApi"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/product">
+        <service class="Zigly\ProductApi\Api\ProductRepositoryInterface" method="ProductCollectionApi"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

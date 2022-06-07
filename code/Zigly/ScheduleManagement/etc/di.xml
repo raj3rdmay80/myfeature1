@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Zigly\ScheduleManagement\Api\FetchVendorScheduleManagementInterface" type="Zigly\ScheduleManagement\Model\FetchVendorScheduleManagement"/>
+	<preference for="Zigly\ScheduleManagement\Api\SaveVendorScheduleManagementInterface" type="Zigly\ScheduleManagement\Model\SaveVendorScheduleManagement"/>
+	<preference for="Zigly\ScheduleManagement\Api\ScheduleManagementRepositoryInterface" type="Zigly\ScheduleManagement\Model\ScheduleManagementRepository"/>
+	<preference for="Zigly\ScheduleManagement\Api\Data\ScheduleManagementInterface" type="Zigly\ScheduleManagement\Model\Data\ScheduleManagement"/>
+	<preference for="Zigly\ScheduleManagement\Api\Data\ScheduleInterface" type="Zigly\ScheduleManagement\Model\Data\Schedule"/>
+	<preference for="Zigly\ScheduleManagement\Api\Data\ScheduleResponseInterface" type="Zigly\ScheduleManagement\Model\Data\ScheduleResponse"/>
+	<preference for="Zigly\ScheduleManagement\Api\Data\ScheduleManagementSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Zigly\ScheduleManagement\Model\ResourceModel\ScheduleManagement\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">zigly_schedulemanagement_schedulemanagement</argument>
+			<argument name="resourceModel" xsi:type="string">Zigly\ScheduleManagement\Model\ResourceModel\ScheduleManagement\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="zigly_schedulemanagement_schedulemanagement_listing_data_source" xsi:type="string">Zigly\ScheduleManagement\Model\ResourceModel\ScheduleManagement\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

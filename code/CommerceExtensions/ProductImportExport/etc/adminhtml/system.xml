@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Commerce Extensions. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="commerceextensions" translate="label" sortOrder="999999" class="commerceextensions-tab">
+            <label>Commerce Extensions</label>
+        </tab>
+        <section id="productimportexport" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <resource>CommerceExtensions_ProductImportExport::config</resource>
+            <class>separator-top</class>
+            <label>Product Import / Export Settings</label>
+            <tab>commerceextensions</tab>
+            <group id="allowdebuglog" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Debug</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enabled Debug Logging Vs Exception Error Printed to Screen</comment>
+                </field>
+            </group>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="automaticallyreindex" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Automatically Reindex</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Automatically Reindex After Successful Import</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

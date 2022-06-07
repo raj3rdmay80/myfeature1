@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_GroomingService
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Zigly_Main::Menu" title="Zigly" sortOrder="10">
+                    <resource id="Zigly_GroomingService::Grooming" title="Grooming" sortOrder="10">
+                        <resource id="Zigly_GroomingService::Grooming_save" title="Save Grooming" sortOrder="10"/>
+                        <resource id="Zigly_GroomingService::Grooming_delete" title="Delete Grooming" sortOrder="20"/>
+                        <resource id="Zigly_GroomingService::Grooming_update" title="Update Grooming" sortOrder="30"/>
+                        <resource id="Zigly_GroomingService::Grooming_view" title="View Grooming" sortOrder="40"/>
+                        <resource id="Zigly_GroomingService::Grooming_status_update" title="Update Grooming Status" sortOrder="50"/>
+                        <resource id="Zigly_GroomingService::Grooming_add_grommer" title="Add Grommer" sortOrder="60"/>
+                        <resource id="Zigly_GroomingService::Grooming_cancel_service" title="Cancel Service" sortOrder="70"/>
+                        <resource id="Zigly_GroomingService::Grooming_reschedule_service" title="Reschedule Service" sortOrder="80"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

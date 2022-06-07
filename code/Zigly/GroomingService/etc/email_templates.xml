@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_GroomingService
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="groomingservice_emailtemplate_addgroomer_notify_groomer" label="Assign Groomer Notify Groomer" file="assign_groomer.html" type="html" module="Zigly_GroomingService" area="frontend"/>
+    <template id="groomingservice_emailtemplate_addgroomer_notify_customer" label="Assign Groomer Notify Customer" file="assign_groomer_customer.html" type="html" module="Zigly_GroomingService" area="frontend"/>
+    <template id="groomingservice_emailtemplate_cancel_notify_groomer" label="Cancel Notify Groomer" file="cancel_notify_groomer.html" type="html" module="Zigly_GroomingService" area="frontend"/>
+    <template id="groomingservice_emailtemplate_cancel_notify_customer" label="Cancel Notify Customer" file="cancel_notify_customer.html" type="html" module="Zigly_GroomingService" area="frontend"/>
+    <template id="groomingservice_emailtemplate_rescheduled_notify_groomer" label="Rescheduled Notify Groomer" file="rescheduled_notify_groomer.html" type="html" module="Zigly_GroomingService" area="frontend"/>
+	<template id="groomingservice_emailtemplate_rescheduled_notify_customer" label="Rescheduled Notify Customer" file="rescheduled_notify_customer.html" type="html" module="Zigly_GroomingService" area="frontend"/>
+    <template id="msggateway_servicesbookingemail_service_center_email" label="Services Center Mail Template" file="center.html" type="html" module="Zigly_GroomingService" area="frontend"/>
+    <template id="msggateway_servicesbookingemail_service_home_email" label="Services At Home Mail Template" file="home.html" type="html" module="Zigly_GroomingService" area="frontend"/>
+    <template id="msggateway_servicesbookingemail_reschedule_send_email" label="Reschedule At Home" file="reschedule_home.html" type="html" module="Zigly_Sales" area="frontend"/>
+    <template id="msggateway_servicesbookingemail_reschedule_send_center_email" label="Reschedule At Experience Center" file="reschedule_center.html" type="html" module="Zigly_Sales" area="frontend"/><template id="msggateway_servicesbookingemail_update_booking_status_email" label="Booking Status Update" file="update_status.html" type="html" module="Zigly_GroomingService" area="frontend"/>
+    <template id="msggateway_servicesbookingemail_service_team_email_template" label="Service Team Mail Template" file="service_team.html" type="html" module="Zigly_GroomingService" area="frontend"/>
+</config>

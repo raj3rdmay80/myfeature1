@@ -1,0 +1,18 @@
+<!-- ko if: isWalletAvailable() -->
+<div class="wallet-group" style="padding-bottom: 12px;">
+    <div class="step-title" data-role="title" style="padding-bottom: 6px;" data-bind="i18n: 'Wallet'"></div>
+    <div class="wallet-method field choice">
+        <div class="choice field">
+            <input type="checkbox" class="checkbox" data-bind="checked: toggleWallet" id="zig-wallet" name="apply_wallet" value="1">
+            <label class="label" for="zig-wallet" data-bind="i18n: 'Wallet Balance'"></label>
+        </div>
+        &nbsp;
+        (
+        <div class="amount">
+            <span class="price" data-bind="text: getWalletAmount()"></span>
+        </div>
+        )
+    </div>
+</div>
+<!-- /ko -->
+

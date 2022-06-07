@@ -1,0 +1,59 @@
+{
+    "zigly_plan_plan": {
+        "column": {
+            "plan_id": true,
+            "plan_name": true,
+            "plan_type": true,
+            "description": true,
+            "applicable_cities": true,
+            "plan_category": true,
+            "pre_defined": true,
+            "defined_activity": true,
+            "defined_description": true,
+            "defined_breed": true,
+            "customizable_activity": true,
+            "customizable_description": true,
+            "customizable_breed": true,
+            "status": true,
+            "updated_by": true,
+            "created_at": true,
+            "updated_at": true,
+            "species": true,
+            "activity": true,
+            "activity_description": true,
+            "small_price": true,
+            "small_discount_price": true,
+            "small_minimum_price": true,
+            "small_time": true,
+            "medium_price": true,
+            "medium_discount_price": true,
+            "medium_minimum_price": true,
+            "medium_time": true,
+            "large_price": true,
+            "large_discount_price": true,
+            "large_minimum_price": true,
+            "large_time": true,
+            "sort_order": true,
+            "extra_large_price": true,
+            "extra_large_discount_price": true,
+            "extra_large_minimum_price": true,
+            "extra_large_time": true,
+            "product_sku": true,
+            "plan_image": true,
+            "banner_image": true,
+            "recommended_plan": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "ZIGLY_PLAN_PLAN_PLAN_NAME_PLAN_TYPE_APPLICABLE_CITIES_UPDATED_BY": true,
+            "ZIGLY_PLAN_PLAN_PLAN_NAME_APPLICABLE_CITIES_UPDATED_BY": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "order_type": true
+        }
+    }
+}

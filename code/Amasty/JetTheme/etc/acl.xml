@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_JetTheme
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Amasty_JetTheme::config" title="Amasty Jet Theme" sortOrder="1511419" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Amasty_JetTheme::amjet" sortOrder="10" title="Amasty Jet Theme">
+                    <resource id="Amasty_JetTheme::manage_social_links" sortOrder="10" title="Manage Social Links"/>
+                    <resource id="Amasty_JetTheme::manage_payment_links" sortOrder="10" title="Manage Payment Method Icons"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,21 @@
+{
+    "name": "zigly/module-catalog",
+    "description": "Zigly_Catalog",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Zigly"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Zigly\\Catalog\\": ""
+        }
+    }
+}

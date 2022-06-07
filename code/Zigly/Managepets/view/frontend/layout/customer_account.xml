@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Managepets
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.main">
+                <referenceBlock name="customer_account_navigation">
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-managepets-link" after="-" >
+                         <arguments>
+                             <argument name="label" xsi:type="string" translate="true">Manage pets</argument>
+                             <argument name="path" xsi:type="string">managepets</argument>
+                         </arguments>
+                    </block>
+                </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>

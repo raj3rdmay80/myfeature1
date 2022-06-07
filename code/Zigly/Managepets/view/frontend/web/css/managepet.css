@@ -1,0 +1,1041 @@
+
+ /* Copyright (C) 2020  Zigly
+ * @package  Zigly_Managepets
+ */
+
+
+*:before, *:after {
+	box-sizing: border-box !important;
+}
+
+
+ div#filediv  {
+    border: 1px solid;
+    cursor: pointer;
+  }
+.petsdiv  {
+    border: 1px dotted;
+    width: 50%;
+    margin: 11px;
+}
+#managepet-form label  {
+    display: block;
+}
+span.remove  {
+    position: absolute;
+    cursor: pointer;
+}
+/*#managepet-form .field2, .field3, .field4, .field5, .field6, .field7 {
+	display: none;
+}*/
+label.breed-label::before, label.breed-label::after  {
+	opacity: 0;
+}
+label.gender-label::before, label.gender-label::after  {
+	opacity: 0;
+}
+label.avatar-label::before, label.avatar-label::after  {
+	opacity: 0;
+}
+.breed-control  {
+	display: flex;
+}
+input#breed_id {
+	visibility: hidden;
+	height: 0px;
+}
+
+/*----Manage pets styles*/
+.account.managepets-index-form #maincontent {
+	position: relative;
+	z-index: 2;
+	overflow: hidden;
+}
+/*.account.managepets-index-form #maincontent::before {
+	content: '';
+	position: absolute;
+	width: 45%;
+	height: 100%;
+	background: var(--primary);
+    border-bottom-right-radius: 84%;
+	top: 0;
+	left: 0;
+}
+*/
+/*.account.managepets-index-form #maincontent::after {
+	content: '';
+	position: absolute;
+	width: 180px;
+	height: 180px;
+	right: -2%;
+	bottom: -2%;
+	background: url(../images/red-triangle.png) no-repeat center;
+	background-size: contain;
+}*/
+
+
+.account.managepets-index-form #maincontent #managepet-form {
+	background: transparent;	
+}
+
+.account.managepets-index-form #maincontent #managepet-form label {
+	margin-bottom: 15px;
+}
+.account.managepets-index-form #maincontent #managepet-form label > span {
+	font-size: 16px;
+	text-transform: none;
+	font-weight: 200;
+}
+.account.managepets-index-form #maincontent #managepet-form fieldset > i  {
+	font-size: 35px;
+	float: right;
+	cursor: pointer;
+	margin: 0 5px;
+}
+
+.account.managepets-index-form #maincontent #managepet-form fieldset > i.first-back {
+	opacity: 0.4;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > label  {
+	margin: 0;
+	max-width: 40%;
+	width: 100%;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > label > span {
+	font-family: 'nunito_sansbold';
+	text-transform: none;
+	word-break: break-word;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control {
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control.type {
+	margin-top: 0;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.breed-label {
+	width: 100px;
+	position: relative;
+	margin: 0;
+    padding: 10px;
+}
+/*.account.managepets-index-form #maincontent #managepet-form .field > .breed-control > label.breed-label::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: -115px;
+	width: 100px;
+	height: 100px;
+	background: url(../images/dog-breed.png) no-repeat center;
+	background-size: contain;
+	opacity: 1;
+	border-radius: 50%;
+	border: 3px solid transparent;
+}
+.account.managepets-index-form #maincontent #managepet-form .field > .breed-control > label.breed-label:last-child::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: -115px;
+	width: 100px;
+	height: 100px;
+	background: url(../images/cat-breed.png) no-repeat center;
+	background-size: contain;
+	opacity: 1;
+	border-radius: 50%;
+	border: 3px solid transparent;
+}*/
+
+.account.managepets-index-form #maincontent #managepet-form #errorpet {
+	color: var(--site-red);
+	font-size: 13px;
+	text-align: right;
+	margin: 0;
+	width: 100%;
+	margin-top: 4px;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .control.petbreed  {
+	position: relative;
+	width: 60%;
+	z-index: 9;
+	border-radius: 24px;
+	overflow: hidden;
+}
+
+/*.account.managepets-index-form #maincontent #managepet-form .field .fields > .control.petbreed:before {
+	content: '';
+	position: absolute;
+    top: 13px;
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(268deg);
+	background: url(../images/back.png) no-repeat center;
+	background-size: contain;
+}*/
+/*.account.managepets-index-form #maincontent #managepet-form .field > .control.petbreed::before {
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: url(../images/select_breed.png) no-repeat center;
+	background-size: contain;
+    z-index: -1;
+}*/
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .control.petbreed >input {
+	width: 100%;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .control input#breedname {
+	padding-right: 40px;
+	padding-left: 15px;
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+    line-height: 1.1;
+    font-size: 14px;
+    border-radius: 24px;
+    border: 2px solid #e5e5e5;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .control input {
+	border: none;
+	border-radius: 0px;
+	padding: 0;
+	padding-left: 15px;
+	background: transparent;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .control input[name="breedname"] {
+	height: auto;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+/*.account.managepets-index-form #maincontent #managepet-form .field > .control input:focus {
+	border-bottom: 3px dotted var(--primary);
+}
+*/
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields> .breed-control.petgender {
+	border: none;
+}
+
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label {
+	width: 100px;
+	position: relative;
+	padding: 10px;
+	margin: 0;
+    border: 2px solid #e5e5e5;
+    overflow: hidden;
+    border-radius: 24px;
+    height: 36px;
+}
+/*.account.managepets-index-form #maincontent #managepet-form .field > .breed-control > label.gender-label::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: -115px;
+	width: 100px;
+	height: 100px;
+	background: url(../images/male.png) no-repeat center;
+	background-size: contain;
+	opacity: 1;
+	border-radius: 50%;
+	border: 3px solid transparent;
+}*/
+
+/*.account.managepets-index-form #maincontent #managepet-form .field > .breed-control > label.gender-label:last-child::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: -115px;
+	width: 100px;
+	height: 100px;
+	background: url(../images/female.png) no-repeat center;
+	background-size: contain;
+	opacity: 1;
+	border-radius: 50%;
+	border: 3px solid transparent;
+}
+*/
+.account.managepets-index-form #maincontent #managepet-form .field.option-image .fields > .type-control {
+	width: 60%;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+}
+.account.managepets-index-form #maincontent #managepet-form .field.option-image .fields > .type-control input {
+	border: none;
+	border-radius: 0px;	
+	padding: 0;
+	padding-left: 15px;
+	width: 100%;
+	background: transparent;
+	height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid #e5e5e5;
+    border-radius: 24px;
+    font-size: 14px;
+    line-height: 1.1;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > input[type="radio"]:checked + label.breed-label {
+	font-family: 'nunito_sansbold';
+	color: var(--primary);
+	background: #BAE9F9;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > input[type="radio"]:checked + label.gender-label {
+	font-family: 'nunito_sansbold';
+	color: var(--primary);
+	background: #BAE9F9;
+	border: 2px solid #BAE9F9;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.breed-label > p {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 2px solid transparent;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > input[type="radio"]:checked + label.breed-label > p {
+	border: 2px solid #FEBD2B;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.breed-label > p img {
+	width: 100%;
+	height: 100%;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > input[type="radio"]:checked + label.gender-label::before,
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > input[type="radio"]:checked + label.gender-label:last-child::before {
+	display: none;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field.option-image .fields > label {
+	margin: 20px 0;
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+}
+.account.managepets-index-form #maincontent #managepet-form .field.option-image .fields > label:first-child {
+	margin: 0;
+}
+
+
+.account.managepets-index-form #maincontent #managepet-form .field.option-image .fields > label >i {
+	margin-right: 10px;
+}
+
+
+/*background images*/
+/*.account.managepets-index-form #maincontent {
+	background-color: #FFF2DD;
+}*/
+
+.account.managepets-index-form #maincontent #managepet-form .field5 > label {
+	position: absolute;
+	border: none;
+}
+.account.managepets-index-form #maincontent #managepet-form label > button.age-dontknow {
+	color: var(--primary);
+	background: #fff;
+	font-family: 'nunito_sansbold';
+	font-size: 14px;
+	text-transform: uppercase;
+	border: none;
+	padding: 10px 20px;
+    border-radius: 24px;
+}
+
+.account.managepets-index-form #maincontent #managepet-form label > button.age-dontknow > span {
+	font-family: 'nunito_sansbold';
+	font-weight: 600;
+}
+
+.account.managepets-index-form #maincontent #managepet-form label > button.age-dontknow:focus {
+	border: none;
+	outline: none;
+}
+.account.managepets-index-form #maincontent #managepet-form .field.option-image  .fields > .type-control .ui-datepicker-trigger {
+	background: url(../images/calendar-1.png) no-repeat center;
+	background-size: contain;
+	width: 20px;
+    height: 20px;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 60%;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age > input {
+	border: none;	
+	border-radius: 0px;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age > .pet-month,
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age > .pet-year {
+	margin: 0 0 0 5px;
+	position: relative;
+	border-radius: 24px;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age > .pet-year {
+	margin: 0 5px 0 0;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age > .pet-month > #age_month-error {
+	position: absolute;
+	white-space: nowrap;
+	bottom: -10px;
+}
+
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age > .pet-year > input,
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age > .pet-month >input {
+	border: none;
+	border-radius: 0px;
+	text-align: center;
+	background: transparent;
+	height: auto;
+	padding: 10px 20px;
+	line-height: 1.1;
+	font-size: 14px;
+	border: 2px solid #e5e5e5;
+	border-radius: 24px;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age > .pet-year > label,
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age > .pet-month > label {
+	font-size: 16px;
+	text-align: center;
+	margin: 10px 0;
+	display: none;
+}
+
+
+.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child {
+	background: #fff;
+	max-width: 15vw;
+	width: 100%;
+	margin-top: 20px;
+	max-height: 260px;
+	overflow-y: auto;
+	padding: 0;
+	position: relative !important;
+    border: 1px solid rgba(5, 42, 80, 0.25);
+}
+
+
+.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child > li {
+	cursor: pointer;
+	margin: 0;
+	padding: 0 !important;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border-bottom: 1px solid #e5e5e5;
+}
+.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child > li:last-child {
+	border: none;
+}
+
+.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child > li > a {
+	padding: 8px !important;
+	font-size: 13px;
+}
+
+.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child > li:hover {
+	background-color: #18376224;
+}
+
+
+
+/*------custom scrollbar----*/
+
+.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child::-webkit-scrollbar  {
+    width: 4px;
+    background-color: #052a5018;
+    border-radius: 24px;
+ }
+
+.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child::-webkit-scrollbar-thumb  {
+    background-color: var(--primary);
+    border: none;
+    min-height: 20px;
+    border-radius: 50px;
+}
+
+.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child::-webkit-scrollbar-track  {
+    -webkit-box-shadow: inset 0 0 6px #052a5018;
+    background-color: #052a5012;
+    border: none;
+}
+
+
+.account.managepets-index-form #maincontent #managepet-form fieldset > p {
+}
+
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 20px;
+	place-content: space-between;
+	place-items: start;
+	padding: 0;
+	margin: 0;
+	position: relative;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar > li {
+	margin-bottom: 0;
+	border-radius: 50%;
+	background: #FFF2DD;
+	width: 55px;
+	height: 55px;
+}
+
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar > li > input[type="radio"]:checked + label img {
+	border: 2px solid var(--primary);
+}
+
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar > li.add-photo {
+	position: absolute;
+	right: -115px;
+	bottom: 0;
+	background: transparent;
+}
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar > li > label {
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar > li > label img {
+	width: 100%;
+	border-radius: 50%;
+	border: 2px solid #fff;
+}
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar li .filediv {
+	width: 100%;
+	height: 100%;
+	border: 2px dashed #fff;
+	border-radius: 50%;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	cursor: pointer;
+}
+
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar li .filediv::before {
+	content: '';
+	position: absolute;
+	width: 18px;
+    height: 18px;
+    right: 5px;
+    top: 0px;
+	background: url(../images/Addpet.png) no-repeat center;
+	background-size: contain;
+}
+
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar li > span.pip img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > label > span {
+	font-family: 'nunito_sansbold';
+}
+
+
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar li .filediv label {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	font-family: 'nunito_sansbold';
+	text-align: center;
+}
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar li .filediv label > span {
+	font-size: 10px;
+	text-transform: capitalize;
+	cursor: pointer;
+}
+
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .actions-toolbar {
+	margin: 20px 0 0 0;
+	justify-content: center;
+}
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .actions-toolbar .primary  {
+	width: 100%;
+}
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .actions-toolbar .primary .action.submit.primary {
+	background: var(--primary);
+	color: #fff;
+	font-family: 'nunito_sansbold';
+	border-radius: 24px;
+	border: none;
+	font-size: 16px;
+	margin: 0;
+    padding: 8px 35px;
+    width: 100%;
+}
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .actions-toolbar i {
+	
+	font-size: 35px;
+	cursor: pointer;
+}
+/*.account.managepets-index-form #maincontent .columns .column.main::before {
+	content: '';
+	position: absolute;
+	width: 40%;
+    height: 100%;
+    top: 0;
+    right: 6%;
+	background: url(../images/dog-cat-pawhootz-min.png) no-repeat center;
+	background-size: contain;
+}
+
+*/
+
+
+/* -------- new changes -------- */
+.account.managepets-index-form #maincontent .managepets-wrap {
+	display: grid;
+    grid-template-columns: 2fr 4fr;    
+    grid-gap: 40px;
+    place-content: space-between;
+    place-items: flex-start center;
+}
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main {
+	width: 100%;
+}
+
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main .managepets-wrap form {
+	padding: 0 0 0 50px;
+}
+.account.managepets-index-form #maincontent #managepet-form label.page-heading span {
+	font-size: 20px;
+	text-transform: capitalize;
+	font-family: 'nunito_sanssemibold';
+}
+.account.managepets-index-form #maincontent #managepet-form fieldset > .field > .fields {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;	
+    margin-bottom: 15px;
+    width: 100%;
+    margin: 0;
+}
+.account.managepets-index-form .ui-widget.ui-datepicker .ui-datepicker-calendar .ui-state-active {
+	background: var(--primary);
+	color: #fff;
+}
+.account.managepets-index-form .ui-widget.ui-datepicker .ui-datepicker-calendar th {
+	background: var(--primary);
+	border-color: var(--primary);
+}
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .control.name {
+	position: relative;
+	width: 60%;
+	border: 2px	solid #e5e5e5;
+	border-radius: 24px;
+    overflow: hidden;
+}
+.account.managepets-index-form #maincontent #managepet-form fieldset > .field .fields > div {
+	max-width: 62%;
+	width: 100%;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label:first-child {
+	margin-right: 8px;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label:last-child {
+	margin-left: 8px;
+}
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form #filediv {
+	padding: 0;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	border: 2px dashed #052a5040;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form #filediv * {
+	cursor: pointer;
+}
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .upload-custom-image,
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .image-pip {
+	width: 120px;
+	height: 120px;
+	overflow: hidden;
+	border-radius: 50%;
+}
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .upload-custom-image img,
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .image-pip img {
+	object-fit: cover;
+	height: 100%;
+}
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form #filediv > label {
+	margin: 0;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.breed-label,
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label {
+	width: 50% !important;
+	font-size: 14px;
+	color: #ccc;
+	box-sizing: border-box;
+	min-height: 36px;
+	line-height: 1.1;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control.type > label.breed-label {
+	position: relative;
+	font-size: 14px;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control.type > label.breed-label:nth-child(2) {
+	border: 2px solid #e5e5e5;
+	border-top-left-radius: 24px;
+	border-bottom-left-radius: 24px;
+	border-right-width: 1px;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control.type > label.breed-label:nth-child(4) {
+	border: 2px solid #e5e5e5;
+	border-top-right-radius: 24px;
+	border-bottom-right-radius: 24px;
+	border-left-width: 1px;
+}
+/*
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control.type > label:after {
+	content: '';
+    position: absolute;
+    width: 1px;
+    height: 50%;
+    background: #052a5020;
+    right: 0;
+    top: 7px;
+    left: auto;
+    opacity: 1;
+}*/
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control.type > label:last-child::after {
+	display: none;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field {
+	margin-bottom: 0;
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > label > span span,
+.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > label > span span {
+	font-size: 13px;
+}
+
+.account.managepets-index-form #maincontent #managepet-form .field .fields input::placeholder {
+	color: #ccc;
+	font-family: 'nunito_sansregular';
+}
+.account.managepets-index-form #maincontent #managepet-form .field .fields > .control.name input {
+	height: auto;
+	padding-top: 10px;
+	padding-right: 15px;
+	padding-bottom: 10px;
+	border: 2px solid #e5e5e5;
+	border-radius: 24px;
+	line-height: 1.1;
+	font-size: 14px;
+	text-align: left;
+}
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .control.name {
+	border-radius: 0px;
+	border: none;
+	overflow: visible;
+}
+
+.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .control.name > .mage-error {
+	text-align: right;
+}
+.account.managepets-index-form #maincontent #managepet-form fieldset {
+	margin-bottom: 15px;
+}
+
+
+
+
+
+
+@media(min-width: 1640px) {
+	.account.customer-account-index .amtheme-content .amtheme-information .amtheme-actions .action.edit {
+		    right: 50px;
+		    top: 64%;
+	}
+}
+
+@media (max-width: 1366px) {
+	.account.managepets-index-form #maincontent #managepet-form label > span {
+		font-size: 14px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > label > span {
+		font-size: 14px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar > li.add-photo {
+		right: -105px;
+		bottom: 0px;
+	}
+	/*.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.breed-label > p,
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label::before {
+		width: 90px;
+		height: 90px;
+	}*/
+	/*.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label::before,
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label:last-child::before {
+		width: 90px;
+		height: 90px;
+	}*/
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.breed-label,
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label {
+		width: 90px;
+		min-height: 39px;
+	}
+	.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .upload-custom-image,
+	.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .image-pip {
+		width: 100px;
+		height: 100px;
+	}
+	.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form #filediv {
+		width: 100px;
+		height: 100px;
+	}
+}
+
+
+@media(max-width: 1240px) {
+	.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .upload-custom-image,
+	.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form .image-pip {
+		width: 80px;
+		height: 80px;
+	}
+	.account.managepets-index-form.page-layout-2columns-left #maincontent .columns .column.main form #filediv {
+		width: 80px;
+		height: 80px;
+	}
+}
+
+
+@media(max-width: 1199px) {
+	.account.managepets-index-form #maincontent #managepet-form {
+		padding: 0 0 0 20px;
+	}
+	/*.account.managepets-index-form #maincontent #managepet-form .field > .breed-control {
+		width: 75%;
+	}*/
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .actions-toolbar .primary .action.submit.primary {
+		margin: 25px 0 0 0;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .actions-toolbar .primary .action.submit.primary {
+		width: 90%;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar li .filediv {
+		width: 75px;
+		height: 75px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.breed-label > p,
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label::before {
+		width: 80px;
+		height: 80px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label:last-child::before {
+		width: 80px;
+		height: 80px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.breed-label,
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label {
+		width: 80px;
+	}
+	.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child {
+		width: 225px;
+	}
+	.account.managepets-index-form #maincontent .managepets-wrap {
+		grid-template-columns: 3fr 4fr;
+	}
+	.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child {
+		max-width: 21vw;
+	}
+}
+
+@media (max-width: 991px) {
+	.account.managepets-index-form #maincontent::before {
+		width: 50%;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar > li {
+		width: 60px;
+		height: 60px;
+	}
+
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.breed-label > p {
+		width: 75px;
+		height: 75px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label::before,
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control > label.gender-label:last-child::before {
+		width: 75px;
+		height: 75px;
+		top: -95px;
+	}
+	/*.account.managepets-index-form #maincontent #managepet-form .field > .breed-control {
+		width: 50%;
+	}*/
+
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar li {
+		width: 60px;
+		height: 60px;
+	}	
+	.account.managepets-index-form #maincontent #managepet-form {
+		width: 100%;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset > i {
+		margin-right: 110px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset > i.first-back,
+	.account.managepets-index-form #maincontent #managepet-form fieldset > i.back  {
+		margin-right: 0;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar li {
+		width: 70px;
+		height: 70px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar li .filediv {
+		width: 65px;
+		height: 65px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field  .fields > ul#static-avatar > li.add-photo {
+		right: -89px;
+		bottom: 0px;
+	}
+	/*.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child {
+		max-width: 50% !important;
+	}*/
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .pet-age > .pet-month > #age_month-error {
+		bottom: -28px;
+		width: 180px;
+		white-space: break-spaces;
+	}
+	.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child {
+		max-width: 27vw;
+	}
+}
+
+
+@media(max-width: 767px) {
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .actions-toolbar .primary .action.submit.primary {
+		width: 100%;
+	}
+	.account.managepets-index-form #maincontent::before {
+		width: 100%;
+		height: 58%;
+	}
+	.account.managepets-index-form #maincontent #managepet-form {
+		width: 75%;
+		padding: 40px 0 0 20px;
+	}
+	/*.account.managepets-index-form #maincontent #managepet-form .field > .breed-control {
+		width: 42%;
+	}*/
+	/*.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .actions-toolbar {
+		position: absolute;
+		right: 20%;
+		top: 25px;
+	}*/
+	.account.managepets-index-form #maincontent .columns .column.main::before {
+		width: 60%;
+		height: 50%;
+		top: auto;
+		bottom: -13%;
+		left: 32%;
+		transform: translateX(-50%);
+	}
+	.account.managepets-index-form #maincontent .managepets-wrap {
+		grid-template-columns: 100%;
+	}
+	.account.managepets-index-form #maincontent .managepets-wrap .banner-image {
+		display: none;
+	}
+	.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child {
+		max-width: 53%;
+	}
+}
+
+@media(max-width: 480px) {
+	.account.managepets-index-form #maincontent #managepet-form .field .fields > .breed-control {
+		width: 70%;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset > i {
+		margin-top: 25px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset > i {
+		margin-top: 0px;
+		margin-right: 0;
+		margin-left: 20px;
+	}
+	.account.managepets-index-form #maincontent::before {
+		height: 70%;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .actions-toolbar {
+		top: 40%;
+		right: auto;
+		left: 40px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar {
+		grid-gap: 12px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form fieldset.field7 > .field .fields > ul#static-avatar > li.add-photo {
+		bottom: 0px;
+	}
+	.account.page-layout-2columns-left.managepets-index-form #maincontent {
+		padding-left: 20px;
+	}
+	.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child {
+		max-width: 50%;
+		width: 150px;
+	}
+	.account.managepets-index-form #maincontent #managepet-form {
+		padding-left: 0;
+	}
+	.managepets-index-form.account.page-layout-2columns-left #maincontent.page-main {
+		padding-left: 0;
+		padding-right: 0;
+		width: 90%;
+		margin: 0 auto;
+	}
+	.account.managepets-index-form #maincontent #managepet-form {
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.managepets-index-form ul.ui-autocomplete.ui-widget-content.ui-corner-all:last-child {
+		max-width: 52%;
+	}
+}
+
+/*Manage pets styles end */

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="referral_data" resource="default" engine="innodb" comment="Referral Data">
+        <column xsi:type="int" name="referral_id" unsigned="true" nullable="false" identity="true"
+                comment="Referral ID"/>
+        <column xsi:type="int" name="referred_customer_id" unsigned="true" nullable="false" default="0" comment="Referred By"/>
+        <column xsi:type="varchar" name="reference_id" nullable="false" default="0" comment="Customer Reference Id"/>
+        <column xsi:type="int" name="referral_customer_id" unsigned="true" nullable="false" default="0" comment="Referral Customer Id"/>
+        <column xsi:type="varchar" name="referral_customer_email" nullable="false" length="32" comment="Referral Customer Email"/>
+        <column xsi:type="varchar" name="order_id" nullable="true" length="32" comment="Referral Order Id"/>
+        <column xsi:type="mediumtext" name="referred_action_type" nullable="true" comment="Referral action type"/>
+        <column xsi:type="decimal" name="referred_value" scale="2" precision="20" unsigned="false" nullable="false" default="0" comment="Referral Value"/>
+        <column xsi:type="decimal" name="referred_amount" scale="2" precision="20" unsigned="false" nullable="false" default="0" comment="Referral Calculated Amount"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="referral_id"/>
+        </constraint>
+    </table>
+</schema>

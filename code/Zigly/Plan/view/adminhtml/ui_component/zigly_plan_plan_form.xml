@@ -1,0 +1,827 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Plan
+ */ -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">zigly_plan_plan_form.plan_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Zigly\Plan\Block\Adminhtml\Plan\Edit\BackButton"/>
+			<button name="delete" class="Zigly\Plan\Block\Adminhtml\Plan\Edit\DeleteButton"/>
+			<button name="status" class="Zigly\Plan\Block\Adminhtml\Plan\Edit\StatusButton"/>
+			<button name="save" class="Zigly\Plan\Block\Adminhtml\Plan\Edit\SaveButton"/>
+			<button name="save_and_continue" class="Zigly\Plan\Block\Adminhtml\Plan\Edit\SaveAndContinueButton"/>
+		</buttons>
+		<namespace>zigly_plan_plan_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>zigly_plan_plan_form.plan_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="plan_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="plan_form_data_source" class="Zigly\Plan\Model\Plan\DataProvider">
+			<settings>
+				<requestFieldName>plan_id</requestFieldName>
+				<primaryFieldName>plan_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label></label>
+		</settings>
+		<field name="recommended_plan" formElement="checkbox" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Species</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Recommended</label>
+				<dataScope>recommended_plan</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+		</field>
+		<field name="species" formElement="select" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Plan</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>select</dataType>
+				<disabled>1</disabled>
+				<label translate="true">Selected Breed</label>
+				<dataScope>species</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+			<formElements>
+				<select>
+					<settings>
+						<options class="Zigly\Plan\Model\Breed"/>
+					</settings>
+				</select>
+			</formElements>
+		</field>
+		<field name="plan_name" formElement="input" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Plan</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Plan Name</label>
+				<dataScope>plan_name</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+					<rule name="validate-alphanum-with-spaces" xsi:type="boolean">true</rule>
+					<rule name="min_text_length" xsi:type="number">2</rule>
+					<rule name="max_text_length" xsi:type="number">50</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="plan_image" formElement="imageUploader" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Plan</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Plan Image</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>true</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="zigly_plan/plan_image/image"/>
+                        </uploaderConfig>
+                        <previewTmpl>Zigly_Plan/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <allowedExtensions>jpg jpeg png</allowedExtensions>
+                        <maxFileSize>5242880</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field name="banner_image" formElement="imageUploader" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Plan</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Banner Image</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>true</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="zigly_plan/plan_image/banner"/>
+                        </uploaderConfig>
+                        <previewTmpl>Zigly_Plan/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <allowedExtensions>jpg jpeg png</allowedExtensions>
+                        <maxFileSize>5242880</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+		<field name="plan_type" formElement="select" sortOrder="30">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Plan</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>select</dataType>
+				<label translate="true">Plan Type</label>
+				<dataScope>plan_type</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+			<formElements>
+				<select>
+					<settings>
+						<options>
+							<option name="0" xsi:type="array">
+								<item name="value" xsi:type="string">1</item>
+								<item name="label" xsi:type="string">At Home</item>
+							</option>
+							<option name="1" xsi:type="array">
+								<item name="value" xsi:type="string">2</item>
+								<item name="label" xsi:type="string">At Experience Center</item>
+							</option>
+							<option name="2" xsi:type="array">
+								<item name="value" xsi:type="string">3</item>
+								<item name="label" xsi:type="string">Both</item>
+							</option>
+						</options>
+						<caption translate="true">-- Please Select --</caption>
+					</settings>
+				</select>
+			</formElements>
+		</field>
+		<field name="description" sortOrder="40" formElement="wysiwyg" template="ui/form/field">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">page</item>
+					<item name="wysiwygConfigData" xsi:type="array">
+						<item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>
+						<item name="toggle_button" xsi:type="boolean">true</item>
+						<item name="height" xsi:type="string">200px</item>
+						<item name="add_variables" xsi:type="boolean">true</item>
+						<item name="add_widgets" xsi:type="boolean">true</item>
+						<item name="add_images" xsi:type="boolean">true</item>
+						<item name="add_directives" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Description</label>
+				<dataScope>description</dataScope>
+			</settings>
+			<formElements>
+				<wysiwyg>
+					<settings>
+						<rows>5</rows>
+						<wysiwyg>true</wysiwyg>
+					</settings>
+				</wysiwyg>
+			</formElements>
+		</field>
+<!-- 		<field name="product_sku" formElement="input" sortOrder="50">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Plan</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Product Sku</label>
+				<dataScope>product_sku</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field> -->
+		<field name="product_sku" formElement="input" sortOrder="50">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">Product Sku</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">product_sku</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="applicable_cities" component="Magento_Ui/js/form/element/ui-select" formElement="select" sortOrder="50">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="filterOptions" xsi:type="boolean">true</item>
+					<item name="multiple" xsi:type="boolean">true</item>
+					<item name="showCheckbox" xsi:type="boolean">true</item>
+					<item name="disableLabel" xsi:type="boolean">true</item>
+					<item name="levelsVisibility" xsi:type="number">1</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>select</dataType>
+				<elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+				<label translate="true">Applicable Cities</label>
+				<dataScope>applicable_cities</dataScope>
+				<componentType>field</componentType>
+				<listens>
+					<link name="${ $.namespace }.${ $.namespace }:responseData">setParsed</link>
+				</listens>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+			<formElements>
+				<select>
+					<settings>
+						<options class="Zigly\Plan\Model\Cities"/>
+					</settings>
+				</select>
+			</formElements>
+		</field>
+		<field name="sort_order" formElement="input" sortOrder="60">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Plan</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Sort Order</label>
+				<dataScope>sort_order</dataScope>
+					<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+					<rule name="validate-number" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="plan_category" formElement="select" sortOrder="70">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Plan</item>
+				</item>
+			</argument>
+			<settings>
+				<switcherConfig>
+					<rules>
+						<rule name="0">
+							<value>1</value>
+							<actions>
+								<action name="0">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.small.small_discount_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="1">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.small.small_minimum_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="2">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.medium.medium_discount_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="3">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.medium.medium_minimum_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="4">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.large.large_discount_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="5">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.large.large_minimum_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="6">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.small.small_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="7">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.small.small_time</target>
+									<callback>show</callback>
+								</action>
+								<action name="8">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.medium.medium_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="9">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.medium.medium_time</target>
+									<callback>show</callback>
+								</action>
+								<action name="10">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.large.large_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="11">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.large.large_time</target>
+									<callback>show</callback>
+								</action>
+								<action name="12">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.extra_large.extra_large_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="13">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.extra_large.extra_large_time</target>
+									<callback>show</callback>
+								</action>
+								<action name="14">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.extra_large.extra_large_discount_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="15">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.extra_large.extra_large_minimum_price</target>
+									<callback>hide</callback>
+								</action>
+							</actions>
+						</rule>
+						<rule name="1">
+							<value>2</value>
+							<actions>
+								<action name="0">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.small.small_discount_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="1">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.small.small_minimum_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="2">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.medium.medium_discount_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="3">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.medium.medium_minimum_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="4">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.large.large_discount_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="5">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.large.large_minimum_price</target>
+									<callback>show</callback>
+								</action>
+								<action name="6">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.small.small_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="7">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.small.small_time</target>
+									<callback>hide</callback>
+								</action>
+								<action name="8">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.medium.medium_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="9">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.medium.medium_time</target>
+									<callback>hide</callback>
+								</action>
+								<action name="10">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.large.large_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="11">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.large.large_time</target>
+									<callback>hide</callback>
+								</action>
+								<action name="12">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.extra_large.extra_large_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="13">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.extra_large.extra_large_time</target>
+									<callback>hide</callback>
+								</action>
+								<action name="14">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.extra_large.extra_large_discount_price</target>
+									<callback>hide</callback>
+								</action>
+								<action name="15">
+									<target>zigly_plan_plan_form.zigly_plan_plan_form.extra_large.extra_large_minimum_price</target>
+									<callback>show</callback>
+								</action>
+							</actions>
+						</rule>
+					</rules>
+				<enabled>true</enabled>
+				</switcherConfig>
+				<dataType>select</dataType>
+				<label translate="true">Plan Category</label>
+				<dataScope>plan_category</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+			<formElements>
+				<select>
+					<settings>
+						<options>
+							<option name="0" xsi:type="array">
+								<item name="value" xsi:type="string">1</item>
+								<item name="label" xsi:type="string">Pre-Defined</item>
+							</option>
+							<option name="1" xsi:type="array">
+								<item name="value" xsi:type="string">2</item>
+								<item name="label" xsi:type="string">Customizable</item>
+							</option>
+						</options>
+					</settings>
+				</select>
+			</formElements>
+		</field>
+		<field name="activity" component="Magento_Ui/js/form/element/ui-select" sortOrder="80" formElement="select">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="filterOptions" xsi:type="boolean">true</item>
+					<item name="multiple" xsi:type="boolean">true</item>
+					<item name="showCheckbox" xsi:type="boolean">true</item>
+					<item name="disableLabel" xsi:type="boolean">true</item>
+					<item name="levelsVisibility" xsi:type="number">1</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>select</dataType>
+				<elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+				<label translate="true">Add Activity</label>
+				<dataScope>activity</dataScope>
+				<componentType>field</componentType>
+				<listens>
+					<link name="${ $.namespace }.${ $.namespace }:responseData">setParsed</link>
+				</listens>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+			<formElements>
+				<select>
+					<settings>
+						<options class="Zigly\Plan\Model\Activities"/>
+					</settings>
+				</select>
+			</formElements>
+		</field>
+		<!-- <field name="activity_description" sortOrder="80" formElement="wysiwyg" template="ui/form/field">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">page</item>
+					<item name="wysiwygConfigData" xsi:type="array">
+						<item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>
+						<item name="toggle_button" xsi:type="boolean">true</item>
+						<item name="height" xsi:type="string">200px</item>
+						<item name="add_variables" xsi:type="boolean">true</item>
+						<item name="add_widgets" xsi:type="boolean">true</item>
+						<item name="add_images" xsi:type="boolean">true</item>
+						<item name="add_directives" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Description</label>
+				<dataScope>activity_description</dataScope>
+			</settings>
+			<formElements>
+				<wysiwyg>
+					<settings>
+						<rows>5</rows>
+						<wysiwyg>true</wysiwyg>
+					</settings>
+				</wysiwyg>
+			</formElements>
+		</field> -->
+	</fieldset>
+	<fieldset name="small">
+		<settings>
+			<collapsible>true</collapsible>
+			<label>Small</label>
+		</settings>
+		<field name="small_price" formElement="input" sortOrder="90">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Price (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">small_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="small_discount_price" formElement="input" sortOrder="100">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Discount Price(if any) (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">small_discount_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="small_minimum_price" formElement="input" sortOrder="110">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Minimum Price (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">small_minimum_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="small_time" formElement="input" sortOrder="120">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Duration (Minutes)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">small_time</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+	</fieldset>
+	<fieldset name="medium">
+		<settings>
+			<collapsible>true</collapsible>
+			<label>Medium</label>
+		</settings>
+		<field name="medium_price" formElement="input" sortOrder="130">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Price (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">medium_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="medium_discount_price" formElement="input" sortOrder="140">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Discount Price(if any) (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">medium_discount_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="medium_minimum_price" formElement="input" sortOrder="150">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Minimum Price (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">medium_minimum_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="medium_time" formElement="input" sortOrder="160">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Duration (Minutes)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">medium_time</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+	</fieldset>
+	<fieldset name="large">
+		<settings>
+			<collapsible>true</collapsible>
+			<label>Large</label>
+		</settings>
+		<field name="large_price" formElement="input" sortOrder="170">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Price (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">large_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="large_discount_price" formElement="input" sortOrder="180">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Discount Price(if any) (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">large_discount_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="large_minimum_price" formElement="input" sortOrder="190">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Minimum Price (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">large_minimum_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="large_time" formElement="input" sortOrder="200">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Duration (Minutes)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">large_time</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+	</fieldset>
+	<fieldset name="extra_large">
+		<settings>
+			<collapsible>true</collapsible>
+			<label>Extra Large</label>
+		</settings>
+		<field name="extra_large_price" formElement="input" sortOrder="210">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Price (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">extra_large_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="extra_large_discount_price" formElement="input" sortOrder="220">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Discount Price(if any) (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">extra_large_discount_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="extra_large_minimum_price" formElement="input" sortOrder="230">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Minimum Price (Rs)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">extra_large_minimum_price</item>
+					<item name="notice" xsi:type="string" translate="true">No need to include symbol</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="extra_large_time" formElement="input" sortOrder="240">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Duration (Minutes)</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Plan</item>
+					<item name="dataScope" xsi:type="string">extra_large_time</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-number" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+	</fieldset>
+</form>

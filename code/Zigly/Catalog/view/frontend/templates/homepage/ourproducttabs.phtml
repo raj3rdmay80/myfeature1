@@ -1,0 +1,516 @@
+<?php
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Catalog
+ */
+
+use Magento\Catalog\Block\Product\ReviewRendererInterface;
+use Magento\Framework\App\Action\Action;
+
+$type = 'widget-product-grid';
+$mode = 'grid';
+$image = 'product_page_image_widget_medium';
+$isShowCart = true;
+$isShowReviews = true;
+$templateType = ReviewRendererInterface::SHORT_VIEW;
+?>
+<div class="amtheme-tabs-widget" data-mage-init='{"mage/tabs": {"openedState": "-am-active", "active": 0}}'>
+    <?php /* <h3 class="amtheme-heading">
+        <?= $escaper->escapeHtml(__('Our Products')) ?>
+    </h3> */ ?>
+    <h3 class="mobile-screen-title">Our Products</h3>
+    <div class="amtheme-tabs-buttons">
+        <div class="amtheme-title" id="amtheme-tab-title-popular" data-role="collapsible">
+            <a class="title"
+               title="<?= $escaper->escapeHtmlAttr(__('POPULAR')) ?>"
+               aria-label="<?= $escaper->escapeHtmlAttr(__('POPULAR')) ?>"
+               href="#amtheme-tabs-widget-popular"
+               data-toggle="trigger">
+                <?= $escaper->escapeHtml(__('Popular')) ?>
+            </a>
+        </div>
+        <div class="amtheme-title" id="amtheme-tab-title-best" data-role="collapsible">
+            <a class="title"
+               title="<?= $escaper->escapeHtmlAttr(__('BEST SELLING')) ?>"
+               aria-label="<?= $escaper->escapeHtmlAttr(__('BEST SELLING')) ?>"
+               href="#amtheme-tabs-widget-best"
+               data-toggle="trigger">
+                <?= $escaper->escapeHtml(__('Best Selling')) ?>
+            </a>
+        </div>
+        <div class="amtheme-title" id="amtheme-tab-title-new" data-role="collapsible">
+            <a class="title"
+               title="<?= $escaper->escapeHtmlAttr(__('New Arrival')) ?>"
+               aria-label="<?= $escaper->escapeHtmlAttr(__('New Arrival')) ?>"
+               href="#amtheme-tabs-widget-new"
+               data-toggle="trigger">
+                <?= $escaper->escapeHtml(__('New Arrival')) ?>
+            </a>
+        </div>
+    </div>
+    <div class="amtheme-tabs-content">
+        <div class="block content"
+                     id="amtheme-tabs-widget-popular"
+                     data-role="content">
+            <div class="products products-grid grid -display-block">
+                <ol class="products product-items amtheme-products-secondary amtheme-slick-slider -full-width -slick-arrows-hover"
+                            data-mage-init='{"slickSlider": {
+                                "isOnMobile": "false",
+                                "updateOnResize": true,
+                                "responsiveSettings": {
+                                    "responsive": [
+                                        {
+                                            "breakpoint": 1199,
+                                            "settings": {
+                                                "slidesToShow": 3,
+                                                "draggable": "true"
+                                            }
+                                        },
+                                        {
+                                            "breakpoint": 767,
+                                            "settings": {
+                                                "slidesToShow": 2.5,
+                                                "arrows": "false",
+                                                "draggable": "true",
+                                                "infinite": false
+                                            }
+                                        },
+                                        {
+                                            "breakpoint": 480,
+                                            "settings": {
+                                                "slidesToShow": 1.5,
+                                                "arrows": "false",
+                                                "draggable": "true",
+                                                "infinite": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                "sliderOptions": {
+                                    "slidesToShow": 4,
+                                    "slidesToScroll": 1,
+                                    "infinite": false,
+                                    "arrows": true,
+                                    "dots": false,
+                                    "autoplay": false,
+                                    "autoplaySpeed": 0,
+                                    "draggable": false,
+                                    "lazyLoad": "ondemand"
+                                }
+                            }}'>
+                    <?php $iterator = 1; ?>
+                    <?php if (count($block->getMostViewedProductCollection())) : ?>
+                    <?php foreach ($block->getMostViewedProductCollection() as $item): ?>
+                        <?php
+                            $ziglychoice = $item->getZiglyChoice();
+                            $type = ($item->getType()) ? $item->getResource()->getAttribute('type')->getFrontend()->getValue($item) : '';
+                            $colorelement = '';
+                            if ($type) {
+                                if (strtolower($type) == 'veg') {
+                                   $colorelement = 'typegreen';
+                                } else {
+                                    if (strtolower($type) == 'non veg') {
+                                        $colorelement = 'typered';
+                                    }
+                                }
+                            }
+                        ?>
+                        <?= /* @noEscape */ ($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                        <div class="product-item-info">
+                            <div class="product-photo-wrapper">
+                                <?php if ($ziglychoice): ?>
+                                <span class="ziglychoice"><?= $escaper->escapeHtml('ZIGLY\'S CHOICE'); ?></span>
+                                <?php endif; ?>
+                                <a title="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                   aria-label="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                   href="<?= $escaper->escapeUrl($block->getProductUrl($item)) ?>"
+                                   class="product-item-photo">
+                                    <?= $block->getImage($item, $image)->toHtml() ?>
+                                </a>
+                                <?php if ($colorelement): ?>
+                                <div class="<?= $colorelement;?>"></div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="product details product-item-details">
+                                <span class="product product-item-name -amtheme-name">
+                                    <a title="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                       aria-label="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                       href="<?= $escaper->escapeUrl($block->getProductUrl($item)) ?>"
+                                       class="product-item-link">
+                                        <?= $escaper->escapeHtml($item->getName()) ?>
+                                    </a>
+                                </span>
+                                <?php if ($templateType && $isShowReviews): ?>
+                                    <?= /* @noEscape */ $block->getReviewsSummaryHtml($item, $templateType, true) ?>
+                                <?php endif; ?>
+                                <?= /* @noEscape */ $block->getProductPriceHtml($item, $type) ?>
+                                <?php
+                                if($item->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){
+
+                                    $swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+                                    echo $swatchBlock->setProduct($item)->toHtml();
+                                }
+                                ?>
+                                <?= /* @noEscape */ $block->getProductDetailsHtml($item) ?>
+                                <?php if ($isShowCart): ?>
+                                    <div class="product actions product-item-actions">
+                                        <div class="actions-primary">
+                                            <?php if ($item->isSaleable()): ?>
+                                                <?php $postParams = $block->getAddToCartPostParams($item); ?>
+                                                <form data-role="tocart-form"
+                                                      data-product-sku="<?= $escaper->escapeHtmlAttr($item->getSku()) ?>"
+                                                      action="<?= $escaper->escapeUrl($postParams['action']) ?>"
+                                                      method="post">
+                                                    <input type="hidden"
+                                                           name="product"
+                                                           value="<?= $escaper->escapeHtmlAttr($postParams['data']['product']) ?>">
+                                                    <input type="hidden"
+                                                           name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>"
+                                                           value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                                    <?= $block->getBlockHtml('formkey') ?>
+                                                    <button type="submit"
+                                                            title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                            class="action tocart primary">
+                                                        <?= $escaper->escapeHtml(__('Add to Cart')) ?>
+                                                    </button>
+                                                </form>
+                                            <?php else: ?>
+                                                <?php if ($item->getIsSalable()): ?>
+                                                    <div class="stock available"><?= $block->escapeHtml(__('In stock')) ?></div>
+                                                <?php else: ?>
+                                                    <div class="stock unavailable"><?= $block->escapeHtml(__('Out of stock')) ?></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?= ($iterator == count($block->getMostViewedProductCollection()) + 1) ? '</li>' : '' ?>
+                    <?php endforeach; ?>
+                    <?php else : ?>
+                        <div class="message-notice notice message"><?= __('We couldn\'t find any records..') ?></div>
+                    <?php endif ; ?>
+                </ol>
+            </div>
+        </div>
+        <div class="block content"
+             id="amtheme-tabs-widget-best"
+             data-role="content">
+             <div class="products products-grid grid -display-block">
+                <ol class="products product-items amtheme-products-secondary amtheme-slick-slider -full-width -slick-arrows-hover"
+                            data-mage-init='{"slickSlider": {
+                                "isOnMobile": "false",
+                                "updateOnResize": true,
+                                "responsiveSettings": {
+                                    "responsive": [
+                                        {
+                                            "breakpoint": 1199,
+                                            "settings": {
+                                                "slidesToShow": 3,
+                                                "draggable": "true"
+                                            }
+                                        },
+                                        {
+                                            "breakpoint": 767,
+                                            "settings": {
+                                                "slidesToShow": 2.5,
+                                                "arrows": "false",
+                                                "draggable": "true",
+                                                "infinite": false
+                                            }
+                                        },
+                                        {
+                                            "breakpoint": 480,
+                                            "settings": {
+                                                "slidesToShow": 1.5,
+                                                "arrows": "false",
+                                                "draggable": "true",
+                                                "infinite": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                "sliderOptions": {
+                                    "slidesToShow": 4,
+                                    "slidesToScroll": 1,
+                                    "infinite": false,
+                                    "arrows": true,
+                                    "dots": false,
+                                    "autoplay": false,
+                                    "autoplaySpeed": 0,
+                                    "draggable": false,
+                                    "lazyLoad": "ondemand"
+                                }
+                            }}'>
+                    <?php $iterator = 1; ?>
+                    <?php if (count($block->getBestProductCollection())) : ?>
+                    <?php foreach ($block->getBestProductCollection() as $item): ?>
+                        <?php
+                            $ziglychoice = $item->getZiglyChoice();
+                            $type = ($item->getType()) ? $item->getResource()->getAttribute('type')->getFrontend()->getValue($item) : '';
+                            $colorelement = '';
+                            if ($type) {
+                                if (strtolower($type) == 'veg') {
+                                   $colorelement = 'typegreen';
+                                } else {
+                                    if (strtolower($type) == 'non veg') {
+                                        $colorelement = 'typered';
+                                    }
+                                }
+                            }
+                        ?>
+                        <?= /* @noEscape */ ($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                        <div class="product-item-info">
+                            <div class="product-photo-wrapper">
+                                <?php if ($ziglychoice): ?>
+                                <span class="ziglychoice"><?= $escaper->escapeHtml('ZIGLY\'S CHOICE'); ?></span>
+                                <?php endif; ?>
+                                <a title="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                   aria-label="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                   href="<?= $escaper->escapeUrl($block->getProductUrl($item)) ?>"
+                                   class="product-item-photo">
+                                    <?= $block->getImage($item, $image)->toHtml() ?>
+                                </a>
+                                <?php if ($colorelement): ?>
+                                <div class="<?= $colorelement;?>"></div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="product details product-item-details">
+                                <span class="product product-item-name -amtheme-name">
+                                    <a title="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                       aria-label="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                       href="<?= $escaper->escapeUrl($block->getProductUrl($item)) ?>"
+                                       class="product-item-link">
+                                        <?= $escaper->escapeHtml($item->getName()) ?>
+                                    </a>
+                                </span>
+                                <?php if ($templateType && $isShowReviews): ?>
+                                    <?= /* @noEscape */ $block->getReviewsSummaryHtml($item, $templateType, true) ?>
+                                <?php endif; ?>
+                                <?= /* @noEscape */ $block->getProductPriceHtml($item, $type) ?>
+                                <?php
+                                if($item->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){
+
+                                    $swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+                                    echo $swatchBlock->setProduct($item)->toHtml();
+                                }
+                                ?>
+                                <?= /* @noEscape */ $block->getProductDetailsHtml($item) ?>
+                                <?php if ($isShowCart): ?>
+                                    <div class="product actions product-item-actions">
+                                        <div class="actions-primary">
+                                            <?php if ($item->isSaleable()): ?>
+                                                <?php $postParams = $block->getAddToCartPostParams($item); ?>
+                                                <form data-role="tocart-form"
+                                                      data-product-sku="<?= $escaper->escapeHtmlAttr($item->getSku()) ?>"
+                                                      action="<?= $escaper->escapeUrl($postParams['action']) ?>"
+                                                      method="post">
+                                                    <input type="hidden"
+                                                           name="product"
+                                                           value="<?= $escaper->escapeHtmlAttr($postParams['data']['product']) ?>">
+                                                    <input type="hidden"
+                                                           name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>"
+                                                           value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                                    <?= $block->getBlockHtml('formkey') ?>
+                                                    <button type="submit"
+                                                            title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                            class="action tocart primary">
+                                                        <?= $escaper->escapeHtml(__('Add to Cart')) ?>
+                                                    </button>
+                                                </form>
+                                            <?php else: ?>
+                                                <?php if ($item->getIsSalable()): ?>
+                                                    <div class="stock available"><?= $block->escapeHtml(__('In stock')) ?></div>
+                                                <?php else: ?>
+                                                    <div class="stock unavailable"><?= $block->escapeHtml(__('Out of stock')) ?></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?= ($iterator == count($block->getBestProductCollection()) + 1) ? '</li>' : '' ?>
+                    <?php endforeach; ?>
+                    <?php else : ?>
+                        <div class="message-notice notice message"><?= __('We couldn\'t find any records..') ?></div>
+                    <?php endif ; ?>
+                </ol>
+            </div>
+        </div>
+        <div class="block content"
+                     id="amtheme-tabs-widget-new"
+                     data-role="content">
+             <div class="products products-grid grid -display-block">
+                <ol class="products product-items amtheme-products-secondary amtheme-slick-slider -full-width -slick-arrows-hover"
+                            data-mage-init='{"slickSlider": {
+                                "isOnMobile": "false",
+                                "updateOnResize": true,
+                                "responsiveSettings": {
+                                    "responsive": [
+                                        {
+                                            "breakpoint": 1199,
+                                            "settings": {
+                                                "slidesToShow": 3,
+                                                "draggable": "true"
+                                            }
+                                        },
+                                        {
+                                            "breakpoint": 767,
+                                            "settings": {
+                                                "slidesToShow": 2.5,
+                                                "arrows": "false",
+                                                "draggable": "true",
+                                                "infinite": false
+                                            }
+                                        },
+                                        {
+                                            "breakpoint": 480,
+                                            "settings": {
+                                                "slidesToShow": 1.5,
+                                                "arrows": "false",
+                                                "draggable": "true",
+                                                "infinite": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                "sliderOptions": {
+                                    "slidesToShow": 4,
+                                    "slidesToScroll": 1,
+                                    "infinite": false,
+                                    "arrows": true,
+                                    "dots": false,
+                                    "autoplay": false,
+                                    "autoplaySpeed": 0,
+                                    "draggable": false,
+                                    "lazyLoad": "ondemand"
+                                }
+                            }}'>
+                    <?php $iterator = 1; ?>
+                    <?php if (count($block->getNewProductCollection())) : ?>
+                    <?php foreach ($block->getNewProductCollection() as $item): ?>
+                        <?php
+                            $ziglychoice = $item->getZiglyChoice();
+                            $type = ($item->getType()) ? $item->getResource()->getAttribute('type')->getFrontend()->getValue($item) : '';
+                            $colorelement = '';
+                            if ($type) {
+                                if (strtolower($type) == 'veg') {
+                                   $colorelement = 'typegreen';
+                                } else {
+                                    if (strtolower($type) == 'non veg') {
+                                        $colorelement = 'typered';
+                                    }
+                                }
+                            }
+                        ?>
+                        <?= /* @noEscape */ ($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                        <div class="product-item-info">
+                            <div class="product-photo-wrapper">
+                                <?php if ($ziglychoice): ?>
+                                <span class="ziglychoice"><?= $escaper->escapeHtml('ZIGLY\'S CHOICE'); ?></span>
+                                <?php endif; ?>
+                                <a title="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                   aria-label="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                   href="<?= $escaper->escapeUrl($block->getProductUrl($item)) ?>"
+                                   class="product-item-photo">
+                                    <?= $block->getImage($item, $image)->toHtml() ?>
+                                </a>
+                                <?php if ($colorelement): ?>
+                                <div class="<?= $colorelement;?>"></div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="product details product-item-details">
+                                <span class="product product-item-name -amtheme-name">
+                                    <a title="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                       aria-label="<?= $escaper->escapeHtmlAttr($item->getName()) ?>"
+                                       href="<?= $escaper->escapeUrl($block->getProductUrl($item)) ?>"
+                                       class="product-item-link">
+                                        <?= $escaper->escapeHtml($item->getName()) ?>
+                                    </a>
+                                </span>
+                                <?php if ($templateType && $isShowReviews): ?>
+                                    <?= /* @noEscape */ $block->getReviewsSummaryHtml($item, $templateType, true) ?>
+                                <?php endif; ?>
+                                <?= /* @noEscape */ $block->getProductPriceHtml($item, $type) ?>
+                                <?php
+                                if($item->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){
+
+                                    $swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+                                    echo $swatchBlock->setProduct($item)->toHtml();
+                                }
+                                ?>
+                                <?= /* @noEscape */ $block->getProductDetailsHtml($item) ?>
+                                <?php if ($isShowCart): ?>
+                                    <div class="product actions product-item-actions">
+                                        <div class="actions-primary">
+                                            <?php if ($item->isSaleable()): ?>
+                                                <?php $postParams = $block->getAddToCartPostParams($item); ?>
+                                                <form data-role="tocart-form"
+                                                      data-product-sku="<?= $escaper->escapeHtml($item->getSku()) ?>"
+                                                      action="<?= $escaper->escapeUrl($postParams['action']) ?>"
+                                                      data-amtheme-js="ajax-tocart"
+                                                      method="post">
+                                                    <input type="hidden"
+                                                           name="product"
+                                                           value="<?= $escaper->escapeHtmlAttr($postParams['data']['product']) ?>">
+                                                    <input type="hidden" name="<?= $escaper->escapeHtmlAttr(Action::PARAM_NAME_URL_ENCODED) ?>"
+                                                           value="<?= $escaper->escapeHtmlAttr($postParams['data'][Action::PARAM_NAME_URL_ENCODED]) ?>">
+                                                    <?= $block->getBlockHtml('formkey') ?>
+                                                    <button type="submit"
+                                                            title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                            class="action tocart primary ">
+                                                       <span class="amtheme-title"><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                                    </button>
+                                                </form>
+                                            <?php else: ?>
+                                                <?php if ($item->getIsSalable()): ?>
+                                                    <div class="stock available"><?= $block->escapeHtml(__('In stock')) ?></div>
+                                                <?php else: ?>
+                                                    <div class="stock unavailable"><?= $block->escapeHtml(__('Out of stock')) ?></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?= ($iterator == count($block->getNewProductCollection()) + 1) ? '</li>' : '' ?>
+                    <?php endforeach; ?>
+                    <?php else : ?>
+                        <div class="message-notice notice message"><?= __('We couldn\'t find any records..') ?></div>
+                    <?php endif ; ?>
+                </ol>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<?php if (isset($item)) { ?>
+<script type="text/x-magento-init">
+{
+    "[data-role=tocart-form], .form.map.checkout": {
+        "catalogAddToCart": {
+            "product_sku": "<?= $escaper->escapeJs($item->getSku()) ?>",
+            "addToCartButtonDisabledClass": "disabled -show-spinner"
+        }
+    }
+}
+</script>
+<?php } ?>
+<script type="text/javascript">
+require([ 'jquery', 'jquery/ui'], function($){
+    $(document).ready(function($) {
+        $(document).on('click', '#amtheme-tab-title-popular', function() {
+            $('#amtheme-tabs-widget-popular .amtheme-slick-slider')[0].slick.refresh()
+        });
+        $(document).on('click', '#amtheme-tab-title-best', function() {
+            $('#amtheme-tabs-widget-best .amtheme-slick-slider')[0].slick.refresh()
+        });
+        $(document).on('click', '#amtheme-tab-title-new', function() {
+            $('#amtheme-tabs-widget-new .amtheme-slick-slider')[0].slick.refresh()
+        });
+    });
+});
+</script>

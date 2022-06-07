@@ -1,0 +1,69 @@
+<?php
+/**
+ * Copyright © 2022 All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+namespace Zigly\Groomingapi\Model;
+
+use Zigly\Managepets\Model\ManagepetsFactory;
+use Zigly\Species\Model\BreedFactory;
+
+class AddPetManagement implements \Zigly\Groomingapi\Api\AddPetManagementInterface
+{
+
+    /**
+      * @var \Magento\Framework\Webapi\Rest\Request
+    */
+    protected $request;
+    /**
+      * @param \Magento\Framework\Webapi\Rest\Request $request
+    */
+    public function __construct(
+         \Magento\Framework\Webapi\Rest\Request $request,
+         BreedFactory $breedFactory,
+         ManagepetsFactory $petsFactory
+     ) {
+        $this->request = $request;
+        $this->pets = $petsFactory;
+        $this->breed = $breedFactory;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postAddPet()
+    {
+        //$petdata = $this->request->getBodyParams();
+
+        print_r($_POST);
+        print_r($_FILES);
+
+        $target_dir = "/var/www/cosmo/pub/media/";
+        $target_file = $target_dir . basename($_FILES["file_data"]["name"]);
+        move_uploaded_file($_FILES["file_data"]["tmp_name"], $target_file);
+
+        
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/groomingapi.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info("===========logs==============");
+
+        $logger->info($petdata); exit('s123s');
+        
+        try{
+            $model = $this->pets->create();
+            
+            foreach($petdata as $value){
+                $model->setData($value)->save();
+            }
+        return $data = array("message"=>"success", "data"=>"Pet is saved successfully.");
+        } catch (\Exception $e) {
+            return $data = array("message"=>"error", "data"=>"There is some error.");
+        }
+       
+        //return 'hello api POST return the $param ';
+    }
+}
+

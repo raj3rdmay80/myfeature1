@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Plan
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Plan::first_level" title="Plan Management" module="Zigly_Plan" parent="Zigly::top_level" sortOrder="70" resource="Zigly_Plan::Plan"/>
+        <add id="Zigly_Plan::zigly_plan_plan" title="Manage Plan" module="Zigly_Plan" sortOrder="9999" resource="Zigly_Plan::Plan" parent="Plan::first_level" action="zigly_plan/plan/index"/>
+    </menu>
+</config>

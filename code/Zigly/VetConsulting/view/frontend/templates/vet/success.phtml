@@ -1,0 +1,27 @@
+<?php $petName = $block->getVetPet(); ?>
+<div class="full-width-container booking-success-grooming">
+    <div class="booking-success">
+        <div class="pet-image">
+            <img src='<?php echo $this->getViewFileUrl('Zigly_VetConsulting::images/vet_success.png'); ?>' alt="Dog and Cat" />
+        </div>
+        <div class="booking-success-messages">
+            <?php if (!empty($petName)) { ?>
+                <p class="title">Booking done for <span class="pet-name"><?= $petName ?>!</span></p>
+            <?php } else { ?>
+                <p class="title">Booking done <span class="pet-name"><?= $petName ?>!</span></p>
+            <?php } ?>
+            <p class="content">
+                We’ve received your request. We’ll fetch further details
+                and get back soon.
+            </p>
+            <a href="<?php echo $this->getUrl('sales/orders/booking');?>" class="my-booking">My Bookings</a>
+        </div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_VetConsulting/js/success": {}
+        }
+    }
+</script>

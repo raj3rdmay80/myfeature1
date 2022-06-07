@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Zigly::ScheduleManagementApi" title="Grooming Slot Management" module="Zigly_ScheduleManagementApi" sortOrder="80" parent="Zigly::top_level" resource="Zigly_ScheduleManagementApi::ScheduleManagementApi_Management"/>
+
+		<add id="Zigly_ScheduleManagementApi::zigly_schedulemanagementapi_groominghub" title="Grooming Hub" module="Zigly_ScheduleManagementApi" sortOrder="10" resource="Zigly_ScheduleManagementApi::GroomingHub" parent="Zigly::ScheduleManagementApi" action="zigly_schedulemanagementapi/groominghub/index"/>
+
+		<add id="Zigly_ScheduleManagementApi::zigly_schedulemanagementapi_groominghubpincode" title="Grooming Hub Pincode" module="Zigly_ScheduleManagementApi" sortOrder="20" resource="Zigly_ScheduleManagementApi::GroomingHubPincode" parent="Zigly::ScheduleManagementApi" action="zigly_schedulemanagementapi/groominghubpincode/index"/>
+
+		<add id="Zigly_ScheduleManagementApi::zigly_schedulemanagementapi_groomingslottable" title="Grooming Slot Table" module="Zigly_ScheduleManagementApi" sortOrder="30" resource="Zigly_ScheduleManagementApi::GroomingSlotTable" parent="Zigly::ScheduleManagementApi" action="zigly_schedulemanagementapi/groomingslottable/index"/>
+
+	</menu>
+</config>

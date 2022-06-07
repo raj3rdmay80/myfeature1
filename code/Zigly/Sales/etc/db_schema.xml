@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order_item" resource="sales" engine="innodb" comment="Sales Flat Order Item">
+        <column xsi:type="decimal" name="qty_returned" scale="4" precision="12" unsigned="false" nullable="true" default="0" comment="Qty Returned"/>
+        <column name="cancel_policy" nullable="true" xsi:type="smallint" comment="Cancel Policy"/>
+        <column name="cancel_policy_date" nullable="true" xsi:type="varchar" comment="Cancel Policy Date"/>
+        <column name="return_policy" nullable="true" xsi:type="smallint" comment="Return Policy"/>
+        <column name="return_policy_date" nullable="true" xsi:type="varchar" comment="Return Policy Date"/>
+        <column name="razorpay_order_id" nullable="true" xsi:type="varchar" comment="Razorpay order id for shipping"/>
+    </table>
+    <table name="sales_order" resource="sales" engine="innodb" comment="Sales Flat Order">
+        <column name="completed_at" nullable="true" xsi:type="varchar" comment="order completed at"/>
+    </table>
+</schema>

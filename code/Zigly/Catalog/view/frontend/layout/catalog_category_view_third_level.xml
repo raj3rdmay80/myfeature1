@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Catalog
+ */ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs" remove="true" />
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceContainer name="columns.top" remove="true" />
+        <referenceBlock name="category.products" remove="true" />
+        <referenceContainer name="catalog.leftnav" remove="true" />
+        <referenceContainer name="content">
+            <block class="Zigly\Catalog\Block\Catalog\ThirdLevel\ProductTabs" name="catalog.view.tab.products" template="Zigly_Catalog::catalog/thirdlevel/childcategoryproducts.phtml" />
+        </referenceContainer>
+    </body>
+</page>

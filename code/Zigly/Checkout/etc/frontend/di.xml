@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<!-- 
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Checkout
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="Zigly_Checkout_Plugin_Frontend_Magento_Checkout_CustomerData_Cart" type="Zigly\Checkout\Plugin\Frontend\Magento\Checkout\CustomerData\Cart" sortOrder="10" disabled="false"/>
+    </type>
+    <preference for="Magento\Checkout\Controller\Sidebar\UpdateItemQty" type="Zigly\Checkout\Controller\Sidebar\UpdateItemQty" />
+	<preference for="Magento\Checkout\Model\Sidebar" type="Zigly\Checkout\Model\Sidebar" />
+</config>

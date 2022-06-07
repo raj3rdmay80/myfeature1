@@ -1,0 +1,59 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var $block \Magento\Sales\Block\Order\Info */ ?>
+<?php $blockObj = $block->getLayout()->createBlock('Zigly\Sales\Block\Order\History');?>
+<?php $order = $block->getOrder() ?>
+<div class="block block-orders-details-view">
+    <div class="orders-title">
+        <strong><?= $block->escapeHtml(__('Order Details')) ?></strong>
+        <span class="orders-payement-status"><?= $block->escapeHtml(__('Payment Information: ')) ?><?= $block->getPaymentInfoHtml() ?></span>
+    </div>
+    <div class="order-date-price">
+        <span class="order-date"><?= $block->escapeHtml(__('Order Date: ')) ?><?= /* @noEscape */ $blockObj->getDate($order->getCreatedAt()) ?></span>
+        <ul class="sales-orders-list">
+            <li>
+                <span class="order-price">
+                    <?= $block->escapeHtml(__('Subtotal: ')) ?>
+                </span>
+                <?= /* @noEscape */ $blockObj->currency(floor($order->getBaseSubTotal() + $order->getBaseShippingAmount())) ?>
+            </li>
+            <?php if (!empty($order->getZwallet())) :?>
+                <li>
+                    <?php $zwallet = $blockObj->unserialized($order->getZwallet()); ?>
+                    <span class="order-price">
+                        <?= $block->escapeHtml(__('Wallet Used: ')) ?>
+                    </span>
+                    <?= /* @noEscape */ $blockObj->currency(floor($zwallet['spend_amount'])) ?>
+                </li>
+            <?php endif; ?>
+            <?php if (!empty($order->getCouponCode())) :?>
+                <li>
+                    <span class="order-price">
+                        <?= $block->escapeHtml(__('Discount ('.$order->getDiscountDescription().'):')) ?>
+                    </span>
+                    <?= /* @noEscape */ $blockObj->currency(floor($order->getDiscountAmount())) ?>
+                </li>
+            <?php endif; ?>
+            <li>
+                <span class="order-price">
+                    <?= $block->escapeHtml(__('Total: ')) ?>
+                </span>
+                <?= /* @noEscape */ $blockObj->currency(floor($order->getBaseGrandTotal())) ?>
+            </li>
+        </ul>
+    </div>
+    <div class="block-content orders-address">
+        <?php if (!$order->getIsVirtual()) : ?>
+            <div class="box box-orders-shipping-address">
+                <strong class="box-title"><span><?= $block->escapeHtml(__('Shipping Address:')) ?></span></strong>
+                <div class="box-content">
+                    <span><?= /* @noEscape */ $blockObj->getAddressDetails($order->getShippingAddressId()) ?></span>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{
+    "custom_footer_layout_config": {
+        "active-layout":"two-columns",
+        "two-columns":{
+            "0":["logo_block_name", "social_block_name"],
+            "1":["footer_links", "subscription_block", "custom_footer_cms_block"]
+        },
+        "three-columns":{
+            "0":["logo_block_name", "custom_footer_cms_block"],
+            "1":["footer_links"],
+            "2":["subscription_block", "social_block_name"]
+        }
+    }
+}

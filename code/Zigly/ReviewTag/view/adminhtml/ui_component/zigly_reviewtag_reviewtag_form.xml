@@ -1,0 +1,132 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_ReviewTag
+ */ -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">zigly_reviewtag_reviewtag_form.reviewtag_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Zigly\ReviewTag\Block\Adminhtml\ReviewTag\Edit\BackButton"/>
+            <button name="delete" class="Zigly\ReviewTag\Block\Adminhtml\ReviewTag\Edit\DeleteButton"/>
+            <button name="status" class="Zigly\ReviewTag\Block\Adminhtml\ReviewTag\Edit\StatusButton"/>
+            <button name="save" class="Zigly\ReviewTag\Block\Adminhtml\ReviewTag\Edit\SaveButton"/>
+            <button name="save_and_continue" class="Zigly\ReviewTag\Block\Adminhtml\ReviewTag\Edit\SaveAndContinueButton"/>
+        </buttons>
+        <namespace>zigly_reviewtag_reviewtag_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>zigly_reviewtag_reviewtag_form.reviewtag_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="reviewtag_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider name="reviewtag_form_data_source" class="Zigly\ReviewTag\Model\ReviewTag\DataProvider">
+            <settings>
+                <requestFieldName>reviewtag_id</requestFieldName>
+                <primaryFieldName>reviewtag_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label></label>
+        </settings>
+        <field name="tag_name" formElement="input" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">ReviewTag</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Tag Name</label>
+                <dataScope>tag_name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="type" formElement="select" sortOrder="11">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">ReviewTag</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Type</label>
+                <dataScope>type</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="groomer" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">Groomer</item>
+                            </option>
+                            <option name="vetconsultant" xsi:type="array">
+                                <item name="value" xsi:type="string">2</item>
+                                <item name="label" xsi:type="string">Vet Consultant</item>
+                            </option>
+                            <option name="product" xsi:type="array">
+                                <item name="value" xsi:type="string">3</item>
+                                <item name="label" xsi:type="string">Product</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="rating" formElement="select" sortOrder="11">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">ReviewTag</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Rating</label>
+                <dataScope>rating</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">Equal to Five</item>
+                            </option>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">0</item>
+                                <item name="label" xsi:type="string">Below to Five</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_VetConsulting
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="zigly" translate="label" sortOrder="10">
+            <label>Zigly</label>
+        </tab>
+        <section id="vetconsulting" translate="label" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Vet Consulting</label>
+            <tab>zigly</tab>
+            <resource>Zigly_VetConsulting::vetconsulting_config</resource>
+            <group id="received_prescription" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Vet Consultation Received Prescription Sms</label>
+                <field id="received_prescription_sms_template_id" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Vet Consultation Received Prescription Sms Templateid</label>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

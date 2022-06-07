@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_JetTheme
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\JetTheme\Api\CmsBlockManagementInterface" type="Amasty\JetTheme\Setup\CmsBlockManagement" />
+    <preference for="Amasty\JetTheme\Api\CmsPageManagementInterface" type="Amasty\JetTheme\Setup\CmsPageManagement" />
+    <preference for="Amasty\JetTheme\Api\SocialLinkRepositoryInterface" type="Amasty\JetTheme\Model\SocialLink\SocialLinkRepository"/>
+    <preference for="Amasty\JetTheme\Api\Data\SocialLinkInterface" type="Amasty\JetTheme\Model\SocialLink\SocialLink"/>
+    <preference for="Amasty\JetTheme\Api\Data\SocialLinkSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Amasty\JetTheme\Api\PaymentLinkRepositoryInterface" type="Amasty\JetTheme\Model\PaymentLink\PaymentLinkRepository"/>
+    <preference for="Amasty\JetTheme\Api\Data\PaymentLinkInterface" type="Amasty\JetTheme\Model\PaymentLink\PaymentLink"/>
+    <preference for="Amasty\JetTheme\Api\Data\PaymentLinkSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="amimageopt_jet_optimize" xsi:type="object">Amasty\JetTheme\Console\Command\ImageOptimizer\OptimizeCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\JetTheme\Console\Command\ImageOptimizer\OptimizeCommand">
+        <arguments>
+            <argument name="optimizeCommand" xsi:type="object">Amasty\JetTheme\Console\Command\ImageOptimizer\Operation\Optimize\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\JetTheme\Model\SocialLink\SvgProvider">
+        <arguments>
+            <argument name="driver" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\JetTheme\Model\PaymentLink\SvgProvider">
+        <arguments>
+            <argument name="driver" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+
+    <!-- for transfer config values to static content deployed less file -->
+    <type name="Magento\Framework\Css\PreProcessor\File\Temporary">
+        <plugin name="Amasty_JetTheme::less_data_transfer" type="Amasty\JetTheme\Plugin\Framework\Css\PreProcessor\File\TemporaryPlugin"/>
+    </type>
+    <type name="Magento\Framework\Filter\Template">
+        <arguments>
+            <argument name="directiveProcessors" xsi:type="array">
+                <item name="color" xsi:type="object">Amasty\JetTheme\Model\Template\Filter\ColorDirective</item>
+                <item name="font" xsi:type="object">Amasty\JetTheme\Model\Template\Filter\FontDirective</item>
+                <item name="color_preset" xsi:type="object">Amasty\JetTheme\Model\Template\Filter\ColorPresetDirective</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\JetTheme\Setup\AssetManager">
+        <arguments>
+            <argument name="fileExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="social_network_link_listing_data_source" xsi:type="string">Amasty\JetTheme\Model\SocialLink\ResourceModel\SocialLink\Grid\Collection</item>
+                <item name="payment_link_listing_data_source" xsi:type="string">Amasty\JetTheme\Model\PaymentLink\ResourceModel\PaymentLink\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\JetTheme\Controller\Adminhtml\UploadImage\Index">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Amasty\JetTheme\VirtualType\Model\ImageUpload</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\JetTheme\Model\ImageProcessor">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Amasty\JetTheme\VirtualType\Model\ImageUpload</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Amasty\JetTheme\VirtualType\Model\ImageUpload" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">Amasty\JetTheme\Model\ImageProcessor::MEDIA_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">Amasty\JetTheme\Model\ImageProcessor::MEDIA_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Module\Status">
+        <plugin name="Amasty_JetTheme::CheckBeforeThemeDisable" type="Amasty\JetTheme\Plugin\Framework\Module\Status\CheckBeforeThemeDisable" sortOrder="10" />
+    </type>
+
+    <type name="Amasty\JetTheme\Plugin\Framework\Css\PreProcessor\File\TemporaryPlugin">
+        <arguments>
+            <argument name="emulation" xsi:type="object">Magento\Store\Model\App\Emulation\Proxy</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\JetTheme\Model\Config\FooterConfig">
+        <arguments>
+            <argument name="config" xsi:type="array">
+                <item name="layouts" xsi:type="array">
+                    <item name="two-columns" xsi:type="array">
+                        <item name="label" xsi:type="string" translatable="true">Two Columns</item>
+                        <item name="layout_block" xsi:type="string">Amasty\JetTheme\Block\Footer\Layout\TwoColumns</item>
+                    </item>
+                    <item name="three-columns" xsi:type="array">
+                        <item name="label" xsi:type="string" translatable="true">Three Columns</item>
+                        <item name="layout_block" xsi:type="string">Amasty\JetTheme\Block\Footer\Layout\ThreeColumns</item>
+                    </item>
+                </item>
+                <!-- param config_path applicable only if this setting on the same page with footer builder and have Yes/No params  -->
+                <item name="blocks" xsi:type="array">
+                    <item name="logo_block_name" xsi:type="array">
+                        <item name="name_in_layout" xsi:type="string">footer.logo</item>
+                        <item name="front_end_block_type" xsi:type="string">Magento\Theme\Block\Html\Header\Logo</item>
+                        <item name="backend_image" xsi:type="string">Amasty_JetTheme::images/footer/logo.png</item>
+                        <item name="config_path" xsi:type="string">amasty_jettheme/custom_footer/show_logo_block</item>
+                        <item name="title" xsi:type="string" translatable="true">Footer Logo</item>
+                    </item>
+                    <item name="subscription_block" xsi:type="array">
+                        <item name="name_in_layout" xsi:type="string">footer.form.subscribe</item>
+                        <item name="view_model" xsi:type="object"> Amasty\JetTheme\ViewModel\Footer\FooterViewModel</item>
+                        <item name="front_end_block_type" xsi:type="string">Magento\Newsletter\Block\Subscribe</item>
+                        <item name="backend_image" xsi:type="string">Amasty_JetTheme::images/footer/subscription.png</item>
+                        <item name="template" xsi:type="string">Magento_Newsletter::footer-subscribe.phtml</item>
+                        <item name="config_path" xsi:type="string">amasty_jettheme/custom_footer/show_subscripion_block</item>
+                        <item name="title" xsi:type="string" translatable="true">Subscription Block</item>
+                    </item>
+                    <item name="social_block_name" xsi:type="array">
+                        <item name="name_in_layout" xsi:type="string">footer.social</item>
+                        <item name="view_model" xsi:type="object">Amasty\JetTheme\ViewModel\SocialViewModel</item>
+                        <item name="backend_image" xsi:type="string">Amasty_JetTheme::images/footer/social.png</item>
+                        <item name="template" xsi:type="string">Magento_Theme::footer/social.phtml</item>
+                        <item name="config_path" xsi:type="string">amasty_jettheme/custom_footer/show_links_block</item>
+                        <item name="title" xsi:type="string" translatable="true">Social</item>
+                    </item>
+                    <item name="custom_footer_cms_block" xsi:type="array">
+                        <item name="name_in_layout" xsi:type="string">footer.cms.block</item>
+                        <item name="view_model" xsi:type="object">Amasty\JetTheme\ViewModel\Footer\FooterViewModel</item>
+                        <item name="backend_image" xsi:type="string">Amasty_JetTheme::images/footer/cms_block.png</item>
+                        <item name="template" xsi:type="string">Magento_Theme::footer/footer-cms.phtml</item>
+                        <item name="config_path" xsi:type="string">amasty_jettheme/custom_footer/enable_custom_cms_block</item>
+                        <item name="title" xsi:type="string" translatable="true">CMS Block</item>
+                    </item>
+                    <item name="footer_links" xsi:type="array">
+                        <item name="name_in_layout" xsi:type="string">footer_links</item>
+                        <item name="front_end_block_type" xsi:type="string">Magento\Framework\View\Element\Html\Links</item>
+                        <item name="css_class" xsi:type="string">footer links</item>
+                        <item name="backend_image" xsi:type="string">Amasty_JetTheme::images/footer/links.png</item>
+                        <item name="config_path" xsi:type="string">amasty_jettheme/custom_footer/show_footer_links</item>
+                        <item name="title" xsi:type="string" translatable="true">Footer Links</item>
+                    </item>
+                    <item name="payment_links" xsi:type="array">
+                        <item name="backend_image" xsi:type="string">Amasty_JetTheme::images/footer/payment.png</item>
+                        <item name="payment_view_model" xsi:type="object">Amasty\JetTheme\ViewModel\PaymentViewModel</item>
+                        <item name="css_class" xsi:type="string">custom-footer-payments</item>
+                        <item name="template" xsi:type="string">Magento_Theme::footer/payments.phtml</item>
+                        <item name="config_path" xsi:type="string">amasty_jettheme/custom_footer/show_payment_links_block_footer</item>
+                        <item name="title" xsi:type="string" translatable="true">Payment Methods</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

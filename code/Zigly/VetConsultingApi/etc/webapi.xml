@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_VetConsultingApi
+ */ -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/vetconsulting/listing">
+        <service class="Zigly\VetConsultingApi\Api\VetConsultingRepositoryInterface" method="vetConsultingListing"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/vetconsulting/view">
+        <service class="Zigly\VetConsultingApi\Api\VetConsultingRepositoryInterface" method="vetConsultingById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/vetconsulting/timeslots">
+        <service class="Zigly\VetConsultingApi\Api\VetConsultingTimeSlotsRepositoryInterface" method="getTimeSlotsVetConsulting"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

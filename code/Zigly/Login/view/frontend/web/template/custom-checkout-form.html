@@ -1,0 +1,155 @@
+<!-- ko ifnot: isLoggedIn() -->
+<div class="amtheme-checkout-contact" id="chk-contct">
+    <div class="step-title" data-role="title" data-bind="i18n: 'Create Your Account'">Create Your Account</div>
+        <div class="authentication-wrapper ankit" data-block="authentication" data-bind="visible: isActive()">
+            <span class="amtheme-label" data-bind="i18n: 'Already have an account?'">Already have an account?</span>
+                <a class="action action-auth-toggle social-login-btn" href="#social-login-popup" style="cursor: pointer;">
+                <span>Log In</span>
+            </a>
+            
+        </div>
+</div>   
+<div class="custom-login block-containers authentications">
+    <div class="customlogin" id="custom-login-authentications">
+         
+        <div class="block-contents" aria-labelledby="block-customer-login-heading">
+            <form class="form-customer-logins" id="custom-checkout-form" data-mage-init='{"validation":{}}'>
+                
+                <fieldset id="mobileotp" class="fieldsets login logpage" data-hasrequired="* Required Fields">
+                    <legend data-bind="i18n: 'Custom Checkout Form'"></legend>
+                    <!-- ko foreach: getRegion('custom-checkout-form-fields') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!--/ko-->
+                    <div class="field email required">
+                        <div class="control customrequired">
+                            <input data-bind='attr: {value: getFormKey()}' type="hidden" id="formkey" name="formkey"/>
+                            <input name="mobilenumber" id="mobile" type="text" required="true" class="input-text minimum-length-10 maximum-length-10"
+                                   value="" autocomplete="off"
+                                   title="Mobile Number"
+                                   data-validate="{required:true, 'validate-length':true}" placeholder="Enter Mobile Number *" data-msg-validate-length="Please enter a 10 digit mobile number." maxlength="10">
+                                   <button type="button" data-bind="click: onSubmit" id="submitnumber" class="action">
+                                    <span data-bind="i18n: 'Get OTP'"></span>
+                                </button>
+                        </div>
+                    </div>
+                    <!-- <div class="action login primary" id="bnt-auth-mobile">
+                        <span>Continue</span>
+                    </div> -->
+                    
+
+                </fieldset>
+                <fieldset class="fieldsets login otppage" id="otpForm" data-hasrequired="* Required Fields" style="display:none;">
+                    <div class="login-otp-title">
+                        <div class="title-text">
+                            <span id="block-customer-otp-heading" role="heading"
+                                      aria-level="2">Enter OTP</span>
+                        </div>
+                    </div>
+                    <div class="field password required">
+                        <div class="control">
+                            <div class="otp-control">
+                                <input name="otp1" class="otpclass" id="otp1" type="password" maxlength="1" 
+                                data-bind="
+                                event: {change: userChanges},
+                                event: {keydown: userkeydown(event)}">
+                                <input name="otp2" class="otpclass" id="otp2" type="password" maxlength="1"
+                                data-bind="
+                                event: {change: userChanges},
+                                event: {keydown: userkeydown(event)}">
+                                <input name="otp3" class="otpclass" id="otp3" type="password" maxlength="1"
+                                data-bind="
+                                event: {change: userChanges},
+                                event: {keydown: userkeydown(event)}">
+                                <input name="otp4" class="otpclass" id="otp4" type="password" maxlength="1"
+                                data-bind="
+                                event: {change: userChanges},
+                                event: {keydown: userkeydown(event)}">
+                            </div>
+                            <input name="password" id="verify_otp" type="password" class="input-text minimum-length-4 maximum-length-4" autocomplete="off" title="Password" data-validate="{required:true, 'validate-length':true}" data-msg-validate-length="Please enter a 4 digit OTP." style="visibility: hidden; height: 0px; padding: 0px;" aria-required="true">
+                
+                        </div>
+                        
+                    </div>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="button" data-bind="click: onVerify" id="otpverify" class="action login primary" id="bnt-social-login-authentication">
+                                <span>Verify OTP</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /ko -->
+
+<style>
+    
+    .checkout-index-index .opc-wrapper .checkout-shipping-address #custom-login-authentications .fieldsets.login.logpage .field .control, 
+    .checkout-index-index .opc-wrapper .checkout-shipping-address #custom-login-authentications .fieldsets.login.otppage .field .control{
+        width: 100%;
+        display: flex;
+        margin: 0;
+    }
+    .checkout-index-index .opc-wrapper .checkout-shipping-address .customlogin .form-customer-logins .fieldsets.login.otppage{
+        margin-bottom: 20px;
+    }
+    .checkout-index-index .opc-wrapper .checkout-shipping-address #custom-login-authentications .fieldsets.login.logpage .field .control #mobile{
+        width: calc(100% - 125px);
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border: 1px dashed #c4c4c4;
+    }
+    .checkout-index-index .opc-wrapper .checkout-shipping-address #custom-login-authentications .fieldsets.login.logpage .field .control #submitnumber{
+        height: 40px;
+        line-height: 15px;
+        border-top-right-radius: 24px;
+        border-bottom-right-radius: 24px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background: #033965;
+        color: #fff;
+        width: 125px;
+        padding: 0 15px;
+        line-height: 40px;
+        font-size: 16px;
+    }
+    .checkout-index-index .opc-wrapper .checkout-shipping-address .fieldsets.login.otppage .login-otp-title{
+        color:#052a50;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    .checkout-index-index .opc-wrapper .checkout-shipping-address #custom-login-authentications .fieldsets.login.otppage .field .control .otp-control{
+        display: flex;
+    }
+    .checkout-index-index .opc-wrapper .checkout-shipping-address #custom-login-authentications .fieldsets.login.otppage .field .control .otp-control input[type="password"]{
+        width: 40px;
+        height: 40px;
+        border:1px solid #033965;
+        border-radius: 5px;
+        margin-right: 10px;
+        text-align: center;
+    }
+    .checkout-index-index .opc-wrapper .checkout-shipping-address #custom-login-authentications .fieldsets.login.otppage .actions-toolbar{
+        width: 100%;
+    }
+    .checkout-index-index .opc-wrapper .checkout-shipping-address #custom-login-authentications .fieldsets.login.otppage .actions-toolbar .primary button{
+        width: auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        line-height: 20px;
+        color: #fff;
+        border-radius: 24px;
+        margin:0;
+    }
+    span.note {
+    display: none !important;
+}
+.checkout-index-index .checkout-shipping-address .field-tooltip._active {
+    z-index: 59;
+}
+
+</style>

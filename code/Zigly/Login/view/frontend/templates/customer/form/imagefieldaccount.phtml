@@ -1,0 +1,26 @@
+<fieldset class="fieldset file-upload">
+    <div class="field customer_file_upload">
+        <label for="customerprofile_image" class="label"><span><?php /* @escapeNotVerified */
+        echo __('Select Profile Image') ?></span></label>
+        <div class="control">
+            <input type="file" onchange="image()" accept="image/*" name="customerprofile_image" id="customerprofile_image" title="<?php /* @escapeNotVerified */ echo __('Select Profile Image') ?>" class="input-text validate-fileextensions" data-validate="{required:false}">
+            <img id="selected-profile-image" class="profile-select-image" style="display:none;" />
+        </div>
+        <?php if ($url = $block->getFileUrl()): ?>
+        <div class="field">
+            <span class="delete-image">
+                <input type="checkbox" id="customerprofile_image_delete" name="customerprofile_image[delete]"
+                   class="checkbox">
+                <label for="customerprofile_image_delete"><?= $block->escapeHtml(__('Delete Image')) ?></label>
+            </span>
+            <img src="<?php echo $url ?>" alt="image"/>
+        </div>
+        <?php endif;?>
+    </div>
+</fieldset>
+<script type="text/javascript">
+    function image() {
+        document.getElementById('selected-profile-image').style.display = "block";
+        document.getElementById('selected-profile-image').src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>

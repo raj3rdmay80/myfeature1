@@ -1,0 +1,26 @@
+<!-- 
+/**
+ * Copyright (C) 2021  Zigly
+ * @package  Zigly_ServicePay
+ */
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <payment>
+            <services_razorpay>
+                   <active>1</active>
+                   <model>Zigly\ServicePay\Model\PaymentPending</model>
+                   <title>Razorpay</title>
+                   <order_status>pending</order_status>
+                   <group>offline</group>
+            </services_razorpay>
+            <services_cod>
+                   <active>1</active>
+                   <model>Zigly\ServicePay\Model\PaymentCod</model>
+                   <title>Cash On Delivery</title>
+                   <order_status>pending</order_status>
+                   <group>offline</group>
+            </services_cod>
+        </payment>
+    </default>
+</config>

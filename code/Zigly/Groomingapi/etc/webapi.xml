@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/zigly-groomingapi/getpets" method="GET">
+		<service class="Zigly\Groomingapi\Api\GetPetsManagementInterface" method="getGetPets"/>
+		<resources>
+		    <resource ref="self"/>
+		</resources>
+	     <data>
+	         <parameter name="id" force="true">%customer_id%</parameter>
+	     </data>
+	</route>
+	<route url="/V1/zigly-groomingapi/getBreeds" method="GET">
+		<service class="Zigly\Groomingapi\Api\GetBreedsManagementInterface" method="getBreeds"/>
+		<resources>
+		    <resource ref="anonymous"/>
+		</resources>
+		<data>
+		    <parameter name="search" force="true">%search%</parameter>
+		</data>
+	</route>
+	<route url="/V1/zigly-groomingapi/editpet" method="POST">
+		<service class="Zigly\Groomingapi\Api\EditPetManagementInterface" method="getEditPets"/>
+		<resources>
+			<resource ref="self"/>
+		</resources>
+	</route>
+	<route url="/V1/zigly-groomingapi/getplan" method="GET">
+		<service class="Zigly\Groomingapi\Api\GetPlanManagementInterface" method="getGetPlan"/>
+		<resources>
+            <resource ref="anonymous"/>
+        </resources>
+        <data>
+	       <parameter name="type" force="true">%type%</parameter>
+	       <parameter name="cities" force="true">%cities%</parameter>
+	       <parameter name="species_type" force="true">%species_type%</parameter>
+	   </data>
+	</route>
+	<route url="/V1/zigly-groomingapi/userlocation" method="GET">
+		<service class="Zigly\Groomingapi\Api\UserLocationManagementInterface" method="getUserLocation"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+        <data>
+	       <parameter name="pincode_city" force="true">%pincode_city%</parameter>
+	   </data>
+	</route>
+	<route url="/V1/zigly-groomingapi/addpet" method="POST">
+		<service class="Zigly\Groomingapi\Api\AddPetManagementInterface" method="postAddPet"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route url="/V1/zigly-groomingapi/deletepet" method="POST">
+		<service class="Zigly\Groomingapi\Api\DeletePetManagementInterface" method="postDeletePet"/>
+		<resources>
+			<resource ref="self"/>
+		</resources>
+	</route>
+	<route url="/V1/zigly-groomingapi/applycoupon" method="POST">
+		<service class="Zigly\Groomingapi\Api\ApplycouponManagementInterface" method="Applycoupon"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+</routes>

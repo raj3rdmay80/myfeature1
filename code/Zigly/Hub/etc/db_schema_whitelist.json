@@ -1,0 +1,32 @@
+{
+    "zigly_hub_hub": {
+        "column": {
+            "hub_id": true,
+            "location": true,
+            "city": true,
+            "street_one": true,
+            "street_two": true,
+            "state": true,
+            "pincode": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true,
+            "latitude": true,
+            "longitude": true,
+            "availability_info": true,
+            "region_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "ZIGLY_HUB_HUB_LOCATION": true,
+            "ZIGLY_HUB_HUB_CITY": true,
+            "ZIGLY_HUB_HUB_STREET_ONE": true,
+            "ZIGLY_HUB_HUB_STREET_TWO": true,
+            "ZIGLY_HUB_HUB_STATE": true,
+            "ZIGLY_HUB_HUB_PINCODE": true,
+            "ZIGLY_HUB_HUB_LOCATION_CITY_STREET_ONE_STREET_TWO_STATE_PINCODE": true
+        }
+    }
+}

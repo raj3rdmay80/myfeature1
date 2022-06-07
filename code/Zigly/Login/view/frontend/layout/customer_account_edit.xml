@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Login
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <head>
+        <script src="Zigly_Login::js/image.js"/>
+    </head>
+    <body>
+        <referenceContainer name="form.additional.info">
+            <block class="Zigly\Login\Block\Customer\Account" name="additional_field_account" template="Zigly_Login::customer/form/imagefieldaccount.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

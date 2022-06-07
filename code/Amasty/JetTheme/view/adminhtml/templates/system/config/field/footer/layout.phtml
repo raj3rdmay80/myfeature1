@@ -1,0 +1,38 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_JetTheme
+ */
+?>
+<?php
+/**
+ * @var $block Amasty\JetTheme\Block\Adminhtml\System\Config\Field\Footer\LayoutRenderer
+ * @var $escaper Magento\Framework\Escaper
+ */
+?>
+
+<div id="custom-footer"
+     class="amtheme-admin-custom-footer"
+     data-bind="scope:'custom_footer'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "custom_footer": {
+                         "component": "Amasty_JetTheme/js/view/footer/custom-footer",
+                         "config": {
+                            "elementName": "<?= /* @noEscape */ $block->getElementName() ?>",
+                            "elementId": "<?= /* @noEscape */ $block->getElementId() ?>",
+                            "elementValue": "<?= $escaper->escapeJs($block->getElementValue()) ?>",
+                            "layoutConfig": "<?= $escaper->escapeJs($block->getLayoutConfigJson()) ?>"
+                         }
+                    }
+                }
+            }
+        }
+    }
+</script>

@@ -1,0 +1,36 @@
+{
+    "zigly_species_species": {
+        "column": {
+            "species_id": true,
+            "name": true,
+            "status": true,
+            "profile_image": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "ZIGLY_SPECIES_SPECIES_NAME": true
+        }
+    },
+    "zigly_species_breed": {
+        "column": {
+            "breed_id": true,
+            "species_id": true,
+            "name": true,
+            "description": true,
+            "breed_type": true,
+            "image": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ZIGLY_SPECIES_BREED_SPECIES_ID_ZIGLY_SPECIES_SPECIES_SPECIES_ID": true
+        },
+        "index": {
+            "ZIGLY_SPECIES_BREED_NAME": true
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Zigly_Main::Menu" title="Zigly" sortOrder="10">
+                    <resource id="Zigly_Species::Species_Management" title="Species Management" sortOrder="10">
+                        <resource id="Zigly_Species::Species" title="Species" sortOrder="10">
+                            <resource id="Zigly_Species::Species_save" title="Save Species" sortOrder="10"/>
+                            <resource id="Zigly_Species::Species_delete" title="Delete Species" sortOrder="20"/>
+                            <resource id="Zigly_Species::Species_update" title="Update Species" sortOrder="30"/>
+                            <resource id="Zigly_Species::Species_view" title="View Species" sortOrder="40"/>
+                        </resource>
+                        <resource id="Zigly_Species::Breed" title="Breed" sortOrder="10">
+                            <resource id="Zigly_Species::Breed_save" title="Save Breed" sortOrder="10"/>
+                            <resource id="Zigly_Species::Breed_delete" title="Delete Breed" sortOrder="20"/>
+                            <resource id="Zigly_Species::Breed_update" title="Update Breed" sortOrder="30"/>
+                            <resource id="Zigly_Species::Breed_view" title="View Breed" sortOrder="40"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

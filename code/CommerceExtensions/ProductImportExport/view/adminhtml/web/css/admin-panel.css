@@ -1,0 +1,42 @@
+.page-title-wrapper h1 {font-weight: 600;}
+.header-select-box {background-color: #f7f7f7;padding: 40px 0;position: relative;}
+.select-action {position: absolute;
+    top: 8px;
+    left: 8px;
+    right: auto;
+    bottom: auto;
+}
+span.header-action span {
+    font-size: 14px;
+    font-weight: 600;
+}
+select#id_import_export {
+    padding: 6px 6px;margin-left: 8px;
+}
+section.commerce-div-box {margin-top: 10px;}
+section.commerce-div-box-export {margin-top: 10px;}
+.left-side-panel{width:22%;float:left;}
+.left-side-panel li {padding: 15px 10px;border: 1px solid #e2e2e2;list-style: none;}     
+.left-side-panel li a{font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #36322f;}
+.left-side-panel li:hover{background-color:#e2e2e2;}
+
+.right-side-box{float:right;width:75%;}
+.clear{clear:both;}
+.clear-one{clear:both;}
+.select-uploaded-file select {
+    width: 50%;
+    padding: 4px 3px;
+    display: inline-block;
+    float: left;
+	
+}
+button#sub_btn {
+    margin-left: 15px;
+    padding: 11px 18px;
+    background-color: #ea5101;
+    color: #fff;
+    border: 1px solid #ea3701;
+}

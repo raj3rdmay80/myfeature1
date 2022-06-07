@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Managepets
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="zigly_species_species_save_after">
+        <observer name="zigly_species_species_save_after_event" instance="Zigly\Managepets\Observer\SpeciesSaveAfter" />
+    </event>
+    <event name="zigly_species_breed_save_after">
+        <observer name="zigly_species_species_save_after_event" instance="Zigly\Managepets\Observer\BreedSaveAfter" />
+    </event>
+</config>

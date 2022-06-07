@@ -1,0 +1,352 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Zigly\GroomingService\Block\Adminhtml\Grooming $block
+ */
+$service = $block->getGroomingService();
+$serviceAdminDate = $block->formatDate(
+    $block->getServiceAdminDate($service->getCreatedAt()),
+    \IntlDateFormatter::MEDIUM,
+    true
+);
+$customer = $block->getCustomer($service->getCustomerId());
+$service_status = $block->getServiceStatus();
+$species = $block->getSpecies($service->getPetSpecies());
+$breed = $block->getBreed($service->getPetBreed());
+?>
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Service & Account Information')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information">
+            <?php /* Service Information */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title">
+                    <?= $block->escapeHtml(__('Booking ID # %1', $service->getEntityId())) ?> 
+                </span>
+            </div>
+            <div class="admin__page-section-item-content">
+	        	<table class="admin__table-secondary order-information-table">
+                    <?php if ($service->getBookingType()): ?>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Service Type')) ?></th>
+                            <td><?= $block->escapeHtml($block->getServiceType($service->getBookingType())) ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Booking Type')) ?></th>
+                        <td><?= $block->escapeHtml(__('Online Booked')) ?></td>
+                    </tr>
+	                <tr>
+	                    <th><?= $block->escapeHtml(__('Status')) ?></th>
+	                    <td><span id="status"><?= $block->escapeHtml($service->getBookingStatus()) ?></span></td>
+	                </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Scheduled Date')) ?></th>
+                        <td><span id="scheduled_date"><?= $block->formatDate($service->getScheduledDate(), \IntlDateFormatter::MEDIUM) ?></span></td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Scheduled Time')) ?></th>
+                        <td><span id="scheduled_time"><?= $block->escapeHtml($service->getScheduledTime()) ?></span></td>
+                    </tr>
+                    <?php if ($service->getGroomerId()): ?>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Assigned Groomer')) ?></th>
+                            <td><?= $block->escapeHtml($block->getGroomerName($service->getGroomerId())) ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($service->getBookingType() == 1): ?>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Center')) ?></th>
+                            <td><?= $block->escapeHtml($service->getCenter()) ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Created Date')) ?></th>
+                        <td><?= $block->escapeHtml($serviceAdminDate) ?></td>
+                    </tr>
+	            </table>
+	        </div>
+        </div>
+        <div class="admin__page-section-item order-account-information">
+            <?php /* Account Information */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Account Information')) ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-account-information-table">
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Customer Name')) ?></th>
+                        <td>
+                            <?= $block->escapeHtml($customer->getName()) ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Customer Email')) ?></th>
+                        <td><a href="mailto:<?= $block->escapeHtmlAttr($customer->getEmail()) ?>"><?= $block->escapeHtml($customer->getEmail()) ?></a></td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Customer Phone Number')) ?></th>
+                        <td>
+                            <?= $block->escapeHtml($service->getPhoneNo()) ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Customer Group')) ?></th>
+                        <td><?= $block->escapeHtml($block->getCustomerGroupName($customer->getGroupId())) ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Address &amp; Payment Information')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information">
+            <?php /* Billing Address */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Address Detail')) ?></span>
+            </div>
+            <address class="admin__page-section-item-content">
+                <?= $block->escapeHtml($customer->getName()) ?><br>
+                <?= $block->escapeHtml($service->getStreet()) ?><br>
+                <?= $block->escapeHtml($service->getRegion()) ?><br>
+                <?= $block->escapeHtml($service->getCity().', ') ?> <?= $block->escapeHtml($service->getPostcode()) ?>
+            </address>
+        </div>
+        <div class="admin__page-section-item order-account-information">
+            <?php /* Payment Method */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Payment Information')) ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <div class="service-payment-additional">
+                    <table class="admin__table-secondary order-information-table">
+                       <tr>
+                            <th><?= $block->escapeHtml(__('Payment Mode')) ?></th>
+                            <td>
+                                <?= $block->escapeHtml($service->getPaymentMode()) ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Payment Amount')) ?></th>
+                            <td>
+                                <?= $block->escapeHtml($block->getFormattedPrice($service->getGrandTotal())) ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Coupon Applied')) ?></th>
+                            <td>
+                                <?= /* @noEscape */ ($service->getCouponCode()) ? $block->escapeHtml(__('Yes')): $block->escapeHtml(__('No')); ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Payment Status')) ?></th>
+                            <td>
+                                <?= $block->escapeHtml($service->getPaymentStatus()) ?>
+                            </td>
+                        </tr>
+                        <?php if ($service->getPaymentTransId()): ?>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Transaction Id')) ?></th>
+                            <td>
+                                <?= $block->escapeHtml($service->getPaymentTransId()) ?>
+                            </td>
+                        </tr>
+                        <?php endif; ?>
+                        <?php $orderDetails = $block->getOrderDetails($service->getEntityId()); 
+                        if (count($orderDetails)): ?>
+                            <tr>
+                                <th><?= $block->escapeHtml(__('Order Id')) ?></th>
+                                <td>
+                                    <a href="<?= $orderDetails['url'] ?>">
+                                        <?= $orderDetails['increment_id'] ?>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information">
+            <?php /* Plan Information */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Pet Details')) ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-information-table">
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Pet Name')) ?></th>
+                        <td><span id="pet_name"><?= $block->escapeHtml($service->getPetName()) ?></span></td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Species')) ?></th>
+                        <td><span id="species"><?= $block->escapeHtml($species->getName()) ?></span></td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Breed')) ?></th>
+                        <td><span id="breed"><?= $block->escapeHtml($breed->getName()) ?></span></td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Gender')) ?></th>
+                        <?php if ($service->getPetGender() == 1) : ?>
+                            <td><span id="gender"><?= $block->escapeHtml('Male') ?></span></td>
+                        <?php elseif ($service->getPetGender() == 2) : ?>
+                            <td><span id="gender"><?= $block->escapeHtml('Female') ?></span></td>
+                        <?php endif; ?>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Age')) ?></th>
+                        <td><span id="age"><?= $block->escapeHtml($service->getPetAge()) ?></span></td>
+                    </tr>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Date Of Birth')) ?></th>
+                        <td><span id="date-of-birth"><?= $block->escapeHtml($service->getPetDob()) ?></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="admin__page-section-item order-account-information">
+            <?php /* Plan Information */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Plan Information')) ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <div class="service-payment-additional">
+                    <table class="admin__table-secondary order-information-table">
+                        <tbody>
+                            <tr>
+                                <th><?= $block->escapeHtml(__('Plan Name')) ?></th>
+                                <td><span id="plan_name"><?= $block->escapeHtml($service->getPlanName()) ?></span></td>
+                            </tr>
+                            <tr>
+                                <th><?= $block->escapeHtml(__('Plan Activites')) ?></th>
+                                <td><span id="plan_activites"><?= implode("<br>", json_decode($service->getPlanActivites())) ?></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"></span>
+    </div>
+    <div class="admin__page-section-content">
+        <?php if($block->getServiceStatusUpdateAcl()): ?>
+        <div class="admin__page-section-item order-information">
+           <?php /* Plan Information */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Update Status')) ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <div class="admin__page-section-item order-comments-history">   
+                    <div id="order_history_block" class="edit-order-comments">
+                        <div class="order-history-block" id="history_form">
+                            <div class="admin__field">
+                                <label for="history_status" class="admin__field-label"><?= $block->escapeHtml(__('Status')) ?></label>
+                                <div class="admin__field-control">
+                                    <select name="service_status" id="service_status" class="admin__control-select">
+                                        <?php foreach ($service_status as $key => $value):?>
+                                            <option value="<?= $key ?>" <?= ($service->getBookingStatus()==$key) ? 'selected="selected"':'' ?>><?= $block->escapeHtml($value) ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="admin__field">
+                                <label for="history_comment" class="admin__field-label"><?= $block->escapeHtml(__('Comment')) ?> </label>
+                                <div class="admin__field-control">
+                                    <textarea name="comment" rows="3" cols="5" id="history_comment" class="admin__control-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="admin__field">
+                                <button id="service-update-status" class="action-default scalable action-save action-secondary">
+                                    <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="admin__page-section-item order-account-information">
+             <?php /* Service Total */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Totals')) ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-information-table">
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Sub Total')) ?></th>
+                        <td><span class="price"><?= $block->escapeHtml($block->getFormattedPrice($service->getSubtotal())) ?></span></td>
+                    </tr>
+                    <?php if ($service->getWalletMoney()) : ?>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Wallet Used')) ?></th>
+                            <td><span class="price"><?= $block->escapeHtml($block->getFormattedPrice($service->getWalletMoney())) ?></span></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if (!empty($service->getCouponCode())) : ?>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Discount ('.$service->getCouponCode().')')) ?></th>
+                            <td><span class="price">-<?= $block->escapeHtml($block->getFormattedPrice($service->getCouponAmount())) ?></span></td>
+                        </tr>
+                    <?php endif; ?>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Grand Total')) ?></th>
+                        <td><span class="price"><?= $block->escapeHtml($block->getFormattedPrice($service->getGrandTotal())) ?></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<?php if($block->getServiceStatusUpdateAcl()): ?>
+<script>
+        requirejs(['jquery'], function($){
+                 $("#service-update-status").click(function(){
+            var submitUrl = "<?php echo $this->getUrl('zigly_groomingservice/grooming/updateStatus')?>";
+            var serviceId = <?php echo $service->getEntityId(); ?>;
+            $.ajax({
+                url: submitUrl,
+                type: 'POST',
+                dataType: 'json',
+                showLoader: true,
+                data: {
+                    entity_id: serviceId,
+                    booking_status: $("select#service_status option").filter(":selected").val(),
+                    comment: $('#history_comment').val()
+                },
+                complete: function(response) {
+                    window.location.reload();
+                },
+                error: function (xhr, status, errorThrown) {
+                    console.log('Error happens. Try again.');
+                }
+            });
+        });
+        });
+</script>
+<?php endif; ?>

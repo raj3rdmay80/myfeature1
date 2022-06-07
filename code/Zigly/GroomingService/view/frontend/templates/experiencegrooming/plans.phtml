@@ -1,0 +1,214 @@
+<?php
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_GroomingService
+ */
+$breedTypeName = $block->getBreed();
+$planCollection = $block->getPlans();
+$groomingSession = $block->getGroomingSession();
+$activityPrice = 0;
+$activityMin = 0;
+if (!empty($groomingSession['activity'])) {
+    foreach ($groomingSession['activity'] as $activityId) {
+        $activity = $block->getActivity($activityId);
+        if ($activity->getIsActive()) {
+            $activityPrice += (float)$activity->getData($breedTypeName.'_price');
+            $activityMin += (float)$activity->getData($breedTypeName.'_time');
+        }
+    }
+}
+?>
+<div class="pets-grooming wrapper progress-sections">
+<?php if (count($planCollection)) : ?>
+    <?php
+        $breedTypeName = $block->getBreed();
+    ?>
+
+    <input type="hidden" name="plan_id" <?= !empty($groomingSession['planid']) ? 'value="'.$groomingSession['planid'].'"' : ''?>>
+    <input type="hidden" name="plan_is_custom" <?= (!empty($groomingSession['activity']) && count($groomingSession['activity'])) ? 'value="2"' : 'value="1"'?>>
+
+    <h3 class="plan-pet-name">Select A Plan For <?= $groomingSession['pet_name'] ?></h3>
+    <div class="pets-grooming-selection select-pets-grid plans">
+        <div class="plans-grid">
+            <?php foreach($planCollection as $plan) : ?>
+                <?php $image = $block->getPlanImage($plan->getPlanImage());?>
+                <?php
+                    $selectedClass = '';
+                    if (!empty($groomingSession['planid']) && ($plan->getId() == $groomingSession['planid'])) {
+                        $selectedClass = 'selected';
+                    }
+                ?>
+                <?php $recommend = "";
+                if ($plan->getRecommendedPlan() == 1) {
+                    $recommend = "recommended-plan";
+                } ?>
+
+                <?php if ($plan->getPlanCategory() == '1') : ?>
+                    <div class="plan essential <?= $recommend ?> <?= $selectedClass ?>" data-planid="<?= $plan->getId() ?>">
+                        <?php if ($plan->getRecommendedPlan() == 1) { ?>
+                            <div class="recommended-text">Recommended</div>
+                        <?php } ?>
+                        <div class="plan-content">
+                            <div class="plan-icon">
+                                <img src='<?php echo $image?>' alt="Plan Essential" />
+                            </div>
+                            <div class="plan-title">
+                                <div class="title"><?= $escaper->escapeHtml($plan->getPlanName()) ?></div>
+                            </div>
+                            <div class="plan-details">
+                                <p class="details"><?= /* @noEscape */ $plan->getDescription(); ?></p>
+                            </div>
+                            
+                            <div class="plan-view">
+                                <div class="views-details">
+                                    <a href="javascript:;" class="view-plan-details-include"><?= __("What's Included:") ?></a>
+                                    <?php
+                                        $activities = explode(",", $plan->getActivity());
+                                    ?>
+                                    <?php if (!empty($activities)) : ?>
+                                        <div class="detail-options service-list">
+                                            <ul class="lists">
+                                            <?php foreach($activities as $activityId) : ?>
+                                                <?php $activity = $block->getActivity($activityId); ?>
+                                                <?php if (!empty($activity) && $activity->getIsActive()) : ?>
+                                                    <li class="list-option">
+                                                        <a href="javascript:;" class="list-open"><?= $escaper->escapeHtml($activity->getActivityName()) ?><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                                        <div class="list-details"><?= /* @noEscape */ $activity->getDescription() ?></div>
+                                                    </li>
+                                                <?php endif;?>
+                                            <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                    <?php endif;?>
+                                </div>
+                            </div>
+                            <div class="plan-price">
+                                <div class="price">
+                                    <?= /* @noEscape */ $block->currency(number_format((float)$plan->getData($breedTypeName.'_price'), 2, '.', '')) ?>
+                                </div>
+                                <div class="duration">
+                                        <span class="plan-duration"><?= $escaper->escapeHtml($plan->getData($breedTypeName.'_time')) ?><span class="time-formate"><?= __('Mins') ?></span></span>
+                                </div> 
+                            </div>
+                            <div class="plan-select-button">
+                                <button type="button" class="plan-select" id="plan-select-defined" data-planid="<?= $plan->getId() ?>">
+                                    <?= __('Select') ?>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <?php elseif ($plan->getPlanCategory() == '2') :?>
+                    <div class="plan custom <?= $recommend ?> <?= $selectedClass ?>" data-planid="<?= $plan->getId() ?>">
+                        <?php if ($plan->getRecommendedPlan() == 1) { ?>
+                            <div class="recommended-text" style="display: none;">Recommended</div>
+                        <?php } ?>
+                        <div class="plan-content">
+                            <div class="plan-icon">
+                                <img src='<?php echo $image?>' alt="Plan Essential" />
+                            </div>
+                            <div class="plan-title">
+                                <div class="title"><?= $escaper->escapeHtml($plan->getPlanName()) ?></div>
+                            </div>
+                            <div class="plan-details">
+                                <p class="details"><?= /* @noEscape */ $plan->getDescription(); ?></p>
+                            </div>
+                            
+                            <div class="plan-view">
+                                <div class="views-details">
+                                    <a href="javascript:;" class="view-plan-details"><?= __('Select Services') ?></a>
+                                    
+                                    <?php
+                                        $activities = explode(",", $plan->getActivity());
+                                        $selectedDetailClass = '';
+                                        if (!empty($groomingSession['activity']) && count($groomingSession['activity'])) {
+                                            $selectedDetailClass = 'style="display: block"';
+                                        }
+                                    ?>
+                                    <?php if (!empty($activities)) : ?>
+                                        <div class="detail-options service-list" <?= $selectedDetailClass ?> >
+                                            <ul class="lists">
+                                            <?php foreach($activities as $activityId) : ?>
+                                                <?php $activity = $block->getActivity($activityId); ?>
+                                                <?php if (!empty($activity) && $activity->getIsActive()) : ?>
+                                                <li class="list-option">
+                                                    <input type="checkbox" id="option-<?= $plan->getId() ?>-<?= $activity->getId() ?>" class="activity-check" value="<?= $activity->getId() ?>" <?= (isset($groomingSession['planid']) && $groomingSession['planid'] == $plan->getId() && $selectedDetailClass && in_array($activityId, $groomingSession['activity'])) ? 'checked' : '' ?>>
+
+                                                    <label for="option-<?= $plan->getId() ?>-<?= $activity->getId() ?>">
+                                                       <span> <?= $escaper->escapeHtml($activity->getActivityName()) ?></span>
+                                                        <span class="custom-plan-price" data-price="<?= $activity->getData($breedTypeName.'_price') ?>">
+                                                            <?= /* @noEscape */ $block->currency(number_format((float)$activity->getData($breedTypeName.'_price'), 2, '.', '')) ?>
+                                                        </span>
+                                                    </label>
+                                                    <a href="javascript:;" class="list-open"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                                    <div class="list-details">
+                                                        <?= /* @noEscape */ $activity->getDescription() ?>
+                                                        <p class="custom-plan-duration" data-time="<?= $activity->getData($breedTypeName.'_time') ?>">
+                                                            <?= $escaper->escapeHtml($activity->getData($breedTypeName.'_time')) ?>
+                                                            <span class="time-formate"><?= __('Mins') ?></span>
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <?php endif;?>
+                                            <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                    <?php endif;?>
+                                    <div class="detail-options custom-total-price <?= $selectedDetailClass ?>">
+                                        <ul class="lists">
+                                            <li class="list-option">
+                                                <div class="total-price">
+                                                    <p class="price-text">
+                                                        <?= __('Total Price') ?>
+                                                    </p>
+                                                    <?php if (!empty($groomingSession['activity'])) : ?>
+                                                    <p class="custom-total-price">
+                                                        <strong><?= $activityPrice ?></strong>
+                                                        <?php /* <span>
+                                                            <span class="custom-total-time"><?= $activityMin ?></span>
+                                                            <span class="total time-formate"><?= __('Mins') ?></span>
+                                                        </span> */ ?>
+                                                    </p>
+                                                    <?php else :?>
+                                                    <p class="custom-total-price">
+                                                        <strong>--</strong>
+                                                        <?php /*  <span>
+                                                            <span class="custom-total-time">--</span>
+                                                            <span class="total time-formate"><?= __('Mins') ?></span>
+                                                        </span> */ ?>
+                                                    </p>
+                                                    <?php endif;?>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="plan-price custom-plan-min">
+                                <div class="price" data-estimatedprice="<?= (!empty($groomingSession['activity'])) ? $activityPrice : '' ?>">
+                                    <?= __('Min') ?>
+                                    <?= /* @noEscape */ $block->currency(number_format((float)$plan->getData($breedTypeName.'_minimum_price'), 2, '.', '')) ?>
+                                </div>
+                                <div class="duration">
+                                    <?php if (!empty($groomingSession['activity'])) : ?>
+                                        <span class="plan-duration" data-estimatedmin="<?= $activityMin ?>"><?= $activityMin ?></span>
+                                    <?php else : ?>
+                                        <span class="plan-duration" data-estimatedmin="">--</span>
+                                    <?php endif;?>
+                                    <span class="time-formate">Mins</span>
+                                </div> 
+                            </div>
+                            <div class="plan-select-button">
+                                <button type="button" class="plan-select" id="plan-select-custom" data-planid="<?= $plan->getId() ?>">
+                                    <?= __('Select') ?>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;?>
+            <?php endforeach;?>
+        </div>
+    </div>
+<?php else : ?>
+<div class="nodata-msg message-notice notice message"><?= __('No Plans available for your selected location.') ?></div>
+<?php endif;?>
+</div>

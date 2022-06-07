@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_VetConsulting
+ */ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Zigly_GroomingService::css/service.css"/>
+        <css src="Zigly_VetConsulting::css/vet_consulting.css"/>
+   </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="vet.consulting.success" class="Zigly\VetConsulting\Block\Vet\Success" template="Zigly_VetConsulting::vet/success.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

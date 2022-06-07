@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Groomer
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Zigly\Groomer\Api\GroomerRepositoryInterface" type="Zigly\Groomer\Model\GroomerRepository"/>
+	<preference for="Zigly\Groomer\Api\Data\GroomerInterface" type="Zigly\Groomer\Model\Data\Groomer"/>
+	<preference for="Zigly\Groomer\Api\Data\GroomerSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Zigly\Groomer\Model\ResourceModel\Groomer\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">zigly_groomer_groomer</argument>
+			<argument name="resourceModel" xsi:type="string">Zigly\Groomer\Model\ResourceModel\Groomer\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="zigly_groomer_groomer_listing_data_source" xsi:type="string">Zigly\Groomer\Model\ResourceModel\Groomer\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name="Zigly\Groomer\ReferenceImageUpload" type="Zigly\Groomer\Model\ImageUploader">
+		<arguments>
+			<argument name="baseTmpPath" xsi:type="string">groomer/tmp/feature</argument>
+			<argument name="basePath" xsi:type="string">groomer/feature</argument>
+			<argument name="allowedExtensions" xsi:type="array">
+				<item name="jpg" xsi:type="string">jpg</item>
+				<item name="jpeg" xsi:type="string">jpeg</item>
+				<item name="png" xsi:type="string">png</item>
+			</argument>
+			<argument name="allowedMimeTypes" xsi:type="array">
+				<item name="jpg" xsi:type="string">image/jpg</item>
+				<item name="jpeg" xsi:type="string">image/jpeg</item>
+				<item name="png" xsi:type="string">image/png</item>
+			</argument> 
+		</arguments>
+	</virtualType>
+	<type name="Zigly\Groomer\Controller\Adminhtml\Groomer\Image\BDProfile">
+		<arguments>
+			<argument name="imageUploader" xsi:type="object">Zigly\Groomer\ReferenceImageUpload</argument>
+		</arguments>
+	</type>
+	<type name="Zigly\Groomer\Controller\Adminhtml\Groomer\Image\Profile">
+		<arguments>
+			<argument name="imageUploader" xsi:type="object">Zigly\Groomer\ReferenceImageUpload</argument>
+		</arguments>
+	</type>
+	<type name="Zigly\Groomer\Controller\Adminhtml\Groomer\Image\Aadhar">
+		<arguments>
+			<argument name="imageUploader" xsi:type="object">Zigly\Groomer\ReferenceImageUpload</argument>
+		</arguments>
+	</type>
+	<type name="Zigly\Groomer\Controller\Adminhtml\Groomer\Image\Pan">
+		<arguments>
+			<argument name="imageUploader" xsi:type="object">Zigly\Groomer\ReferenceImageUpload</argument>
+		</arguments>
+	</type>
+</config>

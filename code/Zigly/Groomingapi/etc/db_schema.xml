@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="zigly_managepets" resource="default" engine="innodb" comment="zigly_managepets Table">
+		<column xsi:type="smallint" name="delete_status" unsigned="true" nullable="false" identity="false" default="0" comment="delete_status "/>
+	</table>
+</schema>

@@ -1,0 +1,255 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">zigly_mobilehome_mobilehome_form.mobilehome_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Zigly\Mobilehome\Block\Adminhtml\Mobilehome\Edit\BackButton"/>
+			<button name="delete" class="Zigly\Mobilehome\Block\Adminhtml\Mobilehome\Edit\DeleteButton"/>
+			<button name="save" class="Zigly\Mobilehome\Block\Adminhtml\Mobilehome\Edit\SaveButton"/>
+			<button name="save_and_continue" class="Zigly\Mobilehome\Block\Adminhtml\Mobilehome\Edit\SaveAndContinueButton"/>
+		</buttons>
+		<namespace>zigly_mobilehome_mobilehome_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>zigly_mobilehome_mobilehome_form.mobilehome_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="mobilehome_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="mobilehome_form_data_source" class="Zigly\Mobilehome\Model\Mobilehome\DataProvider">
+			<settings>
+				<requestFieldName>mobilehome_id</requestFieldName>
+				<primaryFieldName>mobilehome_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+	<!-- 	<field formElement="imageUploader" name="image" sortOrder="10" >
+		    <argument name="data" xsi:type="array">
+		        <item name="config" xsi:type="array">
+		            <item name="source" xsi:type="string">mobilehome</item>
+		        </item>
+		    </argument>
+		    <settings>
+		        <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+		        <dataType>text</dataType>
+		        <label translate="true">Image</label>
+		        <dataScope>image</dataScope>
+		        <visible>true</visible>
+		        <validation>
+		            <rule name="required-entry" xsi:type="boolean">false</rule>
+		        </validation>
+		    </settings>
+		    <formElements>
+		        <imageUploader>
+		            <settings>
+		                <required>true</required>
+		                <uploaderConfig>
+		                    <param xsi:type="url" name="url" path="zigly_mobilehome/mobilehome/upload"/>
+		                </uploaderConfig>
+		                <previewTmpl>Zigly_Mobilehome/image-preview</previewTmpl>
+		                <openDialogTitle>Media Gallery</openDialogTitle>
+		                <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+		                <maxFileSize>4194304</maxFileSize>
+		            </settings>
+		        </imageUploader>
+		    </formElements>
+		</field> -->
+		<field name="image" formElement="imageUploader" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mobilehome</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Banner Image</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>true</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="zigly_mobilehome/mobilehome/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>Zigly_Mobilehome/image-preview</previewTmpl>
+		                <openDialogTitle>Media Gallery</openDialogTitle>
+		                <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+		                <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+		<field name="name" formElement="input" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">mobilehome</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">name</label>
+				<dataScope>name</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="url_key" formElement="input" sortOrder="30">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">mobilehome</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Url Key</label>
+				<dataScope>url_key</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="type" formElement="select" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mobilehome</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Type</label>
+                <dataScope>type</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">0</item>
+                                <item name="label" xsi:type="string">Banner</item>
+                            </option>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">Category</item>
+                            </option>
+                            <option name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">2</item>
+                                <item name="label" xsi:type="string">Brand</item>
+                            </option>
+                            <option name="3" xsi:type="array">
+                                <item name="value" xsi:type="string">3</item>
+                                <item name="label" xsi:type="string">Offer</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+		<field name="isclickable" formElement="select" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mobilehome</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Is Clickable</label>
+                <dataScope>isclickable</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">0</item>
+                                <item name="label" xsi:type="string">No</item>
+                            </option>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">Yes</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+  
+     	<field name="status" formElement="select" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mobilehome</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Status</label>
+                <dataScope>status</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">0</item>
+                                <item name="label" xsi:type="string">Disable</item>
+                            </option>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">Enable</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="position" formElement="input" sortOrder="70">
+        	<argument name="data" xsi:type="array">
+        		<item name="config" xsi:type="array">
+        			<item name="source" xsi:type="string">mobilehome</item>
+        		</item>
+        	</argument>
+        	<settings>
+        		<dataType>text</dataType>
+        		<label translate="true">Position</label>
+        		<dataScope>position</dataScope>
+        		<validation>
+        			<rule name="required-entry" xsi:type="boolean">false</rule>
+        		</validation>
+        	</settings>
+        </field>
+	</fieldset>
+</form>

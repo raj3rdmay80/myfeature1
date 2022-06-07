@@ -1,0 +1,195 @@
+<?php
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Managepets
+ */
+?>
+<?php $petdetails = $this->getpetdetails();?>
+<?php $types = $this->getSpecies($petdetails->getType());?>
+<?php $breeds = $this->getBreeds($petdetails->getType(),$petdetails->getBreed());?>
+<?php $genders = $this->getGenders();?>
+<?php $breedName = [];
+$breedValue = [];
+foreach ($breeds->getData() as $breed) {
+    array_push($breedName, $breed['name']);
+    $breedValue[] = [$breed['name'] => $breed['breed_id']];
+}
+if (empty($petdetails->getId())) {
+    $label = 'Add New Pet';
+} else {
+    $label = 'Update Pet';
+}
+?>
+<?php $jsondata = $this->encodebreed($breeds->getData()); ?>
+<div class="managepets-wrap">
+    <form data-mage-init='{"validation":{}}' enctype="multipart/form-data" data-hasrequired="* Required Fields" class="form managepet-form" id="managepet-form" method="post" autocomplete="off" action="<?= $this->getUrl('managepets/index/save')?>">
+    <input type="hidden" name="pet_id" value="<?= $block->escapeHtml($petdetails->getId())?>" />
+    <input type="hidden" name="groomer_service" value="<?= $block->escapeHtml($this->getGroomerParam()) ?>">
+    <input type="hidden" name="service" value="<?= $block->escapeHtml($this->getServiceParam()) ?>">
+    <label class="label page-heading" for="add-pet-label"><span><?= $block->escapeHtml($label) ?></span></label>
+    <fieldset class="field1">
+        <div class="field required">
+            <div class="fields type">
+                <label class="label" for="type"><span><?= $block->escapeHtml(__('TYPE')) ?></span></label>
+                <div class="breed-control type">
+                    <?php foreach($types as $tkey => $type){ ?>
+                        <?php $url = $this->getSpeciesImage($type->getProfileImage()); ?>
+                        <?php $checked = ($petdetails->getType() == $type->getSpeciesId())? 'checked':'';?>
+                        <input type="radio" data-validate="{'required':true}" name="type" class="primary required-entry" status="<?= $block->escapeHtml($type->getStaus())?>" <?= $block->escapeHtml($checked) ?> id="<?= $block->escapeHtml($type->getSpeciesId())?>" value="<?= $block->escapeHtml($type->getSpeciesId())?>" title="<?= $block->escapeHtml($type->getName())?>" >
+                        <label class="breed-label" for="<?= $block->escapeHtml($type->getSpeciesId())?>">
+                            <?= $block->escapeHtml($type->getName())?>
+                        </label>
+                    <?php }?>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="field2">
+        <div class="field required">
+            <div class="fields gender">
+                <label for="gender" class="label"><span><?= $block->escapeHtml(__("GENDER")) ?></span></label>
+                <div class="breed-control petgender">
+                    <?php foreach($genders as $gkey => $gender){ ?>
+                        <?php $checked = ($petdetails->getGender() == $gkey)? 'checked':'';?>
+                        <input type="radio" data-validate="{required:true}" name="gender" class="primary" <?= $block->escapeHtml($checked)?> id="<?= $block->escapeHtml($gender)?>" value="<?= $block->escapeHtml($gkey)?>" title="<?= $block->escapeHtml($gender)?>" >
+                        <label class="gender-label" for="<?= $block->escapeHtml($gender)?>"><?= $block->escapeHtml($gender)?></label>
+                    <?php }?>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="field3">
+        <div class="field required">
+            <div class="fields breed">
+                <label for="breed" class="label"><span><?= $block->escapeHtml(__("BREED")) ?></span></label>
+                <div class="control petbreed">
+                <input type="text" name="breed" id="breed_id" value="<?= $block->escapeHtml($petdetails->getBreed())?>"/>
+                <?php $bname = '';
+                if($petdetails->getBreed()){
+                    $bname = $this->getbreeddata($petdetails->getBreed());
+                } ?>
+                <input type="text" data-validate="{required:true}" name="breedname" placeholder="Enter the breed type" id="breedname" value="<?= $block->escapeHtml($bname)?>" title="<?= $block->escapeHtml('Breed') ?>" class="input-text" >
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="field4">
+        <div class="field option-image">
+            <div class="fields dob">
+                <label for="dob" class="label">
+                <span><?= $block->escapeHtml(__("DOB")) ?></span><br/>
+                <span class="dob-note"><span><?= $block->escapeHtml(__("(optional)")) ?></span>
+                </label>
+                <div class="type-control">
+                    <input type="text" accept="image/*" id="pet_dob" class="input-text" data-validate="{'validate-no-utf8mb4-characters':true,'currentdateMethod':true}" name="pet_dob" data-selector="pet_dob" value="<?= $block->escapeHtml($this->getDobvalue($petdetails->getPetDob()))?>" autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="field5">
+        <div class="field">
+            <div class="fields age-year">
+                <label for="age" class="label"><span><?= $block->escapeHtml(__("AGE")) ?></span></label>
+                <div class="pet-age">
+                    <div class="pet-year">
+                        <input type="tel" name="age_year" oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" id="age_year" maxlength="2" value="<?= $block->escapeHtml($petdetails->getAgeYear())?>" title="<?= $block->escapeHtml('Year') ?>" class="input-text"  placeholder="Year(s)">
+                    </div>
+                    <div class="pet-month">
+                        <input type="tel" name="age_month" oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" id="age_month" maxlength="2" value="<?= $block->escapeHtml($petdetails->getAgeMonth())?>" title="<?= $block->escapeHtml('Month') ?>" class="input-text" placeholder="Month(s)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="field6">
+        <div class="field required">
+            <div class="fields pet-name">
+                <label for="name" class="label"><span><?= $block->escapeHtml(__("NAME")) ?></span></label>
+                <div class="control name">
+                    <input type="text" name="name" placeholder="Type name of the pet" id="name" value="<?= $block->escapeHtml($petdetails->getName())?>" title="<?= $block->escapeHtml('Name') ?>" class="required-entry validate-length input-text" data-validate="{'required':true, 'minlength':'2', 'maxlength':'50'}" data-msg-maxlength="Name should not exceed 50 characters.">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="field7">
+        <label for="avatar" class="label"><span><?= $block->escapeHtml(__("SELECT AVATAR")) ?></span><span class="avatar-note"><span><?= $block->escapeHtml(__("(optional)")) ?></span></label>
+        <div class="field">
+            <div class="fields">
+                <!-- Upload the user image -->
+                <div class="file-upload">
+                <?php $avatarImg = explode("/", $petdetails->getFilepath());
+                if ($avatarImg[0] != 'images'){?>
+                    <?php if($petdetails->getFilepath()){ ?>
+                        <div class="upload-custom-image">
+                            <span class="pip">
+                                <input type="hidden" accept="image/jpeg, image/png, image/jpg," name="filedatas" value="<?= $block->escapeHtml($petdetails->getFilepath())?>">
+                                <img class="imageThumb custom-image" src="<?= $block->escapeHtml($this->getPetimageurl($petdetails->getFilepath()))?>">
+                                <span class="remove">x</span>
+                            </span>
+                        </div>
+                    <?php }?>
+                <?php } ?>
+                <input type="file" accept="image/*" name="filedatas" id="imageUpload" style="display: none;" />
+                <div class="add-photo">
+                    <div class="filediv" id ="filediv">
+                        <label><span><?= $block->escapeHtml(__("Add Photo")) ?></span></label>
+                    </div>
+                </div>
+                </div>
+
+                <ul id="static-avatar">
+                    <li class="avatar-cat">
+                        <input type="radio" id="avatar1" <?php if($petdetails->getFilepath() == 'images/ava_cat.png'){ echo 'checked'; }?> name="avatar_file" value="<?= $block->escapeHtml('images/ava_cat.png') ?>">
+                        <label class="avatar-label" for="avatar1"><img class="imageThumb" src="<?= $block->escapeHtml($this->getViewFileUrl('Zigly_Managepets::images/ava_cat.png')) ?>"></label>
+                    </li>
+                    <li class="avatar-dog">
+                        <input type="radio" id="avatar2" <?php if($petdetails->getFilepath() == 'images/ava_dog-1.png') { echo 'checked'; } ?> name="avatar_file" value="<?= $block->escapeHtml('images/ava_dog-1.png') ?>">
+                        <label class="avatar-label" for="avatar2"><img class="imageThumb" src="<?= $block->escapeHtml($this->getViewFileUrl('Zigly_Managepets::images/ava_dog-1.png')) ?>"></label>
+                    </li>
+                    <li class="avatar-dog">
+                        <input type="radio" id="avatar3" <?php if($petdetails->getFilepath() == 'images/ava_dog-2.png') { echo 'checked'; } ?> name="avatar_file" value="<?= $block->escapeHtml('images/ava_dog-2.png') ?>">
+                        <label class="avatar-label" for="avatar3"><img class="imageThumb" src="<?= $block->escapeHtml($this->getViewFileUrl('Zigly_Managepets::images/ava_dog-2.png')) ?>"></label>
+                    </li>
+                    <li class="avatar-dog">
+                        <input type="radio" id="avatar4" <?php if($petdetails->getFilepath() == 'images/ava_dog-3.png') { echo 'checked'; } ?> name="avatar_file" value="<?= $block->escapeHtml('images/ava_dog-3.png') ?>">
+                        <label class="avatar-label" for="avatar4"><img class="imageThumb" src="<?= $block->escapeHtml($this->getViewFileUrl('Zigly_Managepets::images/ava_dog-3.png')) ?>"></label>
+                    </li>
+                    <li class="avatar-cat">
+                        <input type="radio" id="avatar5" <?php if($petdetails->getFilepath() == 'images/ava_dog-4.png') { echo 'checked'; } ?> name="avatar_file" value="<?= $block->escapeHtml('images/ava_dog-4.png') ?>">
+                        <label class="avatar-label" for="avatar5"><img class="imageThumb" src="<?= $block->escapeHtml($this->getViewFileUrl('Zigly_Managepets::images/ava_dog-4.png')) ?>"></label>
+                    </li>
+                    <li class="avatar-cat">
+                        <input type="radio" id="avatar6" <?php if($petdetails->getFilepath() == 'images/cat3.png') { echo 'checked'; } ?> name="avatar_file" value="<?= $block->escapeHtml('images/cat3.png') ?>">
+                        <label class="avatar-label" for="avatar6"><img class="imageThumb" src="<?= $block->escapeHtml($this->getViewFileUrl('Zigly_Managepets::images/cat3.png')) ?>"></label>
+                    </li>
+                    </ul>
+            </div>
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" class="action submit primary save-new-pet" title="<?= $block->escapeHtml(__('ADD PET')) ?>"><span><?= $block->escapeHtml(__('ADD PET')) ?></span></button>
+            </div>
+        </div>
+    </fieldset>
+    </form>
+
+    <div class="banner-image">
+        <img src="<?php echo $this->getViewFileUrl('Zigly_Managepets::images/banner-1.png'); ?>">
+    </div>
+
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_Managepets/js/managepets": {
+                "AjaxUrl" : "<?php echo $this->getUrl().'managepets/index/fileupload'?>",
+                "getBreed" : "<?php echo $this->getUrl().'managepets/index/breed'?>",
+                "breedname" : <?= json_encode($breedName);?>,
+                "breedValue" : <?= json_encode($breedValue);?>,
+                "selectedBreed" : "<?php echo $bname;?>",
+                "selectedType" : "<?php echo $petdetails->getType();?>",
+                "calenderimage" : "<?php echo $this->getViewFileUrl('Magento_Theme::calendar.png');?>"
+            }
+        }
+    }
+</script>

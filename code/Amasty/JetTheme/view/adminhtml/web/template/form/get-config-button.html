@@ -1,0 +1,20 @@
+<button type="button"
+        css="buttonClasses"
+        click="action"
+        disable="disabled"
+        attr="'data-index': index"
+        data-bind="afterRender: afterRenderHandler">
+    <span text="title"/>
+</button>
+
+<if args="isErrorPresent">
+    <strong class="_error">
+        <span class="admin__page-nav-item-messages">
+            <span class="admin__page-nav-item-message _error">
+                <span class="admin__page-nav-item-message-icon"></span>
+                <span class="admin__page-nav-item-message-tooltip"
+                      data-bind="i18n: errorMessage"></span>
+            </span>
+        </span>
+    </strong>
+</if>

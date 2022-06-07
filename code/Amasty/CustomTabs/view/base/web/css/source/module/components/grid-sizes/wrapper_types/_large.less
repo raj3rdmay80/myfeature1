@@ -1,0 +1,172 @@
+//
+//  Large Grid Styles
+//  _________________________
+
+//
+//  Common
+//  --------------------------
+
+& when (@media-common = true) {
+    //Fix .am-scrollbar conflict
+    @import (multiple) '../../../_mixins';
+	.amtab-grid-wrapper.-large {
+		.amtab-grid-container {
+			& {
+				max-width: 100%;
+			}
+
+			.amtab-sizes > .amtab-title {
+				margin: 0 0 @amtab__indent__xxl;
+			}
+		}
+
+		.amtab-measure {
+			& {
+				padding: 30px 0 0 0;
+			}
+
+			> .amtab-title {
+				margin: 0 0 @amtab__indent;
+			}
+		}
+
+		.amtab-table-container {
+			& {
+				.am-scrollbar(x);
+
+				position: relative;
+				border: 1px solid @amtab-grid__border__color;
+			}
+
+			.amtab-cell {
+				min-width: 65px;
+			}
+
+			.amtab-title {
+				& {
+					min-width: 130px;
+					background: @amtab-grid__secondary__color;
+					font-weight: bold;
+				}
+
+				&.-amtab-hoverline {
+					background: @amtab-grid__active__color;
+				}
+			}
+
+			.amtab-desc {
+				flex-basis: 100%;
+				font-weight: 600;
+				font-style: normal;
+				font-size: 12px;
+			}
+		}
+
+		.amtab-head-line,
+		.amtab-table-line {
+			height: 65px;
+		}
+
+		.amtab-head-line .amtab-cell {
+			& {
+				color: @amtab-grid__active__color;
+				font-weight: bold;
+			}
+
+			&.-amtab-hoverline {
+				color: #fff;
+			}
+		}
+
+		.amtab-steps-container {
+			& {
+				.am-flex(none, none, wrap);
+
+				padding: 16px 0 @amtab__indent__xxl;
+				counter-reset: step;
+			}
+
+			.amtab-step {
+				margin: 0 0 @amtab__indent__xl * 2 0;
+				width: 100%;
+			}
+
+			.amtab-img {
+				& {
+					position: relative;
+					padding: 0 0 0 100px;
+					max-height: 110px;
+				}
+
+				&:after,
+				&:before {
+					position: absolute;
+					top: 0;
+					left: 0;
+					box-sizing: border-box;
+					width: 18px;
+					height: 18px;
+					content: '';
+				}
+
+				&:before {
+					border: 1px solid transparent;
+					border-radius: 50%;
+					background: #cfe0ff;
+				}
+
+				&:after {
+					.am-flex(center, center);
+
+					font-weight: 600;
+					font-size: 11px;
+					line-height: 10px;
+					counter-increment: step;
+					color: @amtab-grid__active__color__secondary;
+					content: counter(step);
+				}
+			}
+
+			.amtab-tip {
+				display: block;
+				margin: @amtab__indent / 2 0 0 0;
+				color: #000;
+				font-weight: bold;
+				font-size: 12px;
+			}
+
+			.amtab-desc {
+				margin: @amtab__indent 0 0 0;
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+//
+//  Tablet
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+	.amtab-grid-wrapper.-large {
+		.amtab-measure {
+			padding: 45px 0 0 0;
+		}
+
+		.amtab-steps-container {
+			.amtab-step {
+				& {
+					max-width: 260px;
+				}
+
+				&:not(:last-child) {
+					margin: 0 50px 0 0;
+				}
+			}
+
+			.amtab-img {
+				padding: 0 0 0 35px;
+			}
+		}
+	}
+}

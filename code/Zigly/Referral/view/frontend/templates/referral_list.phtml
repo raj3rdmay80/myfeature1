@@ -1,0 +1,61 @@
+<?php
+$reference_id = $block->getReferenceId();
+$url = $block->getUrl('customer/account/create',['reference'=> $reference_id]);
+$whatsapp_url = urlencode($url);
+?>
+<div class="block block-dashboard-info">
+    <div class="block-content">
+        <div class="box-information">
+            <strong class="box-title">
+                <span>Referral Information</span>
+            </strong>
+            <div class="box-content">
+                <table class="data table history">
+                    <tr><td class="col">Referral ID</td> <td class="col"> <?php echo $reference_id; ?></td></tr>
+                    <tr><td class="col">Referral URL</td> <td class="col"><?php echo $url; ?></td></tr>
+                    <tr>
+                        <td class="col" colspan="2">
+                            <a class="action primary" href="mailto:?subject=Hello there&body=I wanted you register on this website through this link <?php echo $url;?>">Share Via Email</a> &nbsp;
+                            <a class="action primary" href="https://wa.me/9994118188/?text=<?php echo $whatsapp_url; ?>">Share via Whatsapp</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php $_referrals = $block->getReferrals(); ?>
+<?= $block->getChildHtml('info') ?>
+<?php if ($_referrals && count($_referrals)) : ?>
+    <div class="table-wrapper">
+        <table class="data table history">
+            <caption class="table-caption"><?= $block->escapeHtml(__('Referrals')) ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?= $block->escapeHtml(__('Referral ID #')) ?></th>
+                    <th scope="col" class="col date"><?= $block->escapeHtml(__('Date')) ?></th>
+                    <th scope="col" class="col id"><?= $block->escapeHtml(__('Referred Customer Email')) ?></th>
+                    <th scope="col" class="col"><?= $block->escapeHtml(__('Order ID')) ?></th>
+                    <th scope="col" class="col"><?= $block->escapeHtml(__('Referral Amount')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_referrals as $_referral) : ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Referral ID #')) ?>" class="col id"><?= $block->escapeHtml($_referral->getReferralId()) ?></td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Date')) ?>" class="col date"><?= /* @noEscape */ $block->formatDate($_referral->getCreatedAt()) ?></td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Referred Customer Email')) ?>" class="col shipping"><?= $_referral->getReferralCustomerEmail() ?></td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Order ID')) ?>" class="col total"><?= $_referral->getOrderId() ?></td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Referral Amount')) ?>" class="col status"><?= /* @noEscape */ $_referral->getReferredAmount() ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()) : ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif ?>
+<?php else : ?>
+    <div class="message info empty"><span><?= $block->escapeHtml(__('You have no referrals.')) ?></span></div>
+<?php endif ?>

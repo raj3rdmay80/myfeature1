@@ -1,0 +1,2298 @@
+/**
+* Copyright (C) 2020  Zigly
+* @package   Zigly_Sales
+*/
+:root{
+	--site-green: #00A384;
+}
+
+
+.sales-orders-history .message.info.empty{
+	margin: 30px;	
+}
+
+
+.sales-orders-history #maincontent,
+.sales-orders-view #maincontent,
+.sales-orders-booking #maincontent,
+.sales-orders-viewbooking #maincontent{
+	margin-bottom: 100px;
+	width: 90%;
+}
+.sales-orders-history .page-title-wrapper,
+.sales-orders-view .page-title-wrapper,
+.sales-orders-booking .page-title-wrapper,
+.sales-orders-viewbooking .page-title-wrapper{
+	padding-top: 30px;
+}
+
+.sales-orders-history .page-title-wrapper .page-title,
+.sales-orders-view .page-title-wrapper .page-title,
+.sales-orders-booking .page-title-wrapper .page-title,
+.sales-orders-viewbooking .page-title-wrapper .page-title{
+	font-size: 25px;
+	color: var(--primary);
+	text-transform: capitalize;
+}
+
+.sales-orders-history ul.sales-order-history-list,
+.sales-orders-history ul.orders-side-menu,
+.sales-orders-view ul.orders-side-menu,
+.sales-orders-booking ul.orders-side-menu,
+.sales-orders-viewbooking ul.orders-side-menu{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sales-orders-history .sidebar.sidebar-additional,
+.sales-orders-view .sidebar.sidebar-additional,
+.sales-orders-booking .sidebar.sidebar-additional,
+.sales-orders-viewbooking .sidebar.sidebar-additional{
+	width: 100%;
+}
+
+.sales-orders-history ul.orders-side-menu{
+	margin-top: 20px;
+}
+.sales-orders-history ul.orders-side-menu,
+.sales-orders-view ul.orders-side-menu,
+.sales-orders-booking ul.orders-side-menu,
+.sales-orders-viewbooking ul.orders-side-menu{
+	background: #fff;
+	border: none;
+	border-radius: 24px;
+	box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+    -webkit-box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+    -moz-box-shadow: 1px 1px 54px rgba(5, 43, 80, 0.1);
+}
+
+.sales-orders-history ul.orders-side-menu > li,
+.sales-orders-view ul.orders-side-menu > li,
+.sales-orders-booking ul.orders-side-menu > li,
+.sales-orders-viewbooking ul.orders-side-menu > li{
+	padding: 20px 25px;
+	margin: 0;
+	min-height: 100px;
+	border-radius: 24px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	position: relative;
+}
+.sales-orders-history ul.orders-side-menu > li::before,
+.sales-orders-view ul.orders-side-menu > li::before,
+.sales-orders-booking ul.orders-side-menu > li::before,
+.sales-orders-viewbooking ul.orders-side-menu > li::before{
+	content: '';
+	position: absolute;
+	width: 82%;
+	height: 1px;
+	/*background: #052a5090;*/
+	left: 50%;
+	bottom: 0px;
+	transform: translateX(-50%);
+}
+.sales-orders-history ul.orders-side-menu > li:last-child::before,
+.sales-orders-view ul.orders-side-menu > li:last-child::before,
+.sales-orders-booking ul.orders-side-menu > li:last-child::before,
+.sales-orders-viewbooking ul.orders-side-menu > li:last-child::before{
+	display: none;
+}
+.sales-orders-history ul.orders-side-menu > li a.action,
+.sales-orders-view ul.orders-side-menu > li a.action,
+.sales-orders-booking ul.orders-side-menu > li a.action,
+.sales-orders-viewbooking ul.orders-side-menu > li a.action{
+	color: var(--primary);
+	font-size: 15px;
+	text-transform: uppercase;
+	font-family: 'nunito_sanssemibold';
+	display: block;
+}
+
+.sales-orders-history ul.orders-side-menu > li a.action:before,
+.sales-orders-view ul.orders-side-menu > li a.action:before,
+.sales-orders-booking ul.orders-side-menu > li a.action:before,
+.sales-orders-viewbooking ul.orders-side-menu > li a.action:before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	top: 0;
+	left: 0;
+}
+
+
+
+
+.sales-orders-history ul.orders-side-menu > li > span,
+.sales-orders-view ul.orders-side-menu > li > span,
+.sales-orders-booking ul.orders-side-menu > li > span,
+.sales-orders-viewbooking ul.orders-side-menu > li > span{
+	margin-top: 15px;
+	color: #052A5090;
+	font-size: 12px;
+	font-family: 'nunito_sanssemibold';
+}
+
+.sales-orders-history ul.orders-side-menu > li.active,
+.sales-orders-view ul.orders-side-menu > li.active,
+.sales-orders-booking ul.orders-side-menu > li.active,
+.sales-orders-viewbooking ul.orders-side-menu > li.active{
+	background: var(--primary);
+}
+
+.sales-orders-history ul.orders-side-menu > li.active a.action,
+.sales-orders-view ul.orders-side-menu > li.active a.action,
+.sales-orders-booking ul.orders-side-menu > li.active a.action,
+.sales-orders-viewbooking ul.orders-side-menu > li.active a.action{
+	color: #fff;
+}
+.sales-orders-history ul.orders-side-menu > li.active > span,
+.sales-orders-view ul.orders-side-menu > li.active > span,
+.sales-orders-booking ul.orders-side-menu > li.active > span,
+.sales-orders-viewbooking ul.orders-side-menu > li.active > span{
+	color: #d5d5d5;
+}
+
+.account.page-layout-2columns-left .sidebar.sidebar-main,
+.sidebar.sidebar-additional {
+     display: block; 
+}
+.sales-orders-history .table-wrapper.orders-history,
+.sales-orders-view .order-details-items.ordered,
+.sales-orders-viewbooking .sales-order-view-booking{
+	width: 90%;
+	float: right;
+}
+.sales-orders-history .table-wrapper.orders-history .your-orders{
+	color: var(--primary);
+	font-size: 16px;
+	text-transform: uppercase;
+	font-family: 'nunito_sanssemibold';
+	position: relative;
+	padding-left: 25px;
+	margin-left: 25px;
+}
+
+.sales-orders-history .table-wrapper.orders-history .your-orders::before{
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	left: 0;
+	top: -2px;
+	background: url(../images/blue_heart.png) no-repeat center;
+	background-size: contain;
+}
+
+/*Custom scroll bar*/
+.sales-orders-history .table-wrapper.orders-history ul{
+	padding-left: 25px;
+	padding-bottom: 30px;
+	max-height: 570px;
+	overflow-y: auto;
+	scrollbar-color: var(--primary) #052a5012;
+	scrollbar-width: thin;
+}
+.sales-orders-history .table-wrapper.orders-history ul::-webkit-scrollbar {
+    width: 4px;
+    background-color: #052a5018;
+    border-radius: 24px;
+}
+.sales-orders-history .table-wrapper.orders-history ul::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border: none;
+    min-height: 20px;
+    border-radius: 50px;
+}
+.sales-orders-history .table-wrapper.orders-history ul::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #052a5018;
+    background-color: #052a5012;
+    border: none;
+}
+
+/*custom scroll bar end*/
+
+.sales-orders-history .table-wrapper.orders-history ul > li{
+	border: none;
+	border-radius: 24px;
+	box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+    -webkit-box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+    -moz-box-shadow: 1px 1px 54px rgba(5, 43, 80, 0.1);
+    margin: 25px 0; 
+    max-width: 80%;
+    width: 100%;
+}
+.sales-orders-history .table-wrapper.orders-history ul > li .order-history-head{
+	padding: 25px 25px 10px 25px;
+	background: var(--site-pink);
+	border-top-left-radius: 24px;
+	border-top-right-radius: 24px; 
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.sales-orders-history .table-wrapper.orders-history ul > li .order-history-head > span{
+	color: var(--primary);
+	font-family: 'nunito_sansbold';
+	text-transform: capitalize;
+	font-size: 16px;
+}
+.sales-orders-history .table-wrapper.orders-history ul > li .order-history-head > span.order-placed{
+	text-transform: uppercase;
+}
+.sales-orders-history .table-wrapper.orders-history ul > li .delivered-on{
+	padding: 20px 25px 10px 25px;
+}
+
+.sales-orders-history .table-wrapper.orders-history ul > li .delivered-on label{
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	color: var(--primary);
+}
+.sales-orders-history .table-wrapper.orders-history ul > li .order-products{
+	padding: 10px 25px 25px 25px;
+}
+.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td{
+	padding: 0;
+	font-size: 14px;
+	color: var(--primary);
+	font-family: 'nunito_sanssemibold';
+	padding: 8px 5px;
+}
+.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td .product-image{
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td .product-image{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+
+.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td p{
+	margin: 0;
+}
+.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td .product-options > p{
+	margin: 0 0 24px 0;
+	text-align: center;
+	font-size: 12px;
+	font-family: 'nunito_sansbold';
+}
+.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td .product-options > p a{
+	background: var(--primary);
+	color: #fff;
+	border-radius: 24px;
+	padding: 6px 5px;	
+	border: 2px solid var(--primary);
+	text-transform: uppercase;
+}
+
+.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td .product-options > p.download-invoice > a{
+	background: transparent;
+	color: var(--primary);
+}
+
+.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td .product-options > p.status{
+	text-transform: uppercase;
+	color: var(--site-green);
+}
+.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td:nth-child(2){
+	width: 180px;
+	padding-right: 15px;
+}
+
+
+
+/*orders details section*/
+
+.sales-orders-view .columns,
+.sales-orders-viewbooking .columns{
+	margin-top: 50px;
+}
+
+.sales-orders-view .order-details-items.ordered,
+.sales-orders-viewbooking .sales-order-view-booking{
+	border-radius: 24px;
+	box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+	-webkit-box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+	-moz-box-shadow: 1px 1px 54px rgba(5, 43, 80, 0.1);
+}
+
+.sales-orders-view .order-details-items.ordered{
+	position: relative;
+	display: grid;
+	grid-template-columns: 2fr 4fr;
+	place-content: space-between;
+	place-items: start;
+	top: -20px;
+}
+.sales-orders-view .order-back,
+.sales-orders-viewbooking .booking-back{
+	width: 88%;
+	float: right;
+	position: relative;
+	top: -40px;
+	padding-left: 25px;
+}
+
+.sales-orders-view .order-details-items.ordered .actions-toolbar{
+	display: none;
+}
+.sales-orders-view .order-back a,
+.sales-orders-viewbooking .booking-back a{
+	position: relative;
+	font-size: 14px;
+	color: var(--primary);
+	text-transform: uppercase;
+	font-family: 'nunito_sanssemibold';
+}
+.sales-orders-view .order-back a::before,
+.sales-orders-viewbooking .booking-back a::before{
+	content: '';
+	position: absolute;
+	left: -25px;
+    top: -1px;
+    width: 15px;
+    height: 15px;
+	background: url(../images/back.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-view .order-details-items.ordered .orders-detail{
+	width: 80%;
+    margin: 0 auto;
+    padding: 35px 20px 35px 20px;
+}
+
+.sales-orders-view .order-details-items.ordered .orders-detail .orders{
+	color: var(--primary);
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	margin-bottom: 15px;
+	display: grid;	
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: 15px;
+	place-content: space-between;
+	place-items: start;
+}
+.sales-orders-view .order-details-items.ordered .orders-detail .order-track-ship{	
+	text-align: center;
+	margin-top: 30px;
+}
+.sales-orders-view .order-details-items.ordered .orders-detail .order-track-ship .track-ship{
+	text-align: center;
+	background: var(--primary);
+	padding: 10px 25px;
+	border-radius: 24px;
+	width: 100%;
+	font-family: 'nunito_sanssemibold';
+}
+.sales-orders-view .order-details-items.ordered .orders-detail .order-track-ship .track-ship a,
+.sales-orders-view .order-details-items.ordered .orders-detail .return-product a{
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 15px;
+	font-family: 'nunito_sanssemibold';
+}
+.sales-orders-view .order-details-items.ordered .orders-detail .return-product{
+	text-align: center;
+	background: var(--label);
+	padding: 10px 25px;
+	border-radius: 24px;
+	margin-top: 20px;
+	font-family: 'nunito_sanssemibold';
+}
+.sales-orders-view .order-details-items.ordered .orders-detail .orders-cancel{
+	text-align: center;
+	margin-top: 15px;
+}
+.sales-orders-view .order-details-items.ordered .orders-detail .orders-cancel .cancel{
+	text-align: center;
+	background: #fff;
+	padding: 10px 25px;
+	border-radius: 24px;
+	width: 100%;
+	border: 1px solid var(--primary);
+	font-family: 'nunito_sanssemibold';
+}
+.sales-orders-view .order-details-items.ordered .orders-detail .orders-cancel .cancel a{
+	color: var(--primary);
+	text-transform: uppercase;
+	font-size: 15px;
+	font-family: 'nunito_sanssemibold';
+}
+
+
+.sales-orders-view .order-details-items.ordered .orders-detail .AWD{
+	padding: 20px 0;
+	margin-top: 20px;
+	border-top: 1px solid #052a5080;
+}
+
+.sales-orders-view .order-details-items.ordered > .order-items{
+	border-left: 2px dashed #052a5080;
+	padding: 35px 20px 50px 20px;
+	width: 93%;
+}
+
+.sales-orders-view .order-items .order-product-head{
+	border-bottom: 1px solid #052a5080;
+}
+
+.sales-orders-view .order-items .order-product-head td .product-image{
+	width: 50px;
+	height: 50px;
+}
+.sales-orders-view .order-items .order-product-head td{
+	color: var(--primary);
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	padding: 15px 20px !important;
+}
+.sales-orders-view .order-items .order-product-head td dl{
+	margin-bottom: 16px;
+}
+.sales-orders-view .order-items .order-product-head td:nth-child(2) dl{
+	margin: 0;
+}
+
+.sales-orders-view .order-items .order-product-head td p{
+	margin: 0 0 10px 0;
+}
+.sales-orders-view .order-items .order-product-head td:nth-child(2) dl dd{
+	color: var(--primary);
+	font-size: 12px;
+}
+.sales-orders-view .order-items .order-product-head td:nth-child(2) dl dd .item-delivered-on{
+	margin-top: 5px;
+}
+
+.sales-orders-view .order-items .order-product-head .order-qty{
+	margin-right: 30px;
+}
+
+.sales-orders-view .order-items .order-product-head td .product-actions dd:first-child{
+	margin-bottom: 20px;
+}
+.sales-orders-view .order-items .order-product-head td .product-actions dd a{
+	color: var(--primary);
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	text-decoration: underline;
+	text-transform: capitalize;
+	position: relative;
+	padding-left: 28px;
+}
+
+.sales-orders-view .order-items .order-product-head td .product-actions dd a.write-review::before{
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 15px;
+	height: 15px;
+	background: url(../images/edit-2.png) no-repeat center;
+	background-size: contain;
+}
+
+.sales-orders-view .order-items .order-product-head td .product-actions dd> a.return-item{
+	color: #fff;
+	background: var(--label);
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	text-transform: uppercase;
+	padding: 6px 20px;
+	border-radius: 24px;
+	text-decoration: none;
+}
+.sales-orders-view .block.block-orders-details-view > .orders-title,
+.sales-orders-view .block.block-orders-details-view > .order-date-price{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	place-content: space-between;
+	place-items: start;
+	margin-bottom: 10px;
+}
+.sales-orders-view .block.block-orders-details-view .orders-title > strong{
+	color: var(--primary);
+	font-size: 16px;
+	font-family: 'nunito_sanssemibold';
+	text-transform: uppercase;
+}
+
+.sales-orders-view .block.block-orders-details-view .orders-title .orders-payement-status{
+	float: right;
+	font-size: 14px;
+	color: var(--primary);
+	font-family: 'nunito_sanssemibold';
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.sales-orders-view .block.block-orders-details-view .orders-title .orders-payement-status .checkmemo,
+.sales-orders-view .block.block-orders-details-view .orders-title .orders-payement-status .checkmemo > .title{
+	margin: 0;
+}
+.sales-orders-view .block.block-orders-details-view .orders-title .orders-payement-status .payment-method,
+.sales-orders-view .block.block-orders-details-view .orders-title .orders-payement-status .payment-method .title{
+	margin: 0;
+}
+.sales-orders-view .block.block-orders-details-view .orders-title .orders-payement-status .payment-method .title{
+	color: var(--site-green);
+	margin-left: 10px;
+}
+
+.sales-orders-view .block.block-orders-details-view .orders-title .orders-payement-status .checkmemo > .title{
+	color: var(--site-green);
+	margin-left: 10px;
+}
+.orders-details-view .orders-title .orders-payement-status{
+	float: right;
+	font-size: 14px;
+	color: var(--primary);
+	font-family: 'nunito_sanssemibold';
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.sales-orders-view .block.block-orders-details-view .orders-title .orders-payement-status .checkmemo,
+.sales-orders-view .block.block-orders-details-view .orders-title .orders-payement-status .checkmemo > .title{
+	margin: 0;
+}
+.sales-orders-view .block.block-orders-details-view .orders-title .orders-payement-status .checkmemo > .title{
+	color: var(--site-green);
+	margin-left: 6px;
+}
+.sales-orders-view .block.block-orders-details-view > .order-date-price > span{
+	color: var(--primary);
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+}
+.sales-orders-view .block.block-orders-details-view .orders-address{
+	margin: 30px 0 15px 0;
+}
+.sales-orders-view .block.block-orders-details-view .box.box-orders-shipping-address strong{
+	font-size: 14px;
+	color: var(--primary);
+	text-transform: capitalize;
+	margin-bottom: 15px;
+}
+.sales-orders-view .block.block-orders-details-view .orders-address .box.box-orders-shipping-address .box-content{
+	margin-top: 10px;
+}
+.sales-orders-view .block.block-orders-details-view .orders-address .box.box-orders-shipping-address .box-content > span{
+	color: var(--primary);
+	font-size: 14px;
+	font-family: 'nunito_sansbold';
+}
+
+dl > dd{
+	white-space: nowrap !important;
+}
+
+
+.sales-orders-booking .sales-orders-booking-list{
+	width: 90%;
+    float: right;
+}
+.sales-orders-booking .sales-orders-booking-list .order-upcoming-label{
+	margin: 0;
+	font-size: 18px;
+	color: var(--primary);
+	padding-left: 28px;
+	position: relative;
+	text-transform: uppercase;
+}
+.sales-orders-booking .sales-orders-booking-list .order-upcoming-label::before,
+.sales-orders-booking .sales-orders-booking-list .order-past-label:before{
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 0;
+	left: 0;
+	background: url(../images/blue_heart.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-booking .sales-orders-booking-list .order-past-label{
+	font-size: 18px;
+	color: var(--primary);
+	padding-left: 28px;
+	position: relative;
+	text-transform: uppercase;
+	margin: 25px 0 0 0;
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items,
+.sales-orders-booking .order-past .past-items{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items .owl-item,
+.sales-orders-booking .order-past .past-items .owl-item{
+	width: 340px !important;
+	min-height: 140px;
+	border-radius: 24px;
+	box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+	-webkit-box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+	-moz-box-shadow: 1px 1px 54px rgba(5, 43, 80, 0.1);
+}
+
+.sales-orders-booking .order-upcoming .owl-stage-outer,
+.sales-orders-booking .order-past .owl-stage-outer{
+	padding: 25px 0px;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .booking-image img,
+.sales-orders-booking .order-past .past-items .booking-image img{
+	width: 100%;
+}
+
+
+.sales-orders-booking .order-upcoming .upcoming-items .upcoming-booking-list,
+.sales-orders-booking .order-past .past-items .past-booking-list{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 24px;
+	border: none;
+    min-height: 10px;
+    position: relative;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .owl-nav button span,
+.sales-orders-booking .order-past .past-items .owl-nav button span{
+	display: none;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .owl-nav button,
+.sales-orders-booking .order-past .past-items .owl-nav button{
+	width: 20px;
+	height: 20px;
+	margin: 0 10px;
+	background: url(../images/right_arrow.png) no-repeat center;
+	background-size: contain;
+	border: none;
+	border-radius: 50%;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .owl-nav button.owl-prev,
+.sales-orders-booking .order-past .past-items .owl-nav button.owl-prev{
+	transform: rotate(180deg);
+}
+
+
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-image,
+.sales-orders-booking .order-past .past-items .booking-image{
+	width: 35%;
+	min-height: 10px;
+	border-top-left-radius: 24px;
+	border-bottom-left-radius: 24px;
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-image > a,
+.sales-orders-booking .order-past .past-items .booking-image > a{
+	min-height: 126px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content,
+.sales-orders-booking .order-past .past-items .booking-content{
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	color: var(--primary);
+	font-size: 16px;
+	font-family: 'nunito_sanssemibold';
+	text-transform: capitalize;
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content > span,
+.sales-orders-booking .order-past .past-items .booking-content > span{
+	font-size: 12px;
+	font-family: 'nunito_sansbold';
+	text-transform: uppercase;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content a,
+.sales-orders-booking .order-past .past-items .booking-content a{
+	color: var(--primary);
+	font-size: 16px;
+	font-family: 'nunito_sanssemibold';
+	text-transform: capitalize;
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content .booking-action,
+.sales-orders-booking .order-past .past-items .booking-content .booking-action{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 10px 0 0 0;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content .booking-action > a,
+.sales-orders-booking .order-past .past-items .booking-content .booking-action > a{
+	font-size: 12px;
+	padding: 8px 0;
+	font-family: 'nunito_sansbold';
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content .booking-action > *,
+.sales-orders-booking .order-past .past-items .booking-content .booking-action > *{
+	line-height: 1.1;
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content .booking-action > .help-tooltip,
+.sales-orders-booking .order-past .past-items .booking-content .booking-action > .help-tooltip{
+	line-height: 0.5;
+    margin-top: -4px;
+}
+
+
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content .booking-action > a,
+.sales-orders-booking .order-past .past-items .booking-content .booking-action > a{
+	padding: 0 8px 0 0;
+	margin: 0 10px 0 0 ;
+	border-right: 1px solid #052a5080;
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content .booking-action > a.booking-reschedule,
+.sales-orders-booking .order-past .past-items .booking-content .booking-action > a.booking-reschedule{
+	padding-right: 8px;
+	margin-right: 10px;
+	border-right: 1px solid #052a5080;
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content .booking-action a:last-child,
+.sales-orders-booking .order-past .past-items .booking-content .booking-action a:last-child{
+	border-right: none;
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content > a.action.view,
+.sales-orders-booking .order-past .past-items .booking-content > a.action.view{
+	margin: 15px 0 5px 0; 
+}
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content > span,
+.sales-orders-booking .order-past .past-items .booking-content > span{
+	margin: 5px 0;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content > .booking-date-time,
+.sales-orders-booking .order-past .past-items .booking-content > .booking-date-time{
+	margin: 5px 0;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	place-content: space-between;
+	place-items: center;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content > .booking-date-time > span,
+.sales-orders-booking .order-past .past-items .booking-content > .booking-date-time > span{
+	font-size: 12px;
+	font-family: 'nunito_sansbold';
+	text-transform: uppercase;
+	padding-left: 20px;
+	position: relative;
+}
+
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content > .booking-date-time > span:first-child,
+.sales-orders-booking .order-past .past-items .booking-content > .booking-date-time > span:first-child{
+	margin-right: 5px;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content > .booking-date-time > span:first-child::before,
+.sales-orders-booking .order-past .past-items .booking-content > .booking-date-time > span:first-child::before{
+	content: '';
+	position: absolute;
+	width: 13px;
+	height: 13px;
+	left: 0;
+	top: -1px;
+	background: url(../images/date.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content > .booking-date-time > span:last-child::before,
+.sales-orders-booking .order-past .past-items .booking-content > .booking-date-time > span:last-child::before{
+	content: '';
+	position: absolute;
+	width: 13px;
+	height: 13px;
+	left: 0;
+	top: -1px;
+	background: url(../images/time.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-viewbooking .sales-order-view-booking{
+	display: grid;
+	grid-template-columns: 3fr 4fr;
+	place-content: space-between;
+	place-items: start;	
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail{
+	padding: 20px 30px;
+	text-align: center;
+	margin: 0 auto;
+}
+.sales-orders-viewbooking .booking-plan-detail .plan-image{
+	width: 45%;
+	height: 160px;
+	margin: 0 auto;
+	max-height: 120px;
+    max-width: 120px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-image img{
+	width: 100%;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-name{
+	font-size: 22px;
+	font-family: 'nunito_sansbold';
+	color: var(--primary);
+	text-transform: uppercase;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-price{
+	margin: 10px 0;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-price .price{
+	color: var(--primary);
+	font-size: 24px;
+	font-family: 'nunito_sansextrabold';
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-view{
+	margin: 10px 0;
+/*	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;*/
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-view > a{
+	color: var(--primary);
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	text-transform: capitalize;
+	text-decoration: underline;
+	margin: 0 12px;
+	display: inline-block;
+	min-width: 86px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-view .duration{
+	font-size: 14px;
+	color: var(--primary);
+	text-transform: capitalize;
+	position: relative;
+	padding-left: 20px;
+	margin-left: 20px;
+	font-family: 'nunito_sansbold';
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-view .detail-options{
+	margin: 10px 0;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-view .detail-options ul {
+	padding: 0;
+	margin: 0 0 20px 0;
+	list-style: none;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-view .detail-options ul li {
+	margin: 10px 0;
+	color: var(--primary);
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	text-transform: capitalize;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-view .duration::before{
+	content: '';
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	top: 1px;
+	left: 0px;
+	background: url(../images/clock_icon.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-date-time{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	margin: 16px 0;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-date-time > span{
+	padding-left: 25px;
+	color: var(--primary);
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	text-transform: capitalize;
+	position: relative;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-date-time > span::before{
+	content: '';
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	top: 0;
+	left: 0;
+	background: url(../images/date.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-date-time > span:last-child{
+	text-transform: uppercase;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-date-time > span:last-child::before{
+	background: url(../images/clock_icon.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-address{
+	text-align: left;
+	width: 60%;
+	margin: 0 auto;
+	position: relative;
+	word-break: break-word;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-address::before{
+	content: '';
+	position: absolute;
+	width: 16px;
+    height: 16px;
+    top: 0;
+    left: -25px;
+	background: url(../images/home.png) no-repeat center;
+	background-size: contain;
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-address span{
+	color: var(--primary);
+	font-family: 'nunito_sanssemibold';
+	font-size: 14px;
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail{
+	border-left: 2px dashed #052a5080;
+	padding: 20px 25px;
+	min-height: 500px;
+	max-width: 100%;
+	width: 88%;
+	margin: 0 auto;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info{
+	display: grid;
+	grid-template-columns: 28% 30% 36%;
+	place-content: space-between;
+	place-items: start;
+	margin-bottom: 20px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .user-verified{
+	position: relative;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .user-verified > div{
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	border: 2px solid var(--site-yellow);
+	overflow: hidden;
+	margin: 0 auto;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .user-verified > div > img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .user-verified > span{
+	position: absolute;
+	padding: 4px;
+	font-family: 'nunito_sanssemibold';
+	font-size: 10px;
+	color: #fff;
+	background: var(--primary);
+	border-radius: 24px;
+	bottom: -10px;
+	width: 80%;
+	left: 50%;
+	text-align: center;
+	transform: translateX(-50%);
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-name-rating{
+	padding-right: 20px;
+	width: 80%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-name-rating > div{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	color: #052a5080;
+	margin-top: 10px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-name-rating > div .call{
+	width: 15px;
+	height: 15px;
+	margin: 0 10px 0 0;
+	background: url(../images/call.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-name-rating > div .msg{
+	width: 15px;
+	height: 15px;
+	margin: 0 0 0 10px;
+	background: url(../images/help.png) no-repeat center;
+	background-size: contain;
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-name-rating label{
+	font-size: 14px;
+	color: var(--primary);
+	font-family: 'nunito_sanssemibold';
+	white-space: nowrap;
+	position: relative;
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-name-rating label:not(.overall-rating) {
+	width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-name-rating > label:nth-child(2){
+	padding-right: 16px;
+	margin: 10px 0;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-name-rating > label:nth-child(2)::before{
+	content: '';
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	right: 0;
+	top: 0px;
+	background: url(../images/product_rated.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-exp-certificate > p{
+	font-size: 14px;
+	color: var(--primary);
+	font-family: 'nunito_sanssemibold';
+	margin: 0;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-exp-certificate > div{
+	margin-top: 8px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-exp-certificate > div p{
+	margin: 0;
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	color: var(--primary);	
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-exp-certificate > div p:last-child{
+	font-size: 11px;
+	font-family: 'nunito_sansbold';
+	margin: 5px 0 0 0;
+	width: fit-content;
+	width: -moz-fit-content;
+	word-break: break-word;
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content{
+	font-size: 14px;
+	color: #052a5080;
+	line-height: 22px;
+	font-family: 'nunito_sanssemibold';
+	border: none;
+	margin: 20px 0 0 0;
+	padding: 0;
+	min-height: 88px;
+	max-height: 140px;
+	overflow-y: auto;	
+	scrollbar-color: var(--primary) #052a5012;
+	scrollbar-width: thin;
+	word-break: break-word;
+	padding-right: 10px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content::-webkit-scrollbar {
+    width: 4px;
+    background-color: #052a5018;
+    border-radius: 24px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border: none;
+    min-height: 20px;
+    border-radius: 50px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #052a5018;
+    background-color: #052a5012;
+    border: none;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content > button{
+	padding: 8px 20px;
+	background: var(--primary);
+	color: #fff;
+	border-radius: 24px;
+	margin-left: 20px;
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .tabs-title{
+	border: 1px solid #052a5080;
+	border-radius: 24px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	place-content: space-between;
+	place-items: center;
+	margin-top: 20px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.title{
+	padding: 10px 0;
+	width: 100%;
+	text-align: center;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.title a{
+	color: var(--primary);
+	font-size: 16px;
+	font-family: 'nunito_sanssemibold';
+	text-transform: uppercase;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.title.active{
+	background: var(--primary);
+	border-radius: 24px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.title.active a{
+	color: #fff;
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-price-status{
+	padding: 20px 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	border-top: 1px solid #052a5020;
+	border-bottom: 1px solid #052a5020;
+}
+
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-price-status > label{
+	font-size: 14px;
+	color: var(--site-green);
+	font-family: 'nunito_sanssemibold'
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-price-status > label.price{
+	width: 100%;
+	font-size: 30px;
+	color: var(--primary);
+	font-family: 'nunito_sansbold';
+	margin: 0;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-price-status > label.wallet-used {
+	display: flex;
+    justify-content: space-between;    
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-price-status > label.wallet-used > span.price {
+	color: var(--site-green);
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-price-status > label.tax-amount.price {
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	margin-bottom: 5px;
+}
+
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-price-status > label.price > span.price{
+	float: right;
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-action{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 30px 0 20px 0;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-action > * {
+    margin-bottom: 10px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-action a{
+	margin-right: 30px;
+	padding-left: 22px;
+	font-size: 16px;
+	color: var(--primary);
+	font-family: 'nunito_sanssemibold';
+	text-transform: capitalize;
+	position: relative;
+	text-decoration: underline;
+	position: relative;
+	line-height: 1.1;
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-action a::before{
+	content: '';
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	top: 0px;
+	left: 0;
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-action .booking-reschedule::before,
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-action .service-generate-invoice::before{
+	background: url(../images/refresh-ccw.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-action .booking-cancel::before{
+	background: url(../images/x-circle.png) no-repeat center;
+	background-size: contain;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-action .tooltip-toggle.booking-help::before{
+	background: url(../images/help-circle.png) no-repeat center;
+	background-size: contain;
+}
+
+
+.order-upcoming .empty-booking,
+.order-past .empty-booking{
+	padding: 10px 20px;
+	background: #fffbbb;
+	margin: 20px 0;
+}
+
+.order-upcoming .empty-booking span,
+.order-past .empty-booking span{
+	font-size: 16px;
+	font-family: 'nunito_sanssemibold';
+	color: var(--primary);
+}
+
+
+.booking-action .help-tooltip > .tooltip-content{
+	padding: 10px;
+	left: -40px;
+	font-size: 12px;
+	color: var(--primary);
+}
+.booking-action .help-tooltip > .tooltip-content::before,
+.booking-action .help-tooltip > .tooltip-content::after{
+	left: 50px;
+}
+.sales-orders-booking .order-upcoming .upcoming-items .booking-content a.tooltip-toggle,
+.sales-orders-booking .order-past .past-items .booking-content a.tooltip-toggle{
+	font-size: 12px;
+	font-family: 'nunito_sansbold';
+}
+
+
+
+.sales-orders-booking .modal-content, 
+.sales-orders-view .modal-content,
+.sales-orders-viewbooking .modal-content{
+	text-align: center;
+	font-size: 16px;
+	color: #052a50;
+}
+
+.sales-orders-booking .modal-content a,
+.sales-orders-view  .modal-content a,
+.sales-orders-viewbooking  .modal-content a{
+	color: var(--primary);
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-status,
+.sales-orders-view .booking-status,
+.sales-orders-viewbooking  .booking-status{
+	font-size: 14px;
+	color: var(--primary);
+	text-align: center;
+	font-family: 'nunito_sanssemibold';
+}
+
+.sales-orders-view #popup-mpdal-cancel{
+	margin-top: 30px;
+}
+.sales-orders-view #popup-mpdal-cancel button.order-cancel-reason{
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	border-radius: 24px;
+	margin-top: 20px;
+	padding: 10px 20px;
+	line-height: 1.1;
+	color: #fff;
+	background: var(--primary);
+	text-transform: uppercase;
+}
+
+.sales-orders-view #popup-mpdal-cancel button.order-cancel-reason:hover{
+	background: var(--primary);
+	color: #fff;
+}
+.sales-orders-view .order-items .order-product-head td .product-actions dd > .return-product{
+	text-align: center;
+}
+.sales-orders-view .order-items .order-product-head td .product-actions dd > .return-product > a{
+	background: var(--label);
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.sales-orders-view .order-items .order-product-head td .product-actions dd > .orders-cancel {
+	text-align: center;
+}
+.sales-orders-view .order-items .order-product-head td .product-actions dd > .orders-cancel > button.action.cancel{
+	padding: 0;
+	background: #fff;
+}
+.sales-orders-view .order-items .order-product-head td .product-actions dd > .orders-cancel > button.action.cancel > a{
+	color: #fff;
+    padding: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    background: var(--label);
+	padding: 10px 20px;
+	border-radius: 24px;
+	font-size: 14px;
+}
+
+/*Responsive styles*/
+
+@media(max-width: 1366px){
+	.sales-orders-history #maincontent .columns,
+	.sales-orders-view #maincontent .columns,
+	.sales-orders-booking #maincontent .columns,
+	.sales-orders-viewbooking #maincontent .columns	{
+		grid-template-columns: auto calc(100% - 220px - 2%);
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li{
+		max-width: 85%;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info{
+		grid-template-columns: 28% 28% 40%;
+	}
+}
+
+@media(max-width: 1199px){
+	.sales-orders-history #maincontent .columns,
+	.sales-orders-view #maincontent .columns,
+	.sales-orders-booking #maincontent .columns,
+	.sales-orders-viewbooking #maincontent .columns{
+		grid-template-columns: 100%;
+		grid-template-areas:
+			'sidebar-additional'
+			'main';
+	}
+	.sales-orders-history #maincontent,
+	.sales-orders-view #maincontent,
+	.sales-orders-booking #maincontent ,
+	.sales-orders-viewbooking #maincontent{
+		width: 90%;
+		padding: 0;
+		margin: 0 auto;
+	}
+
+	.sales-orders-history .table-wrapper.orders-history,
+	.sales-orders-view .order-details-items.ordered,
+	.sales-orders-viewbooking .sales-order-view-booking{
+		top: 0;
+		width: 100%;
+		margin-bottom: 70px;
+	}
+	.sales-orders-booking .sales-orders-booking-list{
+		width: 100%;
+		float: none;
+		margin: 80px 0;
+	}
+	.sales-orders-history .table-wrapper.orders-history{
+		margin-top: 50px;
+	}
+
+	.sales-orders-view .order-back,
+	.sales-orders-viewbooking .booking-back{
+		float: left;
+		width: 97%;
+		margin: 60px 0 40px 0;
+		top: 0;
+	}
+	.sales-orders-history .message.info.empty{
+		margin: 30px 0;
+	}
+}	
+
+@media(max-width: 991px){
+	.sales-orders-view .order-details-items.ordered{
+		grid-template-columns: 100%;
+	}
+	.sales-orders-view .order-details-items.ordered .orders-detail,
+	.sales-orders-view .order-details-items.ordered > .order-items{
+		width: 90%;
+		padding: 30px 0;
+		margin: 0 auto;
+	}
+	.sales-orders-view .order-details-items.ordered > .order-items{
+		border: none;
+		border-top: 2px dashed #052a5080;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li{
+		max-width: 95%;
+	}
+	.sales-orders-booking .order-upcoming .upcoming-items .owl-item,
+	.sales-orders-booking .order-past .past-items .owl-item{
+		width: 335px !important;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking,
+	.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info{
+		grid-template-columns: repeat(2, 1fr);
+		grid-row-gap: 20px;
+		align-items: center;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail{
+		padding: 20px 15px;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-price-status > label.price{
+		font-size: 24px;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-name{
+		font-size: 20px;
+	}
+}
+
+@media(max-width: 767px){
+	/*.sales-orders-booking .order-upcoming .upcoming-items .owl-item,
+	.sales-orders-booking .order-past .past-items .owl-item{
+		width: 270px !important;
+	}*/
+	.sales-orders-viewbooking .sales-order-view-booking{
+		grid-template-columns: 100%;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail{
+		padding: 20px 0;
+		width: 100%;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .plan-image img{
+		height: 100%;
+		object-fit: contain;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-date-time{
+		max-width: 50%;
+		margin: 16px auto;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-address{
+		max-width: 30%;
+		width: 100%;
+		margin: 0 auto;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail{
+		border: none;
+		border-top: 2px dashed #052a5080;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td {
+	    display: block;
+	    text-align: center;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul {
+		max-height: inherit;
+    	overflow-y: auto;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td .product-options > p a {
+		padding: 6px 15px;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li .order-history-head {
+		display: block;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li .order-history-head span {
+	    display: block;
+	    width: 100%;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td:nth-child(2) {
+		width: auto;
+	    padding-right: 15px;
+	    padding-left: 15px;
+	    margin: 0 auto;
+	    text-align: center;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li .delivered-on {
+		text-align: center;
+	}
+	.sales-orders-history #maincontent .columns,
+	.sales-orders-view #maincontent .columns,
+	.sales-orders-booking #maincontent .columns,
+	.sales-orders-viewbooking #maincontent .columns{
+		flex-direction: column-reverse;
+	}
+}
+
+/*@media(max-width: 767px){
+	.sales-orders-history .table-wrapper.orders-history ul > li .order-products .order-product-head{
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 20px;
+		place-content: space-between;
+		place-items: start;
+	}
+}*/
+
+@media(max-width: 480px){
+	.sales-orders-history .table-wrapper.orders-history ul > li .order-products .order-product-head {
+	    display: grid;
+	    grid-template-columns: 100%;
+	    grid-gap: 5px;
+	    place-content: center;
+	    place-items: center;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td .product-options > p.status{
+		text-align: center;
+	}
+	.sales-orders-history #maincontent, .sales-orders-view #maincontent{
+		width: 100%;
+	}
+	.sales-orders-history ul.orders-side-menu, .sales-orders-view ul.orders-side-menu{
+		width: 90%;
+		margin: 0 auto;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li{
+		max-width: 90%;
+		margin: 30px auto;
+	}
+	.sales-orders-history .page-title-wrapper .page-title,
+	.sales-orders-view .page-title-wrapper .page-title,
+	.sales-orders-booking .page-title-wrapper,
+	.sales-orders-viewbooking .page-title-wrapper{
+		text-align: center;
+		margin-bottom: 50px;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul{
+		padding-left: 0;
+		width: 96%;
+		margin: 0 auto;
+	}
+	
+	.sales-orders-view .order-details-items.ordered{
+		width: 90%;
+		margin: 0 auto;
+		float: none;
+	}
+	.sales-orders-history .table-wrapper.orders-history{
+		width: 100%;
+		margin: 0 auto;
+		float: none;
+		margin-top: 45px;
+	}
+	.sales-orders-view .order-back{
+		width: 80%;
+		float: none;
+		margin: 30px auto;
+	}
+	.sales-orders-view .block.block-orders-details-view > .orders-title,
+	.sales-orders-view .block.block-orders-details-view > .order-date-price{
+		grid-template-columns: 100%;
+		margin: 0;
+	}
+	.sales-orders-view .block.block-orders-details-view > .orders-title > span,
+	.sales-orders-view .block.block-orders-details-view > .order-date-price > span{
+		margin-top: 15px;
+	}
+	.sales-orders-booking .order-upcoming .upcoming-items .owl-item,
+	.sales-orders-booking .order-past .past-items .owl-item{
+		width: 324px !important;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail{
+		padding: 20px 0;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-date-time{
+		max-width: 90%;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-plan-detail .booking-address{
+		max-width: 53%;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.title a{
+		font-size: 14px;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info{
+		grid-template-columns: 100%;
+		grid-row-gap: 10px;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .booking-action a{
+		margin-right: 15px;
+		font-size: 14px;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td p {
+	    margin: 0 auto;
+	    display: block;
+	    text-align: center;
+	}
+}
+/*----- sales-booking-reschedule ----*/
+#reschedule-container {
+    padding-top: 50px;
+    width: calc(100% - 120px);
+    max-width: 1440px;
+    padding-inline-end: 60px;
+    padding-inline-start: 60px;
+    margin-inline-end: auto;
+    margin-inline-start: auto;
+}
+.reschedule-container-main .calender-date-day-selection {
+    display: grid;
+    grid-template-columns: repeat(2, 48%);
+    grid-gap: 25px;
+    place-content: space-between;
+    place-items: start;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+.reschedule-container-main .calender-date-day-selection .grooming-calendar {
+    width: 100%;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-calendar-slot {
+    max-width: 500px;
+    width: 100%;
+    min-height: 500px;
+    /* height: 100%; */
+    padding: 30px 40px;
+    border-radius: 24px;
+    box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+    -webkit-box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+    -moz-box-shadow: 1px 1px 54px rgba(5, 43, 80, 0.1);
+}
+.reschedule-container-main .calender-date-day-selection #grooming-calendar-slot button.fc-today-button.fc-button.fc-button-primary {
+    display: none;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-calendar-slot button.fc-prev-button.fc-button.fc-button-primary {
+    background: transparent !important;
+    color: var(--primary) !important;
+    border: none !important;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    box-shadow: 0 3px 5px rgb(24 55 98 / 50%);
+    -webkit-box-shadow: 0 3px 5px rgb(24 55 98 / 50%);
+    -moz-box-shadow: 0 3px 5px rgba(24, 55, 98, 0.5);
+    margin-right: 10px;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-calendar-slot button.fc-next-button.fc-button.fc-button-primary {
+    background: var(--primary) !important;
+    color: #fff !important;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    border: 0.4px solid #052A50;
+    box-shadow: 0 3px 5px rgb(24 55 98 / 50%);
+    -webkit-box-shadow: 0 3px 5px rgb(24 55 98 / 50%);
+    -moz-box-shadow: 0 3px 5px rgba(24, 55, 98, 0.5);
+}
+.reschedule-container-main .calender-date-day-selection #grooming-calendar-slot .fc-button .fc-icon {
+    margin-top: -6px;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-timeslot {
+    width: 100%;
+}
+.reschedule-container-main .calender-date-day-selection .grooming-calendar table.fc-scrollgrid tr th, .reschedule-container-main .calender-date-day-selection .grooming-calendar table.fc-scrollgrid tr td {
+    border: 0;
+    padding: 0;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+}
+.reschedule-container-main .calender-date-day-selection .grooming-calendar table.fc-scrollgrid .fc-scroller {
+    overflow: hidden !important;
+    width: 100%;
+}
+.reschedule-container-main .calender-date-day-selection .grooming-calendar .fc-daygrid-day-top {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.reschedule-container-main .calender-date-day-selection .grooming-calendar .fc-daygrid-day-number {
+    position: relative;
+    z-index: 4;
+    padding: 4px;
+    color: var(--primary);
+    font-size: 16px;
+    font-family: 'nunito_sanssemibold';
+    font-weight: normal;
+    text-transform: capitalize;
+    text-align: center;
+}
+.reschedule-container-main .calender-date-day-selection .grooming-calendar table.fc-scrollgrid tr.fc-scrollgrid-section.fc-scrollgrid-section-header td {
+    height: 40px;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-calendar-slot .fc-toolbar-title {
+    margin: auto;
+    color: var(--primary);
+    font-size: 25px;
+    font-family: 'nunito_sansbold';
+    text-transform: capitalize;
+}
+.reschedule-container-main .calender-date-day-selection .grooming-calendar table.fc-scrollgrid .fc-scroller table.fc-col-header th {
+    width: 100% !important;
+    height: 40px;
+}
+.reschedule-container-main .calender-date-day-selection .grooming-calendar table.fc-scrollgrid .fc-scroller table.fc-col-header th a {
+    color: var(--primary);
+    font-size: 16px;
+    font-family: 'nunito_sanssemibold';
+    font-weight: normal;
+    text-transform: capitalize;
+}
+.reschedule-container-main .calender-date-day-selection .selection-note {
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+    font-size: 14px;
+    position: relative;
+    top: -30px;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-timeslot .title {
+    color: var(--primary);
+    font-size: 25px;
+    font-family: 'nunito_sansbold';
+    text-transform: capitalize;
+    padding: 0 0 20px 40px;
+    position: relative;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-timeslot .title:before {
+    content: '';
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: url(../images/clock_icon.png) no-repeat center;
+    background-size: contain;
+    left: 0;
+    top: 0;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-calendar-slot .fc-scrollgrid-liquid {
+	border: 0;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-timeslot ol {
+    padding: 0;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(4, 22%);
+    grid-gap: 20px;
+    place-content: space-between;
+    place-items: start;
+    list-style: none;
+    width: 100%;
+    height: 100%;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-timeslot ol li.slot-time {
+    width: 100%;
+    margin: 0;
+    padding: 12px 0;
+    text-align: center;
+    border: 2px solid var(--primary);
+    border-radius: 24px;
+    font-size: 15px;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-family: 'nunito_sanssemibold';
+    cursor: pointer;
+}
+.reschedule-container-main .title {
+    width: 50%;
+    float: left;
+    margin: auto;
+    color: var(--primary);
+    font-size: 30px;
+    font-family: 'nunito_sansbold';
+    text-transform: capitalize;
+}
+.reschedule-container-main .actions {
+    text-align: right;
+    float: right;
+    width: 50%;
+}
+.reschedule-container-main .actions #submit-schedule {
+    padding: 10px 20px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 14px;
+    border-radius: 24px;
+    text-transform: uppercase;
+    font-family: 'nunito_sansbold';
+    min-width: 100px;
+    text-align: center;
+}
+.reschedule-container-main .calender-date-day-selection .grooming-calendar .fc .fc-daygrid-day.selectedDate .fc-daygrid-day-frame {
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 3px 5px rgb(24 55 98 / 50%);
+    -webkit-box-shadow: 0 3px 5px rgb(24 55 98 / 50%);
+    -moz-box-shadow: 0 3px 5px rgba(24, 55, 98, 0.5);
+}
+
+/* 29-03-22 New change */
+
+.sales-booking-reschedule .reschedule-container-main .calender-date-day-selection .grooming-calendar .fc .fc-daygrid-day.selectedDate,
+.sales-booking-reschedule .reschedule-container-main .calender-date-day-selection .grooming-calendar .fc td.fc-day-today  {
+	background: var(--primary);
+    border-radius: 50%;
+}
+.sales-booking-reschedule .reschedule-container-main .calender-date-day-selection .grooming-calendar .fc .fc-daygrid-day.selectedDate *,
+.sales-booking-reschedule .reschedule-container-main .calender-date-day-selection .grooming-calendar .fc .fc-day-today * {
+    color: #fff;
+    opacity: 1;
+}
+
+
+
+
+.reschedule-container-main .calender-date-day-selection .grooming-calendar .fc .fc-daygrid-day.selectedDate .fc-daygrid-day-bg .fc-highlight {
+    background: transparent;
+}
+.reschedule-container-main .calender-date-day-selection .grooming-calendar .fc .fc-daygrid-day.selectedDate .fc-daygrid-day-frame .fc-daygrid-day-top .fc-daygrid-day-number {
+    color: #fff;
+}
+.reschedule-container-main .calender-date-day-selection #grooming-timeslot ol li.slot-time.selected-time {
+    background-color:  var(--primary);
+    color: #fff;
+}
+
+/*-------  Review feedback -------*/
+
+.sales-orders-viewbooking #review-form{
+	margin-top: 30px;
+}
+.sales-orders-viewbooking #review-form .review-fieldset .review-field-Tags > .control{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+.sales-orders-viewbooking #review-form .review-fieldset{
+	text-align: left;
+}
+.sales-orders-viewbooking #review-form .review-fieldset .review-field-Tags > .control .feedback-tags{
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content .customer-name{
+	color: var(--primary);
+	font-size: 12px;
+	line-height: 1.1;
+	font-family: 'nunito_sanssemibold';
+	margin: 10px 0 5px 0;
+}
+
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content .rating-stars-block > .rating-star{
+	pointer-events: none;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content .rating-stars-block > input:checked ~ .rating-star,
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content .rating-stars-block > input:checked ~ .rating-star:hover{
+	background: url(../images/rated_icon2.jpg) !important;
+    background-size: contain !important;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content .review-create_at{
+	font-size: 12px;
+	color: #052a5070;
+	margin-bottom: 0;
+	margin-left: 10px;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-review-btn .submit.primary{
+	padding: 0 0 0 20px;
+	line-height: 1.1;
+	font-size: 14px;
+	background: transparent;
+	color: var(--primary);
+	text-decoration: underline;
+	font-family: 'nunito_sanssemibold';
+	position: relative;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-review-btn .submit.primary:before{
+	content: '';
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	left: 0;
+	top: -2px;
+	background: url(../images/edit-2.png) no-repeat center;
+	background-size: contain;
+}
+
+
+
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .rating-stars-block>input:checked~.rating-star,
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .rating-stars-block>input:checked.mage-error~.rating-star,
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .rating-stars-block>input:checked+.rating-star:hover,
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .rating-stars-block>input:checked~.rating-star:hover,
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .rating-stars-block>input:checked~.rating-star:hover~.rating-star,
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .rating-stars-block>.rating-star:hover~input:checked~.rating-star,
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .rating-stars-block:not(:checked)>.rating-star:hover,
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .rating-stars-block:not(:checked)>.rating-star:hover~.rating-star{
+	    background: url(../images/rating_star.png) !important;
+}
+
+
+
+.sales-orders-viewbooking #review-form .review-fieldset .review-field-Tags > .control .feedback-tags input[type="checkbox"]{
+	position: absolute;
+    opacity: 0;
+}
+
+.sales-orders-viewbooking #review-form .review-fieldset .review-field-Tags > .control .feedback-tags input[type="checkbox"] + label{
+	padding: 8px 15px;
+	border: 1px solid #052a5075;
+	border-radius: 24px;
+	background: transparent;
+	color: var(--primary);
+	font-size: 14px;
+	line-height: 1.1;
+	font-family: 'nunito_sanssemibold';
+}
+
+.sales-orders-viewbooking #review-form .review-fieldset .review-field-Tags > .control .feedback-tags input[type="checkbox"] + label:after,
+.sales-orders-viewbooking #review-form .review-fieldset .review-field-Tags > .control .feedback-tags input[type="checkbox"] + label:before{
+	display: none;
+}
+
+.sales-orders-viewbooking #review-form .review-fieldset .review-field-Tags > .control .feedback-tags input[type="checkbox"]:checked + label{
+	background: var(--site-pink);
+	color: var(--primary);
+	border: 1px solid var(--site-pink);
+}
+.sales-orders-viewbooking #review-form .review-form-actions{
+	width: 100%;
+}
+.sales-orders-viewbooking #review-form .action.submit{
+	padding: 10px 20px;
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+	text-transform: uppercase;
+	border-radius: 24px;
+	line-height: normal;
+	background: var(--primary);
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+}
+
+.sales-orders-viewbooking #review-form .action.submit:hover{
+	background: var(--primary);
+	color: #fff;
+}
+.sales-orders-viewbooking #review-form .review-field-rating>.label{
+	color: var(--primary);
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail #tab-reviews #groomer-review-link{
+	padding: 10px 20px;
+	border-radius: 24px;
+	background: var(--primary);
+	font-family: 'nunito_sanssemibold';
+	line-height: 1.3;
+	color: #fff;
+	font-size: 14px;
+	margin: 15px 0 0 0;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-header{
+	background: #052a50;
+    opacity: 1;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    min-height: 140px;
+    z-index: 0;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-header h1:before{
+	display: none;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-header h1{
+	color: #fff;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content{
+	margin-top: -100px;
+	text-align: center;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .review-field-star_rating{
+	margin-bottom: 60px;
+	position: relative;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .review-field-star_rating .product-review-table{
+	margin: 0 auto;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content #review-form .review-fieldset > .review-field-rating-description{
+	max-height: 300px;
+	overflow: auto;
+	padding-right: 15px;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .field.review-field-Tags{
+	justify-content: center;
+	align-items: center;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .review-field-star_rating .product-review-table .rating-stars-block > #star_rating-error{
+	position: absolute;
+	bottom: -30px;
+	left: 50%;
+	width: fit-content;
+	width: -moz-fit-content;
+	white-space: nowrap;
+	transform: translateX(-50%);
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .field.review-field-Tags > label{
+	margin-bottom: 20px;
+	font-size: 16px;
+	color: var(--primary);
+	font-family: 'nunito_sanssemibold';
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .rating-stars-block > .rating-star{
+	width: 30px;
+	height: 30px;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .review-form .admin__field-control,
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .review-form .review-field-description{
+	width: 100%;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content .review-form .admin__field-control textarea{
+	width: 100%;
+	min-height: 100px;
+	padding: 20px;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-header .action-close:before{
+	color: #fff;
+	fill: #fff;
+	border-color: #fff;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content #review-form .review-fieldset > .review-field-rating-description::-webkit-scrollbar {
+    width: 4px;
+    background-color: #052a5018;
+    border-radius: 24px;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content #review-form .review-fieldset > .review-field-rating-description::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border: none;
+    min-height: 20px;
+    border-radius: 50px;
+}
+.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-content #review-form .review-fieldset > .review-field-rating-description::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #052a5018;
+    background-color: #052a5012;
+    border: none;
+}
+.sales-orders-view .block.block-orders-details-view > .order-date-price > ul.sales-orders-list{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sales-orders-view .block.block-orders-details-view > .order-date-price > ul.sales-orders-list > li{
+	margin-bottom: 5px;
+    line-height: 1.1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+}
+.sales-orders-view .block.block-orders-details-view > .order-date-price > ul.sales-orders-list > li .order-price{
+	max-width: 70%;
+	word-break: break-word;
+}
+.sales-orders-view .block.block-orders-details-view > .order-date-price > ul.sales-orders-list > li .price{
+	max-width: 30%;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content .rating-review{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+    padding-bottom: 10px;
+    width: 97%;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content .review-block{
+    padding-bottom: 10px;
+    padding-right: 15px;
+    border-bottom: 1px solid #052a5010;
+}
+.sales-orders-view #popup-mpdal-return .commentform,
+.sales-orders-view #popup-mpdal-cancel .commentform{
+	margin-top: 40px;
+	color: var(--primary);
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+}
+.sales-orders-view #popup-mpdal-return .commentform textarea.input-text.comment,
+.sales-orders-view #popup-mpdal-cancel .commentform textarea.input-text.comment{
+	min-height: 110px;
+	color: var(--primary);
+	font-size: 14px;
+	font-family: 'nunito_sanssemibold';
+}
+.sales-orders-view #popup-mpdal-return .commentform button.order-return-reason{
+	padding: 10px 20px;
+	font-size: 14px;
+	line-height: 1.1;
+	font-family: 'nunito_sansbold';
+	text-transform: uppercase;
+	border-radius: 24px;
+	background: var(--primary);
+	color: #fff;
+	margin-top: 20px;
+}
+.sales-orders-view #popup-mpdal-return .commentform .fieldset > p > a,
+.sales-orders-view #popup-mpdal-cancel .commentform .fieldset > p > a{
+	text-decoration: underline;
+}
+.sales-orders-view #popup-mpdal-return .commentform button.order-return-reason:hover,
+.sales-orders-view #popup-mpdal-return .commentform button.order-return-reason:focus{
+	background: var(--primary);
+	color: #fff;
+}
+
+
+
+
+@media (max-width: 1199px) {
+	.amasty-jet-theme.sales-booking-reschedule main#maincontent {
+	    width: calc(100% - 70px);
+	}
+	#reschedule-container {
+	    padding-top: 50px;
+	    width: calc(100% - 60px);
+	    max-width: 1440px;
+	    padding-inline-end: 30px;
+	    padding-inline-start: 30px;
+	    margin-inline-end: auto;
+	    margin-inline-start: auto;
+	}
+	.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap{
+		padding: 0;
+	}
+	.sales-orders-view #popup-mpdal-return .commentform,
+	.sales-orders-view #popup-mpdal-cancel .commentform{
+		margin-top: 164px;
+	}
+}
+@media (max-width: 991px) {
+	#reschedule-container {
+		width: 100%;
+		padding-inline-end: 0;
+	    padding-inline-start: 0;
+	}
+	.reschedule-container-main .calender-date-day-selection #grooming-calendar-slot {
+		max-width: 340px;
+	    max-height: 340px;
+	    padding: 20px 25px;
+	}
+	.reschedule-container-main .calender-date-day-selection #grooming-timeslot ol {
+	    grid-template-columns: 30% 30% 30%;
+	    grid-column-gap: 14px;
+	    place-content: baseline;
+	}
+	.reschedule-container-main .calender-date-day-selection .grooming-calendar table.fc-scrollgrid tr th, .reschedule-container-main .calender-date-day-selection .grooming-calendar table.fc-scrollgrid tr td {
+		width: 35px;
+		height: 35px;
+	}
+	.sales-orders-view #popup-mpdal-return .commentform,
+	.sales-orders-view #popup-mpdal-cancel .commentform{
+		margin-top: 95px;
+	}
+}
+@media (max-width: 767px) {
+	.reschedule-container-main .calender-date-day-selection {
+		grid-template-columns: 100%;
+	}
+	.reschedule-container-main .calender-date-day-selection #grooming-calendar-slot {
+		margin: 0 auto;
+	}
+	.reschedule-container-main .title {
+		font-size: 25px;
+		padding: 7px 0;
+	}
+	.reschedule-container-main .calender-date-day-selection #grooming-calendar-slot .fc-toolbar-title {
+		font-size: 20px;
+	}
+	.reschedule-container-main .calender-date-day-selection #grooming-timeslot .title:before {
+		width: 22px;
+    	height: 28px;
+	}
+	.reschedule-container-main .calender-date-day-selection #grooming-timeslot .title {
+		padding-top: 3px;
+		font-size: 20px;
+	}
+	.sales-orders-view .order-items .order-product-head{
+		background: transparent !important;
+	}
+	.amasty-jet-theme .modals-wrapper aside.modal-popup.modal-slide._inner-scroll._show  {
+		z-index: 1000 !important;
+	}
+	.sales-orders-viewbooking._has-modal .modals-wrapper .review-feedback .modal-inner-wrap .modal-header {
+		padding-top: 65px;
+	}
+}
+@media (max-width: 480px) {
+	.amasty-jet-theme.sales-booking-reschedule main#maincontent {
+	    width: calc(100% - 50px);
+	}
+	.sales-orders-view .order-items .order-product-head td{
+		padding-bottom: 0px !important;
+	}
+	.sales-orders-history .table-wrapper.orders-history ul > li .order-products table tbody tr td .product-image img{
+		width: 100px;
+		height: 100px;
+		object-fit: contain;
+	}
+	.sales-orders-view .order-items .order-product-head td .product-image {
+		width: 80px;
+		height: 80px;
+	}
+	.sales-orders-view .order-items .order-product-head td .product-image img {
+		height: 100%;
+		object-fit: contain;
+	}
+	.sales-orders-view .block.block-orders-details-view > .order-date-price > ul.sales-orders-list{
+		margin-top: 15px;
+	}
+	.sales-orders-view #popup-mpdal-return .commentform,
+	.sales-orders-view #popup-mpdal-cancel .commentform{
+		margin-top: 20px;
+	}
+	.sales-orders-booking .order-upcoming .upcoming-items .booking-content .booking-action > .help-tooltip,
+	.sales-orders-booking .order-past .past-items .booking-content .booking-action > .help-tooltip{
+		margin-top: -3px;
+	}
+	.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .groomer-info .professional-name-rating {
+		margin-top: 10px;
+	}
+}

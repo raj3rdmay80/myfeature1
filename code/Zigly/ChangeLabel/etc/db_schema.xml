@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="amasty_amshopby_option_setting" resource="default" engine="innodb"
+           comment="amasty_amshopby_option_setting">
+        <column xsi:type="smallint" name="home_featured" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Home Featured"/>
+        <column xsi:type="int" name="home_sort_order" unsigned="false" nullable="true" comment="Home Sort Order"/>
+    </table>
+</schema>

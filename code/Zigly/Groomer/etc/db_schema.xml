@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Groomer
+ */ -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="zigly_groomer_groomer" resource="default" engine="innodb" comment="zigly_groomer_groomer Table">
+		<column xsi:type="smallint" name="groomer_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="groomer_id"/>
+		</constraint>
+		<column name="profile_image" nullable="true" xsi:type="varchar" comment="profile_image" length="255"/>
+		<column name="description" nullable="true" xsi:type="varchar" comment="description" length="512"/>
+		<column name="pro_status" nullable="false" xsi:type="smallint" comment="Professional status" default="0" />
+		<column name="zigly_verified" nullable="false" xsi:type="smallint" comment="Zigly verified" default="0" />
+		<column name="name" nullable="true" xsi:type="varchar" comment="name" length="255"/>
+		<column name="email" nullable="true" xsi:type="varchar" comment="email" length="255"/>
+		<column name="phone_number" nullable="true" xsi:type="varchar" comment="phone_number" length="255"/>
+		<column name="certification" nullable="true" xsi:type="text" comment="certification"/>
+		<column name="professional_role" nullable="true" xsi:type="smallint" comment="Professional role"/>
+		<column name="onboard_date" nullable="true" xsi:type="datetime" comment="onboard_date"/>
+		<column name="city_hub" nullable="true" xsi:type="varchar" comment="city_hub" length="255"/>
+		<column name="status" nullable="true" xsi:type="smallint" comment="status" default="0"/>
+		<column name="father_name" nullable="true" xsi:type="varchar" comment="father_name" length="255"/>
+		<column name="dob" nullable="true" xsi:type="varchar" comment="dob" length="255"/>
+		<column name="gender" nullable="true" xsi:type="varchar" comment="gender" length="255"/>
+		<column name="permanent_house_no" nullable="true" xsi:type="varchar" comment="permanent_house_no" length="255"/>
+		<column name="permanent_locality" nullable="true" xsi:type="varchar" comment="permanent_locality" length="255"/>
+		<column name="permanent_city" nullable="true" xsi:type="varchar" comment="permanent_city" length="255"/>
+		<column name="permanent_pincode" nullable="true" xsi:type="varchar" comment="permanent_pincode" length="255"/>
+		<column name="permanent_state" nullable="true" xsi:type="varchar" comment="permanent_state" length="255"/>
+		<column name="aadhar_img" nullable="true" xsi:type="varchar" comment="aadhar_img" length="255"/>
+		<column name="aadhar_img_back" nullable="true" xsi:type="varchar" comment="Aadhar Img  Back" length="255"/>
+		<column name="pan_img" nullable="true" xsi:type="varchar" comment="pan_img" length="255"/>
+		<column name="current_house_no" nullable="true" xsi:type="varchar" comment="current_house_no" length="255"/>
+		<column name="current_locality" nullable="true" xsi:type="varchar" comment="current_locality" length="255"/>
+		<column name="current_city" nullable="true" xsi:type="varchar" comment="current_city" length="255"/>
+		<column name="current_pincode" nullable="true" xsi:type="varchar" comment="current_pincode" length="255"/>
+		<column name="current_state" nullable="true" xsi:type="varchar" comment="current_state" length="255"/>
+		<column name="account_details" nullable="true" xsi:type="varchar" comment="account_details" length="255"/>
+		<column name="account_holder_name" nullable="true" xsi:type="varchar" comment="account_holder_name" length="255"/>
+		<column name="ifsc_code" nullable="true" xsi:type="varchar" comment="ifsc_code" length="255"/>
+		<column name="bank" nullable="true" xsi:type="varchar" comment="bank" length="255"/>
+		<column name="company_name" nullable="true" xsi:type="varchar" comment="company_name" length="255"/>
+		<column name="gstin" nullable="true" xsi:type="varchar" comment="gstin" length="255"/>
+		<column name="total_rating" nullable="true" xsi:type="varchar" comment="total_rating" length="255"/>
+		<column name="overall_rating" xsi:type="decimal" comment="overall_rating" scale="1" precision="20" unsigned="false" nullable="false" default="0"/>
+		<column name="credit_balance" nullable="true" xsi:type="varchar" comment="credit_balance" length="255"/>
+		<column name="completed_job" nullable="true" xsi:type="varchar" comment="completed_job" length="255"/>
+		<column name="rejected_job" nullable="true" xsi:type="varchar" comment="rejected_job" length="255"/>
+		<column name="cancelled_job" nullable="true" xsi:type="varchar" comment="cancelled_job" length="255"/>
+		<column name="api_token" nullable="true" xsi:type="varchar" comment="Api Token" length="255"/>
+		<column name="api_token_created_at" nullable="true" xsi:type="text" comment="Api Token Timestamp"/>
+		<column name="value_product_purchased" nullable="true" xsi:type="varchar" comment="value_product_purchased" length="255"/>
+		<column name="same_as_permanent_address" nullable="true" xsi:type="smallint" comment="same as permanent address"/>
+		<column name="university_college" nullable="true" xsi:type="varchar" comment="Name of university/college" length="255"/>
+		<column name="year_of_passing" nullable="true" xsi:type="varchar" comment="year passing" length="255"/>
+		<column name="upload_certificate" nullable="true" xsi:type="varchar" comment="upload certificate" length="255"/>
+		<column name="registration_council" nullable="true" xsi:type="varchar" comment="name of the registration council" length="255"/>
+		<column name="registration_number" nullable="true" xsi:type="varchar" comment="registration number" length="255"/>
+		<column name="year_of_registration" nullable="true" xsi:type="varchar" comment="year of registration" length="255"/>
+		<column name="year_of_experience" xsi:type="decimal" scale="2" precision="20" unsigned="false" nullable="false" default="0" comment="year of experience" />
+		<column name="doctor_membership" nullable="true" xsi:type="varchar" comment="Doctor membership" length="512"/>
+		<column name="awards" nullable="true" xsi:type="varchar" comment="awards" length="512"/>
+		<column name="select_specialisation" nullable="true" xsi:type="varchar" comment="select specialisation" length="255"/>
+		<column name="specialisation_other" nullable="true" xsi:type="varchar" comment="select specialisation other" length="255"/>
+		<column name="clinic_name" nullable="true" xsi:type="varchar" comment="clinic name" length="255"/>
+		<column name="gst_number" nullable="true" xsi:type="varchar" comment="GST number" length="255"/>
+		<column name="address_line" nullable="true" xsi:type="varchar" comment="address line" length="512"/>
+		<column name="locality" nullable="true" xsi:type="varchar" comment="locality" length="255"/>
+		<column name="city" nullable="true" xsi:type="varchar" comment="city" length="255"/>
+		<column name="pincode" nullable="true" xsi:type="varchar" comment="pincode" length="255"/>
+		<column name="state" nullable="true" xsi:type="varchar" comment="state" length="255"/>
+		<column name="select_facilities" nullable="true" xsi:type="varchar" comment="select_facilities" length="255"/>
+		<column name="cheque_image" nullable="true" xsi:type="varchar" comment="cheque image" length="255"/>
+		<column name="bd_name" nullable="true" xsi:type="varchar" comment="bd_name" length="255"/>
+		<column name="bd_profile_image" nullable="true" xsi:type="varchar" comment="bd_profile_image" length="255"/>
+		<column name="bd_phone_number" nullable="true" xsi:type="varchar" comment="bd_phone_number" length="255"/>
+		<column name="bd_email" nullable="true" xsi:type="varchar" comment="bd_email" length="255"/>
+		<column name="for_vet_consulting" nullable="true" xsi:type="smallint" comment="for_vet_consulting" padding="255"/>
+		<column name="vet_service_center" nullable="true" xsi:type="varchar" comment="vet service center"/>
+		<index referenceId="ZIGLY_GROOMER_GROOMER_NAME_EMAIL_PHONE_NUMBER" indexType="fulltext">
+			<column name="name" />
+			<column name="email" />
+			<column name="phone_number" />
+		</index>
+	</table>
+</schema>

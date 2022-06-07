@@ -1,0 +1,22 @@
+<?php $serviceSession = $this->getGroomingSession();
+$planDetails = $this->getPlanById($serviceSession['planid']);
+$totalDuration = 0;
+$breedTypeName = $this->getBreedType($serviceSession['pet_id']);
+$serviceSession['activities'] = [];
+if ($planDetails->getPlanCategory() == '2') {
+    foreach($serviceSession['activity'] as $activityId) {
+        $activity = $this->getActivity($activityId);
+        if (!empty($activity)){
+            $totalDuration += (float)$activity->getData($breedTypeName.'_time');
+        }
+    }
+} else {
+    $totalDuration = $planDetails->getData($breedTypeName.'_time');
+} ?>
+<div class="booked-content">
+    <h5 class="booked-pet-name"><?= $this->getPetById($serviceSession['pet_id']) ?></h5>
+    <p class="plan-duration-booked">
+        <span class="booked-plan"><?= $planDetails->getPlanName() ?></span>
+        <span class="booked-duration"><?= $totalDuration ?><span class="time-formate"><?= __('Mins') ?></span></span>
+    </p>
+</div>

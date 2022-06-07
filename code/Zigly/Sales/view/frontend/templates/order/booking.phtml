@@ -1,0 +1,150 @@
+<?php $upcoming = $this->getUpcomingBooking(); ?>
+<?php $past = $this->getPastBooking(); ?>
+<div class="sales-orders-booking-list">
+    <div class="sales-orders-upcoming-booking">
+        <div class="order-upcoming-header">
+            <h2 class="order-upcoming-label">Upcoming Bookings</h2>
+        </div>
+        <div class="order-upcoming">
+            <?php if (count($upcoming)): ?>
+                <ol class="upcoming-items owl-carousel owl-theme" id="owl-upcoming">
+                    <?php foreach ($upcoming as $value):?>
+                        <li class="upcoming-booking-list">
+                            <div class="booking-image">
+                                <a href="<?php echo $this->getUrl('sales/orders/viewbooking', ['booking_id' => $value->getEntityId()]);?>" class="action view">
+                                    <?php if ($value->getBookingType() == 1): ?>
+                                        <img class="imageThumb" src="<?php echo $this->getViewFileUrl('Zigly_Sales::images/Pet-grooming.png'); ?>">
+                                    <?php elseif ($value->getBookingType() == 2) : ?>
+                                        <img class="imageThumb" src="<?php echo $this->getViewFileUrl('Zigly_Sales::images/Vet-consultation.png'); ?>">
+                                    <?php endif; ?>
+                                </a>
+                            </div>
+                            <div class="booking-content">
+                                <a href="<?php echo $this->getUrl('sales/orders/viewbooking', ['booking_id' => $value->getEntityId()]);?>" class="action view">
+                                    <?php if ($value->getBookingType() == 1): ?>
+                                        <label><?= /* @noEscape */ $block->escapeHtml(__('Pet Grooming')).' '.$value->getCenter() ?></label>
+                                    <?php elseif ($value->getBookingType() == 2) : ?>
+                                        <label><?= /* @noEscape */ $block->escapeHtml(__('Vet Consultant')) ?></label>
+                                    <?php elseif ($value->getBookingType() == 3) : ?>
+                                        <label><?= /* @noEscape */ $block->escapeHtml(__('Vet Consultant')) ?></label>
+                                    <?php endif; ?>
+                                </a>
+                                <!-- <span>
+                                    <label><?= $block->escapeHtml(__('PIN: ')) ?></label>
+                                    <label><?= $block->escapeHtml(__('2451')) ?></label>
+                                </span> -->
+                                <div class="booking-date-time">
+                                    <span>
+                                        <?= /* @noEscape */ $this->getDate($value->getScheduledDate()) ?>
+                                    </span>
+                                    <span>
+                                        <?= /* @noEscape */ $value->getScheduledTime() ?>
+                                    </span>
+                                </div>
+                                <div class="booking-action">
+                                    <?php if ($value->getGroomerId()) { ?>
+                                        <?php $scheduledStatus = ['Scheduled']; ?>
+                                        <?php if (in_array($value->getBookingStatus(), $scheduledStatus)) { ?>
+                                            <a href="<?=  $block->getUrl('sales/booking/reschedule' , ['id' => $value->getEntityId()]) ?>" class="action booking-reschedule">
+                                                <span><?= $block->escapeHtml(__('Reschedule')) ?></span>
+                                            </a>
+                                        <?php } ?>
+                                        <?php $status = ['Scheduled', 'Inprogress', 'Rescheduled by Admin', 'Rescheduled by Customer']; ?>
+                                        <?php $now = new \DateTime('now', new \DateTimeZone('Asia/Kolkata')); ?>
+                                        <?php $now->add(new \DateInterval('PT30M')); ?>
+                                        <?php $currentTimeStamp = $now->getTimestamp() + $now->getOffset(); ?>
+                                        <?php if (in_array($value->getBookingStatus(), $status) && ($currentTimeStamp < $value->getScheduledTimestamp())) { ?>
+                                            <a href="#" key="<?php /* @noEscape */ echo $value->getEntityId()?>" class="action booking-cancel">
+                                                <span><?= $block->escapeHtml(__('Cancel')) ?></span>
+                                            </a>
+                                        <?php } ?>
+                                    <?php } ?>
+                                    <span class="help-tooltip">
+                                        <a href="javascript:;" class="tooltip-toggle"><?= $block->escapeHtml(__('Help')) ?></a>
+                                        <span class="tooltip-content"><?= __('For any queries or concern you can write to us at support@zigly.com or call us on +918069601281') ?></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ol>
+            <?php else: ?>
+                <div class="empty-booking">
+                    <span><?= $escaper->escapeHtml(__('No Upcoming Booking')) ?></span>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <div class="sales-orders-past-booking">
+        <div class="order-past-header">
+            <h2 class="order-past-label">Past Bookings</h2>
+        </div>
+        <div class="order-past">
+            <?php if (count($past)): ?>
+                <ol class="past-items owl-carousel owl-theme" id="owl-past">
+                    <?php foreach ($past as $value):?>
+                        <li class="past-booking-list">
+                            <div class="booking-image">
+                                <a href="<?php echo $this->getUrl('sales/orders/viewbooking', ['booking_id' => $value->getEntityId()]);?>" class="action view">
+                                    <?php if ($value->getBookingType() == 1): ?>
+                                        <img class="imageThumb" src="<?php echo $this->getViewFileUrl('Zigly_Sales::images/Past-pet-grooming.png'); ?>">
+                                    <?php elseif ($value->getBookingType() == 2) : ?>
+                                        <img class="imageThumb" src="<?php echo $this->getViewFileUrl('Zigly_Sales::images/Past-vet-consultation.png'); ?>">
+                                    <?php endif; ?>
+                                </a>
+                            </div>
+                            <div class="booking-content">
+                                <a href="<?php echo $this->getUrl('sales/orders/viewbooking', ['booking_id' => $value->getEntityId()]);?>" class="action view">
+                                    <?php if ($value->getBookingType() == 1): ?>
+                                        <label><?= /* @noEscape */ $block->escapeHtml(__('Pet Grooming')).' '.$value->getCenter() ?></label>
+                                    <?php elseif ($value->getBookingType() == 2) : ?>
+                                        <label><?= /* @noEscape */ $block->escapeHtml(__('Vet Consultant')) ?></label>
+                                    <?php endif; ?>
+                                </a>
+                                <!-- <span>
+                                    <label><?= $block->escapeHtml(__('PIN: ')) ?></label>
+                                    <label><?= $block->escapeHtml(__('2451')) ?></label>
+                                </span> -->
+                                <div class="booking-date-time">
+                                    <span>
+                                        <?= /* @noEscape */ $this->getDate($value->getScheduledDate()) ?>
+                                    </span>
+                                    <span>
+                                        <?= /* @noEscape */ $value->getScheduledTime() ?>
+                                    </span>
+                                </div>
+                                <div class="booking-action">
+                                    <span class="help-tooltip">
+                                        <a href="javascript:;" class="tooltip-toggle"><?= $block->escapeHtml(__('Help')) ?></a>
+                                        <span class="tooltip-content"><?= __('For any queries or concern you can write to us at support@zigly.com or call us on +918069601281') ?></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ol>
+            <?php else: ?>
+                <div class="empty-booking">
+                    <span><?= $escaper->escapeHtml(__('No Past Booking')) ?></span>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_Sales/js/carousel-slider":{}
+        }
+    }
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_Sales/js/cancel": {
+                "bookingUrl" : "<?php echo $this->getUrl().'sales/orders/cancelbooking'?>",
+                "policy" : "<?php echo $this->getUrl().'cancellation-return-exchange-and-refund-policy'?>"
+            }
+        }
+    }
+</script>

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_ProfessionalGraphQl
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Zigly\ProfessionalGraphQl\Api\ProfessionalRepositoryInterface" type="Zigly\ProfessionalGraphQl\Model\ProfessionalRepository"/>
+    <preference for="Zigly\ProfessionalGraphQl\Api\HubRepositoryInterface" type="Zigly\ProfessionalGraphQl\Model\HubRepository"/>
+    <preference for="Zigly\ProfessionalGraphQl\Api\ProfessionalLoginRepositoryInterface" type="Zigly\ProfessionalGraphQl\Model\ProfessionalLoginRepository"/>
+    <preference for="Zigly\ProfessionalGraphQl\Api\Data\ProfessionalGraphQlInterface" type="Zigly\ProfessionalGraphQl\Model\ProfessionalLogin" />
+</config>

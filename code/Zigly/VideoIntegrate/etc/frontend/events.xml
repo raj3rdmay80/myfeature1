@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="zigly_videointegrate_display_order">
+        <observer name="order_data" instance="Zigly\VideoIntegrate\Observer\TwilioObserver" />
+    </event>
+</config>

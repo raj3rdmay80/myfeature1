@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Cityscreen
+ */
+$cityOne = $block->getDelhiCityById();
+$cityTwo = $block->getCityById(2);
+$cities = array_merge($cityOne,$cityTwo);
+$selectedCity = 'Location';
+?>
+<div class="cityscreen">
+    <div class="primary location-tooltip-show">
+        <button type="submit" class="select_city primary tooltip-toggle" title="<?php echo $selectedCity; ?>">
+            <span id="selectedValue"><?php echo $selectedCity; ?></span>
+        </button>
+        <div class="location-overlay" style="display: none;"></div>
+        <div id="location-modal" style="display: none;">
+            <button class="action-close" data-role="closeBtn" type="button" style="display:none">
+                <span><img src="<?php echo $this->getViewFileUrl('images/icon-close.png'); ?>" /></span>
+            </button>
+            <p class="greet-title"><?= _('Welcome To Zigly') ?></p>
+            <p class="greet-description"><?= _('Tell us your delivery location to view the products at a store close to you') ?></p>
+            <div class="action-bar">
+                <span class="primary">
+                    <div class="detect_location" title="<?= _('DETECT MY LOCATION') ?>">
+                       <?= _('DETECT MY LOCATION') ?>
+                    </div>
+                </span>
+                <span><?= _('OR') ?></span>
+                <span class="primary">
+                    <div class="enter_location action tocart primary -left" title="<?= _('SELECT CITY') ?>">
+                       <?= _('SELECT CITY') ?>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popup-modal" style="display: none;">
+    <div id="selectcity">
+        <div class="select_label">
+            <label class="selectyourcity">Select Your City</label>
+        </div>
+    </div>
+    <form class="searchcity" autocomplete="off">
+        <div class="autocomplete">
+            <i class="fa fa-search searched"></i>
+            <input class="form-control" type="search" id="autosearch" placeholder="Search for your city or pincode" aria-label="Search">
+            <span id="loader"></span>
+        </div>
+    </form>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_Cityscreen/js/cityscreen": {
+                "cityOne": <?= json_encode($cityOne);?>,
+                "cityTwo": <?= json_encode($cityTwo);?>,
+                "cities": <?= json_encode($cities);?>,
+                "AjaxUrl" : "<?php echo $this->getUrl().'ziglycityscreen/cityscreen/savecityscreen'?>",
+                "geoCheckUrl" : "<?php echo $this->getUrl().'ziglycityscreen/cityscreen/detect'?>"
+            }
+        }
+    }
+</script>

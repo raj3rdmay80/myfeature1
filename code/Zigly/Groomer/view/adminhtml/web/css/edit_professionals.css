@@ -1,0 +1,9 @@
+.admin__control-table-wrapper .admin__field.year-passing .admin__action-multiselect-wrap .action-menu {
+	min-width: 218px;
+}
+
+@media (max-width: 1199px){
+	.admin__control-table-wrapper .admin__field.year-passing .admin__action-multiselect-wrap .action-menu {
+		min-width: 133px;
+	}
+}

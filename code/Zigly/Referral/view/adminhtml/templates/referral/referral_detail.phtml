@@ -1,0 +1,105 @@
+<div class="fieldset-wrapper customer-information">
+<div class="fieldset-wrapper-title" >
+	<strong class="title">
+		<span>Customer Reference Information</span>
+	</strong>
+</div>
+<?php
+	$customerId =$block->getCustomerId();
+	$customer = $block->getReferralData();
+	$referralcode = '';
+	$refercode = '';
+	$referral_type = '';
+	$referral_value = '';
+	if($customerId) {
+		if($customer->getCustomAttribute('referralcode') != NULL || $customer->getCustomAttribute('referralcode') != '') {
+			$referralcode = $customer->getCustomAttribute('referralcode')->getValue();
+		}
+
+		if($customer->getCustomAttribute('refercode') != NULL || $customer->getCustomAttribute('refercode') != '') {
+			$refercode = $customer->getCustomAttribute('refercode')->getValue();
+		}
+
+		if($customer->getCustomAttribute('referral_type') != NULL || $customer->getCustomAttribute('referral_type') != '') {
+			$referral_type = $customer->getCustomAttribute('referral_type')->getValue();
+		}
+
+		if($customer->getCustomAttribute('referral_value') != NULL || $customer->getCustomAttribute('referral_value') != '') {
+			$referral_value = $customer->getCustomAttribute('referral_value')->getValue();
+		}
+		
+	}
+?>
+<fieldset class="admin__fieldset referral_fieldset">	
+	<!-- <div class="admin__field" data-index="referralcode">
+		<div class="admin__field-label">
+			<label>
+				<span>Referral Code</span>
+			</label>
+		</div>
+		<div class="admin__field-control">
+		<input class="admin__control-text" type="text" name="customer[referralcode]" value="<?php// echo $referralcode; ?>" maxlength="7" <?php// if($customerId): ?>disabled="disabled" <?php// endif; ?> data-form-part="customer_form">       
+		</div>
+	</div> -->
+
+	<div class="admin__field" data-index="refercode">
+		<div class="admin__field-label">
+			<label>
+				<span>Referrence Code</span>
+			</label>
+		</div>
+		<div class="admin__field-control">
+			<input class="admin__control-text" type="text" name="customer[refercode]" value="<?php echo $refercode; ?>"  <?php if($customerId): ?> disabled="disabled" <?php endif; ?> maxlength="7" data-form-part="customer_form">
+		</div>
+	</div>
+
+	<!-- <div class="admin__field" data-index="referral_type">
+		<div class="admin__field-label">
+			<label>
+				<span>Reference Action Type</span>
+			</label>
+		</div>
+		<div class="admin__field-control">
+			<select class="admin__control-select" type="text" name="customer[referral_type]" value="<?php// echo $referral_type; ?>" data-form-part="customer_form">
+				<option data-title="Please select" value="">Please select</option>
+				<option data-title="Fixed" value="1" <?php// if($referral_type == 1): ?> selected="selected" <?php// endif; ?>>Fixed</option>
+				<option data-title="Percentage" value="2" <?php// if($referral_type == 2): ?> selected="selected" <?php// endif; ?>>Percentage</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="admin__field" data-index="referral_value">
+		<div class="admin__field-label">
+			<label>
+				<span>Referral Action Value</span>
+			</label>
+		</div>
+		<div class="admin__field-control">
+			<input class="admin__control-text" type="text" name="customer[referral_value]" value="<?php// echo $referral_value; ?>" maxlength="255" data-form-part="customer_form">
+		</div>
+	</div> -->
+	<?php if($customerId):?>
+	<div class="admin__field" data-index="referral_earned">
+		<div class="admin__field-label">
+			<label>
+				<span>Referral Earned</span>
+			</label>
+		</div>
+		<div class="admin__field-label">
+			<label>
+				<span><?php echo number_format((float)$block->getReferralEarned(), 2, '.', ''); ?></span>
+			</label>
+		</div>
+	</div>
+	<?php endif; ?>
+</fieldset>
+
+</div>
+
+<div class="fieldset-wrapper">
+<div class="fieldset-wrapper-title" >
+	<strong class="title">
+		<span>Reference History</span>
+	</strong>
+</div>
+</div>

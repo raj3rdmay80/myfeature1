@@ -1,0 +1,43 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_JetTheme
+ */
+?>
+<?php
+/** @var $block \Amasty\JetTheme\Block\AjaxCart\Popup */
+/** @var \Magento\Framework\Escaper $escaper */
+
+// @codingStandardsIgnoreLine
+$helper = $this->helper(\Magento\Catalog\Helper\Output::class);
+$product = $block->getProduct();
+$rating = $block->getRatingSummary($product);
+$productName = $helper->productAttribute($product, $product->getName(), 'name');
+$escaper = isset($escaper) ? $escaper : $block;
+?>
+
+<link rel="stylesheet" type="text/css" href="<?= /* @noEscape */  $block->getViewFileUrl('mage/gallery/gallery.css')?>">
+<link rel="stylesheet" type="text/css" href="<?= /* @noEscape */  $block->getViewFileUrl('css/gallery/gallery.css')?>">
+
+<div class="column main amtheme-product-wrap">
+    <?= /* @noEscape */ $block->getLayout()->renderNonCachedElement('product.info.media') ?>
+
+    <div class="amtheme-product-info">
+        <p class="product-name">
+            <?= $escaper->escapeHtml($productName); ?>
+        </p>
+        <div class="amtheme-short-info">
+            <?php if ($rating): ?>
+                <div class="amtheme-rating"><?= /* @noEscape */ $rating; ?></div>
+            <?php endif; ?>
+            <?= /* @noEscape */ $block->getLayout()->renderNonCachedElement('product.info.stock.sku') ?>
+        </div>
+        <div class="product-info-main">
+            <div class="amtheme-description">
+                <?= /* @noEscape */ $helper->productAttribute($product, $product->getShortDescription(), 'short_description') ?>
+            </div>
+            <?= /* @noEscape */ $block->getOptions(); ?>
+        </div>
+    </div>
+</div>

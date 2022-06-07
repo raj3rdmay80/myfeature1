@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Wallet
+ */
+ -->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/layout_generic.xsd">
+    <container name="root" label="Root">
+        <block class="Zigly\Wallet\Block\Adminhtml\Edit" name="wallet" template="Zigly_Wallet::wallet.phtml" />
+        <block class="Zigly\Wallet\Block\Adminhtml\Edit\Tab\View\Wallet" name="customer.edit.tab.wallet"/>
+    </container>
+</layout>

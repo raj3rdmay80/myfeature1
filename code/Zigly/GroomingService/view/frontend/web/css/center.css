@@ -1,0 +1,1255 @@
+.head-title {
+    font-size: 30px;
+}
+.grooming-services {
+    display: block;
+    padding-top: 50px;
+}
+.cms-landing-page .owl-theme .owl-dots .owl-dot.active span {
+    width: 6px;
+    border: 3px solid #FEBD34;
+    background: #fff;
+    height: 6px;
+}
+.cms-landing-page .owl-theme .owl-dots .owl-dot span {
+    background: #FEBD34;
+    width: 8px;
+    height: 8px;
+}
+.services-grooming-experience main#maincontent {
+    padding: 0;
+}
+.landing-banner .owl-carousel.owl-drag .owl-item {
+    background-color: #183762;
+}
+.at-experience.cms-landing-page .pet-appointment h1 {
+    color: #fff;
+}
+.at-experience.cms-landing-page .pet-appointment p {
+    color: #fff;
+}
+.grooming-image div {
+    text-align: center;
+}
+.grooming-image img {
+    margin: 0 auto;
+}
+.grooming-services > .grooming-image{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-content: space-between;
+    place-items: flex-start center;
+    grid-gap: 55px;
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.quality-petcare .easy-steps h1 {
+    color: #fff;
+    font-size: 32px;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+.quality-petcare .easy-steps h3 {
+    color: #fff;
+    padding-top: 15px;
+    line-height: 26px;
+    font-weight: 100;
+    font-size: 22px;
+    width: 60%;
+}
+.quality-petcare .total-steps .your-services {
+    margin: 0 auto;
+    text-align: center;
+}
+.cms-landing-page .quality-petcare .your-services img {
+    width: 110px;
+}
+.quality-petcare .steps-appoinment {
+    text-align: center;
+    padding: 20px 20px 0;
+}
+.quality-petcare .pet-care {
+    padding-top: 30px;
+}
+.quality-petcare .steps-appoinment {
+    text-align: center;
+    padding: 20px;
+}
+.four-steps .your-services-text p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #183762;
+}
+.explore_our_packs {
+    text-align: center;
+    padding-top: 45px;
+}
+.explore_our_packs span.section-title {
+    font-size: 30px;
+    text-transform: capitalize;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+}
+.explore-tabs {
+    padding: 30px 0;
+}
+.explore-tabs button.tablink {
+    font-family: 'nunito_sanssemibold';
+    color: #052A5075;
+    background: transparent !important;
+    border-bottom: 2px solid #fff;
+    border-radius: 0;
+    padding: 5px 0;
+    margin: 0 15px;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+.explore_our_packs .content {
+    position: absolute;
+    right: 5%;
+    top: 30px;
+    width: 30%;
+    text-align: left;
+    height: 85%;
+    padding-right: 20px;
+    overflow-y: auto;
+    scrollbar-color: #052a50 #052a5012;
+    scrollbar-width: thin;
+}
+.explore_our_packs .content .price-note{
+    color: var(--primary);
+    font-size: 12px;11
+}
+
+.explore_our_packs .content::-webkit-scrollbar {
+    width: 4px;
+    background-color: #052a5018;
+    border-radius: 24px;
+}
+.explore_our_packs .content::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border: none;
+    min-height: 20px;
+    border-radius: 50px;
+}
+.explore_our_packs .content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #052a5018;
+    background-color: #052a5012;
+    border: none;
+}
+.explore_our_packs .tab-content.e_plan {
+    position: relative;
+}
+.explore_our_packs .price {
+    float: right;
+    font-family: 'nunito_sanssemibold';
+    color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.explore_our_packs .title {
+    text-transform: uppercase;
+    padding-left: 0;
+    font-size: 20px;
+    font-family: 'nunito_sanssemibold';
+    color: var(--primary);
+    width: 60%;
+}
+.explore_our_packs .text p {
+    font-family: 'nunito_sanssemibold';
+    color: var(--primary);
+    font-size: 16px;
+    padding-bottom: 6px;
+    margin-bottom: 5px;
+    display:flex;
+    align-items: center;
+}
+.explore_our_packs .tab-content.e_plan {
+    position: relative;
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+    border: none;
+}
+.explore_our_packs .text p {
+    padding-left: 28px;
+}
+.explore_our_packs .appoinment-book button {
+    background: #183762;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 15px;
+}
+
+.explore_our_packs .appoinment-book button a{
+    color: #fff;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-family: 'nunito_sanssemibold';
+}
+.explore_our_packs .text span {
+    display: block;
+    padding: 15px 0;
+    font-family: 'nunito_sanssemibold';
+    color: #A8A69F;
+}
+.explore_our_packs .title-plan {
+    justify-content: space-between;
+    display: flex;
+}
+
+.explore_our_packs .plan-description .plan-description-content > p{
+    color: var(--primary);
+    font-size: 16px;
+    font-family: 'nunito_sanssemibold';
+    margin-top: 20px; 
+    padding-top: 50px;   
+    position: relative;
+}
+.explore_our_packs .plan-description .plan-description-content > p::before{
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 40px;
+    top: 0;
+    left: 0;
+    background: url(../images/quote-left-solid.svg) no-repeat center;
+    background-size: contain;
+    filter: opacity(0.2);
+}
+
+.explore_our_packs .price span.small {
+    justify-content: flex-end;
+    display: flex;
+    font-size: 14px;
+    padding-left: 0px;
+}
+.explore_our_packs .price span.small img {
+    width: 15px;
+    height: 15px;
+    padding-right: 5px;
+}
+.explore_our_packs  span.price-rupee {
+    font-size: 18px;
+    font-family: 'nunito_sansbold';
+}
+.tips-for-pets .health-images {
+    display: grid;
+    grid-template-columns: 31.5% 31.5% 31.5%;
+    grid-gap: 35px;
+}
+.cms-landing-page.at-experience button.appoinment {
+    background-color: var(--primary);
+    border-radius: 25px;
+    padding: 12px 25px;
+}
+.cms-landing-page.at-experience button.appoinment a{
+    color: #fff;
+    font-size: 15px;
+    font-family: 'nunito_sanssemibold';
+    text-transform: uppercase;
+}
+.takecare-pets {
+    padding: 50px;
+    background-color: #FFF3DD;
+    margin: 40px 0;
+}
+.takecare-pets {
+    text-align: center;
+    padding: 50px;
+    background-color: #FFF3DD;
+    margin: 40px 0;
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+.takecare-pets .pets .title {
+    font-size: 30px;
+    text-transform: capitalize;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+    padding: 10px;
+}
+.takecare-pets:before {
+    position: absolute;
+    content: '';
+    width: 250px;
+    height: 250px;
+    background-color: var(--primary);
+    left: -120px;
+    top: -120px;
+    border-radius: 50%;
+}
+.takecare-pets .pets {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 10px 40px;
+}
+.takecare-pets:after {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    right: -110px;
+    width: 250px;
+    height: 250px;
+    background-color: #F3452E;
+    border-radius: 50%;
+}
+.takecare-pets .pets .subtitle {
+    color: #052a50;
+    font-family: 'nunito_sanssemibold';
+    font-size: 16px;
+    padding: 5px 13%;
+    line-height: 26px;
+    opacity: 0.6;
+}
+/*.takecare-pets .grooming-image {
+   position: relative;
+}*/
+
+.takecare-pets .grooming-image #pets-slider .owl-nav{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+}
+.takecare-pets .grooming-image #pets-slider button.owl-prev {
+    float: left;
+    background: url(../images/right_carousel_arrow.png) no-repeat 100% / contain;
+    width: 35px;
+    height: 35px;
+    transform: rotate(180deg);
+}
+.takecare-pets .grooming-image #pets-slider button.owl-prev span {
+    font-size: 0px;
+}
+.takecare-pets .grooming-image #pets-slider button.owl-next {
+    float: right;
+    background: url(../images/right_carousel_arrow.png) no-repeat 100% / contain;
+    width: 35px;
+    height: 35px;
+}
+.takecare-pets .grooming-image #pets-slider button.owl-next span {
+    font-size: 0px;
+}
+.takecare-pets .grooming-image #pets-slider .owl-dots {
+    text-align: center;
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    margin: 0 auto;
+}
+.takecare-pets .grooming-image #pets-slider .owl-dots .owl-dot.active span {
+    width: 6px;
+    border: 3px solid var(--primary);
+    background: #fff;
+    height: 6px;
+}
+.takecare-pets .grooming-image #pets-slider .owl-dots .owl-dot span {
+    background:var(--primary);
+    width: 8px;
+    height: 8px;
+}
+.takecare-pets .know-btn {
+    margin: 50px 0 0;
+}
+.takecare-pets .know-btn button {
+    background: #183762;
+    border-radius: 25px;
+    padding: 12px 40px;
+}
+.takecare-pets .know-btn button a{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-family: 'nunito_sanssemibold';
+}
+.services-grooming-experience .shop-grooming {
+    padding: 50px;
+}
+.shop-grooming li.item.product.product-item {
+    width: 100%;
+    border-radius: 24px;
+    padding: 15px;
+    border: 1px solid transparent;
+}
+.shop-grooming li.item.product.product-item .amtheme-icons-position.-bottom-right {
+    position: absolute;
+    top: 27px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+}
+.shop-grooming li.item.product.product-item .product-item-info {
+    position: relative;
+}
+.shop-grooming li.item.product.product-item .towishlist-wrap a.action.towishlist {
+    background: transparent url(../images/wishlist_icon.png) no-repeat center;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+}
+.shop-grooming li.item.product.product-item .towishlist-wrap a.action.towishlist svg.amtheme-icon.-hover-bg {
+    display: none;
+}
+.cms-landing-page .shop-grooming .owl-nav {
+    position: absolute;
+    display: inline-flex;
+    height: 100%;
+    top: 0;
+    align-items: center;
+    width: 100%;
+}
+.cms-landing-page .shop-grooming button.owl-prev{
+    left: -10px;
+    position: absolute;
+    background: url(../images/right_carousel_arrow.png) no-repeat 100% / contain;
+    width: 35px;
+    height: 35px;
+    transform: rotate(180deg);
+    z-index: 9
+}
+.cms-landing-page .shop-grooming button.owl-next {
+    right: -10px;
+    position: absolute;
+    background: url(../images/right_carousel_arrow.png) no-repeat 100% / contain;
+    width: 35px;
+    height: 35px;
+    z-index: 9;
+}
+.shop-grooming .owl-carousel .owl-stage-outer {
+    z-index: 9;
+}
+.cms-landing-page .shop-grooming button.owl-next span {
+    font-size: 0px;
+}
+.cms-landing-page .shop-grooming button.owl-prev span {
+    font-size: 0px;
+}
+
+.shop-grooming .product-item-info .swatch-wrapper .swatch-option {
+    font-size: 10px;
+    min-height: 5px;
+    min-width: 5px;
+    padding: 5px;
+    font-family: 'nunito_sansextrabold';
+    border-radius: 8px;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    margin-right: 6px;
+}
+.shop-grooming .product-item-info .product-item-details p {
+    font-size: 14px;
+    font-family: 'nunito_sansbold';
+    color: #052a5038;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+.shop-grooming .product.details.product-item-details .product-item-name {
+    font-size: 16px;
+    font-family: 'nunito_sanssemibold';
+    color: var(--primary);
+    text-transform: capitalize;
+    margin: 0;
+}
+.shop-grooming .product.details.product-item-details  .special-price-info .price {
+    padding-top:4px;
+    font-size: 16px !important;
+    font-family: 'nunito_sansbold';
+    color: var(--primary);
+}
+.shop-grooming .product.actions.product-item-actions button {
+    width: 100%;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 24px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.shop-grooming li.item.product.product-item .product-item>.product-item-info {
+    display: block;
+}
+
+.corner-image img {
+    max-width: 90%;
+}
+.corner-image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 9;
+}
+.services-grooming-home .page-main,
+.services-grooming-experience .page-main{
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+}
+.at-home .landing-banner .owl-carousel.owl-drag .owl-item {
+    background-color: #FFF3DF;
+}
+.at-home.cms-landing-page .pet-appointment h1{
+    color: var(--primary);
+}
+.at-home.cms-landing-page .slider-appoinment a#appoinment {
+    background: var(--primary);
+    color: #fff;
+    font-size: 15px;
+    font-family: 'nunito_sanssemibold';
+    text-transform: uppercase;s
+}
+
+.at-home.cms-landing-page .owl-theme .owl-dots .owl-dot.active span {
+    border: 2px solid var(--primary);
+    background-color: #fff;
+}
+.at-home.cms-landing-page .owl-theme .owl-dots .owl-dot span {
+    background: var(--primary);
+}
+.shop-grooming {
+    padding: 50px;
+}
+.shop-grooming .title {
+    text-align: center;
+    font-size: 30px;
+    text-transform: capitalize;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+    padding: 10px;
+    margin-bottom: 30px;
+}
+.shop-grooming .products-grid .product-item-info:hover:after, .products-grid .product-item-info.-hover:after {
+    content: none;
+}
+.shop-grooming li.item.product.product-item .product-item-info {
+    box-shadow: none;
+    padding: 0;
+}
+.shop-grooming li.item.product.product-item .product-item-info .product.actions.product-item-actions button.action.tocart.primary {
+    display: none;
+    width: 100%;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 14px;
+}
+.corner-image-pethome {
+    position: absolute;
+    right: 32px;
+    bottom: 0;
+    z-index: 9;
+}
+.explore_our_packs .text p:before{
+    width: 17px;
+    height: 17px;
+    background: url(../images/Landing_check_icon.png) no-repeat center;
+    background-size: contain;
+    content: '';
+    left:-0px;
+    position: absolute;
+    
+}
+.shop-grooming .products.wrapper.grid.products-grid.products {
+    padding: 0 18px;
+}
+.shop-grooming.amasty-jet-theme.page-products.page-with-filter.page-layout-2columns-left .products.grid .product-item {
+    width: 100%;
+}
+.shop-grooming li.item.product.product-item:hover .product-item-info .product.actions.product-item-actions button.action.tocart.primary {
+    display: block;
+}
+.shop-grooming.amasty-jet-theme.page-products.page-with-filter.page-layout-2columns-left .products.grid .product-item:hover {
+    border: 1px solid #052a5034;
+}
+.shop-grooming.amasty-jet-theme.page-products .products.grid .product-item:last-child .product-item-info {
+    margin-bottom: 0;
+}
+.shop-grooming.amasty-jet-theme.page-products.page-with-filter.page-layout-2columns-left .products-grid .product-item-info:hover .swatch-wrapper {
+    margin-bottom: 0;
+}
+
+.shop-grooming.amasty-jet-theme.page-with-filter.page-products.page-layout-2columns-left li.item.product.product-item .product-item-info  i.fa.fa-star.review-star {
+    color: var(--primary);
+    padding-bottom: 0px;
+    padding-top: 10px;
+    
+}
+.shop-grooming.amasty-jet-theme.page-with-filter.page-products.page-layout-2columns-left li.item.product.product-item .product-item-info {
+
+    display:block !important;
+}
+.shop-grooming.amasty-jet-theme.page-products.page-with-filter.page-layout-2columns-left .products.grid .product-item .amtheme-icons-position.-bottom-right .action.towishlist {
+    background: transparent url(../images/wishlist_icon.png) no-repeat center;
+    background-size: contain;
+    width: 27px ! important;
+    height: 27px ! important;
+}
+.shop-grooming .product.details.product-item-details {
+    /*border-top:1px solid #c4c4c456;*/
+    padding-top: 10px;
+}
+.shop-grooming.amasty-jet-theme.page-products.page-with-filter.page-layout-2columns-left .products-grid .product-item-info .product-item-details p {
+    padding-top: 0px;
+}
+.shop-grooming.amasty-jet-theme.page-products.page-with-filter.page-layout-2columns-left a.product.photo.product-item-photo img {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: auto;
+}
+.shop-grooming.amasty-jet-theme.page-products.page-with-filter.page-layout-2columns-left .info-price {
+    font-family: 'nunito_sansbold';
+    color: var(--primary);
+}
+.at-home.cms-landing-page .pet-appointment p {
+    color: var(--primary);
+}
+.cms-landing-page .slider-appoinment button#appoinment{
+    font-size: 15px;
+}
+.book-appoinment button#appoinment a{
+    font-size: 15px;
+    font-family: 'nunito_sanssemibold';
+    color: #fff;
+    text-transform: uppercase;
+}
+
+/*responsive media queries*/
+
+/*@media(max-width: 1340px){
+    .easy-steps::before{
+        height: 103%;
+    }
+}*/
+
+@media(max-width: 1280px){
+    .cms-landing-page .pet-appointment{
+        right: 14%;
+        bottom: 60px;
+    }
+    .at-experience.cms-landing-page .pet-appointment h1 {
+        font-size: 32px;
+        line-height: 1;
+    }
+    .at-home.cms-landing-page .pet-appointment p{
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    .grooming-image-text p{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .cms-landing-page .quality-petcare .your-services img{
+        width: 90px;
+    }
+    .grooming-image > .home > img{
+        max-width: 100%;
+    }
+    .explore_our_packs .tab-content.e_plan{
+        border: none;
+    }
+    .cms-landing-page .owl-dots{
+        transform: translateX(-50%);
+    }
+    .services-grooming-experience .pet-appointment {
+        right: 8%;
+    }
+}
+
+/*@media(max-width: 1240px){
+    .easy-steps::before{
+        height: 105%;
+    }
+}
+*/
+
+
+@media(max-width: 1199px){
+    .cms-landing-page .pet-appointment,{
+        right: 10%;
+    }
+    .at-experience.cms-landing-page .pet-appointment h1,
+    .services-grooming-experience .pet-appointment h1{
+        font-size: 26px;
+    }
+    /*.quality-petcare .easy-steps::before{
+        height: calc(100% + 80px);
+    }*/
+   /* .quality-petcare .easy-steps::before{
+        height: calc(100% + 54px);
+    }*/
+    .quality-petcare .easy-steps h1{
+        margin-bottom: 15px;
+        font-size: 26px;
+        line-height: 35px;
+    }
+    .quality-petcare .easy-steps h3{
+        font-size: 18px;
+        line-height: 1.4;
+    }
+    .four-steps .your-services-text p{
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .explore_our_packs span.section-title{
+        font-size: 26px;
+    }
+    .explore_our_packs .content{
+        right: 8%;
+        top: 20px;
+    }
+    .explore_our_packs .title{
+        font-size: 18px;
+    }
+    .explore_our_packs .text p{
+        font-size: 16px;
+        padding-left: 24px;
+    }
+    .cms-landing-page.at-experience .appoinment-book{
+        width: fit-content;
+        width: -moz-fit-content;
+    }
+    .cms-landing-page.at-experience button.appoinment{
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    .shop-grooming .title{
+        font-size: 26px;
+    }
+    /*.quality-petcare .easy-steps::after{
+        width: 25%;
+        bottom: 320px;
+        left: 0;
+    }*/
+    .quality-petcare .easy-steps::after{
+        /*bottom: 0;
+        width: 46%;
+        left: 0;*/
+
+        /*width: 35%;
+        left: -64px;
+        height: 56%;
+        bottom: 205px;*/
+        width: 25%;
+        left: 90px;
+        height: 45%;
+        bottom: 0;
+    }
+
+    .at-home .quality-petcare .easy-steps::after{
+        bottom: 295px;
+    }
+    .services-grooming-home .quality-petcare .easy-steps::after{
+       /* width: 10%;
+        left: 55px;
+        bottom: 270px;*/
+        width: 10%;
+        left: 185px;
+        bottom: 0;
+    }
+    .shop-grooming .title{
+        font-size: 26px;
+        margin-bottom: 0;
+    }
+    .amasty-jet-theme.page-products.page-with-filter.page-layout-2columns-left .products.grid .product-item .product-item-details{
+        margin: 0;
+    }
+    .grooming-image.pet{
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .grooming-image.pet > .home.item{
+        width: 48%;
+    }
+    .grooming-image.pet > .home.item > .grooming-image-text{
+        width: 85%;
+        margin: 0 auto;
+    }
+    .takecare-pets .pets .title{
+        font-size: 26px;
+    }
+    .tips-text > h1{
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+    .at-experience.cms-landing-page .pet-appointment p{
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    .at-home.cms-landing-page .slider-appoinment a#appoinment,
+    .cms-landing-page .slider-appoinment a#appoinment{
+        font-size: 16px;
+    }
+    .cms-landing-page .total-steps{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        place-content: space-between;
+        place-items: start;
+    }
+   /* .services-grooming-home .quality-petcare .easy-steps::after{
+        width: 46%;
+        left: 0;
+        bottom: 0;
+    }*/
+
+}
+
+@media(max-width: 991px){
+    .cms-landing-page .pet-appointment{
+        right: 4%;
+    }
+    .at-experience.cms-landing-page .pet-appointment h1{
+        font-size: 22px;
+    }
+    .at-home.cms-landing-page .pet-appointment p{
+        font-size: 15px;
+    }
+    .cms-landing-page .slider-appoinment{
+        padding: 0;
+    }
+    .at-home.cms-landing-page .slider-appoinment a#appoinment{
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+    .quality-petcare .easy-steps::before{
+        background-size: 100%;
+        height: calc(100% + 66px);
+    }
+    .quality-petcare .steps-appoinment{
+        padding: 0 20px;
+    }
+    .cms-landing-page .quality-petcare .your-services img{
+        width: 60px;
+        height: 60px;
+    }
+    .four-steps .your-services-text p{
+        font-size: 14px;
+    }
+    .cms-landing-page.at-experience button.appoinment{
+        font-size: 14px;
+    }
+    .quality-petcare .pet-care{
+        padding: 0;
+    }
+    .quality-petcare .easy-steps h1{
+        font-size: 22px;
+        line-height: 30px;
+    }
+    .quality-petcare .easy-steps h3{
+        font-size: 16px;
+    }
+    .explore-tabs button.tablink{
+        font-size: 14px;
+    }
+    .explore_our_packs span.section-title{
+        font-size: 24px;
+    }
+    .explore_our_packs span.price-rupee,
+    .explore_our_packs .title{
+        font-size: 16px;
+    }
+    .explore_our_packs .text p{
+        font-size: 14px;
+    }
+    .shop-grooming .title,
+    .takecare-pets .pets .title{
+        font-size: 24px;
+    }
+    .grooming-image.pet > .home.item{
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .grooming-image.pet{
+        grid-gap: 25px;
+        grid-template-rows: none;
+    }
+    .tips-text > h1{
+        font-size: 24px;
+    }
+    .health-text h3{
+        font-size: 14px;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+    .health-text a{
+        font-size: 14px;
+    }
+    .takecare-pets:before{
+        left: -160px;
+    }
+    
+    .at-experience.cms-landing-page .pet-appointment p{
+        font-size: 15px;   
+    }
+
+    .at-home.cms-landing-page .slider-appoinment a#appoinment,
+    .cms-landing-page .slider-appoinment a#appoinment{
+        padding: 10px 20px;
+    }
+    .cms-landing-page.at-experience .pet-appointment{
+        width: 290px;
+        bottom: 20px;
+    }
+    .cms-landing-page.at-experience .grooming-image.pet{
+        display: block;
+    }
+    .services-grooming-experience .shop-grooming{
+        padding: 50px 0;
+    }
+    .cms-landing-page .shop-grooming .products.wrapper.grid.products-grid.products{
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    .cms-landing-page .shop-grooming.amasty-jet-theme.page-products.page-with-filter.page-layout-2columns-left .products.grid .product-item{
+        width: 90% !important;
+    }
+    .at-home .quality-petcare .easy-steps::after{
+        bottom: 240px;
+    }
+    .explore_our_packs .price span.small img{
+        width: 12px;
+        height: 12px;
+    }
+    .at-home .quality-petcare .easy-steps::after{
+        bottom: 220px;
+    }
+    .services-grooming-home .quality-petcare .easy-steps::after{
+        width: 50%;
+        bottom: 0;
+        height: 40%;
+        left: 0;
+    }
+    /*.services-grooming-home .quality-petcare .easy-steps::after{
+        top: -100px;
+    }*/
+    .quality-petcare .easy-steps::after {
+        width: 25%;
+        left: 80px;
+        height: 40%;
+        bottom: 0;
+    }
+    .grooming-services > .grooming-image{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media(max-width: 767px){
+    .at-home.cms-landing-page .pet-appointment p{
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    .cms-landing-page .pet-appointment{
+        right: 2%;
+        bottom: 30px;
+    }
+    .easy-steps{
+        padding: 0;
+        grid-template-rows: none;
+    }
+    .quality-petcare .easy-steps h1{
+        font-size: 20px;
+        margin: 40px 0 0 0;
+    }
+    .quality-petcare .easy-steps::after{
+        bottom: auto;
+        top: -17%;
+        left: 20px;
+        width: 16%;
+        z-index: 9;
+    }
+    .quality-petcare .pet-care{
+        padding: 20px;
+        text-align: left;
+    }
+    .total-steps{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .four-steps::after{
+        width: 102px;
+        height: 20%;
+        right: 0;
+        bottom: 0;
+    }
+    .explore_our_packs span.section-title,
+    .shop-grooming .title,
+    .takecare-pets .pets .title{
+        font-size: 22px;
+    }
+
+    .explore_our_packs .content{
+        top: 10px;
+    }
+    .explore_our_packs .text span,
+    .explore_our_packs .text p{
+        font-size: 12px;
+    }
+    .explore_our_packs .tab-content.e_plan {
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 20px 0;
+        background: #F8F9FB;
+    }
+    /*.explore_our_packs .tab-content.e_plan .image{
+        display: none;
+    }*/
+    .explore_our_packs .tab-content.e_plan .content{
+        position: relative;
+        top: 0;
+        right: 40px;
+        width: 40%;
+        width: 85%;
+    }
+    .grooming-image.pet > .home.item > .grooming-image-text{
+        width: 100%;
+    }
+    .tips-text > h1{
+        font-size: 22px
+    }
+    .tips-for-pets .health-images{
+        grid-template-columns: 100%;
+    }
+    .takecare-pets:after{
+        width: 220px;
+        height: 220px;
+    }
+    .corner-image-pethome{
+        width: 160px;
+    }
+    .grooming-services h1{
+        font-size: 20px;
+    }
+    .at-experience.cms-landing-page .pet-appointment p{
+        font-size: 14px;   
+    }
+    .at-experience.cms-landing-page .pet-appointment h1{
+        font-size: 18px;
+    }
+    .at-experience.cms-landing-page .pet-appointment p{
+        font-size: 12px;
+    }
+    .at-experience.cms-landing-page .slider-appoinment button#appoinment{
+        font-size: 10px;
+        padding: 5px 20px;
+    }
+    .cms-landing-page.at-experience .pet-appointment{
+        bottom: 45px;
+        right: -4%;
+    }
+    .cms-landing-page.at-experience .health-image img{
+        width: 100%;
+    }
+
+    .shop-grooming .products.wrapper.grid.products-grid.products{
+        padding: 0;
+    }
+
+    .cms-landing-page.at-experience.at-home .shop-grooming,
+    .at-experience.cms-landing-page .shop-grooming{
+        padding: 40px 0;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .shop-grooming.amasty-jet-theme.page-products.page-with-filter.page-layout-2columns-left .products.grid .product-item{
+        width: 90%;
+        margin: 0 auto;
+    }
+   /* .at-home .quality-petcare .easy-steps::after{
+        bottom: auto;
+        top: -28%;
+        width: 16%;
+    }*/
+    .at-home .quality-petcare .easy-steps::after {
+        bottom: auto;
+        top: 50px;
+        width: 16%;
+        left: 15px;
+        right: auto;
+    }
+    .at-home .quality-petcare .easy-steps::after {
+        bottom: auto;
+        /* top: 50
+        px
+        ; */
+        width: 16%;
+        /* left: 15
+        px
+        ; */
+        right: auto;
+    }
+
+    .quality-petcare .steps-appoinment{
+        margin-bottom: 40px;
+    }
+    .quality-petcare .easy-steps h3{
+        width: auto;
+    }
+
+    .quality-petcare .easy-steps::after{
+        bottom: auto;
+        top: 70px;
+        left: -25px;
+        width: 30%;
+        z-index: 9;
+        right: auto;
+        height: 30%;
+    }
+    /*.quality-petcare .pet-care{
+        padding: 20px;
+        text-align: left;
+        padding-left: 150px;
+    }*/
+
+    .quality-petcare .pet-care {
+        padding: 20px;
+        text-align: left;
+        padding-left: 140px;
+    }
+}
+
+
+@media(max-width: 480px){
+    .at-home.cms-landing-page #top-banner.owl-carousel img{
+        filter: none;
+    }
+
+    .explore_our_packs .tab-content.e_plan{
+        align-items: center;
+        padding-top: 0;
+    }
+    .explore_our_packs .tab-content.e_plan .content{
+        right: 0;
+    }
+    .explore_our_packs span.section-title,
+    .shop-grooming .title,
+    .takecare-pets .pets .title{
+        font-size: 18px;
+    }
+    .takecare-pets{
+        padding: 80px 20px 80px 20px;
+    }
+    .takecare-pets .pets{
+        padding: 40px 0; 
+    }
+    .tips-text > h1{
+        font-size: 22px
+    }
+    .total-steps{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    /*.quality-petcare .easy-steps::after{
+        top: -15%;
+        left: 12px;
+        width: 25%;
+    }*/
+    .grooming-image{
+        grid-gap: 25px;
+    }
+    .four-steps::after{
+        height: 15%;
+    }
+    .cms-landing-page .pet-appointment{
+        bottom: 10px;
+        width: 100%;
+    }
+    .at-experience.cms-landing-page .pet-appointment h1{
+        font-size: 16px;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+    .at-experience.cms-landing-page .pet-appointment h1 > br{
+        display: none;
+    }
+
+    .at-home.cms-landing-page .pet-appointment p{
+        font-size: 12px;
+        line-height: 1.2;
+        text-align: center;
+    }
+    .cms-landing-page.at-experience.at-home .landing-banner .owl-theme .owl-nav.disabled + .owl-dots,
+    .cms-landing-page.at-experience .landing-banner .owl-theme .owl-nav.disabled + .owl-dots{
+        margin: 0;
+        bottom: -35px;
+    }
+    .cms-landing-page .slider-appoinment{
+        text-align: center;
+    }
+    .at-home.cms-landing-page .slider-appoinment a#appoinment{
+        padding: 5px 20px;
+        font-size: 10px;
+    }
+    .grooming-services h1{
+        font-size: 16px;
+    }
+    .grooming-text{
+        padding-bottom: 20px;
+    }
+    .grooming-image-text h3{
+        font-size: 14px;
+    }
+    .grooming-image-text p{
+        font-size: 14px;
+    }
+    .cms-landing-page.at-experience .pet-appointment{
+        width: 100%;
+        bottom: 10px;
+        right: 0;
+        text-align: center;
+    }
+    .at-experience.cms-landing-page .slider-appoinment button#appoinment{
+        line-height: 15px;
+    }
+    .at-experience.cms-landing-page .easy-steps{
+        margin-top: 40px;
+    }
+    .at-experience.cms-landing-page .easy-steps {
+        margin-top: 0;
+    }
+    .at-experience.cms-landing-page .book-appoinment{
+        padding-top: 30px;
+    }
+    .cms-landing-page .total-steps{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .quality-petcare .steps-appoinment{
+        margin-bottom: 70px;
+    }
+    .at-home .quality-petcare .easy-steps::after{
+        /*top: -17%;*/
+        height: 166px;
+        width: 27%;
+        left: 8px;
+    }
+    .at-experience.cms-landing-page .pet-appointment p{
+        font-family: 'nunito_sansregular';
+    }
+    /*.at-home .quality-petcare .easy-steps::after{
+        bottom: auto;
+        top: 50px;
+        width: 25%;
+        left: 15px;
+        right: auto;
+    }*/
+    .quality-petcare .easy-steps::after{
+        top: 50px;
+        /*top: -17%;*/
+        left: 16px;
+    }
+    .grooming-services > .grooming-image{
+        grid-template-columns: 100%;
+    }
+
+}

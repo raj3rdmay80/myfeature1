@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<attribute name="class" value="page-products"/>
+		<referenceContainer name="content">
+			<block class="Zigly\Catalog\Block\Catalog\ForPuppy" name="catalog.forpuppy" as="catalog_forpuppy" template="Zigly_Catalog::catalog/forpuppy.phtml"/>
+		</referenceContainer>
+	</body>
+</page>

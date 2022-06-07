@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Activities
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Activities::first_level" title="Activities Management" module="Zigly_Activities" parent="Zigly::top_level" sortOrder="60" resource="Zigly_Activities::Activities"/>
+        <add id="Zigly_Activities::zigly_activities_activities" title="Manage Activities" module="Zigly_Activities" sortOrder="9999" resource="Zigly_Activities::Activities" parent="Activities::first_level" action="zigly_activities/activities/index"/>
+    </menu>
+</config>

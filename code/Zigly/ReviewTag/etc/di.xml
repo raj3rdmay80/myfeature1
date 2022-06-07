@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_ReviewTag
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Zigly\ReviewTag\Api\ReviewTagRepositoryInterface" type="Zigly\ReviewTag\Model\ReviewTagRepository"/>
+	<preference for="Zigly\ReviewTag\Api\Data\ReviewTagInterface" type="Zigly\ReviewTag\Model\Data\ReviewTag"/>
+	<preference for="Zigly\ReviewTag\Api\Data\ReviewTagSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Zigly\ReviewTag\Model\ResourceModel\ReviewTag\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">zigly_reviewtag_reviewtag</argument>
+			<argument name="resourceModel" xsi:type="string">Zigly\ReviewTag\Model\ResourceModel\ReviewTag\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="zigly_reviewtag_reviewtag_listing_data_source" xsi:type="string">Zigly\ReviewTag\Model\ResourceModel\ReviewTag\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Magento\Review\Model\Review">
+        <plugin name="Zigly_ReviewTag::product-tag-save" type="Zigly\ReviewTag\Plugin\Review\Model\Review" />
+    </type>
+    <preference for="Magento\Review\Model\ResourceModel\Review" type="Zigly\ReviewTag\Model\Product\ResourceModel\Review" />
+    <preference for="Magento\Review\Model\ResourceModel\Review\Product\Collection" type="Zigly\ReviewTag\Model\Review\ResourceModel\Product\Collection" />
+</config>

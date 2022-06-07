@@ -1,0 +1,171 @@
+<?xml version="1.0" ?>
+<!-- 
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Cityscreen
+ */
+ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">zigly_cityscreen_cityscreen_listing.zigly_cityscreen_cityscreen_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>zigly_cityscreen_cityscreen_columns</spinner>
+		<deps>
+			<dep>zigly_cityscreen_cityscreen_listing.zigly_cityscreen_cityscreen_listing_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/new"/>
+				<class>primary</class>
+				<label translate="true">Add New</label>
+			</button>
+		</buttons>
+	</settings>
+	<dataSource name="zigly_cityscreen_cityscreen_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">cityscreen_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Zigly_Cityscreen::Cityscreen</aclResource>
+		<dataProvider name="zigly_cityscreen_cityscreen_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>cityscreen_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<filterSearch name="fulltext"/>
+		<massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+			<action name="delete">
+				<settings>
+					<confirm>
+						<message translate="true">Are you sure to delete selected city?</message>
+						<title translate="true">Delete City</title>
+					</confirm>
+					<url path="zigly_cityscreen/cityscreen/massdelete"/>
+					<type>delete</type>
+					<label translate="true">Delete</label>
+				</settings>
+			</action>
+		</massaction>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="zigly_cityscreen_cityscreen_columns">
+		<settings>
+			<!-- <editorConfig>
+				<param name="selectProvider" xsi:type="string">zigly_cityscreen_cityscreen_listing.zigly_cityscreen_cityscreen_listing.zigly_cityscreen_cityscreen_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">cityscreen_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" xsi:type="url" path="zigly_cityscreen/Cityscreen/inlineEdit"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+			</editorConfig> -->
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">zigly_cityscreen_cityscreen_listing.zigly_cityscreen_cityscreen_listing.zigly_cityscreen_cityscreen_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>cityscreen_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="cityscreen_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="type">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Zigly\Cityscreen\Ui\Component\Listing\Column\Type</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+					<item name="label" xsi:type="string" translate="true">Type</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">select</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">false</item>
+						</item>
+					</item>
+				</item>
+			</argument>
+		</column>
+		<actionsColumn name="actions" class="Zigly\Cityscreen\Ui\Component\Listing\Column\CityscreenActions">
+			<settings>
+				<indexField>cityscreen_id</indexField>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>107</resizeDefaultWidth>
+			</settings>
+		</actionsColumn>
+		<column name="city">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">City</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="pincode">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Pincode</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="is_active">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Zigly\Cityscreen\Ui\Component\Listing\Column\Status</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+					<item name="label" xsi:type="string" translate="true">Is Active</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">select</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">false</item>
+						</item>
+					</item>
+				</item>
+			</argument>
+		</column>
+		<column name="created_at">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">created_at</label>
+			</settings>
+		</column>
+	</columns>
+</listing>

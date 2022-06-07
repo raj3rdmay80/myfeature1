@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Wallet
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_form">
+            <block class="Zigly\Wallet\Block\Adminhtml\Edit\Tab\Wallet" name="customer_edit_tab_wallet">
+                <arguments>
+                    <argument name="tab_label" xsi:type="string" translate="true">Wallet</argument>
+                    <argument name="sort_order" xsi:type="number">999</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Zigly\Wallet\Block\Adminhtml\Edit" template="Zigly_Wallet::js.phtml" after="customer_form"/>
+        </referenceContainer>
+    </body>
+</page>

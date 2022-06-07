@@ -1,0 +1,151 @@
+<?php 
+
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_PincodeChecker
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+
+?>
+<?php 
+if($this->helper('Ced\PincodeChecker\Helper\Data')->isPinCodeCheckerEnabled()
+   && $this->helper('Ced\PincodeChecker\Helper\Data')->showOnPage()
+   && $this->helper('Ced\PincodeChecker\Helper\Data')->getTypeAllowed()
+   && $this->helper('Ced\PincodeChecker\Helper\Data')->showOnPage()){
+	$currentProduct = $this->registry->registry('current_product');
+	if ($currentProduct):
+?>
+	<div class="pincode-div">
+		<div class="pincode_checker">
+			<div class="control">
+				<label for="zipcode" class="label"><?php echo $block->getZipCodeLabel()?></label>
+				<input type="text" class="input-text" title="ZipCode" name="zipcode" id="check-zipcode"/>
+			</div>
+			<button id="check-pincode" class="action primary" title="Check" type="button">
+				<span>
+					<span>Check</span>
+				</span>
+			</button>
+			<img id="loader" src="<?php echo $this->getViewFileUrl('Ced_PincodeChecker::images/loader.gif');?>" style="display: none;"/>
+		</div>
+		<div class="pincode_checker_msg_wrapper" id="pincode_checker_msg_wrapper">
+	        <div id="pincode_checker_msg"></div>
+		</div>
+		<p id="deliverydays_msg"></p>
+	</div>
+	<script>
+	function checkZipCode(element){
+		checkZipCode1(element);
+	}
+	</script>
+<script>
+require([
+    'jquery',
+    'mage/mage'
+], function(jquery){
+	jquery("#check-pincode").click(function () {
+		var zipcode_field = document.getElementById("check-zipcode");
+		var zipcode = zipcode_field.value;
+		var product_id = '<?php echo $currentProduct->getId();?>';
+		if(zipcode){
+			jquery('#check-zipcode').css('border-color','#ccc');
+			var msg_element = document.getElementById("pincode_checker_msg_wrapper");
+			var IsCodAllowedFromAdmin = '<?php echo $this->helper('Ced\PincodeChecker\Helper\Data')->getIsCodAllowedFromAdmin(); ?>';
+			var cod_success_msg = '<?php echo $this->helper('Ced\PincodeChecker\Helper\Data')->getCodAllowedText()?>';
+			var cod_error_msg = '<?php echo $this->helper('Ced\PincodeChecker\Helper\Data')->getCodNotAllowedText()?>';
+			if(zipcode.match(/^[a-z0-9\-\s]+$/i)) {
+				jquery('#loader').show();
+				jquery('#check-pincode').attr('disabled',true);
+				jquery.ajax({
+					type: 'post',
+					url: '<?php echo $this->getUrl("pincodechecker/index/validate"); ?>',
+					data: { zip: zipcode, product_id: product_id},
+					dataType: 'json',
+					success: function(json) {
+						jquery('#loader').hide();
+						jquery('#check-pincode').attr('disabled',false);
+						if(json.ship){
+							if(json.cod){
+							    if (IsCodAllowedFromAdmin){
+                                    jquery('#pincode_checker_msg').text(cod_success_msg.replace('{{zipcode}}',zipcode));
+                                    msg_element.setAttribute("class", "message-success success message");
+                                }
+
+								if(json.days!='-' && json.days!=''){
+									jquery('#deliverydays_msg').html(json.days);
+								}
+							}
+							else{
+								jquery('#pincode_checker_msg').text(cod_error_msg.replace('{{zipcode}}',zipcode));
+								msg_element.setAttribute("class", "message-error error message");
+								jquery('#deliverydays_msg').empty();
+								if(json.days!='-' && json.days!=''){
+									jquery('#deliverydays_msg').html(json.days);
+								}
+							}
+						}else if(json.zip_not_found){
+							jquery('#pincode_checker_msg').text("<?php echo $this->helper('Ced\PincodeChecker\Helper\Data')->getZipcodeNotFoundMessage()?>");
+							msg_element.setAttribute("class", "message-error error message");
+							jquery('#deliverydays_msg').empty();
+						}else{
+							jquery('#pincode_checker_msg').text(cod_error_msg.replace('{{zipcode}}',zipcode));
+							msg_element.setAttribute("class", "message-error error message");
+							jquery('#deliverydays_msg').empty();
+						}
+					}
+				});
+			}
+			else{
+				jquery('#check-zipcode').css('border-color','red');
+			}	
+		}
+		else{
+			jquery('#check-zipcode').css('border-color','red');
+		}
+	}); 
+	
+});
+</script>
+<style>
+	.pincode-div{
+		margin-bottom: 10px;
+	}
+	.pincode_checker{
+		width: 78%;
+	}
+	#check-pincode{
+		margin: 28px 0px 21px 20px;
+	}
+	#pincode_checker_msg_wrapper{
+		width: 60%;
+	}
+	.pincode_checker > .control{
+		margin-bottom: 15px;
+		float: left;
+	}
+	.pincode_checker > .control > .label {
+	    display: inline-block;
+	    font-weight: 600;
+	    margin: 0 0 8px;
+	}
+	#deliverydays_msg{
+		width: 60%;
+	}
+	.pincode_checker > img#loader {
+	  float: right;
+	  margin-top: 33px;
+	  width: 21px;
+	}
+</style>
+<?php endif; }?>

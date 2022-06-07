@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_JetTheme
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Amasty\JetTheme\ViewModel\Catalog\FilterStatusViewModel\Category" type="Amasty\JetTheme\ViewModel\Catalog\FilterStatusViewModel">
+        <arguments>
+            <argument name="filterList" xsi:type="object">categoryFilterList</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Amasty\JetTheme\ViewModel\Catalog\FilterStatusViewModel\Search" type="Amasty\JetTheme\ViewModel\Catalog\FilterStatusViewModel">
+        <arguments>
+            <argument name="filterList" xsi:type="object">searchFilterList</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\Message\MessageConfigurationsPool">
+        <arguments>
+            <argument name="configurationsMap" xsi:type="array">
+                <item name="amAjaxSuccessAddToWishlist" xsi:type="array">
+                    <item name="renderer" xsi:type="const">Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">Amasty_JetTheme::messages/amAjaxSuccessAddToWishlist.phtml</item>
+                    </item>
+                </item>
+                <item name="amAjaxSuccessAddToCompare" xsi:type="array">
+                    <item name="renderer" xsi:type="const">Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">Amasty_JetTheme::messages/amAjaxSuccessAddToCompare.phtml</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Helper\Product\View">
+        <plugin name="Amasty_JetTheme::AddBodyClass"  type="Amasty\JetTheme\Plugin\Catalog\Helper\Product\View\AddBodyClass" />
+    </type>
+    <type name="Magento\Checkout\Block\Cart\Sidebar">
+        <plugin name="Amasty_JetTheme::AddMinicartConfig" type="Amasty\JetTheme\Plugin\Magento\Checkout\Block\Cart\Sidebar\AddMinicartConfig" sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Checkout\Block\Onepage">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="moveShipToComponent" xsi:type="object">Amasty\JetTheme\Block\Checkout\LayoutProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

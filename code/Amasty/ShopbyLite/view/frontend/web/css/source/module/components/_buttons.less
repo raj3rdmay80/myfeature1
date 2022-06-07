@@ -1,0 +1,83 @@
+//
+//  Buttons
+//  _____________________________________
+
+//
+//  Imports
+//  -------------------------------------
+
+@import '../_mixins';
+
+//
+//  Common
+//  -------------------------------------
+
+& when (@media-common = true) {
+    .amshopby-button:not(.primary) {
+        & {
+            .am-flex(center, center);
+            .transition(.1);
+
+            position: relative;
+            display: inline-flex;
+            box-sizing: border-box;
+            padding: @amshopby__indent;
+            box-shadow: none;
+            font-weight: 400;
+            cursor: pointer;
+            pointer-events: auto;
+            user-select: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            background: none;
+            box-shadow: none;
+        }
+
+        &:before,
+        &:after {
+            .transition(.1);
+        }
+
+        &.-disabled {
+            & {
+                pointer-events: none;
+            }
+
+            &:focus {
+                pointer-events: none;
+            }
+        }
+    }
+
+    .amshopby-button.-clear {
+        & {
+            padding: 0;
+            border: none;
+            background: transparent;
+            box-shadow: none;
+            color: initial;
+        }
+
+        &:active,
+        &:hover,
+        &:focus {
+            border: none;
+            background: transparent;
+            box-shadow: none;
+        }
+    }
+
+    .amshopby-button.-remove {
+        &:after {
+            content: 'x';
+            transform: scale(1.5, 1);
+        }
+
+        &:hover:after {
+            color: @amshopby__hover__color__primary;
+        }
+    }
+}

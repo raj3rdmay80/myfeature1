@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Plan
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Zigly\Plan\Api\PlanRepositoryInterface" type="Zigly\Plan\Model\PlanRepository"/>
+	<preference for="Zigly\Plan\Api\Data\PlanInterface" type="Zigly\Plan\Model\Data\Plan"/>
+	<preference for="Zigly\Plan\Api\Data\PlanSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Zigly\Plan\Model\ResourceModel\Plan\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">zigly_plan_plan</argument>
+			<argument name="resourceModel" xsi:type="string">Zigly\Plan\Model\ResourceModel\Plan\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="zigly_plan_plan_listing_data_source" xsi:type="string">Zigly\Plan\Model\ResourceModel\Plan\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

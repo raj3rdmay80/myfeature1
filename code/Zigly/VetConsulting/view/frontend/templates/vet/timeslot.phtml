@@ -1,0 +1,30 @@
+<div id="grooming-timeslot">
+    <div class="title"><?= __('Select Time') ?></div>
+    <?php
+        $now = new \DateTime();
+        $now->setTimezone(new \DateTimeZone('Asia/Kolkata'));
+        $currentHr = $now->format('H');
+        $currentHr = $now->format('H');
+        $time = '7:00';
+    ?>
+    <?php if ($currentHr >= '19') : ?>
+        <div class="message-notice notice message"><?= __('Time-slot are unavailable for the day.') ?></div>
+    <?php else : ?>
+        <ol name='slots'>
+        <?php
+            if ($currentHr > '7') {
+                $time = $now->format('H'). ':30';
+            }
+            while ($time) {
+                $prev = date('g:i a', strtotime($time));
+                $next = strtotime('+30mins', strtotime($time));
+                $time = date('g:i a', $next);
+                echo "<li class=\"slot-time\" data-slot=\"$prev\">$prev</li>";
+                if ($prev == ('7:00'.' pm')) {
+                    break;
+                }
+            }
+        ?>
+        </ol>
+    <?php endif ;?>
+</div>

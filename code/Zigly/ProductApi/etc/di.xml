@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_ProductApi
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Zigly\ProductApi\Api\PincodeRepositoryInterface" type="Zigly\ProductApi\Model\Api\PincodeRepository"/>
+     <preference for="Zigly\ProductApi\Api\Data\PincodeInterface" type="Zigly\ProductApi\Model\PincodeResponceApi" />
+     <preference for="Zigly\ProductApi\Api\ProductRepositoryInterface" type="Zigly\ProductApi\Model\Api\ProductRepository"/>
+</config>

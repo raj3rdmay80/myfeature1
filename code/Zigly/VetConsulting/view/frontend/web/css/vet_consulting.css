@@ -1,0 +1,1967 @@
+
+:root{
+    --consulting-primary-color: #1FB8F1;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.services-vet-consulting .page-wrapper #maincontent{
+    min-height: 400px;
+}
+.services-vet-consulting #progressbar{
+    padding-left: 23px;
+}
+.services-vet-consulting #progressbar li{
+    width: 12%;
+}
+
+.services-vet-consulting #progressbar li.active:before, #progressbar li.active:after,
+.services-insta-consult #progressbar li.active:before, #progressbar li.active:after,
+.services-video-appointment #progressbar li.active:before, #progressbar li.active:after{
+    background: var(--consulting-primary-color);
+}   
+.services-vet-consulting #progressbar li.active > span::before,
+.services-insta-consult #progressbar li.active > span::before,
+.services-video-appointment #progressbar li.active > span::before{
+    background: #1FB8F142;
+}
+
+.services-vet-consulting #vet-consulting > fieldset,
+.services-insta-consult #vet-consulting > fieldset,
+.services-video-appointment #vet-consulting > fieldset{
+    border: none;
+    display: none;
+}
+.services-vet-consulting #vet-consulting > fieldset.grooming-container-width.current,
+.services-insta-consult #vet-consulting > fieldset.grooming-container-width.current,
+.services-video-appointment #vet-consulting > fieldset.grooming-container-width.current{
+	display: block;
+}
+
+
+.services-vet-consulting .page-header .header.content .navigation-links > ul > li:nth-child(2){
+    position: relative;
+}
+
+.services-vet-consulting .page-header .header.content .navigation-links > ul > li:nth-child(2):before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: var(--consulting-primary-color);
+    bottom: 5px;
+    left: 0;
+}
+
+.services-vet-consulting #vet-consulting fieldset .search-area-landmark {
+    max-width: 500px;
+    width: 100%;
+    margin-top: 30px;
+    min-height: 155px;
+    padding: 35px;
+    border-radius: 24px;
+    border: none;
+    box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+    -webkit-box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+    -moz-box-shadow: 1px 1px 54px rgba(5, 43, 80, 0.1);
+    margin-left: 62px;
+ }
+
+.services-vet-consulting #vet-consulting fieldset.field2 > ul.manage-pets li .pet-content > p:first-child,
+.services-insta-consult #vet-consulting fieldset.field2 > ul.manage-pets li .pet-content > p:first-child,
+.services-video-appointment #vet-consulting fieldset.field2 > ul.manage-pets li .pet-content > p:first-child{
+    max-width: 90px;
+    width: 90px;
+    height: 90px;
+    max-height: 90px;
+ }
+
+.services-vet-consulting #vet-consulting fieldset.field1{
+    position: relative;
+    z-index: 9;
+}
+.services-vet-consulting #vet-consulting fieldset.field1 .location-pet-image {
+    position: relative;
+    top: -90px;
+    z-index: -1;
+}
+.services-vet-consulting #vet-consulting fieldset.field1 .location-pet-image > img{
+    width: 100%;
+}
+
+/*.services-vet-consulting #vet-consulting fieldset.field1:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    min-height: 270px;
+    background: url(../images/select_area.png) no-repeat center;
+    background-size: contain;
+    top: 50%;
+    left: 5%;
+    z-index: -1;
+
+}*/
+
+
+
+.services-vet-consulting #vet-consulting fieldset .search-area-landmark > input[type="text"]{
+    height: 48px;
+    padding: 12px 15px;
+    background: #fff !important;
+}
+
+.services-vet-consulting #vet-consulting fieldset .search-area-landmark > input[type="text"]::placeholder{
+    color: #18376272;
+    font-size: 14px;
+    font-family: 'nunito_sansbold';
+}
+.services-vet-consulting #vet-consulting fieldset .search-area-landmark > .current-location{
+    margin: 30px 0 7px 20px;
+    display: block;
+    color: var(--primary);
+    font-size: 16px;
+    font-family: 'nunito_sanssemibold';
+    position: relative;
+    padding-left: 45px;
+    margin-left: 12px;
+    cursor: pointer;
+}
+.services-vet-consulting #vet-consulting fieldset .search-area-landmark > .current-location:after{
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: url(../images/location.png) no-repeat center;
+    background-size: 130%;
+    top: -9px;
+    left: 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
+
+/*--------   pain points step   ----------*/
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points{
+    width: 90%;
+    margin: 30px auto 0 auto;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .choose-pain-points,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points{
+    margin-bottom: 30px;
+}
+
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points > label,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .choose-pain-points > label,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points > label{
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: 'nunito_sanssemibold';
+    display: block;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .choose-pain-points .pain-points-control,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .choose-pain-points .pain-points-control .points,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points{
+    margin-right: 35px;
+    margin-bottom: 16px;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"],
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"],
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"]{
+    position: fixed;
+    opacity: 0;
+    overflow: unset;
+    clip: unset;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    top: 0;
+    height: auto;
+    border: none;
+    z-index: -10;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points label,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .choose-pain-points .pain-points-control .points label,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points label{
+    cursor: pointer;
+    padding: 0;
+    padding-left: 25px;
+    font-size: 15px;
+    font-family: 'nunito_sanssemibold';
+    text-transform: capitalize;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"] + label::before,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"] + label::before,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"] + label::before{
+    content: "";
+    margin-right: 10px;
+    margin-top: -2px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 18px;
+    height: 18px;
+    background: transparent;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"]:checked + label::before,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"]:checked + label::before,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"]:checked + label::before{
+    background-color: var(--primary);
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"]:checked + label::after,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"]:checked + label::after,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control .points input[type="checkbox"]:checked + label::after{
+    content: "L";
+    position: absolute;
+    left: 0px;
+    top: -7px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: arial;
+    -ms-transform: scaleX(-1) rotate(-35deg);
+    -webkit-transform: scaleX(-1) rotate(-35deg);
+    transform: scaleX(-1) rotate(316deg);
+}
+
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc > span,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .uploaded-image-doc > span,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc > span {
+    display: none;
+}
+
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .uploaded-image-doc,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc {
+    max-width: 820px;
+    width: 100%;
+    display: grid;
+    margin-top: 40px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px; 
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc .image-pip,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .uploaded-image-doc .image-pip,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc .image-pip {
+    position: relative;
+    min-height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    word-break: break-all;
+    border: 1px solid #052a5042;
+}
+
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc .image-pip span.pip,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .uploaded-image-doc .image-pip span.pip,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc .image-pip span.pip {
+    font-size: 14px;
+    padding: 20px;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc .pip span.remove,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .uploaded-image-doc .pip span.remove,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc .pip span.remove {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    top: 0;
+    right: 0;
+    background-color: var(--primary);
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    line-height: 1.1;
+}
+
+/*.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc .pip span.remove:before,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .uploaded-image-doc .pip span.remove:before,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc .pip span.remove:before {
+    content: '';
+    
+
+}*/
+
+
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem{
+    max-width: 820px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    place-content: space-around;
+    place-items: center;
+}
+
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem .describe_problem-control textarea,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem .describe_problem-control textarea,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem .describe_problem-control textarea{
+    min-height: 170px;
+    padding: 25px;
+    border: 1px solid #052a5042;
+
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem > form,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem > form,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem > form {
+	width: 100%;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem .describe_problem-control,
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem .describe_problem-control,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem .add-image-doc,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem .describe_problem-control,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc{
+    width: 100%;
+    min-height: 170px;
+    border-radius: 24px;
+}
+
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc .image-pip,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem .add-image-doc .image-pip,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc .image-pip {
+	max-width: 100px;
+	max-height: 100px;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem .add-image-doc,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc{
+    border: 2px dashed #18376240;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem .add-image-doc a,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a{
+    font-size: 15px;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+    position: relative;
+}
+.services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a:before,
+.services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem .add-image-doc a:before,
+.services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a:before{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: -28px;
+    top: -2px;
+    border-radius: 50%;
+    background: url(../images/Add_pet_icon.png) no-repeat center;
+    background-size: contain;
+}
+
+
+
+
+/*--------  select vet step  ----------*/
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width.field5,
+.services-insta-consult #vet-consulting .grooming-container-width.field3,
+.services-video-appointment #vet-consulting .grooming-container-width.field5{
+    background: #cccccc20;
+    padding: 30px 0;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier{
+    width: 18%;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn{
+    border-radius: 24px;
+    border: 2px solid var(--primary);
+    background: #fff;
+    color: var(--primary);
+    font-size: 14px;
+    font-family: 'nunito_sansbold';
+    padding: 8px 10px 8px 10px;
+    margin-bottom: 15px;
+    position: relative;
+    width: 100%;
+    text-align: left;
+    text-transform: capitalize;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn-sort:after,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn-sort:after,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn-sort:after{
+    content: '';
+    position: absolute;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url(../images/sort_icon.png) no-repeat center;
+    background-size: contain;
+}
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .filter-list,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .filter-list,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .filter-list{
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); 
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); 
+    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); 
+    display: none;
+    margin-bottom: 15px;
+}
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list li,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list li,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list li{
+    margin-bottom: 10px;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"],
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"],
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"]{
+    overflow: unset;
+    clip: unset;
+    margin: unset; 
+    padding: unset; 
+    width: auto; 
+    height: auto; 
+    border: none; 
+    opacity: 1; 
+    position: relative;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"],
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"],
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"]{
+    position: fixed;
+    opacity: 0;
+    overflow: unset;
+    clip: unset;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    top: 0;
+    height: auto;
+    border: none;
+    z-index: -10;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"],
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"],
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"]{
+    position: fixed;
+    opacity: 0;
+    overflow: unset;
+    clip: unset;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    top: 0;
+    height: auto;
+    border: none;
+    z-index: -10;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list li label,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list li label,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list li label{
+    cursor: pointer;
+    padding: 0;
+    padding-left: 25px;
+    font-size: 14px;
+    font-family: 'nunito_sanssemibold';
+    text-transform: capitalize;
+    width: fit-content;
+    width: -moz-fit-content;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"] + label::before,
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"] + label::before,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"] + label::before,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"] + label::before,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"] + label::before,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"] + label::before{
+    content: "";
+    margin-right: 10px;
+    margin-top: -2px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 18px;
+    height: 18px;
+    background: transparent;
+    border: 2px solid var(--primary);
+    border-radius: 17px;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"]:checked + label::before,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"]:checked + label::before,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"]:checked + label::before{
+    background-color: #fff;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"]:checked + label::before,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"]:checked + label::before,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"]:checked + label::before{
+    background: var(--primary);
+}
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"]:checked + label::after,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"]:checked + label::after,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .sort-contanier ul.list li input[type="radio"]:checked + label::after{
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    left: 5px;
+    top: 1px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"]:checked + label::after,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"]:checked + label::after,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"]:checked + label::after{
+    content: "L";
+    position: absolute;
+    left: 0px;
+    top: -7px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: arial;
+    -ms-transform: scaleX(-1) rotate(-35deg);
+    -webkit-transform: scaleX(-1) rotate(-35deg);
+    transform: scaleX(-1) rotate(316deg);
+    border: none;
+}
+
+
+
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier{
+    width: 100%;
+    padding: 0 90px 0 50px; 
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    place-content: space-between;
+    place-items: flex-start center;
+}
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item{
+    background: #fff;
+    width: 100%;
+    min-height: 190px;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); 
+    -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); 
+    -moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); 
+}
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 120px;
+    margin-bottom: 15px;
+}
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item button,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item button,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item button{
+    padding: 12px 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    background: var(--primary);
+    line-height: 1.1;
+    border-radius: 24px;
+    line-height: 1;
+    font-family: 'nunito_sansbold';
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-image,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-image,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-image{
+    position: relative;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-image > img,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-image > img,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-image > img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-image > span,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-image > span,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-image > span{
+    position: absolute;
+    width: fit-content;
+    width: -moz-fit-content;
+    font-size: 9px;
+    color: #fff;
+    background: var(--primary);
+    border-radius: 24px;
+    padding: 4px 8px;
+    line-height: 1.1;
+    left: 0;
+    bottom: 0;
+    white-space: nowrap;
+}
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details{
+    width: calc(100% - 110px);
+}
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .name,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .name,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .name{
+    font-size: 16px;
+    color: var(--primary);
+    text-transform: capitalize;
+    font-family: 'nunito_sansbold';
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 8px;
+}
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .field,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .field,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .field{
+    font-size: 12px;
+    color: #052a5080;
+    font-family: 'nunito_sanssemibold';
+    white-space: nowrap;
+    margin-bottom: 8px;
+    line-height: 1.1;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .company,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .company,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .company{
+    font-size: 12px;
+    text-transform: capitalize;
+    font-family: 'nunito_sanssemibold';
+    color: var(--primary);
+    line-height: 1.1;
+    margin-bottom: 8px;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details > a,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details > a,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details > a{
+    font-size: 10px;
+    font-family: 'nunito_sansbold';
+    color: var(--primary);
+    text-align: left;
+    line-height: 1.1;
+    display: block;
+    text-decoration: underline;
+    position: relative;
+    padding-right: 12px;
+    width: fit-content;
+    width: -moz-fit-content;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details > a:before,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details > a:before,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details > a:before{
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    right: 0;
+    top: 0;
+    background: url(../images/back.png) no-repeat center;
+    background-size: contain;
+    transform: rotate(180deg);
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price,
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews{
+    margin-bottom: 18px;
+    align-items: center;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price p,
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews p,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price p,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews p,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price p,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews p{
+    font-size: 12px;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+    line-height: 1.1;
+    margin-bottom: 3px;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price,
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews{
+    min-height: 40px;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price .place,
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews .exp,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price .place,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews .exp,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price .place,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews .exp{
+    max-width: 70%;
+    word-break: break-word;
+}
+
+
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews p,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews p,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews p{
+    margin: 0;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price > .place > p:last-child,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price > .place > p:last-child,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price > .place > p:last-child{
+    font-family: 'nunito_sansbold';
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price .price .fees .price,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price .price .fees .price,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .place-price .price .fees .price{
+    font-size: 16px;
+    font-family: 'nunito_sansbold';
+    line-height: 1.1;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews .ratings > .rating,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews .ratings > .rating,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews .ratings > .rating{
+    /*background: var(--site-pink);
+    padding: 8px;
+    border-radius: 24px;
+    text-align: right;
+    position: relative;
+    font-size: 12px;
+    margin-bottom: 0px;
+    color: var(--primary);
+    width: fit-content;
+    width: -moz-fit-content;
+    padding-left: 30px;*/
+
+
+    background: var(--site-pink);
+    padding: 6px 8px;
+    border-radius: 24px;
+    text-align: right;
+    position: relative;
+    font-size: 12px;
+    margin-bottom: 0px;
+    color: var(--primary);
+    width: fit-content;
+    width: -moz-fit-content;
+    padding-left: 30px;
+    float: right;
+    margin-bottom: 3px;
+}
+/*     padding-top: 2px; 
+   padding-bottom: 2px;
+}*/
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews .ratings > .rating:before,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews .ratings > .rating:before,
+.services-video-appointment #vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item  .additional-details .exp-reviews .ratings > .rating:before{
+    content: '';
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    left: 12px;
+    top: 45%;
+    transform: translateY(-50%);
+    background: url(../images/vet_rating.png) no-repeat center;
+    background-size: cover;
+}
+
+
+
+
+/* -------- View profile popup -------- */
+
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap{
+    width: 430px;
+    max-height: 80%;    
+    border-radius: 24px;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .modal-content,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .modal-content,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .modal-content{
+    padding: 0;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .modal-header,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .modal-header,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .modal-header{
+    padding-bottom: 0;
+}
+
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 120px;
+    margin-bottom: 15px;
+    padding: 0 20px;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-image,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-image,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-image{
+    max-width: 35%;
+    width: 100%;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-image img,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-image img,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-image img{
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details{
+    max-width: 60%;
+    width: 100%;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details p,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details p,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details p{
+    font-size: 12px;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details > p,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details > p,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details > p{
+    margin: 8px 0;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details p.name,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details p.name,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details p.name{
+    font-size: 18px;
+    text-transform: capitalize;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details p.field,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details p.field,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details p.field{
+    color: #052a5080;
+    font-family: 'nunito_sanssemibold';
+    white-space: nowrap;
+    line-height: 1.1;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details .ratings,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details .ratings,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details .ratings{
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details .ratings > .rating,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details .ratings > .rating,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details .ratings > .rating{
+    background: var(--site-pink);
+    padding: 6px 8px;
+    border-radius: 24px;
+    position: relative;
+    color: var(--primary);
+    width: fit-content;
+    width: -moz-fit-content;
+    padding-left: 30px;
+    margin-right: 10px;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details .ratings > .rating:before,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details .ratings > .rating:before,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-details .ratings > .rating:before{
+    content: '';
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    left: 12px;
+    top: 45%;
+    transform: translateY(-50%);
+    background: url(../images/vet_rating.png) no-repeat center;
+    background-size: cover;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-container,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-container,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-container{
+    margin: 0;
+    width: 100%;
+    border-radius: 4px;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul{
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 66px;
+    padding: 0 20px;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.2)  ; 
+    -webkit-box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.2)  ; 
+    -moz-box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.2)  ; 
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li{
+    list-style-type: none;
+    display: inline-block;
+    max-width: 50%;
+    width: 100%;
+    margin: 0;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li a,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li a,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li a{
+    color: var(--primary);
+    background: #33B7EA20;
+    padding: 10px 20px;
+    border-radius: 24px;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    min-height: 45px;
+    margin: 0 auto;
+    font-family: 'nunito_sansbold';
+    text-transform: uppercase;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li a.active-a,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li a.active-a,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li a.active-a{
+    background-color: var(--primary);
+    color: #ffffff;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab p,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab p,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab p{
+    color: var(--primary);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: left;
+    font-family: 'nunito_sanssemibold';
+    word-break: break-word;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab{
+    display: none;
+    padding: 10px 20px;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-active,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-active,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-active{
+    display: block;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .rating-stars-block > .rating-star,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .rating-stars-block > .rating-star,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .rating-stars-block > .rating-star{
+    pointer-events: none;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .rating-stars-block > input:checked ~ .rating-star,
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .rating-stars-block > input:checked ~ .rating-star:hover,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .rating-stars-block > input:checked ~ .rating-star,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .rating-stars-block > input:checked ~ .rating-star:hover,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .rating-stars-block > input:checked ~ .rating-star,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .rating-stars-block > input:checked ~ .rating-star:hover{
+    background: url(../images/rated_icon2.jpg) !important;
+    background-size: contain !important;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .review-create_at,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .review-create_at,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .review-create_at{
+    font-size: 12px;
+    color: #052a5070;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating{
+    max-height: 260px;
+    overflow-y: auto;
+    scrollbar-color: #052a50 #052a5012;
+    scrollbar-width: thin;
+}
+.sales-orders-viewbooking .sales-order-view-booking .booking-groomer-detail .product.data.items .item.content .rating-review{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #052a5010;
+    width: 97%;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating::-webkit-scrollbar,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating::-webkit-scrollbar,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating::-webkit-scrollbar {
+    width: 4px;
+    background-color: #052a5018;
+    border-radius: 24px;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating::-webkit-scrollbar-thumb,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating::-webkit-scrollbar-thumb,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border: none;
+    min-height: 20px;
+    border-radius: 50px;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating::-webkit-scrollbar-track,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating::-webkit-scrollbar-track,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #052a5018;
+    background-color: #052a5012;
+    border: none;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .customer-name,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .customer-name,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .customer-name{
+    color: var(--primary);
+    font-size: 12px;
+    line-height: 1.1;
+    font-family: 'nunito_sanssemibold';
+    margin: 10px 0 5px 0;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .rating-review,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .rating-review,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .rating-review{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 10px;
+    width: 97%;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .review-block > div,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .review-block > div,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .review-block > div{
+    font-size: 14px;
+    color: #052a5080;
+    line-height: 22px;
+    font-family: 'nunito_sanssemibold';
+    text-align: left;
+    word-break: break-word;
+}
+.services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .review-block,
+.services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .review-block,
+.services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab .consult-reviews-rating .review-block{
+    padding-bottom: 10px;
+    padding-right: 15px;
+    border-bottom: 1px solid #052a5010;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block{
+    max-width: 60%;
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+    -webkit-box-shadow: 1px 1px 54px rgb(5 43 80 / 10%);
+    -moz-box-shadow: 1px 1px 54px rgba(5, 43, 80, 0.1);
+    margin-top: 70px;
+    padding: 30px;
+    min-height: 350px;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .heading-label,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .heading-label,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .heading-label{
+    font-size: 24px;
+    text-align: center;
+    font-family: 'nunito_sanssemibold';
+    color: var(--primary);
+    margin-bottom: 60px;
+    margin-top: 25px;
+}
+
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    place-content: space-between;
+    place-items: flex-start center;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service{
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+	box-shadow: 1px 1px 3px rgb(0 0 0 / 30%);
+	-webkit-box-shadow: 1px 1px 3px rgb(0 0 0 / 30%);
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .service-images,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .service-images,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .service-images{
+	max-width: 113px;
+	width: 100%;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .service-images img,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .service-images img,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .service-images img{
+	display: block;
+	height: 100%;
+}
+
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content{
+    max-width: calc(100% - 113px);
+	width: 100%;
+	display: block;
+	word-break: break-word;
+	padding-right: 10px;
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content > span,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content > span,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content > span{
+	display: block;
+	font-size: 12px;
+	font-family: 'nunito_sanssemibold';
+	line-height: 1.5;
+	color: var(--primary);
+}
+.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content > .content-heading,
+.services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content > .content-heading,
+.services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content > .content-heading{
+	font-size: 15px;
+	margin-bottom: 4px;
+}
+
+
+
+
+.services-vet-consulting #vet-consulting .pets-grooming-booking-review,
+.services-insta-consult #vet-consulting .pets-grooming-booking-review,
+.services-video-appointment #vet-consulting .pets-grooming-booking-review{
+    background: #cccccc20;
+}
+.services-vet-consulting #vet-consulting .review-booking-right.payment-booking,
+.services-insta-consult #vet-consulting .review-booking-right.payment-booking,
+.services-video-appointment #vet-consulting .review-booking-right.payment-booking{
+    box-shadow: none;
+}
+
+.services-vet-consulting #vet-consulting .review-booking-left-right,
+.services-insta-consult #vet-consulting .review-booking-left-right,
+.services-video-appointment #vet-consulting .review-booking-left-right{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-vet-left,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-vet-left,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-vet-left{
+    background: #fff;    box-sizing: border-box;
+    text-align: center;
+    border-radius: 24px;
+    max-width: 23%;
+    width: 100%;
+    min-height: 280px;
+    box-shadow: 1px 1px 36px rgba(31, 185, 241, 0.1)  ; 
+    -webkit-box-shadow: 1px 1px 36px rgba(31, 185, 241, 0.1)  ; 
+    -moz-box-shadow: 1px 1px 36px rgba(31, 185, 241, 0.1)  ;
+    border: 2px solid var(--consulting-primary-color);
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content{
+    padding: 20px;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-icon,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-icon,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-icon{
+    max-width: 98px;
+    max-height: 98px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-title .title,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-title .title,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-title .title{
+    font-size: 16px;
+    color: var(--primary);
+    font-family: 'nunito_sansbold';
+    line-height: 1.1;
+    margin-top: 25px;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-details p.details,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-details p.details,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-details p.details{
+    font-size: 14px;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+    line-height: 1.1;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-price .price,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-price .price,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .vet-price .price{
+    font-size: 20px;
+    font-family: 'nunito_sansextrabold';
+    margin-top: 25px;
+    line-height: 1.1;
+}
+
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .plan-view .plan-duration,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .plan-view .plan-duration,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .plan-view .plan-duration{
+    font-size: 14px;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+    line-height: 1.1;
+    margin-top: 10px;
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    width: fit-content;
+    margin: 10px auto 0 auto;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .plan-view .plan-duration:before,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .plan-view .plan-duration:before,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-vet-left .vet-content .plan-view .plan-duration:before{
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: -1px;
+    left: 0;
+    background: url(../images/clock_icon.png) no-repeat center;
+    background-size: contain;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-address .edit-vet-booking,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-address .edit-vet-booking,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-address .edit-vet-booking{
+    display: block;
+    font-size: 0px;
+    width: 15px;
+    height: 15px;
+    background: url(../images/pencil.png) no-repeat center;
+    background-size: contain; 
+    margin-left: auto;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-address .view-vet-profile,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-address .view-vet-profile,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-address .view-vet-profile{
+    display: inline-block;
+    font-size: 0px;
+    width: 13px;
+    height: 13px;
+    background: url(../images/back.png) no-repeat center;
+    background-size: contain;
+    float: right;
+    margin-top: 3px;
+    transform: rotate(180deg);
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details .vet-name,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details .vet-name,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details .vet-name{
+    max-width: 80%;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 1.1;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    font-family: 'nunito_sanssemibold';
+    color: var(--primary);
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details:last-child,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details:last-child,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details:last-child{
+    width: 100%;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details .vetnarian-details > span,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details .vetnarian-details > span,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details .vetnarian-details > span{
+    color: #052a5090;
+    font-size: 14px;
+    font-family: 'nunito_sanssemibold';
+    line-height: 1.1;
+    word-break: break-word;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset{
+    border: none;
+    margin-bottom: 15px;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > input[type="checkbox"]:checked + label:before,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > input[type="checkbox"]:checked + label:before,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > input[type="checkbox"]:checked + label:before{
+    background: var(--primary);
+}
+
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > input[type="checkbox"]:checked + label:after,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > input[type="checkbox"]:checked + label:after,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > input[type="checkbox"]:checked + label:after{
+    content: "L";
+    position: absolute;
+    left: -1px;
+    top: -6px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: arial;
+    -ms-transform: scaleX(-1) rotate(-35deg);
+    -webkit-transform: scaleX(-1) rotate(-35deg);
+    transform: scaleX(-1) rotate(316deg);
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > label,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > label,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > label{
+    font-size: 14px;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+    line-height: 1.1;
+}
+
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > label:before,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > label:before,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .wallet.selection fieldset > label:before{
+    border: 2px solid var(--primary);
+    background: transparent;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    margin-top: -2px;
+}
+.services-vet-consulting #vet-consulting .review-booking-right.payment-booking .booking-payment .coupon-box .btn-coupon,
+.services-insta-consult #vet-consulting .review-booking-right.payment-booking .booking-payment .coupon-box .btn-coupon,
+.services-video-appointment #vet-consulting .review-booking-right.payment-booking .booking-payment .coupon-box .btn-coupon{
+    background: #1FB8F160;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection{
+    margin-top: 20px;
+}
+
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset{
+    border: none;
+    margin: 15px 0;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset > label,
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset > label,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset > label{
+    font-size: 14px;
+    color: var(--primary);
+    font-family: 'nunito_sanssemibold';
+    line-height: 1.5;
+}
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset > input[type="radio"]:checked + label:before,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset > input[type="radio"]:checked + label:before,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset > input[type="radio"]:checked + label:before{
+    background: #fff;
+}
+
+.services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset > input[type="radio"]:checked + label:after,
+.services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset > input[type="radio"]:checked + label:after,
+.services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-payment .offer.selection fieldset > input[type="radio"]:checked + label:after{
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin-left: 1px;
+    margin-top: 1px;
+}
+.services-vet-success #maincontent.page-main{
+    background: var(--primary);
+}
+.modals-wrapper aside.modal-popup.modal-slide._inner-scroll._show.vet-profile-modal{
+    background: #00000050;
+    opacity: 1;
+}
+.services-insta-consult #vet-consulting #progressbar li {
+    width: 25%;
+}
+
+
+
+@media(min-width: 1440px){
+	.services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content > .content-heading,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content > .content-heading,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content a.other-service .content > .content-heading{
+		font-size: 18px;
+	}
+}
+
+@media(max-width: 1440px){
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier{
+        padding: 0 120px 0 50px;
+    }
+}
+
+@media(max-width: 1366px){
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier{
+        padding: 0 90px 0 50px;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details{
+        width: calc(100% - 100px);
+    }
+    .services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+    .services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+    .services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap{
+        width: 420px;
+        max-height: 90%;
+        margin: 3rem auto;
+    }
+}
+
+@media(max-width: 1280px){
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier{
+        padding: 0 0 0 50px;
+    }
+    .services-vet-consulting .review-booking-right.payment-booking .booking-payment .booking-amount > h4,
+    .services-vet-consulting .review-booking-right.payment-booking .booking-payment .booking-amount > p.amount,
+    .services-insta-consult .review-booking-right.payment-booking .booking-payment .booking-amount > h4,
+    .services-insta-consult .review-booking-right.payment-booking .booking-payment .booking-amount > p.amount,
+    .services-video-appointment .review-booking-right.payment-booking .booking-payment .booking-amount > h4,
+    .services-video-appointment .review-booking-right.payment-booking .booking-payment .booking-amount > p.amount{
+        font-size: 22px;
+    }
+    .services-vet-consulting .review-booking-right.payment-booking .booking-payment .coupon-box .btn-coupon,
+    .services-insta-consult .review-booking-right.payment-booking .booking-payment .coupon-box .btn-coupon,
+    .services-video-appointment .review-booking-right.payment-booking .booking-payment .coupon-box .btn-coupon{
+        font-size: 15px;
+    }
+}
+
+
+
+@media(max-width: 1199px){
+    .services-vet-consulting #vet-consulting fieldset.field1:before,
+    .services-insta-consult #vet-consulting fieldset.field1:before,
+    .services-video-appointment #vet-consulting fieldset.field1:before{
+        width: 100%;
+        top: 120%;
+    }
+    .services-vet-consulting #maincontent,
+    .services-insta-consult #maincontent,
+    .services-video-appointment #maincontent{
+        min-height: 560px;
+    }
+    .services-vet-consulting .page-header .header.content .navigation-links > ul > li:nth-child(2):before,
+    .services-insta-consult .page-header .header.content .navigation-links > ul > li:nth-child(2):before,
+    .services-video-appointment .page-header .header.content .navigation-links > ul > li:nth-child(2):before{
+        display: none;
+    }
+    /*.services-vet-consulting .header.content .block-search.-header>.block-content{
+        height: 80px;
+    }*/
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier{
+        width: 24%;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+    .services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+    .services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap{
+        max-height: 90%;
+        padding: 0;
+        width: 45%;
+        min-height: 35%;
+        margin-top: 100px;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field1 .location-pet-image,
+    .services-insta-consult #vet-consulting fieldset.field1 .location-pet-image,
+    .services-video-appointment #vet-consulting fieldset.field1 .location-pet-image{
+        top: 35px;
+    }
+    /*.services-vet-consulting .page-footer .amtheme-backtotop-wrap{
+        z-index: -11;
+    }*/
+    .services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-vet-left,
+    .services-insta-consult #vet-consulting .review-booking-left-right .review-booking-vet-left,
+    .services-video-appointment #vet-consulting .review-booking-left-right .review-booking-vet-left{
+        max-width: 30%;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .additional-details .place-price,
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .additional-details .exp-reviews,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .additional-details .place-price,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .additional-details .exp-reviews,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .additional-details .place-price,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .additional-details .exp-reviews{
+        min-height: 50px;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .nodata-content{
+    	grid-template-columns: 100%;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .heading-label,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .heading-label,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .heading-label{
+    	margin-bottom: 30px;
+    	font-size: 20px;
+    }
+}
+
+@media(max-width: 1240px){
+    .services-vet-consulting #vet-consulting fieldset.field2 > ul.manage-pets li .pet-content > p:first-child,
+    .services-insta-consult #vet-consulting fieldset.field2 > ul.manage-pets li .pet-content > p:first-child,
+    .services-video-appointment #vet-consulting fieldset.field2 > ul.manage-pets li .pet-content > p:first-child{
+        width: 85px;
+        height: 85px;
+    }
+}
+
+@media(max-width: 991px){
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn{
+        font-size: 12px;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid{
+        grid-gap: 20px;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier{
+        padding: 0 0 0 15px;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list li label,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list li label,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content ul.list li label{
+        font-size: 12px;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn{
+        font-size: 12px;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier{
+        width: 27%;
+    }
+
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .field,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .field,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid .vet-item .vet-profile-info .profile-details .field{
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+    .services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+    .services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap{
+        width: 55%;
+    }
+    .services-vet-consulting #vet-consulting .review-booking-left-right,
+    .services-insta-consult #vet-consulting .review-booking-left-right,
+    .services-video-appointment #vet-consulting .review-booking-left-right{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 30px;
+    }
+    .services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-vet-left, 
+    .services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right.payment-booking,
+    .services-insta-consult #vet-consulting .review-booking-left-right .review-booking-vet-left, 
+    .services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right.payment-booking,
+    .services-video-appointment #vet-consulting .review-booking-left-right .review-booking-vet-left, 
+    .services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right.payment-booking{
+        max-width: 100%;
+        width: 100%;
+    }
+    .services-vet-consulting #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details:last-child,
+    .services-insta-consult #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details:last-child,
+    .services-video-appointment #vet-consulting .review-booking-left-right .review-booking-right .booking-address .booking-details:last-child{
+        width: 100%;
+    }
+    .services-vet-consulting .review-booking-right.payment-booking .booking-payment .booking-amount > h4,
+    .services-vet-consulting .review-booking-right.payment-booking .booking-payment .booking-amount > p.amount,
+    .services-insta-consult .review-booking-right.payment-booking .booking-payment .booking-amount > h4,
+    .services-insta-consult .review-booking-right.payment-booking .booking-payment .booking-amount > p.amount,
+    .services-video-appointment .review-booking-right.payment-booking .booking-payment .booking-amount > h4,
+    .services-video-appointment .review-booking-right.payment-booking .booking-payment .booking-amount > p.amount{
+        font-size: 18px;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"]:checked + label::after,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"]:checked + label::after,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .filter-contanier ul.list li input[type="checkbox"]:checked + label::after{
+		left: -2px;
+		top: -6px;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc,
+    .services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .uploaded-image-doc,
+    .services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .services-insta-consult #vet-consulting > fieldset.field4 .pets-grooming-booking-review .review-booking-wrapper {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+}
+
+
+@media(max-width: 767px){
+    .services-vet-consulting #maincontent,
+    .services-insta-consult #maincontent,
+    .services-video-appointment #maincontent{
+        min-height: 460px;
+    }
+    .services-vet-consulting #vet-consulting fieldset .search-area-landmark{
+        max-width: 90%;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field1:before{
+        min-height: 160px;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a,
+    .services-insta-consult #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a,
+    .services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a{
+        font-size: 12px;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points,
+    .services-insta-consult #vet-consulting fieldset.field3 .select-pain-points,
+    .services-video-appointment #vet-consulting fieldset.field3 .select-pain-points{
+        width: 100%;
+        margin-top: 20px;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem,
+    .services-insta-consult #vet-consulting fieldset.field3 .select-pain-points .describe-problem,
+    .services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem{
+        max-width: 100%;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier{
+        flex-direction: column;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier{
+        width: 100%;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier{
+        padding: 0;
+        margin-top: 40px;
+    }
+    .services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+    .services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+    .services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap{
+        width:60%;
+    }
+    .services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-image img,
+    .services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-image img,
+    .services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .vet-profile-info .profile-image img{
+        width: 90px;
+        height: 90px;
+    }
+    .services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li a,
+    .services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li a,
+    .services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap .vet-item .tab-menu ul li a{
+        font-size: 14px;
+    }
+    .services-vet-consulting #progressbar li{
+        width: 16%;
+    }
+    .services-vet-consulting #vet-consulting > #progressbar > label:nth-child(7),
+    .services-insta-consult #vet-consulting > #progressbar > label:nth-child(4),
+    .services-video-appointment #vet-consulting > #progressbar > label:nth-child(6){
+        border: 2px solid var(--primary);
+        z-index: 99;
+        top: 120px;
+        left: 3%;
+        right: auto;
+        border-radius: 50%;
+    }
+    .services-vet-consulting #vet-consulting > #progressbar > label:last-child,
+    .services-insta-consult #vet-consulting > #progressbar > label:last-child,
+    .services-video-appointment #vet-consulting > #progressbar > label:last-child{
+        top: 120px;
+        z-index: 99;
+        border: 2px solid var(--primary);
+        border-radius: 50%;
+        background: var(--primary);
+    }
+    .services-vet-consulting #progressbar,
+    .services-insta-consult #progressbar,
+    .services-video-appointment #progressbar{
+        margin-bottom: 120px;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field1,
+    .services-vet-consulting #vet-consulting fieldset.field2,
+    .services-insta-consult #vet-consulting fieldset.field2,
+    .services-video-appointment #vet-consulting fieldset.field2{
+        padding-top: 20px;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field2,
+    .services-insta-consult #vet-consulting fieldset.field2,
+    .services-video-appointment #vet-consulting fieldset.field2{
+        padding-inline-end: 20px;
+        padding-inline-start: 20px;
+    }
+    .services-insta-consult #vet-consulting fieldset.field2 {
+        padding: 0;
+    }
+    .services-vet-consulting #vet-consulting > #progressbar > label:nth-child(7)::before,
+    .services-insta-consult #vet-consulting > #progressbar > label:nth-child(4)::before,
+    .services-video-appointment #vet-consulting > #progressbar > label:nth-child(6)::before{
+        right: 9px;
+    }
+    .services-vet-consulting .message.error,
+    .services-insta-consult .message.error,
+    .services-video-appointment .message.error{
+        z-index: 100;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field4 .calender-date-day-selection,
+    .services-insta-consult #vet-consulting fieldset.field4 .calender-date-day-selection,
+    .services-video-appointment #vet-consulting fieldset.field4 .calender-date-day-selection{
+        padding-top: 30px;
+    }
+    .services-vet-consulting #vet-consulting .pets-grooming-booking-review,
+    .services-insta-consult #vet-consulting .pets-grooming-booking-review,
+    .services-video-appointment #vet-consulting .pets-grooming-booking-review{
+        padding: 0;
+    }
+    .services-vet-consulting #vet-consulting .review-booking-left-right,
+    .services-insta-consult #vet-consulting .review-booking-left-right,
+    .services-video-appointment #vet-consulting .review-booking-left-right{
+        grid-template-columns: 100%;
+        grid-row-gap: 50px;
+    }
+    .services-vet-consulting #progressbar li span.mobile-status,
+    .services-insta-consult #progressbar li span.mobile-status,
+    .services-video-appointment #progressbar li span.mobile-status{
+        display: none;
+    }
+    .services-vet-consulting #progressbar li span:first-child,
+    .services-insta-consult #progressbar li span:first-child,
+    .services-video-appointment #progressbar li span:first-child{
+        display: block;
+        font-size: 10px;
+        text-align: center;
+        width: 90%;
+    }   
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block .heading-label,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block .heading-label,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block .heading-label{
+    	font-size: 16px;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block{
+    	max-width: 90%;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a,
+    .services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem .add-image-doc a,
+    .services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a {
+        padding-left: 20px;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a:before,
+    .services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem .add-image-doc a:before,
+    .services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem .add-image-doc a:before {
+        left: 0;
+        width: 15px;
+        height: 15px;
+    }
+    .services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem .add-image-doc a:before {
+        top: 0;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc,
+    .services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .uploaded-image-doc,
+    .services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .uploaded-image-doc {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .services-insta-consult #vet-consulting fieldset.field2 .select-pain-points {
+        margin-top: 0;
+    }
+    .services-insta-consult #vet-consulting > fieldset.field3.grooming-container-width.current {
+        padding: 0;
+    }
+    .services-insta-consult #vet-consulting #progressbar li {
+        width: 30%;
+    }
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-layer-nav-contanier .toggle-content .btn {
+        margin-top: 30px;
+    }
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid-contanier {
+        margin-top: 10px;
+     }
+}
+
+@media(max-width: 480px){
+    .services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control,
+    .services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .choose-pain-points .pain-points-control,
+    .services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .choose-pain-points .pain-points-control{
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field3 .select-pain-points .describe-problem,
+    .services-insta-consult #vet-consulting fieldset.field2 .select-pain-points .describe-problem,
+    .services-video-appointment #vet-consulting fieldset.field3 .select-pain-points .describe-problem{
+        grid-template-columns: 100%;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .vet-grid,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .vet-grid,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .vet-grid{
+        grid-template-columns: 100%;
+    }
+    .services-vet-consulting .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+    .services-insta-consult .modals-wrapper .vet-profile-modal .modal-inner-wrap,
+    .services-video-appointment .modals-wrapper .vet-profile-modal .modal-inner-wrap{
+        width: 90%;
+    }
+    .services-vet-consulting #vet-consulting fieldset .search-area-landmark{
+        max-width: 100%;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier{
+    	width: 93%;
+    }
+    .services-vet-consulting #vet-consulting .grooming-container-width .vet-contanier .nodata-block,
+    .services-insta-consult #vet-consulting .grooming-container-width .vet-contanier .nodata-block,
+    .services-video-appointment #vet-consulting .grooming-container-width .vet-contanier .nodata-block{
+    	padding: 20px 10px;
+    	max-width: 100%;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field2 > ul.manage-pets,
+    .services-insta-consult #vet-consulting fieldset.field2 > ul.manage-pets,
+    .services-video-appointment #vet-consulting fieldset.field2 > ul.manage-pets{
+        width: 100%;
+    }
+    .services-vet-consulting #vet-consulting fieldset.field2 > ul.manage-pets li .pet-content > p:first-child,
+    .services-insta-consult #vet-consulting fieldset.field2 > ul.manage-pets li .pet-content > p:first-child,
+    .services-video-appointment #vet-consulting fieldset.field2 > ul.manage-pets li .pet-content > p:first-child{
+        max-width: 105px;
+        max-height: 105px;
+        width: 100%;
+        height: 100%;
+    }
+}

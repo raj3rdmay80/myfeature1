@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var $block \Zigly\Catalog\Block\Homepage\TopCategories
+ */
+$categories = $block->getCategories();
+?>
+<div class="top-categories">
+	<div class="shop-by-cat-image">
+		<img src="<?php echo $this->getViewFileUrl('Zigly_Catalog::images/new-home-cat.png'); ?>" alt="Pet Image">
+	</div>
+	<h5 class="title"><?php echo __('Shop by Category'); ?></h5> 
+	<div class="categories-wrap categories-grid">
+		<?php foreach ($categories as $category): ?>
+			<div class="category">
+				<a href="<?php echo $block->escapeUrl($category->getUrl()); ?>">
+					<img src="<?php echo $block->escapeUrl($category->getImageUrl('home_image')); ?>" alt="<?= $block->escapeHtml($category->getName()); ?>">
+				</a>
+				<a class="category-link" href="<?php echo $block->escapeUrl($category->getUrl()); ?>"><?= $block->escapeHtml($category->getName()); ?></a>
+			</div>
+		<?php endforeach; ?>
+	</div>
+</div>

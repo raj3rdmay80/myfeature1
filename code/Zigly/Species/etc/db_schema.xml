@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="zigly_species_species" resource="default" engine="innodb" comment="zigly_species_species Table">
+		<column xsi:type="int" name="species_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="species_id"/>
+		</constraint>
+		<column name="name" nullable="true" xsi:type="varchar" comment="name" length="255"/>
+		<column name="profile_image" nullable="true" xsi:type="varchar" comment="profile_image" length="255"/>
+		<column name="status" nullable="true" xsi:type="boolean" comment="status"/>
+		<index referenceId="ZIGLY_SPECIES_SPECIES_NAME" indexType="fulltext">
+			<column name="name" />
+		</index>
+	</table>
+	<table name="zigly_species_breed" resource="default" engine="innodb" comment="zigly_species_breed Table">
+		<column xsi:type="int" name="breed_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="breed_id"/>
+		</constraint>
+		<column xsi:type="int" name="species_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Species Id"/>
+		<constraint xsi:type="foreign" referenceId="ZIG_SPE_BRE_SPECIES_ID_ZID_SPE_SPE_SPECIES_ID" table="zigly_species_breed" column="species_id" referenceTable="zigly_species_species" referenceColumn="species_id" onDelete="CASCADE"/>
+		<column name="name" nullable="true" xsi:type="varchar" comment="name" length="255"/>
+		<column name="description" nullable="true" xsi:type="text" comment="description"/>
+		<column name="breed_type" nullable="true" xsi:type="varchar" comment="breed_type" length="255"/>
+		<column name="image" nullable="true" xsi:type="varchar" comment="image" length="255"/>
+		<column name="status" nullable="true" xsi:type="boolean" comment="status"/>
+		<column name="created_at" nullable="true" xsi:type="timestamp" comment="created_at" default="CURRENT_TIMESTAMP"/>
+		<column name="updated_at" nullable="true" xsi:type="timestamp" comment="updated_at" default="CURRENT_TIMESTAMP" on_update="true"/>
+		<index referenceId="ZIGLY_SPECIES_BREED_NAME" indexType="fulltext">
+			<column name="name" />
+		</index>
+	</table>
+</schema>

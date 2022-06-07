@@ -1,0 +1,39 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_JetTheme
+ */
+?>
+<?php
+/** @var Amasty\JetTheme\Block\Widget\BannerCarousel $block */
+
+$images = $block->getImages();
+?>
+
+<ul class="amtheme-images-carousel amtheme-slick-slider"
+    data-mage-init='{"slickSlider":{
+        "sliderOptions": {
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "infinite": true,
+            "dots": true,
+            "arrows": false
+        }
+    }}'>
+    <?php foreach ($images as $image): ?>
+        <li class="amtheme-slide">
+            <?php if (!empty($image['link'])): ?>
+                <a href="<?= $block->escapeUrl($image['link']) ?>" alt="<?= $block->escapeHtmlAttr($image['alt']) ?>">
+                    <img class="amtheme-image"
+                         src="<?= $block->escapeUrl($image['url']) ?>"
+                         alt="<?= $block->escapeHtmlAttr($image['alt']) ?>">
+                </a>
+            <?php else: ?>
+                <img class="amtheme-image"
+                     src="<?= $block->escapeUrl($image['url']) ?>"
+                     alt="<?= $block->escapeHtmlAttr($image['alt']) ?>">
+            <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+</ul>

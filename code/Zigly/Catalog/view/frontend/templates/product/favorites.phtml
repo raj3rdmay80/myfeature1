@@ -1,0 +1,99 @@
+<?php
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Catalog
+ *
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+?>
+<?php
+$blockObj= $block->getLayout()->createBlock('Zigly\Catalog\Block\ProductList');
+$productCollection = $blockObj->getFavoriteProductCollection();
+/** @var \Magento\Catalog\Helper\Output $_helper */
+$_helper = $block->getData('outputHelper');
+?>
+<?php if ($productCollection->count()):
+    $viewMode = 'grid';
+    $imageDisplayArea = 'category_page_grid';
+    $showDescription = false;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $pos = $block->getPositioned(); ?>
+    <div class="products fav-exclusive wrapper <?= /* @noEscape */ $viewMode ?> products-<?= /* @noEscape */ $viewMode ?>">
+        <div class="fav-exclusive-header">
+            <span class="fav-exclusive-heart"></span>
+            <h2 class="fav-exclusive-label">Shop Customer Favorites</h2>
+        </div>
+        <ol class="products list items product-items owl-carousel owl-theme fav-exclusive-items" id="owl-demo">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($productCollection as $_product):?>
+                <li class="item product product-item fav-exclusive-list">
+                    <div class="product-item-info"
+                         id="product-item-info_<?= /* @noEscape */ $_product->getId() ?>"
+                         data-container="product-<?= /* @noEscape */ $viewMode ?>">
+                        <?php
+                        $productImage = $block->getImage($_product, $imageDisplayArea);
+                        if ($pos != null) {
+                            $position = 'left:' . $productImage->getWidth() . 'px;'
+                                . 'top:' . $productImage->getHeight() . 'px;';
+                        }
+                        ?>
+                        <?php // Product Image ?>
+                        <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
+                           class="product photo product-item-photo"
+                           tabindex="-1">
+                            <?= $productImage->toHtml() ?>
+                        </a>
+                        <div class="product details product-item-details">
+                            <?php $_productNameStripped = $block->stripTags($_product->getName(), null, true); ?>
+                            <div class="product-brand">
+                                <b>
+                                    <?= $block->escapeHtml($_product->getResource()->getAttribute('brand')->getFrontend()->getValue($_product)) ?>
+                                </b>
+                            </div>
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link"
+                                   href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>">
+                                    <?=/* @noEscape */ $_helper->productAttribute($_product, $_product->getName(), 'name')?>
+                                </a>
+                            </strong>
+                            <div class="product-rating">
+                                <?php if ($blockObj->getProductReviewCount($_product->getId()) > 0) { ?>
+                                    <?= $block->escapeHtml($blockObj->getProductReviewCount($_product->getId())) ?>
+                                    <i class="fa fa-star review-star"></i>
+                                <?php } ?>
+                            </div>
+                            <?php $finalPrice = $_product->getFinalPrice();
+                            $price = $_product->getPriceInfo()->getPrice('regular_price')->getValue(); ?>
+                            <div class="info-price">
+                                <?php if ($finalPrice < $price) : ?>
+                                    <span class="regular-price-info">
+                                        <?= /* @noEscape */ $blockObj->currency(number_format((float)$finalPrice, 2, '.', '')) ?>
+                                    </span>
+                                    <span class="strike-special-price-info">
+                                        <?= /* @noEscape */ $blockObj->currency(number_format((float)$price, 2, '.', '')) ?>
+                                    </span>
+                                <?php else : ?>
+                                    <span class="special-price-info">
+                                        <?= /* @noEscape */ $blockObj->currency(number_format((float)$price, 2, '.', '')) ?>
+                                    </span>
+                                <?php endif; ?>
+                            </div>
+                            <?= $block->getProductDetailsHtml($_product) ?>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+      "*": {
+            "Zigly_Catalog/js/product-slider":{}
+        }
+    }
+</script>

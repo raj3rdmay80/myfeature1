@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Wallet
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="wallet_wallet_notification_wallet_recharge_email" label="Wallet Recharge Email Template" file="recharge.html" type="html" module="Zigly_Wallet" area="frontend"/>
+</config>

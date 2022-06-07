@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Wallet
+ */ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <head>
+        <css src="Zigly_Wallet::css/wallet.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Zigly\Wallet\Block\Wallet\Index" name="wallet_index_index" template="Zigly_Wallet::index.phtml" cacheable="false" />
+        </referenceContainer>
+    </body>
+</page>

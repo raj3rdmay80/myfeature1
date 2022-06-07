@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Sales
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <status_notify>
+            <status>
+                <professional_status_sender_name>ZIGLYy</professional_status_sender_name>
+                <professional_detail_template_id>61767d00a6b6b76a36246733</professional_detail_template_id>
+                <professional_detail_email>status_notify_status_professional_detail_email</professional_detail_email>
+                <professional_approve_sms>61767cbb7e9c5d46cf603c22</professional_approve_sms>
+                <professional_approve_email>status_notify_status_professional_approve_email</professional_approve_email>
+            </status>
+        </status_notify>
+    </default>
+</config>

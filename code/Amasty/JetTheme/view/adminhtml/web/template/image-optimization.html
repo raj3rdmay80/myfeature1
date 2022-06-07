@@ -1,0 +1,52 @@
+<div class="amtheme-optimizer-block">
+    <div class="amtheme-optimizer-steps">
+        <ul class="optimizer-icons">
+            <li class="icon" data-bind="css: {'-active': isGeneration(), '-done': isDone() || inProgress()}"></li>
+            <li class="icon" data-bind="css: {'-active': inProgress(), '-done': isDone()}"></li>
+            <li class="icon" data-bind="css: {'-done': isDone()}"></li>
+        </ul>
+        <ul class="optimizer-titles">
+            <li class="title" data-bind="i18n: 'Images Queue Generation', css: {'-active': isGeneration()}"></li>
+            <li class="title" data-bind="css: {'-active': inProgress()}">
+                <span data-bind="i18n: 'Image Optimization Progress:'"></span>
+                <span data-bind="text: currentFiles()"></span>/<span data-bind="text: filesCount()"></span>
+            </li>
+            <li class="title" data-bind="css: {'-active': isDone()}">
+                <span data-bind="i18n: 'Image Optimization Finished'"></span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- ko if: errorsList() -->
+        <ul class="amtheme-optimizer-errors">
+            <!-- ko foreach: { data: errorsList(), as: 'error'}  -->
+                <li data-bind="html: error"></li>
+            <!-- /ko -->
+        </ul>
+    <!-- /ko -->
+
+    <!-- ko if: inProgress() -->
+    <div class="amtheme-optimizer-progressbar">
+        <div class="optimizer-progressbar">
+            <div class="optimizer-progressbar-wrapper">
+                <progress max="100" value="0" class="progress" data-bind="value: percentage()"></progress>
+            </div>
+            <span class="value">
+                <span data-bind="text: percentage()"></span>%
+            </span>
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: isGeneration() && !errorsList() -->
+    <div class="amtheme-optimizer-spinner">
+        <div class="optimizer-spinner">
+            <!-- ko foreach: new Array(dotCount()) -->
+            <div class="optimizer-dot-container" data-bind="css:'dot-' + ($index()+1) + '-container'">
+                <div class="dot" data-bind="css:'dot-' + ($index()+1)"></div>
+            </div>
+            <!-- /ko -->
+        </div>
+        <p class="title" data-bind="i18n: 'Please wait...'"></p>
+    </div>
+    <!-- /ko -->
+</div>

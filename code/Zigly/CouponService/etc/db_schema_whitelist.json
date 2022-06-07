@@ -1,0 +1,25 @@
+{
+    "zigly_couponservice_couponservice": {
+        "column": {
+            "couponservice_id": true,
+            "name": true,
+            "start_date": true,
+            "end_date": true,
+            "coupon_code": true,
+            "amount": true,
+            "center": true,
+            "type": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true,
+            "description": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "ZIGLY_COUPONSERVICE_COUPONSERVICE_NAME": true,
+            "ZIGLY_COUPONSERVICE_COUPONSERVICE_NAME_COUPON_CODE": true
+        }
+    }
+}

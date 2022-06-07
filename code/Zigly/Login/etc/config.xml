@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Login
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <msggateway>
+            <general>
+                <authkey>362441ARv0aUjLfn60c72973P1</authkey>
+            </general>
+            <otpemail>
+                <login_professional_otp>60c9889eae76ae3e3b300ec7</login_professional_otp>
+            </otpemail>
+        </msggateway>
+    </default>
+</config>

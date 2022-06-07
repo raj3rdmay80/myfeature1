@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_VetConsulting
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="zigly" translate="label" sortOrder="10">
+            <label>Zigly</label>
+        </tab>
+        <section id="zigly_timeslot_vetconsulting" translate="label" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Time Slots - At VetConsulting Center</label>
+            <tab>zigly</tab>
+            <resource>Zigly_VetConsulting::vetconsulting_config</resource>
+            <group id="start" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Start</label>
+                <field id="hours" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hours</label>
+                    <source_model>Zigly\VetConsulting\Model\Config\Source\Timeslot\Hours</source_model>
+                    <validate>required-entry</validate>
+                </field>
+               <field id="minutes" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minutes</label>
+                    <source_model>Zigly\VetConsulting\Model\Config\Source\Timeslot\Minutes</source_model>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+            <group id="end" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>End</label>
+                <field id="hours" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hours</label>
+                    <source_model>Zigly\VetConsulting\Model\Config\Source\Timeslot\Hours</source_model>
+                    <validate>required-entry</validate>
+                </field>
+               <field id="minutes" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minutes</label>
+                    <source_model>Zigly\VetConsulting\Model\Config\Source\Timeslot\Minutes</source_model>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+        <section id="vetconsulting" translate="label" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Vet Consulting</label>
+            <tab>zigly</tab>
+            <resource>Zigly_VetConsulting::vetconsulting_config</resource>
+            <group id="vetconsulting_pain_points_config" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>VetConsulting Pain Points</label>
+                <field id="pain_points" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select Pain Points</label>
+                    <frontend_model>Zigly\VetConsulting\Block\Adminhtml\Form\Field\PainPoints</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="product_config" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>VetConsulting Simple Product Sku</label>
+                <field id="sku_for_in_clinic" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Sku For In-Clinic Appointments</label>
+                    <validate>required-entry</validate>
+                    <comment>Please enter only simple product sku!!</comment>
+                </field>
+                <field id="sku_for_insta" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Sku For Insta Consult</label>
+                    <validate>required-entry</validate>
+                    <comment>Please enter only simple product sku!!</comment>
+                </field>
+                <field id="sku_for_video" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Sku For Video Appointments</label>
+                    <validate>required-entry</validate>
+                    <comment>Please enter only simple product sku!!</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

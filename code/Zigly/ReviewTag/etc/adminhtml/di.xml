@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_ReviewTag
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Review\Block\Adminhtml\Edit\Form">
+        <plugin name="remove_detailed_rating" type="Zigly\ReviewTag\Plugin\Block\Adminhtml\Edit\Form" sortOrder="1"/>
+    </type>
+    <preference for="Magento\Review\Block\Adminhtml\Grid" type="Zigly\ReviewTag\Block\Adminhtml\Grid" />
+</config>

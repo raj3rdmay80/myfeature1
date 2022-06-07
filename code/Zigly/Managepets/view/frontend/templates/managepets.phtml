@@ -1,0 +1,77 @@
+<?php
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Managepets
+ */
+?>
+<?php $placeholderimage = $block->getplaceholderimage();?>
+<?php $genders = $this->getGenders();?>
+<?php $gridrecords = $block->getManagepetsCollection(); ?>
+<?php if ($gridrecords && sizeof($gridrecords)): ?>
+    <?php if ($gridrecords && sizeof($gridrecords)): ?>
+    <?php $row = 0;?>
+    <div class="amtheme-addresses-block -dashboard-addresses">
+        <div class="amtheme-heading">
+        <span class="amtheme-title">
+            <?= $block->escapeHtml(__('Manage Pets')) ?>
+        </span>
+        <a class="action edit"
+           title="<?= $block->escapeHtml(__('Add New Pet')) ?>"
+           href="<?php echo $this->getUrl('managepets/index/form')?>">
+            <?= $block->escapeHtml(__('Add New Pet')) ?>
+        </a>
+    </div>
+    <?php foreach ($gridrecords as $pet): ?>
+    <?php $row++;?>
+    <div class="amtheme-address-card amtheme-address-billing">
+        <div class="amtheme-wrapper">
+            <address class="amtheme-content">
+               <?php if($pet->getFilepath()){ ?>
+                <?php $imageurl = $block->getPetimage($pet->getFilepath());?>
+                <?php } else { ?>
+                <?php $imageurl = $placeholderimage;?>
+                <?php } ?>
+                <p><img src="<?php echo $imageurl?>" alt="<?php echo $pet->getName();?>" width="50" height="50"/></p>
+                <p class="name"><strong><?php echo $pet->getName(); ?></strong></p>
+                <p>
+                    <span>
+                        <?php echo $pet->getBreedname();?>
+                     </span>
+                    <span><?php echo date('Y-m-d', strtotime($pet->getPetDob())); ?></span>
+                </p>
+                <p>
+                    <span><?php echo $pet->getAgeYear()." "."years"?></span>
+                    <span><?php echo $pet->getAgeMonth()." "."months"?></span>
+                </p>
+            </address>
+        </div>
+        <div class="amtheme-actions">
+            <a class="action edit"
+               title="<?= $block->escapeHtml(__('Edit')) ?>"
+               href="<?php echo $this->getUrl('managepets/index/form',['id'=>$pet->getId()]);?>">
+                <?= $block->escapeHtml(__('Edit')) ?>
+            </a> | <a class="action delete delete_pet" pet_id="<?=$pet->getId();?>"
+               title="<?= $block->escapeHtml(__('Delete')) ?>"
+               href="javascript:;">
+                <?= $block->escapeHtml(__('Delete')) ?>
+            </a>
+        </div>
+    </div>
+    <?php endforeach; ?>
+    </div>
+    <?php endif ?>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?php echo __('No any record.'); ?></span></div>
+<?php endif ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_Managepets/js/managepetslist": {
+                "deleteurl" : "<?php echo $this->getUrl().'managepets/index/delete'?>"
+            }
+        }
+    }
+</script>

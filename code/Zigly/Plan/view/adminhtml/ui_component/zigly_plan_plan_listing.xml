@@ -1,0 +1,283 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Plan
+ */ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">zigly_plan_plan_listing.zigly_plan_plan_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>zigly_plan_plan_columns</spinner>
+		<deps>
+			<dep>zigly_plan_plan_listing.zigly_plan_plan_listing_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="zigly_plan/plan/addbreed"/>
+				<class>primary</class>
+				<label translate="true">Add new</label>
+			</button>
+		</buttons>
+	</settings>
+	<dataSource name="zigly_plan_plan_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">plan_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Zigly_Plan::Plan</aclResource>
+		<dataProvider name="zigly_plan_plan_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>plan_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<!-- <filters name="listing_filters">
+			<filterSelect name="applicable_cities" provider="${ $.parentName }" component="Magento_Ui/js/form/element/ui-select" template="ui/grid/filters/elements/ui-select">
+				<settings>
+					<options class="Zigly\Plan\Model\Cities"/>
+					<caption translate="true">Select...</caption>
+					<label translate="true">Applicable Cities</label>
+					<dataScope>applicable_cities</dataScope>
+					<imports>
+						<link name="visible">componentType = column, index = ${ $.index }:visible</link>
+					</imports>
+				</settings>
+			</filterSelect>
+		</filters> -->
+		<filterSearch name="fulltext"/>
+		<massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+			<action name="delete">
+				<settings>
+					<confirm>
+						<message translate="true">Are you sure to delete selected plan?</message>
+						<title translate="true">Delete Plan</title>
+					</confirm>
+					<url path="zigly_plan/plan/massdelete"/>
+					<type>delete</type>
+					<label translate="true">Delete</label>
+				</settings>
+			</action>
+		</massaction>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="zigly_plan_plan_columns">
+		<settings>
+			<!-- <editorConfig>
+				<param name="selectProvider" xsi:type="string">zigly_plan_plan_listing.zigly_plan_plan_listing.zigly_plan_plan_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">plan_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" xsi:type="url" path="zigly_plan/Plan/inlineEdit"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+			</editorConfig> -->
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">zigly_plan_plan_listing.zigly_plan_plan_listing.zigly_plan_plan_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>plan_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="plan_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="plan_image" class="Zigly\Plan\Ui\Component\Column\Thumbnail">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+					<item name="sortable" xsi:type="boolean">false</item>
+					<item name="altField" xsi:type="string">name</item>
+					<item name="has_preview" xsi:type="string">1</item>
+					<item name="label" xsi:type="string" translate="true">Plan Image</item>
+					<item name="sortOrder" xsi:type="number">20</item>
+				</item>
+			</argument>
+		</column>
+		<column name="banner_image" class="Zigly\Plan\Ui\Component\Column\Thumbnail">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+					<item name="sortable" xsi:type="boolean">false</item>
+					<item name="altField" xsi:type="string">name</item>
+					<item name="has_preview" xsi:type="string">1</item>
+					<item name="label" xsi:type="string" translate="true">Banner Image</item>
+					<item name="sortOrder" xsi:type="number">20</item>
+				</item>
+			</argument>
+		</column>
+		<column name="plan_name">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Plan Name</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="updated_by">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Updated By</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" >
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">dateRange</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+					<item name="dataType" xsi:type="string">date</item>
+					<item name="label" xsi:type="string" translate="true">Last Updated Date</item>
+				</item>
+			</argument>
+		</column>
+		<column name="status">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Zigly\Plan\Ui\Component\Listing\Column\Status</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+					<item name="label" xsi:type="string" translate="true">Status</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">select</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">false</item>
+						</item>
+					</item>
+				</item>
+			</argument>
+		</column>
+		<column name="plan_type">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Zigly\Plan\Ui\Component\Listing\Column\PlanType</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+					<item name="label" xsi:type="string" translate="true">Plan Type</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">select</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">false</item>
+						</item>
+					</item>
+				</item>
+			</argument>
+		</column>
+		<column name="species">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Zigly\Plan\Ui\Component\Listing\Column\Species</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+					<item name="label" xsi:type="string" translate="true">Breed</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">select</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">false</item>
+						</item>
+					</item>
+				</item>
+			</argument>
+		</column>
+		<column name="applicable_cities">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Zigly\Plan\Ui\Component\Listing\Column\Cities</item>
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Applicable Cities</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">select</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">false</item>
+						</item>
+					</item>
+				</item>
+			</argument>
+		</column>
+		<column name="sort_order">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Sort Order</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="product_sku">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Product Sku</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="recommended_plan">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Zigly\Plan\Ui\Component\Listing\Column\Recommended</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+					<item name="label" xsi:type="string" translate="true">Recommended</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">select</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">false</item>
+						</item>
+					</item>
+				</item>
+			</argument>
+		</column>
+		<actionsColumn name="actions" class="Zigly\Plan\Ui\Component\Listing\Column\PlanActions">
+			<settings>
+				<indexField>plan_id</indexField>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>107</resizeDefaultWidth>
+			</settings>
+		</actionsColumn>
+	</columns>
+</listing>

@@ -1,0 +1,127 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">zigly_schedulemanagement_schedulemanagement_listing.zigly_schedulemanagement_schedulemanagement_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>zigly_schedulemanagement_schedulemanagement_columns</spinner>
+		<deps>
+			<dep>zigly_schedulemanagement_schedulemanagement_listing.zigly_schedulemanagement_schedulemanagement_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="zigly_schedulemanagement_schedulemanagement_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">schedulemanagement_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Zigly_ScheduleManagement::ScheduleManagement</aclResource>
+		<dataProvider name="zigly_schedulemanagement_schedulemanagement_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>schedulemanagement_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="zigly_schedulemanagement_schedulemanagement_columns">
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>schedulemanagement_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="schedulemanagement_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="professional_id">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Professional Id</label>
+			</settings>
+		</column>
+		<column name="groomer_name">
+			<settings>
+				<label translate="true">Professional Name</label>
+			</settings>
+		</column>
+		<column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Created At</item>
+                </item>
+            </argument>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Updated At</item>
+                </item>
+            </argument>
+        </column>
+        <column name="schedule_date" class="Magento\Ui\Component\Listing\Columns\Date" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Schedule Date</item>
+                </item>
+            </argument>
+        </column>
+        <column name="working_mode" component="Magento_Ui/js/grid/columns/select" sortOrder="90">
+            <settings>
+                <options class="Zigly\ScheduleManagement\Model\WorkingMode"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Working Mode</label>
+            </settings>
+        </column>
+		<column name="slot">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Slot</label>
+			</settings>
+		</column>
+		<column name="booking_id" class="Zigly\ScheduleManagement\Ui\Component\Listing\Column\Booking">
+			<!-- <settings>
+				<filter>text</filter>
+				<label translate="true">Booking Id</label>
+			</settings> -->
+			<argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="filter" xsi:type="string">text</item>                   
+                    <item name="label" xsi:type="string" translate="true">Booking Id</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+		</column>
+		<column name="availability">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Availability</label>
+			</settings>
+		</column>
+	</columns>
+</listing>

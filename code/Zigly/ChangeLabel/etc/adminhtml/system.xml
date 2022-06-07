@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+         <section id="brand" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Shop by Brand</label>
+            <tab>zigly</tab>
+            <resource>Zigly_ChangeLabel::brand_config</resource>
+            <group id="limit" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Shop by Brand</label>
+                <field id="brand_listing_limit" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Brand Limit</label>
+                <validate>required-entry validate-number</validate> 
+                <comment><![CDATA[If 0, count will be considered as 24.]]> </comment>
+                </field>
+                <field id="enable_view_more_link" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" type="select">
+                    <label>Enable View More</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="brand_view_url" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>View More Url</label>
+                    <validate>validate-url</validate> 
+                </field>
+            </group>
+        </section>
+    </system>
+</config> 

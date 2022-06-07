@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Hub
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Zigly\Hub\Api\HubRepositoryInterface" type="Zigly\Hub\Model\HubRepository"/>
+	<preference for="Zigly\Hub\Api\Data\HubInterface" type="Zigly\Hub\Model\Data\Hub"/>
+	<preference for="Zigly\Hub\Api\Data\HubSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Zigly\Hub\Model\ResourceModel\Hub\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">zigly_hub_hub</argument>
+			<argument name="resourceModel" xsi:type="string">Zigly\Hub\Model\ResourceModel\Hub\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="zigly_hub_hub_listing_data_source" xsi:type="string">Zigly\Hub\Model\ResourceModel\Hub\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

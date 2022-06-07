@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Catalog
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <listingpage>
+            <favorite>
+                <customer_favorite>8</customer_favorite>
+            </favorite>
+            <exclusive>
+                <exclusive_at_zigly>8</exclusive_at_zigly>
+            </exclusive>
+        </listingpage>
+    </default>
+</config>

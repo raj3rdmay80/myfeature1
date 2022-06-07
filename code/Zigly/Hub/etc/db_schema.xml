@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright (C) 2020  Zigly
+ * @package  Zigly_Hub
+ */ -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="zigly_hub_hub" resource="default" engine="innodb" comment="zigly_hub_hub Table">
+		<column xsi:type="smallint" name="hub_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="hub_id"/>
+		</constraint>
+		<column name="location" nullable="true" xsi:type="varchar" comment="location" length="255"/>
+		<column name="city" nullable="true" xsi:type="varchar" comment="city" length="255"/>
+		<column name="street_one" nullable="true" xsi:type="varchar" comment="street_one" length="255"/>
+		<column name="street_two" nullable="true" xsi:type="varchar" comment="street_two" length="255"/>
+		<column name="region_id" nullable="true" xsi:type="varchar" comment="region id" length="255"/>
+		<column name="state" nullable="true" xsi:type="varchar" comment="state" length="255"/>
+		<column name="pincode" nullable="true" xsi:type="varchar" comment="pincode" length="255"/>
+		<column name="latitude" nullable="true" xsi:type="varchar" comment="lat"/>
+		<column name="longitude" nullable="true" xsi:type="varchar" comment="long"/>
+		<column name="availability_info" nullable="true" xsi:type="varchar" comment="availibity info"/>
+		<column name="status" nullable="true" xsi:type="smallint" comment="status"/>
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+		<index referenceId="ZIGLY_HUB_HUB_LOCATION_CITY_STREET_ONE_STREET_TWO_STATE_PINCODE" indexType="fulltext">
+			<column name="location" />
+			<column name="city" />
+			<column name="street_one" />
+			<column name="street_two" />
+			<column name="state" />
+			<column name="pincode" />
+		</index>
+	</table>
+</schema>

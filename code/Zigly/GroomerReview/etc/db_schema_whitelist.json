@@ -1,0 +1,28 @@
+{
+    "zigly_groomerreview_groomerreview": {
+        "column": {
+            "groomerreview_id": true,
+            "groomer_id": true,
+            "star_rating": true,
+            "tag_name": true,
+            "is_active": true,
+            "type": true,
+            "rating": true,
+            "created_at": true,
+            "updated_at": true
+
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "ZIGLY_GROOMERREVIEW_GROOMERREVIEW_STARRATING": true,
+            "ZIGLY_GROOMERREVIEW_GROOMERREVIEW_GROOMERID": true,
+            "ZIGLY_GROOMERREVIEW_GROOMERREVIEW_TAGNAME": true,
+            "ZIGLY_GROOMERREVIEW_GROOMERREVIEW_ISACTIVE": true,
+            "ZIGLY_GROOMERREVIEW_GROOMERREVIEW_TYPE": true,
+            "ZIGLY_GROOMERREVIEW_GROOMERREVIEW_RATING": true,
+            "ZIGLY_GROOMERREVIEW_GROOMERREVIEW_STARRATING_GROOMERID_TAGNAME_ISACTIVE_IMAGEPATH": true
+        }
+    }
+}

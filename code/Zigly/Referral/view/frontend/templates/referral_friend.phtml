@@ -1,0 +1,85 @@
+<?php
+/**
+ * @var $block \Zigly\Referral\Block\ReferralList
+ */
+$reference_id = $block->getReferenceId();
+$discription = $block->getReferralDiscription();
+$link = "https://bit.ly/3CSVJ8s";
+$whatsappDiscription = $block->getReferralWhatsappDiscription($reference_id, $link); ?>
+<div class="refer-friend refer-friend-wrap">
+    <div class="refer-friend-left">
+        <div class="referral-info">
+            <h2><?= $block->escapeHtml(__('Free treats? Yes please!')) ?></h2>
+            <div class="referral-desc">
+                <p><?php echo $discription; ?></p>
+            </div>
+            <div class="referral-code-block">
+                <span><?= $block->escapeHtml(__('Referral Code')) ?></span>
+                <span class="referral-code">
+                    <?php echo $reference_id; ?>
+                </span>
+                <!-- <button class="invite"><?php // $block->escapeHtml(__('Invite Friends')) ?></button> -->
+                <div id="invite-sharing">
+                    <div class="invite-share-col-left">
+                        <h5><?= /* @noEscape */ __('Share With Friends') ?></h5>
+                    </div>
+                    <div class="invite-share-col-right">
+                        <div class="invite-post-sharing-button">
+                            <div class="share-with-whatsapp">
+                                <!-- <?php// $link = "https://bit.ly/3CSVJ8s";
+                                $referrenceMsg = "I’m inviting you to Join Zigly for Happy Pets, Use my referral code(".$reference_id.") - just enter it while creating your account, you will get a cashback amount of Rs ".$this->getCustomerReferralValue()." on your first transaction ".$link.""; ?> -->
+                                <a href="https://api.whatsapp.com/send?text=<?= $whatsappDiscription ?>" target="_blank">
+                                    <img src="<?php echo $this->getViewFileUrl('Zigly_Referral::images/whatsapp-icon.png'); ?>">
+                                </a>
+                            </div>
+                            <!-- <div class="share-with-sms">
+                                <img src="<?php// echo $this->getViewFileUrl('Zigly_Referral::images/help.png'); ?>" class="invite-with-sms">
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="red-left-curve">
+                <img src="<?php echo $this->getViewFileUrl('Zigly_Referral::images/left-curve.png'); ?>">
+            </div>
+        </div>
+    </div>
+    <div class="refer-friend-right">
+        <div class="refer-friend-image">
+            <img src="<?php echo $this->getViewFileUrl('Zigly_Referral::images/right-dog.png'); ?>">
+        </div>
+    </div>
+</div>
+<div id="popup-mpdal-invite" style="display: none;">
+    <form class="invite-form" >
+        <div id="result"></div>
+        <div class="admin__page-section-item-content">
+            <div class="admin__page-section-item">
+                <div class="admin__field">
+                    <label class="admin__field-label" for="phone-number"><span><?php /* @noEscape */ echo __('Enter Phone Number(s)')?></span></label>
+                    <div class="admin__field-control">
+                        <textarea name="phone_numbers" id="phone_numbers" title="<?php echo __('Enter Phone Number(s)') ?>" class="input-text phone-number" placeholder="<?php echo __('Enter Phone Number(s)') ?>" rows="4" cols="15"></textarea>
+                        <span class = "error">
+                    </div>
+                    <label>Please enter phone number with comma-separated</label>
+                </div>
+                <div class="admin__field">
+                    <button class="action primary invite" id="send-invite" title="Send">
+                        <span><?php /* @noEscape */ echo __('Send')?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_Referral/js/referral":{
+                "AjaxUrl" : "<?php echo $this->getUrl().'referral/customer/sendReferral'?>",
+                "referral" : "<?php echo $reference_id;?>"
+            }
+        }
+    }
+</script>

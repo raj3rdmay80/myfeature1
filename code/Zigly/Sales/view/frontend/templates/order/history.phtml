@@ -1,0 +1,115 @@
+<?php
+/**
+* Copyright (C) 2020  Zigly
+* @package   Zigly_Sales
+*/
+/** @var \Magento\Sales\Block\Order\History $block */
+?>
+<?php $blockObj = $block->getLayout()->createBlock('Zigly\Sales\Block\Order\History');?>
+<?php $orders = $block->getOrders(); ?>
+<?= $block->getChildHtml('info') ?>
+<?php if ($orders && count($orders)) : ?>
+    <div class="table-wrapper orders-history">
+        <span class="your-orders"><?= $block->escapeHtml(__('Your Orders')) ?></span>
+        <ul class="sales-order-history-list">
+            <?php foreach ($orders as $order) : ?>
+                <li class="order-history-list">
+                    <div class="order-history-head">
+                        <span class="order-placed"><?= $block->escapeHtml(__('Order Placed: ')) ?><?= /* @noEscape */ $blockObj->getDate($order->getCreatedAt()) ?></span>
+                        <span class="order-id"><?= $block->escapeHtml(__('Order Id: ')) ?><?= $block->escapeHtml($order->getRealOrderId()) ?></span>
+                    </div>
+                    <!-- <div class="delivered-on">
+                        <label>Delivered on 1 March, 2021</label>
+                    </div> -->
+                    <div class="order-products">
+                        <table>
+                            <tbody>
+                                <?php $firstRowSpan = true; ?>
+                                <?php foreach ($order->getAllVisibleItems() as $item) : ?>
+                                    <?php if (!$item->getParentItem()) : ?>
+                                        <tr class="order-product-head">
+                                            <td>
+                                                <?php $imageurl = $blockObj->getProductImage($item->getProductId()); ?>
+                                                <p class="product-image">
+                                                    <img src="<?php echo $imageurl?>" width="50" height="50"/>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p class="product-name">
+                                                    <?= $block->escapeHtml($item->getName()) ?>
+                                                </p>
+                                                <?php $resultOptions = [];
+                                                $options = $item->getProductOptions();
+                                                if ($options) {
+                                                    if (isset($options['options'])) {
+                                                        $resultOptions = array_merge($resultOptions, $options['options']);
+                                                    }
+                                                    if (isset($options['additional_options'])) {
+                                                        $resultOptions = array_merge($resultOptions, $options['additional_options']);
+                                                    }
+                                                    if (isset($options['attributes_info'])) {
+                                                        $resultOptions = array_merge($resultOptions, $options['attributes_info']);
+                                                    }
+                                                } ?>
+                                                <?php if($resultOptions):?>
+                                                    <?php foreach($resultOptions as  $option):?>
+                                                        <p class="product-options">
+                                                            <span><?php echo $option['value'] ?></span>
+                                                        </p>
+                                                    <?php endforeach ?>
+                                                <?php endif ?>
+                                            </td>
+                                            <td>
+                                               <?= $block->escapeHtml(__('Qty: ')) ?></span><?= round($item->getQtyOrdered()) ?>
+                                            </td>
+                                            <td>
+                                                <?= $order->formatBasePrice($item->getBaseRowTotal()) ?>
+                                            </td>
+                                            <?php if ($firstRowSpan == true) {
+                                                $firstRowSpan = false; ?>
+                                                <td rowspan="<?php echo $order->getTotalItemCount(); ?>">
+                                                    <div class="product-options">
+                                                        <p class="view-order">
+                                                            <a href="<?= $block->escapeUrl($blockObj->getViewUrl($order)) ?>" class="action view">
+                                                                <span><?= $block->escapeHtml(__('View Order Details')) ?></span>
+                                                            </a>
+                                                        </p>
+                                                        <?php $status = ['pending', 'canceled']; ?>
+                                                        <?php if (!in_array($order->getStatus(), $status)) { ?>
+                                                            <p class="download-invoice">
+                                                                <a href="javascript:;" target="_blank" class="action view order-generate-invoice" key="<?=$order->getId()?>">
+                                                                    <span><?= $block->escapeHtml(__('Download Invoice')) ?></span>
+                                                                </a>
+                                                            </p>
+                                                        <?php } ?>
+                                                        <p class="status">
+                                                            <span class="order-status"><?= $block->escapeHtml(__('Status : ')) ?><?= $block->escapeHtml($order->getStatusLabel()) ?></span>
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
+                                        </tr>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php if ($block->getPagerHtml()) : ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif ?>
+<?php else : ?>
+    <div class="message info empty"><span><?= $block->escapeHtml($block->getEmptyOrdersMessage()) ?></span></div>
+<?php endif ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Zigly_Sales/js/invoice": {
+                "invoiceUrl" : "<?php echo $this->getUrl().'sales/orders/invoice'?>"
+            }
+        }
+    }
+</script>
