@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
-    <template id="msggateway_otpemail_login_email_otp" label="OTP Mail Template" file="loginotp.html" type="html" module="Zigly_Login" area="adminhtml"/>
-    <template id="zigly_login_create_new_customer_guest_customer" label="account creation" file="account_new.html" type="html" module="Zigly_Login" area="frontend"/>
-</config>

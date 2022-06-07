@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Wallet::first_level" title="Wallet Management" module="Zigly_Wallet" parent="Zigly::top_level"  sortOrder="9999" resource="Zigly_Wallet::Wallet"/>
-        <add id="Zigly_Wallet::zigly_wallet_wallet" title="Manage Wallet" module="Zigly_Wallet" sortOrder="9999" resource="Zigly_Wallet::Wallet" parent="Wallet::first_level" action="zigly_wallet/wallet/index"/>
-    </menu>
-</config>

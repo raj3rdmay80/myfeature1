@@ -1,8 +1,0 @@
-<?xml version="1.0" ?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-	<menu>
-		<add id="Species::first_level" title="Species Management" module="Zigly_Species" sortOrder="50" parent="Zigly::top_level" resource="Zigly_Species::Species_Management"/>
-		<add id="Zigly_Species::zigly_species_species" title="Species" module="Zigly_Species" sortOrder="10" resource="Zigly_Species::Species" parent="Species::first_level" action="zigly_species/species/index"/>
-		<add id="Zigly_Species::zigly_species_breed" title="Breed" module="Zigly_Species" sortOrder="20" resource="Zigly_Species::Breed" parent="Species::first_level" action="zigly_species/breed/index"/>
-	</menu>
-</config>

@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Zigly_ScheduleManagement::schedulemanagement_first_level" title="Schedule Management" module="Zigly_ScheduleManagement" parent="Zigly::top_level"  sortOrder="999" resource="Zigly_ScheduleManagement::Management"/>
-        <add id="Zigly_ScheduleManagement::schedulemanagement_second_level" title="Schedule Management" module="Zigly_ScheduleManagement" sortOrder="999" resource="Zigly_ScheduleManagement::Management" parent="Zigly_ScheduleManagement::schedulemanagement_first_level" action="zigly_schedulemanagement/schedulemanagement/index"/>
-    </menu>
-</config>

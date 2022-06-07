@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Zigly::middle_level" title="Product" module="Zigly_Script" sortOrder="9999" parent="Zigly::top_level" resource="Zigly_Script::script"/>
-        <add id="Zigly_Script::script_script" title="Use Default Value" module="Zigly_Script" sortOrder="9999" resource="Zigly_Script::script" parent="Zigly::middle_level" action="script/script/script"/>
-    </menu>
-</config>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<preference for="Zigly\VideoIntegrate\Api\VideoIntegrateInterface" type="Zigly\VideoIntegrate\Model\VideoIntegrateApi"/>
-	<type name="Magento\Framework\Webapi\Rest\Response\Renderer\Json">
-		<plugin name="zigly_videintegrateplugin" type="Zigly\VideoIntegrate\Plugin\JsonPlugin" sortOrder="100" disabled="false" />
-	</type>
-</config>
